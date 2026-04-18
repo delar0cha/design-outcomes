@@ -166,6 +166,16 @@ const Illustration = ({ recipe, className='', style={} }) => {
         {/* Subtle diagonal texture */}
         <g>{diag(16, 0.055)}</g>
       </>);
+      case 'boardroom': return (
+        // Inline SVG from Asset 3.svg — two overlapping speech bubbles with multiply blend
+        <svg viewBox="0 0 817.73 573.72" x="0" y="0" width="1200" height="800" preserveAspectRatio="xMidYMid slice">
+          <rect width="817.73" height="573.72" fill="#e9e0d0"/>
+          <g style={{isolation:'isolate'}}>
+            <path style={{fill:'#c66b57',mixBlendMode:'multiply'}} d="M284.41,120.86c-125.45,0-227.15,76.83-227.15,171.6,0,61.42,42.72,115.29,106.92,145.61-2.25,21.93-14.44,40.59-23.35,51.57-3.32,4.09.3,10.04,5.47,9,29.12-5.88,56.42-27.28,72.28-41.9,20.84,4.76,42.94,7.33,65.84,7.33,125.45,0,227.15-76.83,227.15-171.6s-101.7-171.6-227.15-171.6Z"/>
+            <path style={{fill:'#5a6b4a',mixBlendMode:'multiply'}} d="M739.55,205.88c0-74.1-79.52-134.17-177.61-134.17s-177.61,60.07-177.61,134.17,79.52,134.17,177.61,134.17c17.9,0,35.19-2.01,51.48-5.73,12.4,11.43,33.73,28.16,56.51,32.77,4.04.82,6.88-3.83,4.28-7.04-6.97-8.59-16.5-23.17-18.26-40.32,50.2-23.71,83.6-65.83,83.6-113.85Z"/>
+          </g>
+        </svg>
+      );
       case 'venn': {
         const clipId = `vn${seed}`;
         const terra = '#B8432B';

@@ -42,7 +42,7 @@ const Post = ({ slug, onOpen, onHome }) => {
         <p className="do-post-why"><span className="do-post-why-label">Why this matters — </span>{post.why}</p>
 
         <div className="do-post-byline">
-          <div className="do-post-byline-avatar" aria-hidden="true">LD</div>
+          <div className="do-post-byline-avatar" aria-hidden="true">LR</div>
           <div>
             <div className="do-post-byline-name">Leonardo De La Rocha</div>
             <div className="do-post-byline-sub">VP Product Design · Published {window.fmtDate(post.date)}</div>
@@ -69,7 +69,7 @@ const Post = ({ slug, onOpen, onHome }) => {
           {post.body.length <= 1 && (
             <div className="do-stub">
               <div className="do-stub-rule"/>
-              <p>The rest of this piece will ship in the live build. Sample content for the page template is shown on <a href="#/post/managers-are-not-the-customer" onClick={(e)=>{e.preventDefault(); onOpen('managers-are-not-the-customer');}}>“Your manager is not the customer.”</a></p>
+              <p>The rest of this piece will ship in the live build. In the meantime, read <a href="#/post/building-design-outcomes" onClick={(e)=>{e.preventDefault(); onOpen('building-design-outcomes');}}>“Building Design Outcomes”</a>, which lays out how the site was made.</p>
             </div>
           )}
         </div>

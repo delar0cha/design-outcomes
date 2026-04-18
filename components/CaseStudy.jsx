@@ -66,7 +66,7 @@ const CaseStudy = ({ slug, onHome }) => {
         <window.TopNav onHome={onHome} section="work"/>
         <div style={{padding:'120px 40px', textAlign:'center'}}>
           <h1>Not found.</h1>
-          <a href="#/work" onClick={(e)=>{e.preventDefault(); window.location.hash='/work'; window.scrollTo({top:0,behavior:'instant'});}}>← Back to Design Work</a>
+          <a href="/work" onClick={(e)=>{e.preventDefault(); window.navigate('/work');}}>← Back to Design Work</a>
         </div>
       </main>
     );
@@ -75,8 +75,7 @@ const CaseStudy = ({ slug, onHome }) => {
   const cat = window.PROJECT_CATS[cs.cat];
   const goWork = (e) => {
     e.preventDefault();
-    window.location.hash = '/work';
-    window.scrollTo({top:0, behavior:'instant'});
+    window.navigate('/work');
   };
 
   const shareUrl = `${window.location.origin}/work/${cs.slug}`;
@@ -97,7 +96,7 @@ const CaseStudy = ({ slug, onHome }) => {
       <article className="do-cs-article">
 
         {/* Back link */}
-        <a className="do-cs-back" href="#/work" onClick={goWork}>
+        <a className="do-cs-back" href="/work" onClick={goWork}>
           ← Design Work
         </a>
 

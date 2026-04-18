@@ -104,7 +104,7 @@ const Featured = ({ posts, onOpen, heroLayout }) => {
 const Card = ({ post, onOpen }) => {
   const c = window.CATEGORIES[post.cat];
   return (
-    <a className="do-card" href={`#/post/${post.slug}`} onClick={(e)=>{e.preventDefault(); onOpen(post.slug);}}>
+    <a className="do-card" href={`/post/${post.slug}`} onClick={(e)=>{e.preventDefault(); onOpen(post.slug);}}>
       <div className="do-card-thumb">
         <Illustration recipe={post.illustration} className="do-card-svg"/>
       </div>
@@ -373,11 +373,10 @@ const NAV_SVG = (
 const TopNav = ({ onHome, section = '' }) => {
   const [subOpen, setSubOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const go = (hash) => (e) => {
+  const go = (path) => (e) => {
     e.preventDefault();
     setMenuOpen(false);
-    window.location.hash = hash;
-    window.scrollTo({top:0, behavior:'instant'});
+    window.navigate(path);
   };
   const active = (s) => section === s ? 'is-active' : '';
   const openSub = () => { setMenuOpen(false); setSubOpen(true); };
@@ -386,14 +385,14 @@ const TopNav = ({ onHome, section = '' }) => {
     <>
       <div className="do-nav-wrap">
         <header className="do-nav">
-          <a href="#/" className="do-nav-logo" onClick={go('#/')}>
+          <a href="/" className="do-nav-logo" onClick={go('/')}>
             <span className="do-nav-mark">{NAV_SVG}</span>
             <span className="do-nav-wordmark">Design Outcomes</span>
           </a>
           <nav className="do-nav-links">
-            <a href="#/" className={active('writeups')} onClick={go('#/')}>Write-ups</a>
-            <a href="#/work" className={active('work')} onClick={go('#/work')}>Design Work</a>
-            <a href="#/about" className={active('about')} onClick={go('#/about')}>About</a>
+            <a href="/" className={active('writeups')} onClick={go('/')}>Write-ups</a>
+            <a href="/work" className={active('work')} onClick={go('/work')}>Design Work</a>
+            <a href="/about" className={active('about')} onClick={go('/about')}>About</a>
             <button className="do-nav-sub-btn" onClick={openSub}>Subscribe</button>
           </nav>
           <div className="do-nav-meta">
@@ -416,9 +415,9 @@ const TopNav = ({ onHome, section = '' }) => {
 
         {menuOpen && (
           <nav className="do-mobile-menu" aria-label="Site navigation">
-            <a href="#/" className={`do-mobile-link${section==='writeups'?' is-active':''}`} onClick={go('#/')}>Write-ups</a>
-            <a href="#/work" className={`do-mobile-link${section==='work'?' is-active':''}`} onClick={go('#/work')}>Design Work</a>
-            <a href="#/about" className={`do-mobile-link${section==='about'?' is-active':''}`} onClick={go('#/about')}>About</a>
+            <a href="/" className={`do-mobile-link${section==='writeups'?' is-active':''}`} onClick={go('/')}>Write-ups</a>
+            <a href="/work" className={`do-mobile-link${section==='work'?' is-active':''}`} onClick={go('/work')}>Design Work</a>
+            <a href="/about" className={`do-mobile-link${section==='about'?' is-active':''}`} onClick={go('/about')}>About</a>
             <button className="do-mobile-link do-mobile-sub" onClick={openSub}>Subscribe →</button>
           </nav>
         )}

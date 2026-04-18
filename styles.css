@@ -1543,8 +1543,8 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   align-items: center;
   flex-wrap: wrap;
   gap: 4px 0;
-  margin: 48px 0 8px;
-  padding: 20px 0;
+  margin: 8px 0;
+  padding: 12px 0;
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
@@ -1555,52 +1555,74 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted-2);
-  margin-right: 14px;
+  margin-right: 10px;
 }
+/* Copy link — pill with fill-from-bottom, matches nav */
 .do-share-row-copy {
-  background: none;
+  display: inline-block;
   border: 1px solid var(--rule);
-  border-radius: 4px;
-  padding: 4px 12px;
+  border-radius: 999px;
+  padding: 5px 14px;
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 500;
-  color: var(--ink);
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
-  margin-right: 8px;
+  margin-right: 6px;
+  position: relative;
+  background-image: linear-gradient(to top, var(--ink) 50%, transparent 50%);
+  background-size: 100% 205%;
+  background-position: 0% 0%;
+  color: var(--ink);
+  transition:
+    background-position 260ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 200ms,
+    border-color 200ms;
 }
-.do-share-row-copy:hover { border-color: var(--accent); color: var(--accent); }
+.do-share-row-copy:hover {
+  background-position: 0% 100%;
+  color: var(--cream);
+  border-color: var(--ink);
+}
 .do-share-row-sep {
   display: inline-block;
   width: 1px;
   height: 16px;
   background: var(--rule);
-  margin: 0 12px;
+  margin: 0 8px;
   vertical-align: middle;
 }
+/* Share links — pill with fill-from-bottom, matches nav */
 .do-share-row-link {
+  display: inline-block;
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 500;
-  color: var(--muted-2);
   text-decoration: none;
-  padding: 4px 10px;
-  border-radius: 4px;
-  transition: color 0.15s, background 0.15s;
+  padding: 5px 12px;
+  border-radius: 999px;
+  position: relative;
+  background-image: linear-gradient(to top, var(--ink) 50%, transparent 50%);
+  background-size: 100% 205%;
+  background-position: 0% 0%;
+  color: var(--ink-2);
+  transition:
+    background-position 260ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 200ms;
 }
-.do-share-row-link:hover { color: var(--ink); background: rgba(21,18,14,0.05); }
+.do-share-row-link:hover {
+  background-position: 0% 100%;
+  color: var(--cream);
+}
 
-/* Top variant: sits below byline, hairline separates it from body */
+/* Top variant: sits below byline, hairline only on bottom */
 .do-share-row--top {
-  margin-top: 24px;
+  margin-top: 16px;
   margin-bottom: 0;
   border-top: none;
   border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 20px;
 }
 
 @media (max-width: 600px) {
-  .do-share-row { gap: 8px 0; }
+  .do-share-row { gap: 6px 0; }
   .do-share-row-sep { display: none; }
 }

@@ -7,7 +7,7 @@ const WorkCard = ({ project: p }) => {
   return (
     <div className={`do-wk-card${isLive ? ' is-live' : ''}`}>
       {isLive
-        ? <a className="do-wk-card-thumb" href={`#/work/${p.slug}`} onClick={(e)=>{e.preventDefault(); window.location.hash=`/work/${p.slug}`; window.scrollTo({top:0,behavior:'instant'});}}>
+        ? <a className="do-wk-card-thumb" href={`/work/${p.slug}`} onClick={(e)=>{e.preventDefault(); window.navigate(`/work/${p.slug}`);}}>
             <window.Illustration recipe={p.illustration} className="do-wk-card-svg"/>
           </a>
         : <div className="do-wk-card-thumb">
@@ -23,7 +23,7 @@ const WorkCard = ({ project: p }) => {
         <p className="do-wk-card-excerpt">{p.excerpt}</p>
         <div className="do-wk-card-cta">
           {isLive
-            ? <a className="do-wk-read" href={`#/work/${p.slug}`} onClick={(e)=>{e.preventDefault(); window.location.hash=`/work/${p.slug}`; window.scrollTo({top:0,behavior:'instant'});}}>View case study →</a>
+            ? <a className="do-wk-read" href={`/work/${p.slug}`} onClick={(e)=>{e.preventDefault(); window.navigate(`/work/${p.slug}`);}}>View case study →</a>
             : <span className="do-wk-soon">Case study in progress</span>}
         </div>
       </div>

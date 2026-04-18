@@ -59,7 +59,7 @@ const Post = ({ slug, onOpen, onHome }) => {
         <window.TopNav onHome={onHome} section="writeups"/>
         <div style={{padding:'120px 40px', textAlign:'center'}}>
           <h1>Not found.</h1>
-          <a href="#/" onClick={(e)=>{e.preventDefault(); onHome();}}>Back to the index →</a>
+          <a href="/" onClick={(e)=>{e.preventDefault(); onHome();}}>Back to the index →</a>
         </div>
       </main>
     );
@@ -118,7 +118,7 @@ const Post = ({ slug, onOpen, onHome }) => {
           {post.body.length <= 1 && (
             <div className="do-stub">
               <div className="do-stub-rule"/>
-              <p>The rest of this piece will ship in the live build. In the meantime, read <a href="#/post/building-design-outcomes" onClick={(e)=>{e.preventDefault(); onOpen('building-design-outcomes');}}>"Building Design Outcomes"</a>, which lays out how the site was made.</p>
+              <p>The rest of this piece will ship in the live build. In the meantime, read <a href="/post/building-design-outcomes" onClick={(e)=>{e.preventDefault(); onOpen('building-design-outcomes');}}>"Building Design Outcomes"</a>, which lays out how the site was made.</p>
             </div>
           )}
         </div>
@@ -142,7 +142,7 @@ const Post = ({ slug, onOpen, onHome }) => {
         </div>
         <div className="do-related-grid">
           {related.map(p => (
-            <a key={p.slug} className="do-card" href={`#/post/${p.slug}`} onClick={(e)=>{e.preventDefault(); onOpen(p.slug);}}>
+            <a key={p.slug} className="do-card" href={`/post/${p.slug}`} onClick={(e)=>{e.preventDefault(); onOpen(p.slug);}}>
               <div className="do-card-thumb"><window.Illustration recipe={p.illustration} className="do-card-svg"/></div>
               <div className="do-card-body">
                 <div className="do-card-top">

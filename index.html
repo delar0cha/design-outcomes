@@ -51,26 +51,30 @@ const TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
   "heroLayout": "framed"
 }/*EDITMODE-END*/;
 
-// Very small hash-based router: '#/' and '#/post/<slug>'
+// Path-based router using history API
 const parseRoute = () => {
-  const h = window.location.hash.replace(/^#/, '') || '/';
-  const m = h.match(/^\/post\/(.+)$/);
+  const p = window.location.pathname;
+  const m = p.match(/^\/post\/(.+)$/);
   if (m) return { name:'post', slug: m[1] };
-  const w = h.match(/^\/work\/(.+)$/);
+  const w = p.match(/^\/work\/(.+)$/);
   if (w) return { name:'casestudy', slug: w[1] };
-  if (h === '/about') return { name:'about' };
-  if (h === '/work') return { name:'work' };
+  if (p === '/about') return { name:'about' };
+  if (p === '/work') return { name:'work' };
   return { name:'home' };
 };
 
 const useRoute = () => {
   const [route, setRoute] = useState(parseRoute);
   useEffect(()=>{
-    const onHash = () => setRoute(parseRoute());
-    window.addEventListener('hashchange', onHash);
-    return () => window.removeEventListener('hashchange', onHash);
+    const onPop = () => setRoute(parseRoute());
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
   },[]);
-  const navigate = (to) => { window.location.hash = to; window.scrollTo({top:0, behavior:'instant'}); };
+  const navigate = (to) => {
+    history.pushState({}, '', to);
+    setRoute(parseRoute());
+    window.scrollTo({top:0, behavior:'instant'});
+  };
   return { route, navigate };
 };
 
@@ -102,6 +106,11 @@ const App = () => {
   const { route, navigate } = useRoute();
   const [tweaks, setTweaks] = useState(TWEAKS_DEFAULTS);
   const [tweaksVisible, setTweaksVisible] = useState(false);
+
+  useEffect(() => {
+    // Expose navigate globally so child components can do client-side routing
+    window.navigate = navigate;
+  }, [navigate]);
 
   useEffect(() => {
     const onMsg = (e) => {

@@ -71,6 +71,12 @@ const CaseStudy = ({ slug, onHome }) => {
                 <span>{block.text}</span>
               </blockquote>
             );
+            if (block.type === 'img')  return (
+              <figure key={i} className="do-cs-figure">
+                <img src={block.src} alt={block.caption || ''} className="do-cs-img" loading="lazy"/>
+                {block.caption && <figcaption className="do-cs-figcaption">{block.caption}</figcaption>}
+              </figure>
+            );
             return null;
           })}
         </div>
@@ -78,19 +84,21 @@ const CaseStudy = ({ slug, onHome }) => {
         {/* End rule */}
         <div className="do-cs-rule" style={{marginTop:'64px'}}/>
 
-        {/* Selected slides */}
-        <section className="do-cs-slides">
-          <div className="do-eyebrow">Selected slides</div>
-          <h2 className="do-cs-slides-head">From the 2026 Design Vision deck.</h2>
-          <div className="do-cs-slides-grid">
-            {Array.from({length:4}).map((_,i) => (
-              <div key={i} className="do-cs-slide-placeholder">
-                <div className="do-cs-slide-inner"/>
-              </div>
-            ))}
-          </div>
-          <p className="do-cs-slides-note">Slide images coming soon.</p>
-        </section>
+        {/* Slide deck */}
+        {cs.slides && cs.slides.length > 0 && (
+          <section className="do-cs-slides">
+            <div className="do-eyebrow">Selected slides</div>
+            <h2 className="do-cs-slides-head">From the 2026 Design Vision deck.</h2>
+            <div className="do-cs-slides-grid">
+              {cs.slides.map((slide, i) => (
+                <figure key={i} className="do-cs-slide">
+                  <img src={slide.src} alt={slide.caption} className="do-cs-slide-img" loading="lazy"/>
+                  {slide.caption && <figcaption className="do-cs-slide-caption">{slide.caption}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
 
       </article>
 

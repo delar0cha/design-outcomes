@@ -152,7 +152,7 @@ window.PROJECTS = [
     title:'2026 Design Vision',
     excerpt:'Setting the strategic direction for product design at SimplePractice — defining what craft, quality, and outcomes mean for a platform serving 185k+ practitioners.',
     status:'live',
-    illustration: ill('compass', ['#E8E0D0','#2F4858','#15120E'], 1) },
+    illustration: ill('eye', ['#E8E0D0','#2F4858','#15120E'], 1) },
 
   { slug:'sp-product-engineering',
     cat:'product', company:'SimplePractice', year:'2024–2026',
@@ -244,12 +244,12 @@ window.FEATURED_SLUGS = [
 
 window.CASE_STUDIES = [
   {
-    slug: '2026-design-vision',
+    slug: 'sp-design-vision',
     cat: 'product', company: 'SimplePractice', year: '2025\u20132026',
     title: '2026 Design Vision',
     subtitle: 'Building a Design Vision That Can Steer Work',
     summary: 'A design vision document is easy to write and hard to make useful. Most of them live somewhere in Notion, get shared once at an all-hands, and slowly lose relevance as the product moves forward without them. When I started on this one, the first question I kept returning to was not what should the vision say, but what would it take for this to actually change how people make decisions six months from now. That question shaped everything.',
-    illustration: ill('compass', ['#E8E0D0', '#2F4858', '#15120E'], 1),
+    illustration: ill('eye', ['#E8E0D0', '#2F4858', '#15120E'], 1),
     body: [
       { type:'h', text:'The starting conditions' },
       { type:'p', text:'SimplePractice sits at a specific kind of inflection point. The company serves independent mental health clinicians, a group whose administrative burden is significant and whose tolerance for software complexity is low. We were scaling aggressively across multiple product pillars, adding AI capabilities faster than our shared standards could keep up, and operating with design teams that had grown close enough to their individual pillars to start developing their own mental models for how the product should behave.' },

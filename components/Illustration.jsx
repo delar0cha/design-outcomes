@@ -83,6 +83,38 @@ const Illustration = ({ recipe, className='', style={} }) => {
         <rect x={80} y={460} width={980} height={6} fill={ink}/>
         <g>{diag(18, 0.1)}</g>
       </>);
+      case 'eye': {
+        const clipId = `ec${seed}`;
+        const cx = 600, cy = 400;
+        const ew = 360, eh = 195; // horizontal & vertical radius
+        const eyePath = `M ${cx-ew},${cy} C ${cx-ew+80},${cy-eh} ${cx+ew-80},${cy-eh} ${cx+ew},${cy} C ${cx+ew-80},${cy+eh} ${cx-ew+80},${cy+eh} ${cx-ew},${cy} Z`;
+        const spokes = 20;
+        return (<>
+          <rect width="1200" height="800" fill={bg}/>
+          <defs>
+            <clipPath id={clipId}><path d={eyePath}/></clipPath>
+          </defs>
+          {/* Radiating spokes, clipped to eye */}
+          <g clipPath={`url(#${clipId})`}>
+            {Array.from({length:spokes}).map((_,i) => {
+              const a = (i / spokes) * Math.PI * 2;
+              const sw = (i % 5 === 0) ? 3 : (i % 2 === 0) ? 1.8 : 1;
+              return <line key={i}
+                x1={cx} y1={cy}
+                x2={cx + Math.cos(a) * 430} y2={cy + Math.sin(a) * 430}
+                stroke={ink} strokeWidth={sw} opacity={0.8}/>;
+            })}
+          </g>
+          {/* Eye outline */}
+          <path d={eyePath} fill="none" stroke={ink} strokeWidth={3}/>
+          {/* Iris ring */}
+          <circle cx={cx} cy={cy} r={78} fill={bg} stroke={mid} strokeWidth={2.5}/>
+          {/* Pupil */}
+          <circle cx={cx} cy={cy} r={28} fill={ink}/>
+          {/* Anchor bar */}
+          <rect x={0} y={666} width={1200} height={4} fill={ink} opacity={0.18}/>
+        </>);
+      }
       case 'compass': {
         const sage  = '#4A5D3A';
         const terra = '#B8432B';

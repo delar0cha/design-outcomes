@@ -166,6 +166,28 @@ const Illustration = ({ recipe, className='', style={} }) => {
         {/* Subtle diagonal texture */}
         <g>{diag(16, 0.055)}</g>
       </>);
+      case 'venn': {
+        const clipId = `vn${seed}`;
+        const terra = '#B8432B';
+        const sage  = '#4A5D3A';
+        // Left bubble: mid (teal #2F4858), slightly higher
+        // Right bubble: terracotta, slightly lower — offset for visual interest
+        const cx1 = 400, cy1 = 360, cx2 = 800, cy2 = 440, R = 310;
+        return (<>
+          <rect width="1200" height="800" fill={bg}/>
+          <defs>
+            <clipPath id={clipId}>
+              <circle cx={cx2} cy={cy2} r={R}/>
+            </clipPath>
+          </defs>
+          {/* Left bubble (teal) */}
+          <circle cx={cx1} cy={cy1} r={R} fill={mid}/>
+          {/* Right bubble (terracotta) — partially covers left */}
+          <circle cx={cx2} cy={cy2} r={R} fill={terra}/>
+          {/* Intersection (sage) — circle 1 clipped to circle 2's region */}
+          <circle cx={cx1} cy={cy1} r={R} fill={sage} clipPath={`url(#${clipId})`}/>
+        </>);
+      }
       default: return <rect width="1200" height="800" fill={bg}/>;
     }
   };

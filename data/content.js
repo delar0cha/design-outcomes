@@ -15,6 +15,34 @@ window.AUTHOR = { name: 'Leonardo De La Rocha', initials: 'LR', role: 'VP Produc
 const ill = (kind, palette, seed=1) => ({ kind, palette, seed });
 
 window.POSTS = [
+  // ARTICLE 5 — Toolbox (most recent)
+  { slug:'translating-the-boardroom', cat:'toolbox', audience:'Leaders', date:'2026-04-18',
+    title:'Translating the Boardroom for the People Who Do the Work',
+    excerpt:'Every Monday morning I rewrite the CEO update for my design org. Here is why, how I do it, and the template you can steal.',
+    why:'Because the gap between executive communication and team understanding is where trust either builds or erodes.',
+    read:'6 min',
+    illustration: ill('signal', ['#F5F0E8', '#2F4858', '#15120E'], 11),
+    body: [
+      {type:'h', text:'Why this ritual exists'},
+      {type:'p', text:'Every Sunday night or early Monday morning, our CEO sends an update to the extended leadership team. It covers board feedback, quarterly priorities, competitive positioning, organizational changes, and the week ahead. It is written for directors and VPs. It assumes fluency in financial metrics, go-to-market language, and strategic shorthand that most individual contributors have never been exposed to.'},
+      {type:'p', text:'My design org is roughly 30 people. Most of them will never see that email. And yet the decisions it describes will shape their priorities, their deadlines, their project scoping, and their sense of whether the company they work for is winning or losing. That gap between what leadership knows and what the team feels is one of the most corrosive forces in an organization. It breeds anxiety, rumor, and misalignment. Closing it is one of the highest-leverage things a design leader can do.'},
+      {type:'p', text:'So every Monday morning, I post a Slack message to my design channel that translates the CEO and CPO updates into language my team can use. I have been doing this for over a year now, and the ritual has become one of the most important things I do as a leader. Not because the content is groundbreaking, but because the act of showing up consistently, with transparency and context, creates a kind of organizational trust that no all-hands presentation can replicate.'},
+      {type:'h', text:'The format'},
+      {type:'p', text:'The post opens with a greeting and a short energizing line. Something human, something that signals I am present and paying attention. Then it moves through four sections.'},
+      {type:'p', text:'The first section is called \u201cWhat we\u2019re here for.\u201d This is a grounding paragraph that connects something specific from the CEO or CPO update to our design vision. I quote their language directly, then translate it into what it means for our craft. If the CEO says \u201ctighten the value narrative around ESS,\u201d I explain what that looks like in a design review. If the CPO says \u201ccreate leverage,\u201d I unpack what leverage means for a designer working on a component library versus a designer shipping a feature. The section always includes our 2026 design vision statement in quotation marks, as an anchor.'},
+      {type:'p', text:'The second section is the \u201cRearview.\u201d This is where I summarize the previous week in narrative form. I call out specific wins, name the people behind them, cite real numbers when I have them (engagement percentages, adoption metrics, timeline shifts), and connect what happened to why it mattered. I quote the CEO or CPO directly when their language is worth hearing, then apply it to design work explicitly. This section is conversational. I use \u201cIMO\u201d when I am sharing a personal read. I name individuals with specific, earned praise rather than generic encouragement.'},
+      {type:'p', text:'The third section is \u201cFocus for the Week.\u201d This is my schedule, my priorities, and any asks I have of the team. I mention who I am meeting with, what I am working on, and where I need help. I include personal details naturally, mentioning my wife Jennifer or my kids, sharing my phone number at the close, weaving in the signal that I am a whole person who is also fully available to them. The closing line is always some version of \u201cI am here.\u201d'},
+      {type:'p', text:'The fourth section is \u201cTop Reads and Listens.\u201d Three curated items, one sourced from the team, one that I found independently, and one that carries the heaviest mission weight. Each item follows a specific structure: the title, a personal hook explaining why I am sharing it, my own reading of the central argument, and a direct connection to what we are working on this quarter. The third read always ties back to the clinicians we serve or the broader purpose of the company.'},
+      {type:'h', text:'Why the details matter'},
+      {type:'p', text:'The format is deliberate because consistency creates trust. My team knows what to expect every Monday. They know where to find the grounding context, the tactical updates, the reading list. They know that if something important happened last week, it will be named. They know that if leadership is asking for something hard, I will not sanitize it but I will translate it into terms that make the ask actionable rather than anxiety-inducing.'},
+      {type:'p', text:'The tone matters too. I write in first person, with contractions, with warmth. I use Slack emoji shortcodes sparingly. I avoid corporate-speak. When the CEO says \u201cthe bar is materially higher on clarity, pace, and actual output,\u201d I do not soften that. I repeat it, then I explain what it means in practice for the person reading it who is trying to figure out whether their current project matters enough to keep working on.'},
+      {type:'quote', text:'Your team does not need you to protect them from hard truths. They need you to give them the context to understand those truths and the agency to respond to them.'},
+      {type:'p', text:'One of the most important things I have learned from doing this consistently is that your team does not need you to protect them from hard truths. They need you to give them the context to understand those truths and the agency to respond to them. The Monday post is how I do that.'},
+      {type:'h', text:'What you can steal'},
+      {type:'p', text:'If you lead a design team and you are not doing some version of this, start this week. It does not need to be long. It does not need to be polished. It needs to be consistent, honest, and grounded in what is actually happening at the leadership layer of your company. Your team will notice immediately, and the compounding trust it builds over months will change the way they show up in cross-functional rooms, in design reviews, and in the hard conversations that define product quality. The format I use is one version. Adapt it to your voice. The principle underneath it is what matters: leadership is not about having information. It is about making information useful for the people who need it most.'},
+    ],
+  },
+
   // ARTICLE 4 — Maker's Log (most recent)
   { slug:'building-design-outcomes', cat:'makers', audience:'Everyone', date:'2026-04-17',
     title:'Building Design Outcomes: From Conversation to Live Site in Two Hours',
@@ -108,10 +136,106 @@ window.POSTS = [
   },
 ];
 
-// Featured: all four, newest first
+// ─── Portfolio / Design Work ───────────────────────────────────────────────
+
+window.PROJECT_CATS = {
+  product:  { id:'product',  name:'Product Design',       tint:'#2F4858' },
+  systems:  { id:'systems',  name:'Design Systems',        tint:'#4A5D3A' },
+  brand:    { id:'brand',    name:'Branding & Identity',   tint:'#B8432B' },
+  creative: { id:'creative', name:'Creative Direction',    tint:'#8A5A2B' },
+  making:   { id:'making',   name:'Making & Illustration', tint:'#6B4E7B' },
+};
+
+window.PROJECTS = [
+  { slug:'sp-design-vision',
+    cat:'product', company:'SimplePractice', year:'2025–2026',
+    title:'2026 Design Vision',
+    excerpt:'Setting the strategic direction for product design at SimplePractice — defining what craft, quality, and outcomes mean for a platform serving 185k+ practitioners.',
+    status:'coming-soon',
+    illustration: ill('rays',  ['#E8E0D0','#2F4858','#15120E'], 1) },
+
+  { slug:'sp-product-engineering',
+    cat:'product', company:'SimplePractice', year:'2024–2026',
+    title:'Product & Engineering Design',
+    excerpt:'Leading design across clinical care, revenue cycle, mobile, and an emerging AI/UX practice for the leading EHR platform for behavioral health.',
+    status:'coming-soon',
+    illustration: ill('grid',  ['#E8E0D0','#4A5D3A','#15120E'], 2) },
+
+  { slug:'spotify-ads-wow',
+    cat:'product', company:'Spotify', year:'2022–2024',
+    title:'Ads Ways of Working',
+    excerpt:'Designing the operating model and creative rituals for a 64-person org spanning research, product design, content design, and design program management.',
+    status:'coming-soon',
+    illustration: ill('bars',  ['#E8E0D0','#B8432B','#15120E'], 7) },
+
+  { slug:'spotify-accessibility',
+    cat:'systems', company:'Spotify', year:'2023',
+    title:'Ads Accessibility Northstar',
+    excerpt:'A comprehensive accessibility vision for Spotify Advertising — turning compliance requirements into a design quality standard.',
+    status:'coming-soon',
+    illustration: ill('stack', ['#E8E0D0','#2F4858','#15120E'], 4) },
+
+  { slug:'sp-career-framework',
+    cat:'systems', company:'SimplePractice', year:'2025',
+    title:'Design Career Framework',
+    excerpt:'Building the leveling guide, growth tracks, and evaluation rubrics that define what great design looks like at every stage.',
+    status:'coming-soon',
+    illustration: ill('rays',  ['#E8E0D0','#4A5D3A','#15120E'], 9) },
+
+  { slug:'intuit-design-system',
+    cat:'systems', company:'Intuit', year:'2019–2021',
+    title:'Design System & Accessibility',
+    excerpt:'Head of Design Systems across TurboTax, QuickBooks, ProConnect, and Mint — unifying the Intuit design language and accessibility practice.',
+    status:'coming-soon',
+    illustration: ill('grid',  ['#E8E0D0','#8A5A2B','#15120E'], 5) },
+
+  { slug:'academic-coffee',
+    cat:'brand', company:'Academic Coffee', year:'2022',
+    title:'Brand Identity',
+    excerpt:'Full brand system for an Oakland specialty coffee shop: wordmark, identity system, packaging, and environmental design.',
+    status:'coming-soon',
+    illustration: ill('bars',  ['#E8E0D0','#8A5A2B','#15120E'], 3) },
+
+  { slug:'sister-roots',
+    cat:'brand', company:'Sister Roots', year:'2023',
+    title:'Identity System',
+    excerpt:'Visual identity for a community-centered wellness brand — mark, palette, typography, and brand voice working as a unified system.',
+    status:'coming-soon',
+    illustration: ill('stack', ['#E8E0D0','#4A5D3A','#15120E'], 6) },
+
+  { slug:'neotax-rebrand',
+    cat:'brand', company:'Neo.Tax', year:'2023',
+    title:'Website Redesign',
+    excerpt:'Repositioning a tax automation platform for CFOs and finance teams — new site architecture, messaging, and visual identity.',
+    status:'coming-soon',
+    illustration: ill('rays',  ['#E8E0D0','#6B4E7B','#15120E'], 10) },
+
+  { slug:'logofolio',
+    cat:'brand', company:'Freelance', year:'2018–2024',
+    title:'Logofolio',
+    excerpt:'Six years of mark-making: wordmarks, monograms, and symbol systems across coffee, hospitality, tech, and community organizations.',
+    status:'coming-soon',
+    illustration: ill('grid',  ['#E8E0D0','#B8432B','#15120E'], 12) },
+
+  { slug:'illustrations-commd',
+    cat:'making', company:'Personal', year:'2020–2026',
+    title:'Illustrations & Communication Design',
+    excerpt:'An ongoing practice: type explorations, editorial illustrations, and visual communication work produced outside of client and company projects.',
+    status:'coming-soon',
+    illustration: ill('bars',  ['#E8E0D0','#6B4E7B','#15120E'], 11) },
+
+  { slug:'thirty-covers',
+    cat:'making', company:'Personal', year:'2021',
+    title:'30 Covers, 30 Days',
+    excerpt:'A daily design sprint: one reimagined book or album cover per day for 30 consecutive days. Constraint as creative engine.',
+    status:'coming-soon',
+    illustration: ill('stack', ['#E8E0D0','#B8432B','#15120E'], 14) },
+];
+
+// Featured: four most recent, newest first
 window.FEATURED_SLUGS = [
+  'translating-the-boardroom',
   'building-design-outcomes',
   'when-building-gets-cheap',
   'verbosity-in-an-interview',
-  'structure-is-the-problem',
 ];

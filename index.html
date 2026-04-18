@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"/>
 <link rel="stylesheet" href="styles.css"/>
+<link rel="icon" type="image/svg+xml" href="/design-outcomes.svg"/>
 </head>
 <body>
 <div id="root"></div>
@@ -20,6 +21,8 @@
 <script type="text/babel" src="components/Illustration.jsx"></script>
 <script type="text/babel" src="components/Landing.jsx"></script>
 <script type="text/babel" src="components/Post.jsx"></script>
+<script type="text/babel" src="components/About.jsx"></script>
+<script type="text/babel" src="components/Work.jsx"></script>
 
 <script type="text/babel">
 const { useState, useEffect } = React;
@@ -33,6 +36,8 @@ const parseRoute = () => {
   const h = window.location.hash.replace(/^#/, '') || '/';
   const m = h.match(/^\/post\/(.+)$/);
   if (m) return { name:'post', slug: m[1] };
+  if (h === '/about') return { name:'about' };
+  if (h === '/work') return { name:'work' };
   return { name:'home' };
 };
 
@@ -89,11 +94,16 @@ const App = () => {
 
   const openPost = (slug) => navigate(`/post/${slug}`);
   const goHome = () => navigate('/');
+  const goAbout = () => navigate('/about');
 
   return (
     <>
       {route.name === 'home'
-        ? <window.Landing onOpen={openPost} heroLayout={tweaks.heroLayout}/>
+        ? <window.Landing onOpen={openPost} onAbout={goAbout} heroLayout={tweaks.heroLayout}/>
+        : route.name === 'about'
+        ? <window.About onHome={goHome}/>
+        : route.name === 'work'
+        ? <window.Work onHome={goHome}/>
         : <window.Post slug={route.slug} onOpen={openPost} onHome={goHome}/>}
       <Tweaks visible={tweaksVisible} tweaks={tweaks} setTweaks={setTweaks}/>
     </>

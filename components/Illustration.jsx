@@ -83,6 +83,19 @@ const Illustration = ({ recipe, className='', style={} }) => {
         <rect x={80} y={460} width={980} height={6} fill={ink}/>
         <g>{diag(18, 0.1)}</g>
       </>);
+      case 'signal': return (<>
+        <rect width="1200" height="800" fill={bg}/>
+        {/* Megaphone — tapering trapezoid, narrow left, wide right */}
+        <polygon points="80,382 80,418 320,612 320,188" fill={mid}/>
+        {/* Three horizontal bars: sage, terracotta, near-black — decreasing width */}
+        <rect x={360} y={262} width={700} height={52} fill="#4A5D3A"/>
+        <rect x={360} y={374} width={520} height={52} fill="#B8432B"/>
+        <rect x={360} y={486} width={340} height={52} fill={ink}/>
+        {/* Destination circle at far right end of middle bar */}
+        <circle cx={880} cy={400} r={36} fill={mid}/>
+        {/* Subtle diagonal texture */}
+        <g>{diag(16, 0.055)}</g>
+      </>);
       default: return <rect width="1200" height="800" fill={bg}/>;
     }
   };

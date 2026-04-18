@@ -1,34 +1,33 @@
-// About page — three sections + custom desk illustration hero
+// About page — three sections + semicircle grid hero
 const About = ({ onHome }) => {
 
-  const HeroIllustration = ({ className }) => (
-    <svg className={className} viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      {/* Background */}
-      <rect width="1200" height="800" fill="#F5F0E8"/>
-
-      {/* Deep teal — left anchor, full height */}
-      <rect x="0" y="0" width="398" height="800" fill="#2F4858"/>
-
-      {/* Terracotta — dominant right, full height */}
-      <rect x="458" y="0" width="742" height="800" fill="#B8432B"/>
-
-      {/* Sage circle — overlapping the boundary between the two fields */}
-      <circle cx="428" cy="388" r="152" fill="#4A5D3A"/>
-
-      {/* Near-black grounding bar — bottom edge */}
-      <rect x="0" y="758" width="1200" height="42" fill="#15120E"/>
-
-      {/* Cream diagonal — cuts across lower portion suggesting forward movement */}
-      <line x1="0" y1="680" x2="1200" y2="560" stroke="#F5F0E8" strokeWidth="2.5"/>
-
-      {/* Second cream diagonal — parallel, slightly offset for depth */}
-      <line x1="0" y1="704" x2="1200" y2="584" stroke="#F5F0E8" strokeWidth="1" opacity="0.4"/>
-    </svg>
-  );
+  const HeroIllustration = ({ className }) => {
+    const S = 100, COLS = 12, ROWS = 5, R = S / 2;
+    const W = COLS * S, H = ROWS * S;
+    const BG  = '#7A6478';
+    const DARK = '#2A1A28';
+    const pal = ['#F0B4BE','#9FBFCE','#D9E258','#7EC99A','#E07868','#F4BC88'];
+    const paths = [];
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const cx = c * S + R, cy = r * S + R;
+        const diag = c + r;
+        const color = diag % 2 === 0 ? pal[Math.floor(diag / 2) % pal.length] : DARK;
+        const sweep = c % 2 === 0 ? 1 : 0;
+        paths.push({ key: `${c}-${r}`, d: `M ${cx} ${cy-R} A ${R} ${R} 0 0 ${sweep} ${cx} ${cy+R} Z`, fill: color });
+      }
+    }
+    return (
+      <svg className={className} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width={W} height={H} fill={BG}/>
+        {paths.map(p => <path key={p.key} d={p.d} fill={p.fill}/>)}
+      </svg>
+    );
+  };
 
   return (
     <main className="do-page do-about-page">
-      <window.TopNav onHome={onHome}/>
+      <window.TopNav onHome={onHome} section="about"/>
 
       <div className="do-post-hero">
         <HeroIllustration className="do-post-hero-svg"/>
@@ -59,8 +58,8 @@ const About = ({ onHome }) => {
             <div className="do-about-label">The author</div>
             <h2 className="do-about-headline">Leonardo De La Rocha</h2>
             <div className="do-about-body">
-              <p>I am an engineer turned designer turned design executive with roughly 30 years of experience, starting with graffiti and wildstyle lettering in Denver in middle school and winding through roles at Yahoo, Facebook, Next Insurance, Intuit, Spotify, and now SimplePractice, where I serve as VP of Product Design.</p>
-              <p>At SimplePractice, I lead the design organization across multiple product pillars for the leading electronic health record platform serving independent behavioral health clinicians. The company serves over 185,000 practitioners with an all-in-one practice management solution, and the design work spans clinical care, revenue cycle management, mobile, and an emerging AI/UX practice.</p>
+              <p>I am an engineer turned designer turned design executive with roughly 30 years of experience, starting with graffiti in Denver and winding through roles at Yahoo, Facebook, Intuit, Spotify, and now SimplePractice, where I serve as VP of Product Design.</p>
+              <p>At SimplePractice, I lead the design organization across multiple product pillars for the leading electronic health record platform serving independent behavioral health clinicians. The company serves over 250,000 practitioners with an all-in-one practice management solution, and the design work spans clinical care, revenue cycle management, mobile, and an emerging AI/UX practice.</p>
               <p>Before SimplePractice, I was Sr. Director and Head of Design for Spotify Advertising, where I led a 64-person design organization across research, product design, content design, and design program management. Before that, I was Head of Intuit's Design System and Accessibility efforts, working across TurboTax, QuickBooks, ProConnect, and Mint. At Facebook, I served as Creative Director overseeing Studio X (Facebook's in-house creative agency for business products) and as Product Design Manager for the advertising platform, where my team was called "Outcomes," a name I have always loved for how directly it names what design should produce.</p>
               <p>My design philosophy is rooted in a few principles I have carried across every role. Help people grow and succeed: integrate training and best practices so users excel, not just complete tasks. Balance efficiency and effectiveness: optimize for time savings without losing sight of what people are actually trying to accomplish. Bring clarity to complexity: simplify inherently complex tools without sacrificing their essential value. Be accurate and predictable: deliver reliable, consistent results that organizations can depend on.</p>
               <p>Outside of my primary role, I do freelance branding and illustration work as an ongoing maker practice, maintaining a direct connection to craft that I consider essential to leading designers well. I am a mentor on ADPList, providing portfolio reviews and career guidance to designers globally. I speak regularly on design leadership, AI's impact on design organizations, and ethical design practices, most recently keynoting Upscale Conf on how new AI input modalities are reshaping design orgs.</p>

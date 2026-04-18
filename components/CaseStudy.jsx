@@ -1,8 +1,8 @@
-// Case study page — hero → back → chips → title → body → share → slides.
+// Case study page — hero → back → chips → title → share → body → share → slides.
 const { useState, useEffect, useRef } = React;
 
-// ── Flat share row (shared with Post) ──
-const CsShareRow = ({ title, url }) => {
+// ── Flat share row ──
+const CsShareRow = ({ title, url, topBar }) => {
   const [copied, setCopied] = useState(false);
   const copy = () => {
     navigator.clipboard.writeText(url).then(() => {
@@ -16,7 +16,7 @@ const CsShareRow = ({ title, url }) => {
   const fb  = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
   const thr = `https://www.threads.net/intent/post?text=${encodeURIComponent(title + '\n\n' + url)}`;
   return (
-    <div className="do-share-row">
+    <div className={`do-share-row${topBar ? ' do-share-row--top' : ''}`}>
       <span className="do-share-row-label">Share</span>
       <button className="do-share-row-copy" onClick={copy}>{copied ? 'Copied!' : 'Copy link'}</button>
       <span className="do-share-row-sep" aria-hidden="true"/>
@@ -36,7 +36,7 @@ const CaseStudy = ({ slug, onHome }) => {
 
   useEffect(() => {
     if (!cs) return;
-    const url = `${window.location.origin}${window.location.pathname}#/work/${cs.slug}`;
+    const url = `${window.location.origin}/work/${cs.slug}`;
     const image = cs.slides?.[0]?.src
       ? `https://ldlr.design/${cs.slides[0].src.replace(/^\//, '')}`
       : 'https://ldlr.design/images/work-header.png';
@@ -79,6 +79,8 @@ const CaseStudy = ({ slug, onHome }) => {
     window.scrollTo({top:0, behavior:'instant'});
   };
 
+  const shareUrl = `${window.location.origin}/work/${cs.slug}`;
+
   return (
     <main className="do-page do-cs-page">
       <window.TopNav onHome={onHome} section="work"/>
@@ -115,6 +117,9 @@ const CaseStudy = ({ slug, onHome }) => {
         {/* Summary */}
         {cs.summary && <p className="do-cs-summary">{cs.summary}</p>}
 
+        {/* Top share row */}
+        <CsShareRow title={cs.title} url={shareUrl} topBar/>
+
         {/* Divider */}
         <div className="do-cs-rule"/>
 
@@ -139,8 +144,8 @@ const CaseStudy = ({ slug, onHome }) => {
           })}
         </div>
 
-        {/* Share row */}
-        <CsShareRow title={cs.title} url={`${window.location.origin}${window.location.pathname}#/work/${cs.slug}`}/>
+        {/* Bottom share row */}
+        <CsShareRow title={cs.title} url={shareUrl}/>
 
         {/* End rule */}
         <div className="do-cs-rule" style={{marginTop:'64px'}}/>

@@ -2,7 +2,7 @@
 const { useState, useEffect, useRef } = React;
 
 // ── Flat share row ──
-const ShareRow = ({ title, url }) => {
+const ShareRow = ({ title, url, topBar }) => {
   const [copied, setCopied] = useState(false);
 
   const copy = () => {
@@ -19,7 +19,7 @@ const ShareRow = ({ title, url }) => {
   const thr = `https://www.threads.net/intent/post?text=${encodeURIComponent(title + '\n\n' + url)}`;
 
   return (
-    <div className="do-share-row">
+    <div className={`do-share-row${topBar ? ' do-share-row--top' : ''}`}>
       <span className="do-share-row-label">Share</span>
       <button className="do-share-row-copy" onClick={copy}>{copied ? 'Copied!' : 'Copy link'}</button>
       <span className="do-share-row-sep" aria-hidden="true"/>
@@ -38,7 +38,7 @@ const Post = ({ slug, onOpen, onHome }) => {
 
   useEffect(() => {
     if (!post) return;
-    const url = `${window.location.origin}${window.location.pathname}#/post/${post.slug}`;
+    const url = `${window.location.origin}/post/${post.slug}`;
     window.setMeta({
       title:       post.title,
       description: post.excerpt,
@@ -72,7 +72,7 @@ const Post = ({ slug, onOpen, onHome }) => {
     return [...sameCat, ...adjacent].slice(0,3);
   })();
 
-  const pageUrl = `${window.location.origin}${window.location.pathname}#/post/${post.slug}`;
+  const pageUrl = `${window.location.origin}/post/${post.slug}`;
 
   return (
     <main className="do-page do-post-page">
@@ -100,6 +100,8 @@ const Post = ({ slug, onOpen, onHome }) => {
             <div className="do-post-byline-sub">VP Product Design · Published {window.fmtDate(post.date)}</div>
           </div>
         </div>
+
+        <ShareRow title={post.title} url={pageUrl} topBar/>
 
         <div className="do-post-body">
           {post.body.map((block, i) => {

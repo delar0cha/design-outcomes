@@ -1591,6 +1591,15 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 }
 .do-share-row-link:hover { color: var(--ink); background: rgba(21,18,14,0.05); }
 
+/* Top variant: sits below byline, hairline separates it from body */
+.do-share-row--top {
+  margin-top: 24px;
+  margin-bottom: 0;
+  border-top: none;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 20px;
+}
+
 @media (max-width: 600px) {
   .do-share-row { gap: 8px 0; }
   .do-share-row-sep { display: none; }

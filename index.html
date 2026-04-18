@@ -23,6 +23,7 @@
 <script type="text/babel" src="components/Post.jsx"></script>
 <script type="text/babel" src="components/About.jsx"></script>
 <script type="text/babel" src="components/Work.jsx"></script>
+<script type="text/babel" src="components/CaseStudy.jsx"></script>
 
 <script type="text/babel">
 const { useState, useEffect } = React;
@@ -36,6 +37,8 @@ const parseRoute = () => {
   const h = window.location.hash.replace(/^#/, '') || '/';
   const m = h.match(/^\/post\/(.+)$/);
   if (m) return { name:'post', slug: m[1] };
+  const w = h.match(/^\/work\/(.+)$/);
+  if (w) return { name:'casestudy', slug: w[1] };
   if (h === '/about') return { name:'about' };
   if (h === '/work') return { name:'work' };
   return { name:'home' };
@@ -104,6 +107,8 @@ const App = () => {
         ? <window.About onHome={goHome}/>
         : route.name === 'work'
         ? <window.Work onHome={goHome}/>
+        : route.name === 'casestudy'
+        ? <window.CaseStudy slug={route.slug} onHome={goHome}/>
         : <window.Post slug={route.slug} onOpen={openPost} onHome={goHome}/>}
       <Tweaks visible={tweaksVisible} tweaks={tweaks} setTweaks={setTweaks}/>
     </>

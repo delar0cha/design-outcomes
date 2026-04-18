@@ -1346,3 +1346,139 @@ a.do-about-connect-item:hover .do-about-connect-val { color: var(--accent); }
   .do-wk-grid-wrap { padding: 40px 20px 60px; }
   .do-wk-headline { font-size: 30px; }
 }
+
+/* ── Case Study ─────────────────────────────────────────────── */
+.do-cs-page {}
+
+.do-cs-hero {
+  position: relative;
+  width: 100%; height: 480px;
+  overflow: hidden;
+}
+.do-cs-hero-svg { width: 100%; height: 100%; display: block; }
+.do-cs-hero-fade {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, var(--cream) 100%);
+}
+
+.do-cs-article {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) 80px;
+}
+
+.do-cs-back {
+  display: inline-block;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: color 0.15s;
+}
+.do-cs-back:hover { color: var(--ink); }
+
+.do-cs-chips {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 20px;
+}
+.do-cs-chip {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--muted);
+}
+.do-cs-chip-sep { color: var(--rule); font-size: 14px; }
+
+.do-cs-title {
+  font-family: var(--serif);
+  font-size: 52px; font-weight: 400;
+  line-height: 1.1; letter-spacing: -0.025em;
+  margin: 0 0 16px; color: var(--ink);
+}
+.do-cs-subtitle {
+  font-family: var(--serif);
+  font-size: 22px; font-weight: 400; font-style: italic;
+  line-height: 1.4; color: var(--muted);
+  margin: 0 0 28px;
+}
+.do-cs-summary {
+  font-size: 17px; line-height: 1.7; color: var(--ink-2);
+  margin: 0 0 40px;
+}
+
+.do-cs-rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0 0 48px;
+}
+
+.do-cs-body {
+  font-size: 16px; line-height: 1.8; color: var(--ink-2);
+}
+.do-cs-body p { margin: 0 0 24px; }
+.do-cs-body .do-cs-h2,
+.do-cs-h2 {
+  font-family: var(--serif);
+  font-size: 26px; font-weight: 400;
+  letter-spacing: -0.015em; line-height: 1.25;
+  margin: 48px 0 20px; color: var(--ink);
+}
+.do-cs-body blockquote {
+  margin: 36px 0;
+  padding: 24px 28px;
+  border-left: 3px solid var(--ink);
+  background: var(--cream-2);
+  font-family: var(--serif);
+  font-size: 20px; font-style: italic; line-height: 1.5;
+  color: var(--ink);
+}
+.do-cs-body blockquote .do-quote-mark {
+  font-size: 28px; line-height: 0;
+  vertical-align: -6px;
+  margin-right: 4px;
+  color: var(--accent);
+}
+
+/* Slides section */
+.do-cs-slides { margin-top: 64px; }
+.do-cs-slides-head {
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 400;
+  letter-spacing: -0.015em; line-height: 1.25;
+  margin: 8px 0 32px; color: var(--ink);
+}
+.do-cs-slides-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.do-cs-slide-placeholder {
+  aspect-ratio: 16/9;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--cream-2);
+  box-shadow: inset 2px 2px 5px rgba(0,0,0,0.06), inset -1px -1px 3px rgba(255,255,255,0.7);
+}
+.do-cs-slide-inner {
+  width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 12px,
+    var(--cream-3) 12px,
+    var(--cream-3) 13px
+  );
+  opacity: 0.5;
+}
+.do-cs-slides-note {
+  font-size: 12px; color: var(--muted-2);
+  letter-spacing: 0.03em; margin: 0;
+}
+
+@media (max-width: 720px) {
+  .do-cs-hero { height: 280px; }
+  .do-cs-article { padding: 0 20px 60px; }
+  .do-cs-title { font-size: 34px; }
+  .do-cs-subtitle { font-size: 18px; }
+  .do-cs-slides-grid { grid-template-columns: 1fr; }
+}

@@ -83,6 +83,44 @@ const Illustration = ({ recipe, className='', style={} }) => {
         <rect x={80} y={460} width={980} height={6} fill={ink}/>
         <g>{diag(18, 0.1)}</g>
       </>);
+      case 'compass': {
+        const sage  = '#4A5D3A';
+        const terra = '#B8432B';
+        const ox = 440, oy = 375; // origin: slightly left of center
+        // [bearing°, color, strokeWidth] — compass bearing: 0=N, 90=E, 180=S, 270=W
+        const rays = [
+          [0,     mid,   4,   0.88],
+          [22.5,  sage,  1.5, 0.68],
+          [45,    mid,   2.5, 0.82],
+          [65,    terra, 5.5, 0.92],  // terracotta accent
+          [90,    mid,   4,   0.88],
+          [112.5, sage,  1.5, 0.68],
+          [135,   mid,   2.5, 0.82],
+          [157.5, sage,  1.5, 0.68],
+          [180,   mid,   4,   0.88],
+          [202.5, sage,  1.5, 0.68],
+          [225,   mid,   2.5, 0.82],
+          [247.5, sage,  1.5, 0.68],
+          [270,   mid,   4,   0.88],
+          [292.5, sage,  1.5, 0.68],
+          [315,   mid,   2.5, 0.82],
+          [337.5, sage,  1.5, 0.68],
+        ];
+        return (<>
+          <rect width="1200" height="800" fill={bg}/>
+          {rays.map(([bearing, color, sw, op], i) => {
+            const rad = bearing * Math.PI / 180;
+            return <line key={i} x1={ox} y1={oy}
+              x2={ox + Math.sin(rad) * 1800}
+              y2={oy - Math.cos(rad) * 1800}
+              stroke={color} strokeWidth={sw} opacity={op}/>;
+          })}
+          {/* Bold anchor line — bottom third */}
+          <rect x={0} y={555} width={1200} height={18} fill={ink}/>
+          {/* Origin marker */}
+          <circle cx={ox} cy={oy} r={11} fill={terra}/>
+        </>);
+      }
       case 'signal': return (<>
         <rect width="1200" height="800" fill={bg}/>
         {/* Megaphone — tapering trapezoid, narrow left, wide right */}

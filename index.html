@@ -9,6 +9,16 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"/>
 <link rel="stylesheet" href="styles.css"/>
 <link rel="icon" type="image/svg+xml" href="/design-outcomes.svg"/>
+<meta property="og:site_name" content="Design Outcomes — Leonardo De La Rocha"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Design Outcomes — Leonardo De La Rocha"/>
+<meta property="og:description" content="Weekly design leadership writing by Leonardo De La Rocha, VP Product Design."/>
+<meta property="og:image" content="https://ldlr.design/images/work-header.png"/>
+<meta property="og:url" content="https://ldlr.design/"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Design Outcomes — Leonardo De La Rocha"/>
+<meta name="twitter:description" content="Weekly design leadership writing by Leonardo De La Rocha, VP Product Design."/>
+<meta name="twitter:image" content="https://ldlr.design/images/work-header.png"/>
 </head>
 <body>
 <div id="root"></div>
@@ -17,6 +27,15 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
+<script>
+window.setMeta = function(opts) {
+  const set = (sel, attr, val) => { const el = document.querySelector(sel); if (el) el.setAttribute(attr, val); };
+  if (opts.title)       { document.title = opts.title + ' — Design Outcomes'; set('meta[property="og:title"]','content',opts.title); set('meta[name="twitter:title"]','content',opts.title); }
+  if (opts.description) { set('meta[property="og:description"]','content',opts.description); set('meta[name="twitter:description"]','content',opts.description); }
+  if (opts.image)       { set('meta[property="og:image"]','content',opts.image); set('meta[name="twitter:image"]','content',opts.image); }
+  if (opts.url)         { set('meta[property="og:url"]','content',opts.url); }
+};
+</script>
 <script src="data/content.js"></script>
 <script type="text/babel" src="components/Illustration.jsx"></script>
 <script type="text/babel" src="components/Landing.jsx"></script>

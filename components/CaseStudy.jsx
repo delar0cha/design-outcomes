@@ -1,10 +1,53 @@
-// Case study page — hero → back → chips → title → body → slides.
+// Case study page — hero → back → chips → title → body → share → slides.
 const { useState, useEffect, useRef } = React;
+
+// ── Flat share row (shared with Post) ──
+const CsShareRow = ({ title, url }) => {
+  const [copied, setCopied] = useState(false);
+  const copy = () => {
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+  const li  = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+  const bsk = `https://bsky.app/intent/compose?text=${encodeURIComponent(title + '\n\n' + url)}`;
+  const x   = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+  const fb  = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+  const thr = `https://www.threads.net/intent/post?text=${encodeURIComponent(title + '\n\n' + url)}`;
+  return (
+    <div className="do-share-row">
+      <span className="do-share-row-label">Share</span>
+      <button className="do-share-row-copy" onClick={copy}>{copied ? 'Copied!' : 'Copy link'}</button>
+      <span className="do-share-row-sep" aria-hidden="true"/>
+      <a className="do-share-row-link" href={li}  target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a className="do-share-row-link" href={bsk} target="_blank" rel="noopener noreferrer">Bluesky</a>
+      <a className="do-share-row-link" href={x}   target="_blank" rel="noopener noreferrer">X</a>
+      <a className="do-share-row-link" href={fb}  target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a className="do-share-row-link" href={thr} target="_blank" rel="noopener noreferrer">Threads</a>
+    </div>
+  );
+};
 
 const CaseStudy = ({ slug, onHome }) => {
   const cs = (window.CASE_STUDIES || []).find(c => c.slug === slug);
   const heroRef = useRef(null);
   const innerRef = useRef(null);
+
+  useEffect(() => {
+    if (!cs) return;
+    const url = `${window.location.origin}${window.location.pathname}#/work/${cs.slug}`;
+    const image = cs.slides?.[0]?.src
+      ? `https://ldlr.design/${cs.slides[0].src.replace(/^\//, '')}`
+      : 'https://ldlr.design/images/work-header.png';
+    window.setMeta({ title: cs.title, description: cs.summary, image, url });
+    return () => window.setMeta({
+      title:       'Design Outcomes — Leonardo De La Rocha',
+      description: 'Weekly design leadership writing by Leonardo De La Rocha, VP Product Design.',
+      image:       'https://ldlr.design/images/work-header.png',
+      url:         'https://ldlr.design/',
+    });
+  }, [slug]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -95,6 +138,9 @@ const CaseStudy = ({ slug, onHome }) => {
             return null;
           })}
         </div>
+
+        {/* Share row */}
+        <CsShareRow title={cs.title} url={`${window.location.origin}${window.location.pathname}#/work/${cs.slug}`}/>
 
         {/* End rule */}
         <div className="do-cs-rule" style={{marginTop:'64px'}}/>

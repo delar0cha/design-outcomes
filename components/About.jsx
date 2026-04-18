@@ -1,13 +1,13 @@
-// About page — isometric hero + three sections
+// About page — dark isometric hero + three sections
 const { useState, useEffect, useRef } = React;
 
 const About = ({ onHome }) => {
   const heroRef  = useRef(null);
   const innerRef = useRef(null);
   const rafRef   = useRef(null);
-  const lightRef = useRef({ x: 0.45, y: 0.4, tx: 0.45, ty: 0.4 });
+  const lightRef = useRef({ x: 0.5, y: 0.417, tx: 0.5, ty: 0.417 });
   const svgRef   = useRef(null);
-  const [lightPos, setLightPos] = useState({ x: 0.45, y: 0.4 });
+  const [lightPos, setLightPos] = useState({ x: 0.5, y: 0.417 });
   const isMobile = useRef(typeof window !== 'undefined' && window.matchMedia('(hover:none)').matches);
 
   // Parallax
@@ -29,8 +29,8 @@ const About = ({ onHome }) => {
       const L = lightRef.current;
       if (isMobile.current) {
         const t = ts * 0.00035;
-        L.tx = 0.5 + Math.sin(t)       * 0.3;
-        L.ty = 0.4 + Math.sin(t * 0.7) * 0.2;
+        L.tx = 0.5  + Math.sin(t)       * 0.3;
+        L.ty = 0.417 + Math.sin(t * 0.7) * 0.2;
       }
       L.x = lerp(L.x, L.tx, 0.055);
       L.y = lerp(L.y, L.ty, 0.055);
@@ -53,51 +53,37 @@ const About = ({ onHome }) => {
   }, []);
 
   // ── Isometric grid ──────────────────────────────────────────────────────
-  // 32:9 container → viewBox 1600×450 (half the height of previous 16:9)
-  // TW:TH = 220:44 = 5:1 — flatter tile for compressed vertical space
-  // TW chosen so the 8×6 grid spans the full 1600px width edge-to-edge
-  const COLS = 8, ROWS = 6;
-  const TW   = 220;  // tile diamond width
-  const TH   = 44;   // tile diamond height (5:1 ratio, compressed)
-  const UH   = 22;   // screen px per block height unit
+  // 16:9 container → viewBox 1600×900
+  // TW:TH = 2:1 — true isometric projection
+  // 9×6 grid bleeds to edges; single gap at center for glow
+  const COLS = 9, ROWS = 6;
+  const TW   = 240;  // tile diamond width
+  const TH   = 120;  // tile diamond height (2:1)
+  const H    = 3;    // uniform block height in units
+  const UH   = 60;   // screen px per height unit
+  const GAP_C = 4, GAP_R = 2;  // center gap (glowing hole)
 
   const SVG_W = 1600;
-  const SVG_H = 450;
+  const SVG_H = 900;
 
-  // Origin: symmetrically centers the grid horizontally in the viewBox
-  // Grid spans OX±660 (left) to OX+880 (right) → OX=690 gives ±30px margin
-  const OX = 690;
-  const OY = 115;   // vertical centering: topmost vertex ≈27px, bottom ≈423px
+  // Origin chosen so gap top-face center ≈ (800, 330)
+  // sx(4,2) = (4-2)*120+OX = 800 → OX=560
+  // sy(4,2) = (4+2)*60+OY = 450 → OY=90
+  const OX = 560;
+  const OY = 90;
 
   const sx = (c, r) => (c - r) * (TW / 2) + OX;
   const sy = (c, r) => (c + r) * (TH / 2) + OY;
 
-  // Heights: 0 = gap, 1–4 = block height in units
-  const HEIGHTS = [
-    [2, 3, 4, 1, 2, 3, 1, 2],
-    [3, 0, 2, 4, 2, 0, 3, 1],
-    [1, 3, 1, 2, 3, 2, 0, 4],
-    [4, 1, 3, 0, 1, 4, 2, 1],
-    [2, 0, 1, 3, 2, 1, 4, 0],
-    [1, 2, 0, 2, 1, 3, 0, 2],
-  ];
-
-  // ~15% of active blocks get warm gold accent faces
-  const GOLD = new Set(['4-0', '1-1', '7-2', '2-3', '5-4', '0-5']);
-
-  // Warm earthy palette — background (#8C8377) is the darkest tone anywhere
+  // Dark warm sepia palette — bg is the darkest tone
   const C = {
-    bg:        '#8C8377',
-    topLit:    '#F5F0E8',
-    topDark:   '#D8D3CC',
-    leftLit:   '#D4C4B4',
-    leftDark:  '#C4B5A0',
-    rightLit:  '#B8A892',
-    rightDark: '#A89279',
-    gLLit:     '#DDB96A',
-    gLDark:    '#C9A84C',
-    gRLit:     '#CCAA6E',
-    gRDark:    '#B8975A',
+    bg:        '#1A1610',
+    topLit:    '#EDE0B8',
+    topDark:   '#282018',
+    leftLit:   '#B09060',
+    leftDark:  '#181410',
+    rightLit:  '#786848',
+    rightDark: '#100E0A',
   };
 
   // Lerp two hex colors → rgb() string (no SVG gradients, flat fill per polygon)
@@ -110,48 +96,45 @@ const About = ({ onHome }) => {
     return `rgb(${r},${g},${bl})`;
   };
 
-  // Build + sort blocks back-to-front (painter's algorithm: low col+row = back)
+  // Build + sort blocks back-to-front (painter's algorithm)
   const blocks = [];
   for (let r = 0; r < ROWS; r++)
     for (let c = 0; c < COLS; c++)
-      if (HEIGHTS[r][c] > 0) blocks.push({ c, r, h: HEIGHTS[r][c] });
+      if (!(c === GAP_C && r === GAP_R))
+        blocks.push({ c, r });
   blocks.sort((a, b) => (a.c + a.r) - (b.c + b.r) || a.c - b.c);
 
-  // Light in grid coords
+  // Light in grid coords (default: directly above the gap)
   const lx   = lightPos.x * COLS;
   const ly   = lightPos.y * ROWS;
   const maxD = Math.sqrt(COLS * COLS + ROWS * ROWS);
 
   const pts = (verts) => verts.map(v => v.join(',')).join(' ');
 
-  const blockElems = blocks.map(({ c, r, h }) => {
-    const hPx = h * UH;
+  const blockElems = blocks.map(({ c, r }) => {
+    const hPx = H * UH;
     const x   = sx(c, r);
     const y   = sy(c, r);
-    const isG = GOLD.has(`${c}-${r}`);
 
     const dist = Math.sqrt((c + 0.5 - lx) ** 2 + (r + 0.5 - ly) ** 2);
-    const lit  = Math.max(0, 1 - dist / (maxD * 0.52));
+    const lit  = Math.pow(Math.max(0, 1 - dist / (maxD * 0.5)), 2);
 
-    const fTop   = lh(C.topDark,  C.topLit,  lit);
-    const fLeft  = isG ? lh(C.gLDark, C.gLLit, lit * 0.8) : lh(C.leftDark, C.leftLit, lit * 0.8);
-    const fRight = isG ? lh(C.gRDark, C.gRLit, lit * 0.7) : lh(C.rightDark, C.rightLit, lit * 0.7);
+    const fTop   = lh(C.topDark,   C.topLit,   lit);
+    const fLeft  = lh(C.leftDark,  C.leftLit,  lit * 0.85);
+    const fRight = lh(C.rightDark, C.rightLit, lit * 0.7);
 
-    // Top face diamond (lifted hPx above ground)
     const topFace = [
       [x,          y - hPx           ],
       [x + TW / 2, y - hPx + TH / 2 ],
       [x,          y - hPx + TH      ],
       [x - TW / 2, y - hPx + TH / 2 ],
     ];
-    // Left face: top-face left+bottom vertices → ground left+bottom
     const leftFace = [
       [x - TW / 2, y - hPx + TH / 2],
       [x,          y - hPx + TH     ],
       [x,          y + TH           ],
       [x - TW / 2, y + TH / 2       ],
     ];
-    // Right face: top-face bottom+right vertices → ground bottom+right
     const rightFace = [
       [x,          y - hPx + TH     ],
       [x + TW / 2, y - hPx + TH / 2],
@@ -167,6 +150,34 @@ const About = ({ onHome }) => {
       </g>
     );
   });
+
+  // Tiny figure silhouettes standing on block top faces
+  const FIGURES = [[3,1],[5,1],[1,3],[7,2],[4,4],[2,4]];
+  const figureElems = FIGURES.filter(([c, r]) => c < COLS && r < ROWS).map(([c, r]) => {
+    const fx = sx(c, r);
+    const fy = sy(c, r) - H * UH;  // top vertex of block's top face
+    const fc = '#0E0A06';
+    return (
+      <g key={`fig-${c}-${r}`}>
+        <circle cx={fx} cy={fy - 26} r={5} fill={fc}/>
+        <line x1={fx} y1={fy - 21} x2={fx} y2={fy - 7}  stroke={fc} strokeWidth={2.5} strokeLinecap="round"/>
+        <line x1={fx} y1={fy - 7}  x2={fx - 7} y2={fy + 4} stroke={fc} strokeWidth={2} strokeLinecap="round"/>
+        <line x1={fx} y1={fy - 7}  x2={fx + 7} y2={fy + 4} stroke={fc} strokeWidth={2} strokeLinecap="round"/>
+        <line x1={fx} y1={fy - 17} x2={fx - 9} y2={fy - 11} stroke={fc} strokeWidth={1.8} strokeLinecap="round"/>
+        <line x1={fx} y1={fy - 17} x2={fx + 9} y2={fy - 11} stroke={fc} strokeWidth={1.8} strokeLinecap="round"/>
+      </g>
+    );
+  });
+
+  // Glow diamond: the top face of the gap rendered before all blocks
+  const gapX    = sx(GAP_C, GAP_R);
+  const gapTopY = sy(GAP_C, GAP_R) - H * UH;
+  const gapDiamond = [
+    [gapX,          gapTopY],
+    [gapX + TW / 2, gapTopY + TH / 2],
+    [gapX,          gapTopY + TH],
+    [gapX - TW / 2, gapTopY + TH / 2],
+  ].map(v => v.join(',')).join(' ');
 
   return (
     <main className="do-page do-about-page">
@@ -184,7 +195,9 @@ const About = ({ onHome }) => {
             style={{ display: 'block' }}
           >
             <rect width={SVG_W} height={SVG_H} fill={C.bg}/>
+            <polygon points={gapDiamond} fill="#EDE0B8"/>
             {blockElems}
+            {figureElems}
           </svg>
         </div>
         <div className="do-cs-hero-fade"/>

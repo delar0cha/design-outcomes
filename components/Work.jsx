@@ -61,7 +61,7 @@ const Work = ({ onHome }) => {
       <div className="do-wk-hero" ref={heroRef}>
         <img
           ref={imgRef}
-          src="images/work-header.png"
+          src="/images/work-header.png"
           alt="Leonardo De La Rocha"
           className="do-wk-hero-img"
         />

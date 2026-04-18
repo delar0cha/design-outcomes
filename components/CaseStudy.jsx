@@ -1,8 +1,21 @@
 // Case study page — hero → back → chips → title → body → slides.
-const { useState } = React;
+const { useState, useEffect, useRef } = React;
 
 const CaseStudy = ({ slug, onHome }) => {
   const cs = (window.CASE_STUDIES || []).find(c => c.slug === slug);
+  const heroRef = useRef(null);
+  const innerRef = useRef(null);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (!innerRef.current || !heroRef.current) return;
+      const top = heroRef.current.getBoundingClientRect().top;
+      innerRef.current.style.transform = `translateY(${top * 0.28}px)`;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [cs]);
 
   if (!cs) {
     return (
@@ -28,8 +41,10 @@ const CaseStudy = ({ slug, onHome }) => {
       <window.TopNav onHome={onHome} section="work"/>
 
       {/* ── Hero ── */}
-      <div className="do-cs-hero">
-        <window.Illustration recipe={cs.illustration} className="do-cs-hero-svg"/>
+      <div className="do-cs-hero" ref={heroRef}>
+        <div className="do-cs-hero-inner" ref={innerRef}>
+          <window.Illustration recipe={cs.illustration} className="do-cs-hero-svg"/>
+        </div>
         <div className="do-cs-hero-fade"/>
       </div>
 

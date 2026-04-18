@@ -5,13 +5,12 @@ const About = ({ onHome }) => {
   const heroRef  = useRef(null);
   const innerRef = useRef(null);
   const rafRef   = useRef(null);
-  const lightRef = useRef({ x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 });
-  const driftRef = useRef(0);
+  const lightRef = useRef({ x: 0.45, y: 0.4, tx: 0.45, ty: 0.4 });
   const svgRef   = useRef(null);
-  const [lightPos, setLightPos] = useState({ x: 0.5, y: 0.5 });
+  const [lightPos, setLightPos] = useState({ x: 0.45, y: 0.4 });
   const isMobile = useRef(typeof window !== 'undefined' && window.matchMedia('(hover:none)').matches);
 
-  // ── Parallax ──────────────────────────────────────────────────────────────
+  // Parallax
   useEffect(() => {
     const onScroll = () => {
       if (!innerRef.current || !heroRef.current) return;
@@ -23,19 +22,18 @@ const About = ({ onHome }) => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // ── Cursor light + mobile drift ───────────────────────────────────────────
+  // Light animation loop + cursor tracking
   useEffect(() => {
     const lerp = (a, b, t) => a + (b - a) * t;
-
     const tick = (ts) => {
       const L = lightRef.current;
       if (isMobile.current) {
-        driftRef.current = ts * 0.0004;
-        L.tx = 0.5 + Math.sin(driftRef.current) * 0.28;
-        L.ty = 0.5 + Math.sin(driftRef.current * 0.7) * 0.18;
+        const t = ts * 0.00035;
+        L.tx = 0.5 + Math.sin(t)       * 0.3;
+        L.ty = 0.4 + Math.sin(t * 0.7) * 0.2;
       }
-      L.x = lerp(L.x, L.tx, 0.06);
-      L.y = lerp(L.y, L.ty, 0.06);
+      L.x = lerp(L.x, L.tx, 0.055);
+      L.y = lerp(L.y, L.ty, 0.055);
       setLightPos({ x: L.x, y: L.y });
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -54,153 +52,145 @@ const About = ({ onHome }) => {
     };
   }, []);
 
-  // ── Isometric grid geometry ───────────────────────────────────────────────
+  // ── Isometric grid config ──────────────────────────────────────────────
+  // Standard isometric: tile diamond is 2:1 width:height (classic 30° angle)
   const COLS = 8, ROWS = 6;
-  // Isometric unit: tile width = 2u, height = u, depth drawn as u
-  const U = 36; // half-tile unit in px
-  const TW = U * 2, TH = U; // tile face width/height in iso projection
-  const svgW = (COLS + ROWS) * U * 2;
-  const svgH = (COLS + ROWS) * U + U * 8; // extra room for tallest blocks
+  const TW   = 160;   // tile diamond width tip-to-tip
+  const TH   = 80;    // tile diamond height tip-to-tip (TW/2 = true isometric)
+  const UH   = 40;    // screen pixels per block height unit
 
-  // Heights for each cell (in units)
+  const SVG_W = 1600;
+  const SVG_H = 900;
+
+  // Grid origin: screen position of tile (0,0) top vertex
+  // Tuned so the full grid sits centered with breathing room
+  const OX = 720;
+  const OY = 210;
+
+  // screen coords of the top vertex of tile (c, r) at ground level
+  const sx = (c, r) => (c - r) * (TW / 2) + OX;
+  const sy = (c, r) => (c + r) * (TH / 2) + OY;
+
+  // Heights (ROWS × COLS) — 0 means gap/floor, 1-4 are block heights
   const HEIGHTS = [
-    [2,3,1,4,2,3,1,2],
-    [3,1,4,2,3,1,4,3],
-    [1,4,2,3,1,4,2,1],
-    [4,2,3,1,4,2,3,4],
-    [2,3,1,4,2,3,1,2],
-    [1,2,3,1,3,1,2,1],
+    [2, 3, 4, 1, 2, 3, 1, 2],
+    [3, 0, 2, 4, 2, 0, 3, 1],
+    [1, 3, 1, 2, 3, 2, 0, 4],
+    [4, 1, 3, 0, 1, 4, 2, 1],
+    [2, 0, 1, 3, 2, 1, 4, 0],
+    [1, 2, 0, 2, 1, 3, 0, 2],
   ];
 
-  // Palette
-  const TOP   = '#3D6070'; // light face (top)
-  const LEFT  = '#2F4858'; // left face
-  const RIGHT = '#1A3040'; // right face (darkest)
-  const GLOW_TOP   = '#6AAFC0';
-  const GLOW_LEFT  = '#4D8A9A';
-  const GLOW_RIGHT = '#2F6070';
-  const SAGE_TOP   = '#4A5D3A';
-  const SAGE_LEFT  = '#3A4A2A';
-  const SAGE_RIGHT = '#2A3A1A';
-  const BG = '#0F1F28';
+  // Blocks with terracotta right face
+  const TERRA = new Set(['2-0','5-1','1-2','3-3','6-4']);
 
-  // Convert grid col/row to isometric screen coords (top-left of tile top face)
-  const isoX = (c, r) => (c - r) * U + svgW / 2 - U;
-  const isoY = (c, r) => (c + r) * (TH / 2);
+  // Flat color palette — all solid, no gradients
+  const C = {
+    topLit:    '#F5F0E8',
+    topDark:   '#6A6258',
+    leftLit:   '#3E6878',
+    leftDark:  '#1A2E38',
+    rightLit:  '#5A7A48',
+    rightDark: '#2A3520',
+    tLit:      '#C85035',
+    tDark:     '#7A2818',
+    bg:        '#1E1E1E',
+  };
 
-  // Build blocks back-to-front (painter's algorithm: high r first, then high c)
+  // Lerp between two hex colors, return rgb() string
+  const lh = (hexA, hexB, t) => {
+    const a = parseInt(hexA.slice(1), 16);
+    const b = parseInt(hexB.slice(1), 16);
+    const r = Math.round(((a>>16)&0xff) + (((b>>16)&0xff) - ((a>>16)&0xff)) * t);
+    const g = Math.round(((a>>8) &0xff) + (((b>>8) &0xff) - ((a>>8) &0xff)) * t);
+    const bl= Math.round((a      &0xff) + ((b       &0xff) - (a      &0xff)) * t);
+    return `rgb(${r},${g},${bl})`;
+  };
+
+  // Build block list and sort back-to-front (painter's algorithm)
   const blocks = [];
-  for (let r = ROWS - 1; r >= 0; r--) {
-    for (let c = COLS - 1; c >= 0; c--) {
-      const h = HEIGHTS[r][c] * U;
-      const x = isoX(c, r);
-      const y = isoY(c, r);
-
-      // Distance from light source (in grid space)
-      const lx = lightPos.x * COLS;
-      const ly = lightPos.y * ROWS;
-      const dist = Math.sqrt((c - lx) ** 2 + (r - ly) ** 2);
-      const glow = Math.max(0, 1 - dist / (COLS * 0.7));
-
-      // Central block gets sage accent
-      const isCentral = c === 3 && r === 2;
-      const tTop   = isCentral ? SAGE_TOP   : TOP;
-      const tLeft  = isCentral ? SAGE_LEFT  : LEFT;
-      const tRight = isCentral ? SAGE_RIGHT : RIGHT;
-
-      // Interpolate toward glow colors based on proximity
-      const blendHex = (base, target, t) => {
-        const b = parseInt(base.slice(1), 16);
-        const g = parseInt(target.slice(1), 16);
-        const br = (b >> 16) & 0xff, bg = (b >> 8) & 0xff, bb = b & 0xff;
-        const gr = (g >> 16) & 0xff, gg = (g >> 8) & 0xff, gb = g & 0xff;
-        const rr = Math.round(br + (gr - br) * t);
-        const rg = Math.round(bg + (gg - bg) * t);
-        const rb = Math.round(bb + (gb - bb) * t);
-        return `rgb(${rr},${rg},${rb})`;
-      };
-
-      const fTop   = blendHex(tTop,   GLOW_TOP,   glow * 0.7);
-      const fLeft  = blendHex(tLeft,  GLOW_LEFT,  glow * 0.5);
-      const fRight = blendHex(tRight, GLOW_RIGHT, glow * 0.4);
-
-      // Central glow block: cream highlight on top at peak glow
-      const topFill = (isCentral && lightPos.x > 0.35 && lightPos.x < 0.65)
-        ? blendHex(fTop, '#F5F0E8', glow * 0.5)
-        : fTop;
-
-      // Top face diamond
-      const top = [
-        [x,      y     ],
-        [x + TW, y + TH/2],
-        [x,      y + TH ],
-        [x - TW, y + TH/2],
-      ].map(p => p.join(',')).join(' ');
-
-      // Left face parallelogram
-      const left = [
-        [x - TW, y + TH/2],
-        [x,      y + TH  ],
-        [x,      y + TH + h],
-        [x - TW, y + TH/2 + h],
-      ].map(p => p.join(',')).join(' ');
-
-      // Right face parallelogram
-      const right = [
-        [x,      y + TH  ],
-        [x + TW, y + TH/2],
-        [x + TW, y + TH/2 + h],
-        [x,      y + TH + h],
-      ].map(p => p.join(',')).join(' ');
-
-      blocks.push(
-        <g key={`${c}-${r}`}>
-          <polygon points={right} fill={fRight}/>
-          <polygon points={left}  fill={fLeft}/>
-          <polygon points={top}   fill={topFill}/>
-        </g>
-      );
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const h = HEIGHTS[r][c];
+      if (h > 0) blocks.push({ c, r, h });
     }
   }
+  blocks.sort((a, b) => (a.c + a.r) - (b.c + b.r) || a.c - b.c);
 
-  // Radial glow overlay
-  const glowCx = isoX(lightPos.x * COLS, lightPos.y * ROWS);
-  const glowCy = isoY(lightPos.x * COLS, lightPos.y * ROWS) + U * 2;
-  const glowR  = svgW * 0.55;
+  // Light source in grid coords
+  const lx = lightPos.x * COLS;
+  const ly = lightPos.y * ROWS;
+  const maxD = Math.sqrt(COLS * COLS + ROWS * ROWS);
+
+  const pts = (verts) => verts.map(v => v.join(',')).join(' ');
+
+  const blockElems = blocks.map(({ c, r, h }) => {
+    const hPx = h * UH;
+    const x   = sx(c, r);
+    const y   = sy(c, r);
+
+    // Glow factor 0–1 based on distance from light
+    const dist = Math.sqrt((c + 0.5 - lx) ** 2 + (r + 0.5 - ly) ** 2);
+    const lit  = Math.max(0, 1 - dist / (maxD * 0.52));
+
+    const isTerra = TERRA.has(`${c}-${r}`);
+
+    const fTop  = lh(C.topDark,   C.topLit,   lit);
+    const fLeft = lh(C.leftDark,  C.leftLit,  lit * 0.75);
+    const fRight = isTerra
+      ? lh(C.tDark, C.tLit, lit * 0.65)
+      : lh(C.rightDark, C.rightLit, lit * 0.65);
+
+    // Top face diamond (elevated by hPx)
+    const topFace = [
+      [x,          y - hPx],
+      [x + TW / 2, y - hPx + TH / 2],
+      [x,          y - hPx + TH],
+      [x - TW / 2, y - hPx + TH / 2],
+    ];
+
+    // Left face — connects top-face left & bottom vertices down to ground
+    const leftFace = [
+      [x - TW / 2, y - hPx + TH / 2],
+      [x,          y - hPx + TH],
+      [x,          y + TH],
+      [x - TW / 2, y + TH / 2],
+    ];
+
+    // Right face — connects top-face bottom & right vertices down to ground
+    const rightFace = [
+      [x,          y - hPx + TH],
+      [x + TW / 2, y - hPx + TH / 2],
+      [x + TW / 2, y + TH / 2],
+      [x,          y + TH],
+    ];
+
+    return (
+      <g key={`${c}-${r}`}>
+        <polygon points={pts(rightFace)} fill={fRight}/>
+        <polygon points={pts(leftFace)}  fill={fLeft}/>
+        <polygon points={pts(topFace)}   fill={fTop}/>
+      </g>
+    );
+  });
 
   return (
     <main className="do-page do-about-page">
       <window.TopNav onHome={onHome} section="about"/>
 
       {/* ── Hero ── */}
-      <div className="do-cs-hero" ref={heroRef}>
-        <div className="do-cs-hero-inner" ref={innerRef} style={{ background: BG }}>
+      <div className="do-about-hero" ref={heroRef}>
+        <div className="do-cs-hero-inner" ref={innerRef} style={{ background: C.bg }}>
           <svg
             ref={svgRef}
-            width="100%"
-            height="100%"
-            viewBox={`0 0 ${svgW} ${svgH}`}
+            width="100%" height="100%"
+            viewBox={`0 0 ${SVG_W} ${SVG_H}`}
             preserveAspectRatio="xMidYMid slice"
             xmlns="http://www.w3.org/2000/svg"
             style={{ display: 'block' }}
           >
-            <rect width={svgW} height={svgH} fill={BG}/>
-            <defs>
-              <radialGradient id="iso-glow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%"   stopColor="#B0D8E8" stopOpacity="0.22"/>
-                <stop offset="100%" stopColor="#B0D8E8" stopOpacity="0"/>
-              </radialGradient>
-            </defs>
-            {blocks}
-            {/* Floating light glow */}
-            <ellipse
-              cx={glowCx}
-              cy={glowCy}
-              rx={glowR}
-              ry={glowR * 0.45}
-              fill="url(#iso-glow)"
-              style={{ pointerEvents: 'none' }}
-            />
+            <rect width={SVG_W} height={SVG_H} fill={C.bg}/>
+            {blockElems}
           </svg>
         </div>
         <div className="do-cs-hero-fade"/>

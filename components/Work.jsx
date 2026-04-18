@@ -1,5 +1,5 @@
 // Design Work landing page — portfolio grid with category filters
-const { useState } = React;
+const { useState, useEffect, useRef } = React;
 
 const WorkCard = ({ project: p }) => {
   const cat = window.PROJECT_CATS[p.cat];
@@ -23,7 +23,7 @@ const WorkCard = ({ project: p }) => {
         <p className="do-wk-card-excerpt">{p.excerpt}</p>
         <div className="do-wk-card-cta">
           {isLive
-            ? <a className="do-wk-read" href={`#/work/${p.slug}`}>View case study →</a>
+            ? <a className="do-wk-read" href={`#/work/${p.slug}`} onClick={(e)=>{e.preventDefault(); window.location.hash=`/work/${p.slug}`; window.scrollTo({top:0,behavior:'instant'});}}>View case study →</a>
             : <span className="do-wk-soon">Case study in progress</span>}
         </div>
       </div>
@@ -33,6 +33,20 @@ const WorkCard = ({ project: p }) => {
 
 const Work = ({ onHome }) => {
   const [filter, setFilter] = useState('all');
+  const heroRef = useRef(null);
+  const imgRef  = useRef(null);
+
+  // Parallax: image scrolls at 30% of page speed
+  useEffect(() => {
+    const onScroll = () => {
+      if (!imgRef.current || !heroRef.current) return;
+      const top = heroRef.current.getBoundingClientRect().top;
+      imgRef.current.style.transform = `translateY(${top * 0.28}px)`;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const cats = Object.values(window.PROJECT_CATS);
   const visible = filter === 'all'
@@ -43,11 +57,21 @@ const Work = ({ onHome }) => {
     <main className="do-page do-wk-page">
       <window.TopNav onHome={onHome} section="work"/>
 
-      {/* ── Page header ── */}
+      {/* ── Hero ── */}
+      <div className="do-wk-hero" ref={heroRef}>
+        <img
+          ref={imgRef}
+          src="images/work-header.png"
+          alt="Leonardo De La Rocha"
+          className="do-wk-hero-img"
+        />
+        <div className="do-wk-hero-vignette"/>
+      </div>
+
+      {/* ── Page sub-header ── */}
       <header className="do-wk-header">
         <div className="do-wk-header-inner">
           <div className="do-eyebrow">Selected work</div>
-          <h1 className="do-wk-headline">Thirty years of making things.</h1>
           <p className="do-wk-sub">Thirty years of design — brand identity, product systems, creative direction, and hands-on making. By Leonardo De La Rocha: Dad, Mental Health Champion, Mentor, Design Leader, and Advisor.</p>
         </div>
       </header>

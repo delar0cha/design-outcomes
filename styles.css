@@ -1544,7 +1544,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   flex-wrap: wrap;
   gap: 4px 0;
   margin: 8px 0;
-  padding: 12px 0;
+  padding: 8px 0;
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
@@ -1616,7 +1616,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 
 /* Top variant: sits below byline, hairline only on bottom */
 .do-share-row--top {
-  margin-top: 16px;
+  margin-top: 8px;
   margin-bottom: 0;
   border-top: none;
   border-bottom: 1px solid #e0e0e0;

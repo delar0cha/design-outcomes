@@ -1,0 +1,117 @@
+// Content data — single source of truth. Add posts by appending here.
+window.CATEGORIES = {
+  reframe:  { id:'reframe',  name:'The Reframe',       monogram:'TR', tint:'#B8432B', sub:'Assumptions, examined.' },
+  crit:     { id:'crit',     name:'Crit Notes',        monogram:'CN', tint:'#4A5D3A', sub:'Feedback, with the reasoning shown.' },
+  decision: { id:'decision', name:'The Decision',      monogram:'TD', tint:'#2F4858', sub:'What we chose, and why.' },
+  makers:   { id:'makers',   name:"Maker's Log",       monogram:'ML', tint:'#8A5A2B', sub:'Process, visible.' },
+  toolbox:  { id:'toolbox',  name:'Toolbox',           monogram:'TB', tint:'#6B4E7B', sub:'Frameworks you can steal.' },
+  reading:  { id:'reading',  name:'Reading List',      monogram:'RL', tint:'#7A5A3A', sub:'Weekly links, personally vetted.' },
+  state:    { id:'state',    name:'State of the Craft',monogram:'SC', tint:'#15120E', sub:'Monthly synthesis.' },
+};
+
+window.AUDIENCES = ['Everyone', 'Leaders', 'ICs'];
+window.AUTHOR = { name: 'Leonardo De La Rocha', initials: 'LR', role: 'VP Product Design', domain: 'ldlr.design' };
+
+const ill = (kind, palette, seed=1) => ({ kind, palette, seed });
+
+window.POSTS = [
+  // ARTICLE 4 — Maker's Log (most recent)
+  { slug:'building-design-outcomes', cat:'makers', audience:'Everyone', date:'2026-04-17',
+    title:'Building Design Outcomes: From Conversation to Live Site in Two Hours',
+    excerpt:'I built a portfolio site for my design leadership work using Claude Design, Claude Code, and Vercel. The full process, the walls I hit, and what the publishing workflow looks like now.',
+    why:'I built a portfolio site for my design leadership work using Claude Design, Claude Code, and Vercel. Here is the full process, what went smoothly, where I hit walls, and what the publishing workflow looks like now.',
+    read:'9 min',
+    illustration: ill('grid', ['#EDE5D3','#8A5A2B','#15120E'], 8),
+    body: [
+      {type:'p', text:'This is the origin story of the site you are reading right now.'},
+      {type:'p', text:'The idea started with a simple observation: most design leadership content exists in one of two modes. Either it is polished conference keynotes that feel removed from the daily work, or it is LinkedIn posts so compressed they lose all nuance. I wanted a third space, something that shows the texture of real design leadership through actual artifacts, actual decisions, actual conversations. Updated weekly, tied to real work, with a visual identity that reflects craft.'},
+      {type:'p', text:'The constraint I set for myself was that the entire thing had to be built and published using AI-native tools. No Figma. No manual coding. No traditional CMS. I wanted to see if the current generation of creative AI could take me from a blank prompt to a live, deployed website with real content, and I wanted to document every step honestly, including the parts that did not work.'},
+      {type:'h', text:'The design phase'},
+      {type:'p', text:'I started in Claude (the conversational AI, where you and I talk), working through the site concept, content categories, and information architecture before writing a single line of code. This is the part most people skip when they use AI tools for design work, and it is the part that matters most. By the time I had a prompt ready for Claude Design, I had already defined seven content categories (The Reframe, Crit Notes, The Decision, Maker\u2019s Log, Toolbox, Reading List, State of the Craft), a landing page structure with three zones, a content page template, and a visual identity direction rooted in editorial minimalism.'},
+      {type:'p', text:'I also had a specific interaction pattern I wanted to carry over from a previous project: a vertical progress bar on the featured content carousel that fills with color from top to bottom as a timer before the content rotates. Small detail, but it signals to the reader that the site is alive and curated.'},
+      {type:'p', text:'Claude Design took the prompt and produced a working v1 that was remarkably close to what I had described. The editorial typography, the card grid, the featured content area with the timer bar, the full-bleed illustrations on content pages. It iterated through my feedback in a conversational loop, refining layout, color, and component behavior until we had something I was genuinely pleased with.'},
+      {type:'h', text:'The deployment wall'},
+      {type:'p', text:'This is where it got interesting. Claude Design can export to several formats, including Canva (for drag-and-drop publishing) and Claude Code (for developer-grade deployment). I tried the Canva path first and hit size limits immediately. The React bundle was too heavy for Canva\u2019s importer, and even after Claude Design tried stripping it down to static HTML and then to flat screenshots, Canva kept rejecting it. That path is better suited for simpler marketing pages.'},
+      {type:'p', text:'So I went with Claude Code. The handoff was clean: Claude Design bundles the project files and sends them directly to Claude Code with implementation instructions. But getting from there to a live URL involved a series of small technical steps that someone without development experience would find genuinely frustrating.'},
+      {type:'p', text:'I needed to install Node.js (which was not on my machine), then the Vercel CLI (which required sudo permissions on Mac), then create a Vercel account, then link the project, then configure DNS on my domain registrar. Each step was individually straightforward, but the cumulative friction was real. I hit a permissions error, a plugin compatibility issue, a 404 caused by a misnamed index file, and a DNS configuration that required switching my registrar from hosting-mode to basic DNS before I could add the right records.'},
+      {type:'quote', text:'Pasting a screenshot of a terminal error and getting back the precise fix in seconds \u2014 that is the part that felt genuinely new. I was pair-programming with an AI, not on code, but on infrastructure.'},
+      {type:'p', text:'Claude (the conversational AI) walked me through every single one of these issues in real time, diagnosing errors from screenshots I shared and giving me the exact commands to run.'},
+      {type:'h', text:'The weekly workflow'},
+      {type:'p', text:'The site is now live at ldlr.design, deployed on Vercel with automatic SSL. The publishing workflow I have landed on is: I work with Claude throughout my week on real leadership tasks (drafting messages, writing scorecards, developing strategy, creating illustrations). At the end of the week, we pull my recent conversations, identify which ones contain publishable insights, draft the articles together, create illustration prompts, write LinkedIn posts, and deploy. The content is authentic because it comes from actual work, not from sitting down to write a blog post.'},
+      {type:'p', text:'The name of the site is Design Outcomes, and the domain is ldlr.design, my initials. When someone asks what it stands for, I get to say Leonardo De La Rocha, which is a better introduction than any bio page.'},
+      {type:'p', text:'If you are a design leader thinking about how to share your work and thinking more visibly, the barrier to entry just dropped to almost zero. The tools are here. The interesting question is no longer whether you can build the thing. It is whether you have something worth saying.'},
+    ],
+  },
+
+  // ARTICLE 3 — The Reframe
+  { slug:'when-building-gets-cheap', cat:'reframe', audience:'Leaders', date:'2026-04-15',
+    title:'When Building Gets Cheap, Carrying Gets Expensive',
+    excerpt:'AI is making it faster to ship features. That is not the hard part anymore. The hard part is deciding what deserves to exist.',
+    why:'AI is making it faster and easier to ship features. That is not the hard part anymore. The hard part is deciding what deserves to exist.',
+    read:'7 min',
+    illustration: ill('stack', ['#EADFCF','#B8432B','#15120E'], 3),
+    body: [
+      {type:'p', text:'Karri Saarinen, the founder and designer behind Linear, published a piece recently that I keep returning to. His core argument is that the cost of building a feature is falling rapidly, driven by AI tooling, faster prototyping, and more capable engineering infrastructure. But the cost of carrying a feature, maintaining it, supporting it, integrating it, letting it shape the product surface over time, stays constant or even increases.'},
+      {type:'p', text:'That asymmetry is the one I want design leaders to sit with, because it reshapes what our role actually is in a product organization.'},
+      {type:'p', text:'For most of the last decade, the bottleneck in product development was execution speed. How fast can we ship? How many story points can we clear? How quickly can we get from concept to production? Design\u2019s value was often measured in terms of how well it reduced friction in that pipeline: clear specs, clean handoffs, fewer rounds of revision. And that work matters. But when AI compresses the execution timeline even further, the pipeline speeds up and the carrying costs compound faster. Every feature you ship is a feature you now maintain. Every surface you add is a surface your support team has to understand. Every new capability is a new thing that can break, that needs documentation, that complicates onboarding.'},
+      {type:'quote', text:'Our role has always been to advocate for coherence over accumulation. In an environment where building is nearly free, that becomes the most important question in the room.'},
+      {type:'p', text:'This is where design leadership becomes most valuable, and most misunderstood. We are the ones who are supposed to ask whether this thing deserves to exist, whether it earns its complexity, whether it makes the product simpler or just more capable. That question has always been important. In an environment where building is nearly free, it becomes the most important question in the room.'},
+      {type:'h', text:'What this looks like in practice'},
+      {type:'p', text:'At my company, we are in the middle of a quarter where leadership has explicitly asked every team to create leverage, to get more output from the same resources, to ship proof points rather than experiments. The instinct in that environment is to build more, faster. And some of that is right. But the design org\u2019s job in that sprint is to be the counterweight that asks: of the ten things we could build this quarter, which three will still matter in eighteen months? Which ones reduce complexity rather than adding it? Which ones make the next quarter\u2019s work easier instead of harder?'},
+      {type:'p', text:'That is not a slowing-down argument. It is a compounding argument. The teams that ship the right three things this quarter and maintain them well will outperform the teams that ship ten things and spend the next two quarters cleaning up the surface area.'},
+      {type:'p', text:'Saarinen\u2019s framing gives design leaders sharper language for a conversation we have been having intuitively. When someone proposes a feature, the question is no longer just \u201Ccan we build it?\u201D or \u201Cshould we build it?\u201D The question is: what does it cost to carry this, and is that cost worth the outcome it produces? If you can answer that honestly, you are doing the work that matters most.'},
+    ],
+  },
+
+  // ARTICLE 2 — Crit Notes
+  { slug:'verbosity-in-an-interview', cat:'crit', audience:'Leaders', date:'2026-04-12',
+    title:'What Verbosity in an Interview Actually Tells You',
+    excerpt:'A candidate gave strong answers with real substance. Every single one took twice as long as it needed to. How I evaluated that signal and what I recommended.',
+    why:'A candidate gave strong answers with real substance. Every single one took twice as long as it needed to. Here is how I evaluated that signal and what I recommended to my hiring partner.',
+    read:'6 min',
+    illustration: ill('bars', ['#EADFCF','#4A5D3A','#15120E'], 5),
+    body: [
+      {type:'p', text:'I was sitting second chair on an interview for a program management role that would spend about 20% of its time supporting our design org. The candidate had strong credentials, relevant experience at scale, and a genuine curiosity about design culture that came through without prompting. By every traditional measure, the interview was going well.'},
+      {type:'p', text:'And every answer was about 40% longer than it needed to be.'},
+      {type:'p', text:'This is a pattern I have learned to pay close attention to, because it sits in a tricky evaluative space. Verbosity in an interview can mean several different things, and the difference between them matters for your hiring decision. It can be nerves, especially for someone who mentioned early on that they dislike talking about themselves. It can be a communication style that defaults to building context before landing the point. Or it can be a sign that someone processes their thinking out loud and needs the act of speaking to find the thread.'},
+      {type:'p', text:'In this case, I noticed both patterns operating simultaneously. Some of the tangents, like a brief aside about a family interruption during a remote work story, read clearly as anxiety. But the structural pattern of building extensive context before arriving at the headline felt consistent enough across multiple answers that it was probably how this person communicates under normal conditions too.'},
+      {type:'h', text:'Why the distinction matters'},
+      {type:'p', text:'The reason I care about this is not because brevity is inherently better than depth. It is because different operating environments have different tolerance for it. In a 1:1 interview, a long answer is manageable. You have time, you are listening closely, and you can extract the signal. In a cross-functional stakeholder meeting where you need to hold a room, or in front of a CPO who operates at a fast tempo, that same pattern has real cost. The substance gets buried. The audience disengages before the point lands.'},
+      {type:'p', text:'The question I asked myself was whether this was a disqualifier or a coaching need. And I landed on coaching need, with a caveat. The candidate\u2019s role would be primarily operational, building internal systems and working with a program management team. In that context, verbosity is a smaller risk. If the role required regular executive-facing presentations or representing design ops work upward, it would weigh more heavily.'},
+      {type:'h', text:'How I framed it'},
+      {type:'p', text:'In my scorecard notes and in my debrief with the hiring manager, I wrote it plainly: strong content, communication style will need calibration for executive-facing work. I framed it as a development area rather than a red flag, something like: in our environment, the ability to land the headline first and fill in context on request is a skill we would need to develop together.'},
+      {type:'p', text:'I also noted what the verbosity told me that was positive. This was someone who thought carefully, who wanted to give complete answers, and who was clearly invested in making a good impression. Those are not bad instincts. They just need shaping for the environment they would be entering.'},
+      {type:'quote', text:'Your job in those interviews is not just to fill out the scorecard. It is to give your hiring partner a usable, honest read that helps them make a better decision.'},
+      {type:'p', text:'That means naming the pattern, naming what it might cost, and naming what it might mean for development, all in language that protects the candidate from being unfairly reduced to a single observation.'},
+    ],
+  },
+
+  // ARTICLE 1 — The Decision (oldest)
+  { slug:'structure-is-the-problem', cat:'decision', audience:'Leaders', date:'2026-04-10',
+    title:'When the Structure Is the Problem, Not the Person',
+    excerpt:'We had the right designer doing the right work. We had an engaged PM partner. We had momentum. And the coordination was still breaking down.',
+    why:'We had the right designer doing the right work. We had an engaged PM partner. We had momentum. And the coordination was still breaking down. Here is the meeting where we stopped blaming execution and started looking at the org chart.',
+    read:'8 min',
+    illustration: ill('rays', ['#EADFCF','#2F4858','#15120E'], 6),
+    body: [
+      {type:'p', text:'There is a failure mode in cross-functional product work that is easy to miss if you are looking at it from the outside. Everything appears to be running. Standups are happening. Designs are moving. Stakeholders are being looped in. And yet the work keeps drifting, escalations keep surfacing informally, and the people closest to it start showing signs of fatigue that do not match the complexity of their individual tasks.'},
+      {type:'p', text:'That is what was happening on our end-to-end insurance launch. Our lead designer had been carrying coordination responsibilities that spanned product, marketing, CS, and engineering. He had built a solid near-term execution plan and was showing up every day. The PM partner was engaged and invested. And still, things were breaking. Feedback loops were too long. Decisions that should have taken a day were taking a week. Tension between collaborators was increasing without a clear reason.'},
+      {type:'p', text:'When I sat down with my PM counterpart to talk through it, we kept circling the same realization: this was not a performance problem. It was a structural one. The scope of cross-functional coordination required for this launch was simply too broad and too politically complex to sit on a designer\u2019s shoulders, regardless of how capable they were. We were asking someone at an execution level to do director-level orchestration work, and the fact that he was doing it reasonably well had actually made the gap harder to see.'},
+      {type:'h', text:'What we changed'},
+      {type:'p', text:'We made three decisions in that conversation. First, we changed the DRI structure. The designer would continue executing (nothing drops), but director-level ownership of coordination and accountability would sit formally with the two of us, product and design leadership paired as co-owners. Second, we agreed to stand up a small cross-functional working group with named representatives from engineering, marketing, and CS, with a regular cadence and clear expectations. Third, we asked the designer to pause his direct outreach to marketing and CS until the structure was in place, so that none of those relationships would get strained by mixed signals about who was driving what.'},
+      {type:'p', text:'The hardest part of that conversation was not the decision itself. It was protecting the designer from being read as the problem. When you surface a structural issue, the people closest to the work are the ones most vulnerable to being misinterpreted. So the way we communicated the change mattered enormously. We led with the structural argument, named the scope mismatch explicitly, and framed the designer\u2019s pause on outreach as a deliberate strategic hold, not a pullback.'},
+      {type:'h', text:'Why this matters for design leaders'},
+      {type:'quote', text:'If you have a designer who is struggling, the first question to ask is not about their performance. The first question is whether you have set up a structure where their role is actually doable.'},
+      {type:'p', text:'The symptoms of a structural problem and a performance problem look nearly identical from a distance: missed deadlines, escalations, friction with partners. The difference only becomes visible when you sit down with the people involved and listen for what they are actually describing. In our case, the designer was not describing confusion about his work. He was describing a coordination burden that had no clear owner above him. That is a leadership problem, not an execution problem.'},
+      {type:'p', text:'The fix took one conversation and two Slack messages. The hard part was seeing it clearly enough to have the conversation in the first place.'},
+    ],
+  },
+];
+
+// Featured: all four, newest first
+window.FEATURED_SLUGS = [
+  'building-design-outcomes',
+  'when-building-gets-cheap',
+  'verbosity-in-an-interview',
+  'structure-is-the-problem',
+];

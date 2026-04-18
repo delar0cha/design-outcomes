@@ -139,16 +139,17 @@ window.POSTS = [
 // ─── Portfolio / Design Work ───────────────────────────────────────────────
 
 window.PROJECT_CATS = {
-  product:  { id:'product',  name:'Product Design',       tint:'#2F4858' },
-  systems:  { id:'systems',  name:'Design Systems',        tint:'#4A5D3A' },
-  brand:    { id:'brand',    name:'Branding & Identity',   tint:'#B8432B' },
-  creative: { id:'creative', name:'Creative Direction',    tint:'#8A5A2B' },
-  making:   { id:'making',   name:'Making & Illustration', tint:'#6B4E7B' },
+  leadership: { id:'leadership', name:'Executive Leadership', tint:'#15120E' },
+  product:    { id:'product',    name:'Product Design',       tint:'#2F4858' },
+  systems:    { id:'systems',    name:'Design Systems',       tint:'#4A5D3A' },
+  brand:      { id:'brand',      name:'Branding & Identity',  tint:'#B8432B' },
+  creative:   { id:'creative',   name:'Creative Direction',   tint:'#8A5A2B' },
+  making:     { id:'making',     name:'Making & Illustration',tint:'#6B4E7B' },
 };
 
 window.PROJECTS = [
   { slug:'sp-design-vision',
-    cat:'product', company:'SimplePractice', year:'2025–2026',
+    cat:'leadership', company:'SimplePractice', year:'2025–2026',
     title:'2026 Design Vision',
     excerpt:'Setting the strategic direction for product design at SimplePractice — defining what craft, quality, and outcomes mean for a platform serving 185k+ practitioners.',
     status:'live',
@@ -245,7 +246,7 @@ window.FEATURED_SLUGS = [
 window.CASE_STUDIES = [
   {
     slug: 'sp-design-vision',
-    cat: 'product', company: 'SimplePractice', year: '2025\u20132026',
+    cat: 'leadership', company: 'SimplePractice', year: '2025\u20132026',
     title: '2026 Design Vision',
     subtitle: 'Building a Design Vision That Can Steer Work',
     summary: 'A design vision document is easy to write and hard to make useful. Most of them live somewhere in Notion, get shared once at an all-hands, and slowly lose relevance as the product moves forward without them. When I started on this one, the first question I kept returning to was not what should the vision say, but what would it take for this to actually change how people make decisions six months from now. That question shaped everything.',

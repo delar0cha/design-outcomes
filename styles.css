@@ -1288,6 +1288,14 @@ a.do-about-connect-item:hover .do-about-connect-val { color: var(--accent); }
   aspect-ratio: 4/3;
   overflow: hidden;
   background: var(--cream-2);
+  display: block;
+  text-decoration: none;
+}
+a.do-wk-card-thumb .do-wk-card-svg {
+  transition: transform 0.35s ease;
+}
+a.do-wk-card-thumb:hover .do-wk-card-svg {
+  transform: scale(1.04);
 }
 .do-wk-card-svg { width: 100%; height: 100%; display: block; }
 .do-wk-card-body {

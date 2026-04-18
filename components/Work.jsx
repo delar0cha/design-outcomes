@@ -6,9 +6,13 @@ const WorkCard = ({ project: p }) => {
   const isLive = p.status === 'live';
   return (
     <div className={`do-wk-card${isLive ? ' is-live' : ''}`}>
-      <div className="do-wk-card-thumb">
-        <window.Illustration recipe={p.illustration} className="do-wk-card-svg"/>
-      </div>
+      {isLive
+        ? <a className="do-wk-card-thumb" href={`#/work/${p.slug}`} onClick={(e)=>{e.preventDefault(); window.location.hash=`/work/${p.slug}`; window.scrollTo({top:0,behavior:'instant'});}}>
+            <window.Illustration recipe={p.illustration} className="do-wk-card-svg"/>
+          </a>
+        : <div className="do-wk-card-thumb">
+            <window.Illustration recipe={p.illustration} className="do-wk-card-svg"/>
+          </div>}
       <div className="do-wk-card-body">
         <div className="do-wk-card-top">
           <span className="do-wk-cat" style={{color: cat.tint}}>{cat.name}</span>

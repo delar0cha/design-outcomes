@@ -22,7 +22,7 @@ const About = ({ onHome }) => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Light animation loop + cursor tracking
+  // Light animation + cursor tracking
   useEffect(() => {
     const lerp = (a, b, t) => a + (b - a) * t;
     const tick = (ts) => {
@@ -52,26 +52,27 @@ const About = ({ onHome }) => {
     };
   }, []);
 
-  // ── Isometric grid config ──────────────────────────────────────────────
-  // Standard isometric: tile diamond is 2:1 width:height (classic 30° angle)
+  // ── Isometric grid ──────────────────────────────────────────────────────
+  // 32:9 container → viewBox 1600×450 (half the height of previous 16:9)
+  // TW:TH = 220:44 = 5:1 — flatter tile for compressed vertical space
+  // TW chosen so the 8×6 grid spans the full 1600px width edge-to-edge
   const COLS = 8, ROWS = 6;
-  const TW   = 160;   // tile diamond width tip-to-tip
-  const TH   = 80;    // tile diamond height tip-to-tip (TW/2 = true isometric)
-  const UH   = 40;    // screen pixels per block height unit
+  const TW   = 220;  // tile diamond width
+  const TH   = 44;   // tile diamond height (5:1 ratio, compressed)
+  const UH   = 22;   // screen px per block height unit
 
   const SVG_W = 1600;
-  const SVG_H = 900;
+  const SVG_H = 450;
 
-  // Grid origin: screen position of tile (0,0) top vertex
-  // Tuned so the full grid sits centered with breathing room
-  const OX = 720;
-  const OY = 210;
+  // Origin: symmetrically centers the grid horizontally in the viewBox
+  // Grid spans OX±660 (left) to OX+880 (right) → OX=690 gives ±30px margin
+  const OX = 690;
+  const OY = 115;   // vertical centering: topmost vertex ≈27px, bottom ≈423px
 
-  // screen coords of the top vertex of tile (c, r) at ground level
   const sx = (c, r) => (c - r) * (TW / 2) + OX;
   const sy = (c, r) => (c + r) * (TH / 2) + OY;
 
-  // Heights (ROWS × COLS) — 0 means gap/floor, 1-4 are block heights
+  // Heights: 0 = gap, 1–4 = block height in units
   const HEIGHTS = [
     [2, 3, 4, 1, 2, 3, 1, 2],
     [3, 0, 2, 4, 2, 0, 3, 1],
@@ -81,45 +82,44 @@ const About = ({ onHome }) => {
     [1, 2, 0, 2, 1, 3, 0, 2],
   ];
 
-  // Blocks with terracotta right face
-  const TERRA = new Set(['2-0','5-1','1-2','3-3','6-4']);
+  // ~15% of active blocks get warm gold accent faces
+  const GOLD = new Set(['4-0', '1-1', '7-2', '2-3', '5-4', '0-5']);
 
-  // Flat color palette — all solid, no gradients
+  // Warm earthy palette — background (#8C8377) is the darkest tone anywhere
   const C = {
+    bg:        '#8C8377',
     topLit:    '#F5F0E8',
-    topDark:   '#6A6258',
-    leftLit:   '#3E6878',
-    leftDark:  '#1A2E38',
-    rightLit:  '#5A7A48',
-    rightDark: '#2A3520',
-    tLit:      '#C85035',
-    tDark:     '#7A2818',
-    bg:        '#1E1E1E',
+    topDark:   '#D8D3CC',
+    leftLit:   '#D4C4B4',
+    leftDark:  '#C4B5A0',
+    rightLit:  '#B8A892',
+    rightDark: '#A89279',
+    gLLit:     '#DDB96A',
+    gLDark:    '#C9A84C',
+    gRLit:     '#CCAA6E',
+    gRDark:    '#B8975A',
   };
 
-  // Lerp between two hex colors, return rgb() string
+  // Lerp two hex colors → rgb() string (no SVG gradients, flat fill per polygon)
   const lh = (hexA, hexB, t) => {
     const a = parseInt(hexA.slice(1), 16);
     const b = parseInt(hexB.slice(1), 16);
-    const r = Math.round(((a>>16)&0xff) + (((b>>16)&0xff) - ((a>>16)&0xff)) * t);
-    const g = Math.round(((a>>8) &0xff) + (((b>>8) &0xff) - ((a>>8) &0xff)) * t);
-    const bl= Math.round((a      &0xff) + ((b       &0xff) - (a      &0xff)) * t);
+    const r  = Math.round(((a>>16)&0xff) + (((b>>16)&0xff)-((a>>16)&0xff))*t);
+    const g  = Math.round(((a>>8) &0xff) + (((b>>8) &0xff)-((a>>8) &0xff))*t);
+    const bl = Math.round( (a     &0xff) + ( (b     &0xff)- (a     &0xff))*t);
     return `rgb(${r},${g},${bl})`;
   };
 
-  // Build block list and sort back-to-front (painter's algorithm)
+  // Build + sort blocks back-to-front (painter's algorithm: low col+row = back)
   const blocks = [];
-  for (let r = 0; r < ROWS; r++) {
-    for (let c = 0; c < COLS; c++) {
-      const h = HEIGHTS[r][c];
-      if (h > 0) blocks.push({ c, r, h });
-    }
-  }
+  for (let r = 0; r < ROWS; r++)
+    for (let c = 0; c < COLS; c++)
+      if (HEIGHTS[r][c] > 0) blocks.push({ c, r, h: HEIGHTS[r][c] });
   blocks.sort((a, b) => (a.c + a.r) - (b.c + b.r) || a.c - b.c);
 
-  // Light source in grid coords
-  const lx = lightPos.x * COLS;
-  const ly = lightPos.y * ROWS;
+  // Light in grid coords
+  const lx   = lightPos.x * COLS;
+  const ly   = lightPos.y * ROWS;
   const maxD = Math.sqrt(COLS * COLS + ROWS * ROWS);
 
   const pts = (verts) => verts.map(v => v.join(',')).join(' ');
@@ -128,41 +128,35 @@ const About = ({ onHome }) => {
     const hPx = h * UH;
     const x   = sx(c, r);
     const y   = sy(c, r);
+    const isG = GOLD.has(`${c}-${r}`);
 
-    // Glow factor 0–1 based on distance from light
     const dist = Math.sqrt((c + 0.5 - lx) ** 2 + (r + 0.5 - ly) ** 2);
     const lit  = Math.max(0, 1 - dist / (maxD * 0.52));
 
-    const isTerra = TERRA.has(`${c}-${r}`);
+    const fTop   = lh(C.topDark,  C.topLit,  lit);
+    const fLeft  = isG ? lh(C.gLDark, C.gLLit, lit * 0.8) : lh(C.leftDark, C.leftLit, lit * 0.8);
+    const fRight = isG ? lh(C.gRDark, C.gRLit, lit * 0.7) : lh(C.rightDark, C.rightLit, lit * 0.7);
 
-    const fTop  = lh(C.topDark,   C.topLit,   lit);
-    const fLeft = lh(C.leftDark,  C.leftLit,  lit * 0.75);
-    const fRight = isTerra
-      ? lh(C.tDark, C.tLit, lit * 0.65)
-      : lh(C.rightDark, C.rightLit, lit * 0.65);
-
-    // Top face diamond (elevated by hPx)
+    // Top face diamond (lifted hPx above ground)
     const topFace = [
-      [x,          y - hPx],
-      [x + TW / 2, y - hPx + TH / 2],
-      [x,          y - hPx + TH],
-      [x - TW / 2, y - hPx + TH / 2],
+      [x,          y - hPx           ],
+      [x + TW / 2, y - hPx + TH / 2 ],
+      [x,          y - hPx + TH      ],
+      [x - TW / 2, y - hPx + TH / 2 ],
     ];
-
-    // Left face — connects top-face left & bottom vertices down to ground
+    // Left face: top-face left+bottom vertices → ground left+bottom
     const leftFace = [
       [x - TW / 2, y - hPx + TH / 2],
-      [x,          y - hPx + TH],
-      [x,          y + TH],
-      [x - TW / 2, y + TH / 2],
+      [x,          y - hPx + TH     ],
+      [x,          y + TH           ],
+      [x - TW / 2, y + TH / 2       ],
     ];
-
-    // Right face — connects top-face bottom & right vertices down to ground
+    // Right face: top-face bottom+right vertices → ground bottom+right
     const rightFace = [
-      [x,          y - hPx + TH],
+      [x,          y - hPx + TH     ],
       [x + TW / 2, y - hPx + TH / 2],
-      [x + TW / 2, y + TH / 2],
-      [x,          y + TH],
+      [x + TW / 2, y + TH / 2       ],
+      [x,          y + TH           ],
     ];
 
     return (

@@ -169,7 +169,7 @@ const Grid = ({ posts, onOpen }) => {
   );
 };
 
-// ---------- Subscribe confirmation messages ----------
+// ---------- Subscribe modal confirmation messages ----------
 const CONFIRM_MSGS = [
   n => `${n}, your Sundays just got a standing reservation.`,
   n => `Noted, ${n}. The good kind of noted.`,
@@ -298,68 +298,7 @@ const SubscribeModal = ({ onClose }) => {
   return ReactDOM.createPortal(modal, document.body);
 };
 
-// ---------- ZONE 3: Footer ----------
-const Footer = ({ onSubscribe }) => {
-  const [name, setName]   = useState('');
-  const [email, setEmail] = useState('');
-  const [confirmed, setConfirmed] = useState(null);
-
-  const submit = (e) => {
-    e.preventDefault();
-    if (!email.includes('@')) return;
-    setConfirmed(randomConfirm(name || 'Friend'));
-  };
-
-  return (
-    <footer className="do-footer">
-      <div className="do-footer-grid">
-        <div className="do-footer-about">
-          <div className="do-footer-logo">Design Outcomes<span>.</span></div>
-          <p>A weekly-updated portfolio of design leadership in practice — real work, real decisions, real thinking. Written by Leonardo De La Rocha, VP Product Design. No sponsors. No popovers. Just the work.</p>
-        </div>
-        <div className="do-footer-sub">
-          <div className="do-footer-label">The weekly digest</div>
-          {confirmed ? (
-            <div className="do-footer-sent">{confirmed}</div>
-          ) : (
-            <form className="do-footer-sub-form" onSubmit={submit}>
-              <input
-                className="do-footer-sub-input"
-                type="text"
-                placeholder="First name"
-                value={name}
-                onChange={e => setName(e.target.value)}
-              />
-              <input
-                className="do-footer-sub-input"
-                type="email"
-                required
-                placeholder="you@studio.com"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-              <button className="do-footer-sub-btn" type="submit">Subscribe →</button>
-            </form>
-          )}
-          <p className="do-footer-note">One email, Sunday. One link you will actually open. Unsubscribe with one click.</p>
-        </div>
-        <div className="do-footer-links">
-          <div className="do-footer-label">Elsewhere</div>
-          <ul>
-            <li><a href="https://www.linkedin.com/in/leonardodelarocha/" target="_blank" rel="noopener">LinkedIn → in/ldlrocha</a></li>
-            <li><a href="#">RSS feed</a></li>
-            <li><button className="do-footer-sub-link" onClick={onSubscribe}>Subscribe to the digest →</button></li>
-          </ul>
-        </div>
-      </div>
-      <div className="do-footer-rule"/>
-      <div className="do-footer-base">
-        <span>© 2026 Leonardo De La Rocha · ldlr.design · Set in Newsreader &amp; Instrument Sans.</span>
-        <span>Issue 01 — week of April 13, 2026</span>
-      </div>
-    </footer>
-  );
-};
+// ---------- ZONE 3: Footer — delegated to shared window.SiteFooter ----------
 
 // ---------- Top nav ----------
 const NAV_SVG = (
@@ -436,7 +375,7 @@ const Landing = ({ onOpen, heroLayout }) => {
       <TopNav onHome={()=>{}} section="writeups"/>
       <Featured posts={featured} onOpen={onOpen} heroLayout={heroLayout}/>
       <Grid posts={window.POSTS} onOpen={onOpen}/>
-      <Footer onSubscribe={() => setSubOpen(true)}/>
+      <window.SiteFooter/>
       {subOpen && <SubscribeModal onClose={() => setSubOpen(false)} />}
     </main>
   );

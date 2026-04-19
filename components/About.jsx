@@ -90,6 +90,8 @@ const About = ({ onHome }) => {
         </section>
 
       </div>
+
+      <window.SiteFooter/>
     </main>
   );
 };

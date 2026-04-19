@@ -102,13 +102,7 @@ const Work = ({ onHome }) => {
         </div>
       </div>
 
-      {/* ── Bottom rule ── */}
-      <div style={{padding:'0 48px 80px'}}>
-        <div className="do-footer-rule" style={{margin:'0'}}/>
-        <p className="do-wk-foot-note">
-          More work — including Facebook/Meta, Intuit, Spotify advertising, and freelance projects — being added as case studies are completed.
-        </p>
-      </div>
+      <window.SiteFooter/>
     </main>
   );
 };

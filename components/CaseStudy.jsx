@@ -167,7 +167,7 @@ const CaseStudy = ({ slug, onHome }) => {
 
       </article>
 
-      <div style={{padding:'0 48px'}}><div className="do-footer-rule" style={{margin:'0'}}/></div>
+      <window.SiteFooter/>
     </main>
   );
 };

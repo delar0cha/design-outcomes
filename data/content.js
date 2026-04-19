@@ -49,7 +49,7 @@ window.POSTS = [
     excerpt:'Every Monday morning I rewrite the CEO update for my design org. Here is why, how I do it, and the template you can steal.',
     why:'Because the gap between executive communication and team understanding is where trust either builds or erodes.',
     read:'6 min',
-    illustration: ill('boardroom', ['#F5F0E8', '#2F4858', '#15120E'], 11),
+    illustration: { kind:'photo', src:'/images/translating-the-boardroom.jpg' },
     body: [
       {type:'h', text:'Why this ritual exists'},
       {type:'p', text:'Every Sunday morning, our CEO sends an update to the extended leadership team. It covers board feedback, quarterly priorities, competitive positioning, organizational changes, and the week ahead. It is written for directors and VPs. It assumes fluency in financial metrics, go-to-market language, and strategic shorthand that most individual contributors have never been exposed to.'},

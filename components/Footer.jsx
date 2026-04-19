@@ -71,7 +71,7 @@ const SiteFooter = () => {
       <div className="do-footer-rule"/>
       <div className="do-footer-base">
         <span>© 2026 Leonardo De La Rocha · ldlr.design · Set in Newsreader &amp; Instrument Sans.</span>
-        <span>Issue 01 — week of April 13, 2026</span>
+        <span>Issue {String(window.CURRENT_ISSUE.issueNumber).padStart(2, '0')} — Week of {window.CURRENT_ISSUE.weekOfFull}</span>
       </div>
     </footer>
   );

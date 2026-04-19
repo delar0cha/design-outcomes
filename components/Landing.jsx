@@ -329,9 +329,9 @@ const TopNav = ({ onHome, section = '' }) => {
             <button className="do-nav-sub-btn" onClick={openSub}>Subscribe</button>
           </nav>
           <div className="do-nav-meta">
-            <span className="do-nav-issue">Issue 02</span>
+            <span className="do-nav-issue">Issue {String(window.CURRENT_ISSUE.issueNumber).padStart(2, '0')}</span>
             <span className="do-nav-dot"/>
-            <span>Week of Apr 19</span>
+            <span>Week of {window.CURRENT_ISSUE.weekOf}</span>
           </div>
           <button
             className="do-nav-hamburger"

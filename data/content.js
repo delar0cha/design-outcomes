@@ -1,4 +1,14 @@
 // Content data — single source of truth. Add posts by appending here.
+
+// ─────────────────────────────────────────────────────────────────────────────
+// UPDATE THIS EACH WEEK WHEN PUBLISHING NEW CONTENT
+window.CURRENT_ISSUE = {
+  issueNumber: 2,        // display as "Issue 02"
+  weekOf:     'Apr 19',  // short form used in the nav header
+  weekOfFull: 'April 19, 2026', // long form used in the footer
+};
+// ─────────────────────────────────────────────────────────────────────────────
+
 window.CATEGORIES = {
   reframe:  { id:'reframe',  name:'The Reframe',       monogram:'TR', tint:'#B8432B', sub:'Assumptions, examined.' },
   crit:     { id:'crit',     name:'Crit Notes',        monogram:'CN', tint:'#4A5D3A', sub:'Feedback, with the reasoning shown.' },

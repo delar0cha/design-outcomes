@@ -148,7 +148,7 @@ window.POSTS = [
     excerpt:'We had the right designer doing the right work. The coordination was still breaking down. Here is the meeting where we stopped blaming execution and started looking at the org chart.',
     why:'We had the right designer doing the right work. We had an engaged PM partner. We had momentum. And the coordination was still breaking down. Here is the meeting where we stopped blaming execution and started looking at the org chart.',
     read:'8 min',
-    illustration: ill('rays', ['#EADFCF','#2F4858','#15120E'], 6),
+    illustration: { kind:'photo', src:'/images/structure-is-the-problem.jpg' },
     body: [
       {type:'h', text:'A failure mode hiding in plain sight'},
       {type:'p', text:'There is a failure mode in cross-functional product work that is easy to miss if you are looking at it from the outside. Everything appears to be running. Standups are happening. Designs are moving. Stakeholders are being looped in. And yet the work keeps drifting, escalations keep surfacing informally, and the people closest to it start showing signs of fatigue that do not match the complexity of their individual tasks.'},

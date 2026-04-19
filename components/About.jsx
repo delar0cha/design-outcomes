@@ -60,25 +60,6 @@ const About = ({ onHome }) => {
 
         <div className="do-about-rule"/>
 
-        {/* ── Section 3 ── */}
-        <section className="do-about-section">
-          <div className="do-about-section-inner">
-            <div className="do-about-label">Contact</div>
-            <h2 className="do-about-headline">Where to find me</h2>
-            <div className="do-about-connect">
-              <a className="do-about-connect-item" href="https://linkedin.com/in/delarocha" target="_blank" rel="noopener">
-                <span className="do-about-connect-label">LinkedIn</span>
-                <span className="do-about-connect-val">linkedin.com/in/delarocha →</span>
-              </a>
-              <div className="do-about-connect-item">
-                <span className="do-about-connect-label">Site</span>
-                <span className="do-about-connect-val">ldlr.design</span>
-              </div>
-              <p className="do-about-connect-note">For inquiries, collaborations, or just to say hello, reach out via LinkedIn. I read everything.</p>
-            </div>
-          </div>
-        </section>
-
       </div>
 
       <window.SiteFooter/>

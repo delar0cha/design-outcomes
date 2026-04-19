@@ -125,7 +125,7 @@ window.POSTS = [
     excerpt:'A candidate gave strong answers with real substance. Every single one took twice as long as it needed to. How I evaluated that signal and what I recommended.',
     why:'A candidate gave strong answers with real substance. Every single one took twice as long as it needed to. Here is how I evaluated that signal and what I recommended to my hiring partner.',
     read:'6 min',
-    illustration: ill('bars', ['#EADFCF','#4A5D3A','#15120E'], 5),
+    illustration: { kind:'photo', src:'/images/verbosity-in-an-interview.jpg' },
     body: [
       {type:'p', text:'I was sitting second chair on an interview for a program management role that would spend about 20% of its time supporting our design org. The candidate had strong credentials, relevant experience at scale, and a genuine curiosity about design culture that came through without prompting. By every traditional measure, the interview was going well.'},
       {type:'p', text:'And every answer was about 40% longer than it needed to be.'},

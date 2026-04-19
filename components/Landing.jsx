@@ -371,7 +371,7 @@ const EditorialBanner = () => (
   <div className="do-editorial-banner">
     <div className="do-editorial-banner-inner">
       <span className="do-editorial-banner-label">Design Outcomes</span>
-      <p className="do-editorial-banner-body">Design Outcomes is a weekly editorial site about design leadership as it actually happens, drawn from real conversations, real decisions, and real artifacts produced while leading a 30-person design organization at a growth-stage SaaS company. No keynote polish, no LinkedIn compression. The cross-functional Slack thread, the hiring debrief, the org design conversation, the moment in crit where the feedback is really about a structural problem three levels up. Nothing here is manufactured. The constraint is authenticity, and the rhythm is weekly.</p>
+      <p className="do-editorial-banner-body">Design Outcomes is a weekly editorial site about design leadership as it actually happens, drawn from real conversations, real decisions, and real artifacts produced while leading a product design org at a hyper-growth-stage SaaS company. No keynote polish, no LinkedIn compression. The cross-functional Slack thread, the hiring debrief, the org design conversation, the moment in crit where the feedback is really about a structural problem three levels up. Nothing here is manufactured. The constraint is authenticity, and the rhythm is weekly.</p>
     </div>
   </div>
 );

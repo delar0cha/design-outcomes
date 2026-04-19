@@ -364,7 +364,7 @@ const EditorialBanner = () => (
   <div className="do-editorial-banner">
     <div className="do-editorial-banner-inner">
       <span className="do-editorial-banner-label">Design Outcomes</span>
-      <p className="do-editorial-banner-body">This is a weekly editorial about design leadership as it actually happens, drawn from real conversations, real decisions, and real artifacts produced while leading a product design org at a hyper-growth-stage SaaS company. No keynote polish, no LinkedIn compression. The cross-functional Slack thread, the hiring debrief, the org design conversation, the moment in crit where the feedback is really about a structural problem three levels up. Nothing here is manufactured. The constraint is authenticity, and the rhythm is weekly.{' '}<a className="do-editorial-banner-link" href="/about" onClick={(e)=>{e.preventDefault(); window.navigate('/about');}}>Read more.</a></p>
+      <p className="do-editorial-banner-body">This is a weekly editorial about design leadership as it actually happens, drawn from real conversations, real decisions, and real artifacts produced while leading a product design org at a hyper-growth-stage SaaS company. No keynote polish, no LinkedIn compression. Everything written is from a real work environment. The constraint is authenticity, and the rhythm is weekly.{' '}<a className="do-editorial-banner-link" href="/about" onClick={(e)=>{e.preventDefault(); window.navigate('/about');}}>Learn more about the publication →</a></p>
     </div>
   </div>
 );

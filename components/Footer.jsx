@@ -62,6 +62,7 @@ const SiteFooter = () => {
         <div className="do-footer-links">
           <div className="do-footer-label">Elsewhere</div>
           <ul>
+            <li><a href="https://delarocha.myportfolio.com" target="_blank" rel="noopener">delarocha.myportfolio.com →</a></li>
             <li><a href="https://linkedin.com/in/delarocha" target="_blank" rel="noopener">linkedin.com/in/delarocha →</a></li>
             <li><a href="https://instagram.com/delar0cha" target="_blank" rel="noopener">instagram.com/delar0cha →</a></li>
           </ul>

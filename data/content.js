@@ -105,7 +105,7 @@ window.POSTS = [
     excerpt:'AI is making it faster to ship features. That is not the hard part anymore. The hard part is deciding what deserves to exist.',
     why:'AI is making it faster and easier to ship features. That is not the hard part anymore. The hard part is deciding what deserves to exist.',
     read:'7 min',
-    illustration: ill('stack', ['#EADFCF','#B8432B','#15120E'], 3),
+    illustration: { kind:'photo', src:'/images/when-building-gets-cheap.jpg' },
     body: [
       {type:'p', text:'Karri Saarinen, the founder and designer behind Linear, published a piece recently that I keep returning to. His core argument is that the cost of building a feature is falling rapidly, driven by AI tooling, faster prototyping, and more capable engineering infrastructure. But the cost of carrying a feature, maintaining it, supporting it, integrating it, letting it shape the product surface over time, stays constant or even increases.'},
       {type:'p', text:'That asymmetry is the one I want design leaders to sit with, because it reshapes what our role actually is in a product organization.'},

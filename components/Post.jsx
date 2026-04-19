@@ -67,9 +67,10 @@ const Post = ({ slug, onOpen, onHome }) => {
   const cat = window.CATEGORIES[post.cat];
 
   const related = (() => {
-    const sameCat  = window.POSTS.filter(p => p.cat===post.cat && p.slug !== post.slug);
-    const adjacent = window.POSTS.filter(p => p.cat !== post.cat && p.audience === post.audience);
-    return [...sameCat, ...adjacent].slice(0,3);
+    const others  = window.POSTS.filter(p => p.slug !== post.slug);
+    const sameCat = others.filter(p => p.cat === post.cat);
+    const rest    = others.filter(p => p.cat !== post.cat);
+    return [...sameCat, ...rest].slice(0, 3);
   })();
 
   const pageUrl = `${window.location.origin}/post/${post.slug}`;

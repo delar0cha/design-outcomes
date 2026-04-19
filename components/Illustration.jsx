@@ -1,7 +1,18 @@
 // Abstract illustration placeholders: muted color fields + diagonal linework.
 // Deterministic from seed so the same post always renders the same composition.
+// Also supports kind:'photo' with a src URL for static images.
 const Illustration = ({ recipe, className='', style={} }) => {
   if (!recipe) return null;
+
+  // Static photo — wrap in SVG so callers get identical interface + CSS hooks
+  if (recipe.kind === 'photo') {
+    return (
+      <svg className={className} style={style} viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+        <image href={recipe.src} x="0" y="0" width="1200" height="800" preserveAspectRatio="xMidYMid slice"/>
+      </svg>
+    );
+  }
+
   const { kind, palette, seed } = recipe;
   const [bg, mid, ink] = palette;
 

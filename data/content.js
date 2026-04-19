@@ -49,7 +49,7 @@ window.POSTS = [
     excerpt:'I built a portfolio site for my design leadership work using Claude Design, Claude Code, and Vercel. The full process, the walls I hit, and what the publishing workflow looks like now.',
     why:'I built a portfolio site for my design leadership work using Claude Design, Claude Code, and Vercel. Here is the full process, what went smoothly, where I hit walls, and what the publishing workflow looks like now.',
     read:'9 min',
-    illustration: ill('grid', ['#EDE5D3','#8A5A2B','#15120E'], 8),
+    illustration: { kind:'photo', src:'/images/building-design-outcomes.jpeg' },
     body: [
       {type:'p', text:'This is the origin story of the site you are reading right now.'},
       {type:'p', text:'The idea started with a simple observation: most design leadership content exists in one of two modes. Either it is polished conference keynotes that feel removed from the daily work, or it is LinkedIn posts so compressed they lose all nuance. I wanted a third space, something that shows the texture of real design leadership through actual artifacts, actual decisions, actual conversations. Updated weekly, tied to real work, with a visual identity that reflects craft.'},

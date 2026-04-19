@@ -201,6 +201,38 @@ a { color: inherit; text-decoration: none; }
 }
 .do-tag-name { display: inline-block; padding-right: 4px; }
 
+/* ------------------------ Editorial banner (homepage only) ------------------------ */
+.do-editorial-banner {
+  width: 100%;
+  background: #3D3632;
+}
+.do-editorial-banner-inner {
+  display: flex;
+  align-items: baseline;
+  gap: 48px;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 32px var(--gutter);
+}
+.do-editorial-banner-label {
+  flex: 0 0 auto;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #F5F0E8;
+  white-space: nowrap;
+}
+.do-editorial-banner-body {
+  flex: 1 1 0;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(245,240,232,0.78);
+  margin: 0;
+}
+
 /* ------------------------ Featured (Zone 1) ------------------------ */
 .do-featured {
   padding: 40px var(--gutter) 80px;
@@ -916,6 +948,9 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width: 720px) {
   :root { --gutter: 20px; }
+
+  /* ── Editorial banner ── */
+  .do-editorial-banner-inner { flex-direction: column; gap: 12px; }
 
   /* ── Nav ── */
   .do-nav { grid-template-columns: 1fr auto; }

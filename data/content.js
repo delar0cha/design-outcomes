@@ -15,6 +15,33 @@ window.AUTHOR = { name: 'Leonardo De La Rocha', initials: 'LR', role: 'VP Produc
 const ill = (kind, palette, seed=1) => ({ kind, palette, seed });
 
 window.POSTS = [
+  // ARTICLE 7 — The Reframe (most recent)
+  { slug:'leverage-as-a-leadership-posture', cat:'reframe', audience:'Leaders', date:'2026-04-19',
+    title:'Leverage as a Leadership Posture',
+    excerpt:'When a CEO asks for leverage in a compression quarter, the word is doing more work than it appears to. Most leaders read it wrong. Here is the generative version, the four questions that distinguish it from the extractive one, and why the posture is also the retention story.',
+    why:'When a CEO asks for leverage in a compression quarter, the word is doing more work than it appears to. Most leaders read it wrong. Here is the generative version, the four questions that distinguish it from the extractive one, and why the posture is also the retention story.',
+    read:'4 min',
+    illustration: { kind:'photo', src:'/images/leverage-as-a-leadership-posture.jpg' },
+    body: [
+      {type:'p', text:'When a CEO asks leaders to \u201ccreate leverage\u201d in a compression quarter, the word is doing more work than it appears to. Leverage is often read as \u201cmore output from the same team,\u201d which leads to pressure cascades and burnout. The more useful read is that leverage is a posture, not a productivity instruction. It is the discipline of constantly asking what your team should stop doing, what decision you are the bottleneck on, and where you are one conversation away from unlocking someone else\u2019s week.'},
+      {type:'p', text:'I am thinking about this because my company is heading into a hinge quarter. The CEO\u2019s weekend note to the extended leadership team framed the quarter as a deliberate sprint to convert last quarter\u2019s signals into this quarter\u2019s proof points. He invoked Andy Grove\u2019s High Output Management as the operating reference. In the same week, our company engagement survey came back with two flags worth naming. Enablement and decision-making clarity registered as friction points. Only a little over half of employees answered \u201cyes\u201d to whether they saw themselves still here in two years. The product leadership team added psychological safety as a fourth focus area in direct response.'},
+      {type:'p', text:'Both things are true at once. The business needs pace. The people need trust. Leverage is the word that either bridges those needs or breaks them, depending on how it is practiced.'},
+      {type:'h', text:'The extractive version'},
+      {type:'p', text:'There is a version of leverage that is purely extractive. Cut the slower performers. Push the pace. Fewer meetings, fewer vacations, more hours. That version is easier to articulate and harder to sustain. It also directly undermines the engagement signal the survey just surfaced, because it asks the organization to give more without giving them a reason to believe the ask is worth it.'},
+      {type:'h', text:'The generative version'},
+      {type:'p', text:'The generative version of leverage starts with the leader\u2019s own behavior, not the team\u2019s. It is built on four questions a leader can ask themselves on a Monday morning that change how the week unfolds.'},
+      {type:'p', text:'What will I say no to this week, so that my team does not have to? Which decision am I the bottleneck on, and can I close it today? Where is my team waiting on me for something I have been sitting on? Which person on my team needs fifteen minutes of my full attention to get unblocked?'},
+      {type:'p', text:'Grove\u2019s argument, translated for this moment, is that a leader\u2019s output is the output of their organization and the organizations they influence. That framing is practical because it rules certain things out. It rules out the leader who is heads-down on their own work while their team waits on a decision. It rules out the leader who hoards cross-functional context because they are the one in all the rooms. It rules out the leader who confuses activity with progress. What it rules in is steadier and harder. Identifying the limiting step in your organization each week and personally owning the work to clear it.'},
+      {type:'h', text:'Why the posture also protects engagement'},
+      {type:'p', text:'A team that sees its leader actively removing constraints, holding scope, and refusing to let busy-ness masquerade as progress is a team that trusts the operating model. That trust is the retention story. It is not free snacks or all-hands theater. It is whether people feel like their leader is doing the leader-level work, which creates space for them to do their own.'},
+      {type:'p', text:'The retention question on an engagement survey is rarely answered by perks. It is answered by whether people believe their time is being respected by the structure around them. Leverage as a posture is how a leader demonstrates that respect, week after week, in small concrete moves.'},
+      {type:'h', text:'The test'},
+      {type:'quote', text:'If the ask to create leverage translates, for you, into your team working harder, you are reading the word wrong.'},
+      {type:'p', text:'Compression moments reveal whether an organization has real leaders or just people with leadership titles. The posture is the test. If the ask to create leverage translates, for you, into your team working harder, you are reading the word wrong. If it translates into you making faster decisions, clearing bigger obstacles, and protecting the work that matters from the work that does not, you are reading it the way Grove meant it.'},
+      {type:'p', text:'The leaders who come out of a hinge quarter with their teams intact are the ones who understood the difference.'},
+    ],
+  },
+
   // ARTICLE 6 — Crit Notes (most recent)
   { slug:'the-feedback-that-stopped', cat:'crit', audience:'Leaders', date:'2026-04-19',
     title:'The Feedback That Stopped',
@@ -263,10 +290,10 @@ window.PROJECTS = [
 
 // Featured: four most recent, newest first
 window.FEATURED_SLUGS = [
+  'leverage-as-a-leadership-posture',
   'the-feedback-that-stopped',
   'translating-the-boardroom',
   'building-design-outcomes',
-  'when-building-gets-cheap',
 ];
 
 // ─── Case Studies ──────────────────────────────────────────────────────────

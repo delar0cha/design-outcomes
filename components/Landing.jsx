@@ -330,7 +330,6 @@ const TopNav = ({ onHome, section = '' }) => {
           </a>
           <nav className="do-nav-links">
             <a href="/" className={active('writeups')} onClick={go('/')}>Write-ups</a>
-            <a href="/work" className={active('work')} onClick={go('/work')}>Design Work</a>
             <a href="/about" className={active('about')} onClick={go('/about')}>About</a>
             <button className="do-nav-sub-btn" onClick={openSub}>Subscribe</button>
           </nav>
@@ -355,7 +354,6 @@ const TopNav = ({ onHome, section = '' }) => {
         {menuOpen && (
           <nav className="do-mobile-menu" aria-label="Site navigation">
             <a href="/" className={`do-mobile-link${section==='writeups'?' is-active':''}`} onClick={go('/')}>Write-ups</a>
-            <a href="/work" className={`do-mobile-link${section==='work'?' is-active':''}`} onClick={go('/work')}>Design Work</a>
             <a href="/about" className={`do-mobile-link${section==='about'?' is-active':''}`} onClick={go('/about')}>About</a>
             <button className="do-mobile-link do-mobile-sub" onClick={openSub}>Subscribe →</button>
           </nav>

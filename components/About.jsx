@@ -1,21 +1,11 @@
 // About page — static hero image + three sections
-const { useEffect, useRef } = React;
+const { useRef } = React;
 
 const About = ({ onHome }) => {
   const heroRef  = useRef(null);
   const innerRef = useRef(null);
 
-  // Parallax
-  useEffect(() => {
-    const onScroll = () => {
-      if (!innerRef.current || !heroRef.current) return;
-      const top = heroRef.current.getBoundingClientRect().top;
-      innerRef.current.style.transform = `translateY(${top * 0.28}px)`;
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  window.useParallax(heroRef, innerRef);
 
   return (
     <main className="do-page do-about-page">

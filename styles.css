@@ -645,6 +645,12 @@ a { color: inherit; text-decoration: none; }
   position: relative;
   background: var(--cream-2);
 }
+.do-post-hero-inner {
+  position: absolute;
+  top: -15%; left: 0;
+  width: 100%; height: 130%;
+  will-change: transform;
+}
 .do-post-hero-svg {
   width: 100%; height: 100%;
   display: block;

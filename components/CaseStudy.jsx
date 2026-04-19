@@ -49,16 +49,7 @@ const CaseStudy = ({ slug, onHome }) => {
     });
   }, [slug]);
 
-  useEffect(() => {
-    const onScroll = () => {
-      if (!innerRef.current || !heroRef.current) return;
-      const top = heroRef.current.getBoundingClientRect().top;
-      innerRef.current.style.transform = `translateY(${top * 0.28}px)`;
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [cs]);
+  window.useParallax(heroRef, innerRef);
 
   if (!cs) {
     return (

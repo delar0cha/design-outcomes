@@ -1,6 +1,7 @@
 // Individual post page. Full-bleed illustration → meta → title → body → share → related.
 const { useState, useEffect, useRef } = React;
 
+
 // ── Flat share row ──
 const ShareRow = ({ title, url, topBar }) => {
   const [copied, setCopied] = useState(false);
@@ -35,6 +36,9 @@ const ShareRow = ({ title, url, topBar }) => {
 // ── Post page ──
 const Post = ({ slug, onOpen, onHome }) => {
   const post = window.POSTS.find(p => p.slug === slug);
+  const heroRef  = useRef(null);
+  const innerRef = useRef(null);
+  window.useParallax(heroRef, innerRef);
 
   useEffect(() => {
     if (!post) return;
@@ -79,8 +83,10 @@ const Post = ({ slug, onOpen, onHome }) => {
     <main className="do-page do-post-page">
       <window.TopNav onHome={onHome} section="writeups"/>
 
-      <div className="do-post-hero">
-        <window.Illustration recipe={post.illustration} className="do-post-hero-svg"/>
+      <div className="do-post-hero" ref={heroRef}>
+        <div className="do-post-hero-inner" ref={innerRef}>
+          <window.Illustration recipe={post.illustration} className="do-post-hero-svg"/>
+        </div>
         <div className="do-post-hero-fade"/>
       </div>
 

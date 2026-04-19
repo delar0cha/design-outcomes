@@ -30,7 +30,7 @@ const SiteFooter = () => {
     <footer className="do-footer">
       <div className="do-footer-grid">
         <div className="do-footer-about">
-          <div className="do-footer-logo">Design Outcomes<span>.</span></div>
+          <window.SiteLogo width={44} height={50} className="do-footer-logo-mark"/>
           <p>A weekly-updated portfolio of design leadership in practice — real work, real decisions, real thinking. Written by Leonardo De La Rocha, VP Product Design. No sponsors. No popovers. Just the work.</p>
         </div>
         <div className="do-footer-sub">

@@ -17,6 +17,15 @@ const POST_META = [
   { slug: 'structure-is-the-problem',
     title: 'When the Structure Is the Problem, Not the Person',
     excerpt: 'We had the right designer doing the right work. We had an engaged PM partner. We had momentum. And the coordination was still breaking down.' },
+  { slug: 'the-feedback-that-stopped',
+    title: 'The Feedback That Stopped the Room',
+    excerpt: 'A senior designer got quiet after a crit. Not defensive — quiet. Here is what I learned when I followed up, and how it changed how I run reviews.' },
+  { slug: 'leverage-as-a-leadership-posture',
+    title: 'Leverage as a Leadership Posture',
+    excerpt: 'The best design leaders I know are not the ones doing the most work. They are the ones whose inputs produce the most output. That is leverage — and it is learnable.' },
+  { slug: 'when-the-launch-is-real-and-the-team-is-thin',
+    title: 'When the Launch Is Real and the Team Is Thin',
+    excerpt: 'We had a hard deadline, a reduced team, and a scope that had not moved. Here is how I made the call, communicated it, and what I would do the same — and differently — next time.' },
 ];
 
 const CASE_META = [

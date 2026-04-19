@@ -15,7 +15,7 @@ const ShareRow = ({ title, url, topBar }) => {
 
   const li  = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
   const bsk = `https://bsky.app/intent/compose?text=${encodeURIComponent(title + '\n\n' + url)}`;
-  const x   = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+  const x   = `https://x.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
   const fb  = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
   const thr = `https://www.threads.net/intent/post?text=${encodeURIComponent(title + '\n\n' + url)}`;
 

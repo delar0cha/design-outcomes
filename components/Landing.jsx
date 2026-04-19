@@ -329,9 +329,9 @@ const TopNav = ({ onHome, section = '' }) => {
             <button className="do-nav-sub-btn" onClick={openSub}>Subscribe</button>
           </nav>
           <div className="do-nav-meta">
-            <span className="do-nav-issue">Issue 01</span>
+            <span className="do-nav-issue">Issue 02</span>
             <span className="do-nav-dot"/>
-            <span>Week of Apr 13</span>
+            <span>Week of Apr 19</span>
           </div>
           <button
             className="do-nav-hamburger"
@@ -372,10 +372,8 @@ const EditorialBanner = () => (
 // ---------- Landing ----------
 const Landing = ({ onOpen, heroLayout }) => {
   const [subOpen, setSubOpen] = useState(false);
-  // Always show the 4 most-recently-dated posts in the carousel, newest first
-  const featured = [...window.POSTS]
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 4);
+  // Carousel shows only the current week's curated articles (update FEATURED_SLUGS each week)
+  const featured = window.FEATURED_SLUGS.map(s => window.POSTS.find(p => p.slug === s)).filter(Boolean);
   return (
     <main className="do-page">
       <TopNav onHome={()=>{}} section="writeups"/>

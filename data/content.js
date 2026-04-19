@@ -15,6 +15,31 @@ window.AUTHOR = { name: 'Leonardo De La Rocha', initials: 'LR', role: 'VP Produc
 const ill = (kind, palette, seed=1) => ({ kind, palette, seed });
 
 window.POSTS = [
+  // ARTICLE 8 — The Decision (most recent)
+  { slug:'when-the-launch-is-real-and-the-team-is-thin', cat:'decision', audience:'Leaders', date:'2026-04-19',
+    title:'When the Launch Is Real and the Team Is Thin',
+    excerpt:'The hardest part of a big launch is not the product work. It is holding the cross-functional orchestration layer together when the people assigned to it are missing, overloaded, or not senior enough for the scope. Here is what that looks like from the inside, and the leader\u2019s job that changes the outcome.',
+    why:'The hardest part of a big launch is not the product work. It is holding the cross-functional orchestration layer together when the people assigned to it are missing, overloaded, or not senior enough for the scope. Here is what that looks like from the inside, and the leader\u2019s job that changes the outcome.',
+    read:'4 min',
+    illustration: { kind:'photo', src:'/images/when-the-launch-is-real-and-the-team-is-thin.jpg' },
+    body: [
+      {type:'p', text:'The hardest part of a big launch is not the product work. It is holding the cross-functional orchestration layer together when the people assigned to it are missing, overloaded, or not senior enough for the scope. Most leaders see this as a staffing problem to solve later. It is actually the launch, and it shows up whether you planned for it or not.'},
+      {type:'p', text:'I am in the middle of one of those launches right now. The details do not matter as much as the shape, so here is the shape. A multi-quarter pricing and packaging release for a regulated product surface. Multiple squads across product, design, and engineering. Three partner functions downstream (marketing, customer success, sales enablement). A large early-access cohort. A hard general availability date tied to the annual operating plan.'},
+      {type:'p', text:'On the operational surface, everything is moving. Recruitment beat the target. Milestones are holding. The vendor strategy is diversified. If you looked at the green bars on the status deck, you would assume the team is in good shape.'},
+      {type:'p', text:'Underneath, the orchestration layer is fragile. The partner team that owns customer-facing communications lost three of its four core people to transitions and leaves of absence in the same quarter. There is no mapped end-to-end first-time versus existing-user experience, which means nobody has drawn the full arc of what the customer will actually feel when this ships. A director-level design hire who would own cross-functional coordination is still in pipeline, not in seat. A critical scaling dependency is blocked on an architectural decision that needs four leaders in a room who have not been in the same room yet. The change management layer, which should be the bridge between what is being built and how the field will absorb it, has no clear owner.'},
+      {type:'h', text:'The instinct to avoid'},
+      {type:'p', text:'When a launch is on track operationally but fragile structurally, the instinct is to keep executing and plan to fix the structure after. That is the wrong instinct. The structural layer is where launches actually succeed or fail, because it is where the seams between functions get tested. When marketing and product have different mental models of the launch sequence, the seam tears during the first public communication. When customer success has not been included in the change management plan, the seam tears on day one of the rollout.'},
+      {type:'h', text:'What the work actually is'},
+      {type:'p', text:'A design leader\u2019s job in a moment like this is not to produce more design work. It is to hold the seams. In my case, that has meant pairing with the product counterpart as a formal co-owner of the cross-functional orchestration, naming the working group with specific people from each function, and being honest with leadership about the gaps that a larger team would be absorbing invisibly. It has also meant saying no to new design asks that do not directly serve the launch, so that my team\u2019s capacity stays protected for the work that will determine whether this lands.'},
+      {type:'quote', text:'Naming structural gaps out loud to senior leadership is not a complaint. It is a map. Leaders cannot resource a problem they cannot see.'},
+      {type:'p', text:'The most uncomfortable part of the work is the visibility it requires. Naming structural gaps out loud to senior leadership is not a complaint. It is a map. Leaders cannot resource a problem they cannot see, and they cannot help you protect a launch whose fragility is hidden inside green status bars.'},
+      {type:'h', text:'The read-out'},
+      {type:'p', text:'The signals of a fragile orchestration layer are observable if you know what to look for. Escalations that should have been decisions. Decisions that should have been conversations. Conversations that are not happening at all. Cross-functional meetings where the same questions get asked every week because no single owner carries the answer between them. One designer or one PM absorbing coordination work that three people should be sharing.'},
+      {type:'p', text:'Leaders who learn to read those signals early get to fix the structure before the launch window closes on them. Leaders who miss them end up trying to re-staff a fire in the final six weeks, which is when the cost of every fix is highest.'},
+      {type:'p', text:'Good launches are not won by heroes holding too much. They are won by leaders who treat the orchestration layer as the product, and build it with the same rigor as everything else.'},
+    ],
+  },
+
   // ARTICLE 7 — The Reframe (most recent)
   { slug:'leverage-as-a-leadership-posture', cat:'reframe', audience:'Leaders', date:'2026-04-19',
     title:'Leverage as a Leadership Posture',
@@ -288,12 +313,11 @@ window.PROJECTS = [
     illustration: ill('stack', ['#E8E0D0','#B8432B','#15120E'], 14) },
 ];
 
-// Featured: four most recent, newest first
+// Featured: current week's articles only (update each Sunday)
 window.FEATURED_SLUGS = [
+  'when-the-launch-is-real-and-the-team-is-thin',
   'leverage-as-a-leadership-posture',
   'the-feedback-that-stopped',
-  'translating-the-boardroom',
-  'building-design-outcomes',
 ];
 
 // ─── Case Studies ──────────────────────────────────────────────────────────

@@ -124,11 +124,13 @@ const Grid = ({ posts, onOpen }) => {
   const [cat, setCat] = useState('all');
   const [aud, setAud] = useState('Everyone');
 
-  const filtered = useMemo(()=> posts.filter(p => {
-    const catOk = cat==='all' || p.cat===cat;
-    const audOk = aud==='Everyone' || p.audience==='Everyone' || p.audience===aud;
-    return catOk && audOk;
-  }), [cat, aud, posts]);
+  const filtered = useMemo(() => [...posts]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .filter(p => {
+      const catOk = cat === 'all' || p.cat === cat;
+      const audOk = aud === 'Everyone' || p.audience === 'Everyone' || p.audience === aud;
+      return catOk && audOk;
+    }), [cat, aud, posts]);
 
   const categoriesList = [['all','All pieces'], ...Object.values(window.CATEGORIES).map(c=>[c.id, c.name])];
 
@@ -377,7 +379,10 @@ const EditorialBanner = () => (
 // ---------- Landing ----------
 const Landing = ({ onOpen, heroLayout }) => {
   const [subOpen, setSubOpen] = useState(false);
-  const featured = window.FEATURED_SLUGS.map(s => window.POSTS.find(p=>p.slug===s)).filter(Boolean);
+  // Always show the 4 most-recently-dated posts in the carousel, newest first
+  const featured = [...window.POSTS]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 4);
   return (
     <main className="do-page">
       <TopNav onHome={()=>{}} section="writeups"/>

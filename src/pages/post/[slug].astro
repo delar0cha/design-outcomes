@@ -1,0 +1,144 @@
+---
+import Base from '@layouts/Base.astro';
+import SiteNav from '@components/islands/SiteNav';
+import CategoryTag from '@components/ui/CategoryTag.astro';
+import ShareRow from '@components/islands/ShareRow';
+import Illustration from '@components/islands/Illustration';
+import SiteFooter from '@components/ui/SiteFooter.astro';
+import { getAllPosts, toPostSummary, calcReadingTime } from '@lib/posts';
+import { CATEGORIES } from '@lib/categories';
+import { fmtDate } from '@lib/utils';
+import { render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return posts.map(post => ({
+    params: { slug: post.id.replace(/\.mdx?$/, '') },
+    props:  { post },
+  }));
+}
+
+const { post }    = Astro.props;
+const { Content } = await render(post);
+
+const slug       = post.id.replace(/\.mdx?$/, '');
+const cat        = CATEGORIES[post.data.category];
+const summary    = toPostSummary(post);
+const pageUrl    = `https://ldlr.design/post/${slug}`;
+const readTime   = calcReadingTime(post.body ?? '');
+
+// Related posts: same category first, then fill from others (max 3)
+const allPosts   = await getAllPosts();
+const others     = allPosts.filter(p => p.id !== post.id);
+const sameCat    = others.filter(p => p.data.category === post.data.category);
+const rest       = others.filter(p => p.data.category !== post.data.category);
+const related    = [...sameCat, ...rest].slice(0, 3).map(toPostSummary);
+
+const coverRecipe = post.data.coverImage
+  ? { kind: 'photo' as const, src: post.data.coverImage }
+  : { kind: 'bars' as const, palette: ['#E8E0D0', '#2F4858', '#15120E'] as [string,string,string], seed: 1 };
+---
+
+<Base
+  title={post.data.title}
+  description={post.data.description}
+  ogImage={post.data.coverImage
+    ? `https://ldlr.design${post.data.coverImage}`
+    : 'https://ldlr.design/images/work-header.png'}
+  ogUrl={pageUrl}
+  ogType="article"
+>
+  <main class="do-page do-post-page">
+    <SiteNav client:load currentPath={`/post/${slug}`} />
+
+    <!-- Hero -->
+    <div class="do-post-hero">
+      <div class="do-post-hero-inner">
+        <Illustration client:load recipe={coverRecipe} className="do-post-hero-svg" />
+      </div>
+      <div class="do-post-hero-fade"></div>
+    </div>
+
+    <!-- Article -->
+    <article class="do-post">
+      <div class="do-post-meta">
+        <CategoryTag catId={post.data.category} size="lg" />
+        <span class="do-post-sep">·</span>
+        <span>{readTime}</span>
+      </div>
+
+      <h1 class="do-post-title">{post.data.title}</h1>
+
+      {post.data.why && (
+        <p class="do-post-why">
+          <span class="do-post-why-label">Why this matters — </span>{post.data.why}
+        </p>
+      )}
+
+      <div class="do-post-byline">
+        <div class="do-post-byline-avatar" aria-hidden="true">LR</div>
+        <div>
+          <div class="do-post-byline-name">Leonardo De La Rocha</div>
+          <div class="do-post-byline-sub">
+            VP Product Design · Published {fmtDate(post.data.publishedAt)}
+          </div>
+        </div>
+      </div>
+
+      <!-- Share (top) -->
+      <ShareRow client:load title={post.data.title} url={pageUrl} topBar={true} />
+
+      <!-- MDX body -->
+      <div class="do-post-body">
+        <Content />
+      </div>
+
+      <!-- Share (bottom) -->
+      <ShareRow client:load title={post.data.title} url={pageUrl} />
+
+      <!-- Filed under -->
+      <div class="do-post-end">
+        <div class="do-post-end-rule"></div>
+        <div class="do-post-end-row">
+          <span>Filed under</span>
+          <CategoryTag catId={post.data.category} />
+          <span class="do-post-end-sub">— {cat?.sub}</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Related posts -->
+    {related.length > 0 && (
+      <section class="do-related">
+        <div class="do-related-head">
+          <div class="do-eyebrow">Read next</div>
+          <h2>Three more pieces, chosen for you.</h2>
+        </div>
+        <div class="do-related-grid">
+          {related.map(p => {
+            const relRecipe = p.coverImage
+              ? { kind: 'photo' as const, src: p.coverImage }
+              : { kind: 'bars' as const, palette: ['#E8E0D0','#2F4858','#15120E'] as [string,string,string], seed: 1 };
+            return (
+              <a key={p.slug} class="do-card" href={`/post/${p.slug}`}>
+                <div class="do-card-thumb">
+                  <Illustration client:load recipe={relRecipe} className="do-card-svg" />
+                </div>
+                <div class="do-card-body">
+                  <div class="do-card-top">
+                    <CategoryTag catId={p.category} />
+                    <span class="do-card-date">{fmtDate(p.publishedAt)}</span>
+                  </div>
+                  <h3 class="do-card-title"><span>{p.title}</span></h3>
+                  <p class="do-card-excerpt">{p.description}</p>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+    )}
+
+    <SiteFooter />
+  </main>
+</Base>

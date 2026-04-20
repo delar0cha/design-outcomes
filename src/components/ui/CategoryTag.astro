@@ -1,0 +1,20 @@
+---
+import { CATEGORIES } from '@lib/categories';
+
+interface Props {
+  catId: string;
+  size?: 'sm' | 'lg';
+}
+
+const { catId, size = 'sm' } = Astro.props;
+const c = CATEGORIES[catId];
+if (!c) throw new Error(`Unknown category: ${catId}`);
+
+const pad = size === 'lg' ? '8px 12px' : '5px 9px';
+const fs  = size === 'lg' ? 12 : 11;
+---
+
+<span class="do-tag" style={`padding:${pad}; font-size:${fs}px`}>
+  <span class="do-tag-mono" style={`background:${c.tint}`}>{c.monogram}</span>
+  <span class="do-tag-name">{c.name}</span>
+</span>

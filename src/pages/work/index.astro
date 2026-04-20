@@ -1,0 +1,19 @@
+---
+import Base from '@layouts/Base.astro';
+import SiteNav from '@components/islands/SiteNav';
+import WorkPage from '@components/islands/WorkPage';
+import SiteFooter from '@components/ui/SiteFooter.astro';
+---
+
+<Base
+  title="Design Work — Leonardo De La Rocha"
+  description="Thirty years of design — brand identity, product systems, creative direction, and hands-on making by Leonardo De La Rocha."
+  ogImage="https://ldlr.design/images/work-header.png"
+  ogUrl="https://ldlr.design/work"
+>
+  <main class="do-page do-wk-page">
+    <SiteNav client:load currentPath="/work" />
+    <WorkPage client:load />
+    <SiteFooter />
+  </main>
+</Base>

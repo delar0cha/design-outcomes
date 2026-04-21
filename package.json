@@ -4,10 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev":     "astro dev",
-    "build":   "astro build",
-    "preview": "astro preview",
-    "new-post": "tsx scripts/new-post.ts"
+    "dev":            "astro dev",
+    "build":          "astro build",
+    "preview":        "astro preview",
+    "new-post":       "tsx scripts/new-post.ts",
+    "generate-audio": "tsx scripts/generate-audio.ts"
   },
   "dependencies": {
     "@astrojs/mdx":    "^4.0.0",
@@ -19,9 +20,16 @@
     "reading-time":    "^1.5.0"
   },
   "devDependencies": {
-    "@types/react":     "^18.3.1",
-    "@types/react-dom": "^18.3.1",
-    "tsx":              "^4.0.0",
-    "typescript":       "^5.0.0"
+    "@elevenlabs/elevenlabs-js": "^2.43.0",
+    "@types/react":              "^18.3.1",
+    "@types/react-dom":          "^18.3.1",
+    "@vercel/blob":              "^2.3.3",
+    "gray-matter":               "^4.0.3",
+    "mdast-util-to-string":      "^4.0.0",
+    "remark-mdx":                "^3.1.1",
+    "remark-parse":              "^11.0.0",
+    "tsx":                       "^4.0.0",
+    "typescript":                "^5.0.0",
+    "unified":                   "^11.0.5"
   }
 }

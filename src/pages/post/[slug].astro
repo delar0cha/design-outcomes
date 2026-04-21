@@ -3,6 +3,7 @@ import Base from '@layouts/Base.astro';
 import SiteNav from '@components/islands/SiteNav';
 import CategoryTag from '@components/ui/CategoryTag.astro';
 import ShareRow from '@components/islands/ShareRow';
+import AudioPlayer from '@components/islands/AudioPlayer';
 import Illustration from '@components/islands/Illustration';
 import SiteFooter from '@components/ui/SiteFooter.astro';
 import { getAllPosts, toPostSummary, calcReadingTime } from '@lib/posts';
@@ -75,15 +76,32 @@ const coverRecipe = post.data.coverImage
         </p>
       )}
 
-      <div class="do-post-byline">
-        <div class="do-post-byline-avatar" aria-hidden="true">LR</div>
+      <div class="do-post-byline is-no-avatar">
+        {/*
+          LR avatar intentionally hidden for now — restore this block (and
+          remove the `is-no-avatar` modifier above) to bring the monogram back.
+          <div class="do-post-byline-avatar" aria-hidden="true">LR</div>
+        */}
         <div>
           <div class="do-post-byline-name">Leonardo De La Rocha</div>
           <div class="do-post-byline-sub">
             VP Product Design · Published {fmtDate(post.data.publishedAt)}
           </div>
         </div>
+        {/*
+          Portal target for the Listen button — AudioPlayer hydrates below
+          and injects its button here when `audio` frontmatter is present.
+        */}
+        <div class="do-post-byline-right" id="do-listen-btn-slot"></div>
       </div>
+
+      {post.data.audio && (
+        <AudioPlayer
+          client:load
+          audio={post.data.audio}
+          slug={slug}
+        />
+      )}
 
       <!-- Share (top) -->
       <ShareRow client:load title={post.data.title} url={pageUrl} topBar={true} />

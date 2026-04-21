@@ -35,19 +35,27 @@
   --hero-initial-scale: 1.25;
   --hero-zoom-amount:   0.2;
 
-  /* Article hero cinematic sequence — a scroll-driven zoom-IN that
-     deliberately contrasts the carousel's zoom-out. The initial vh
-     leaves the article body peeking at the bottom of the viewport on
-     page load. Zoom-end is the scale the image reaches by the time the
-     hero is about to leave the viewport; overlay-opacity is the
-     starting darken amount for text contrast.
+  /* Article hero — sticky two-phase scrollytelling sequence that
+     deliberately contrasts the carousel's zoom-out. The hero is a
+     position:sticky pane pinned to the viewport while the reader
+     scrolls through an outer track --hero-track-height tall. Phase
+     breakpoints (expressed as progress through the track, 0–1) gate
+     which content phase is on stage at any moment: 0 → phase-1-end
+     holds the headline, phase-1-end → phase-2-end crossfades the
+     headline out and the "Why this matters" block in, phase-2-end → 1
+     exits the "Why" block and fades the overlay toward 0 as the image
+     reaches --hero-zoom-end.
      Tuning levers:
-       --hero-initial-vh       → container height on load (also mobile override)
-       --hero-zoom-end         → image scale at the end of the scroll range
-       --hero-overlay-opacity  → starting opacity of the dark overlay */
-  --hero-initial-vh:      80vh;
+       --hero-track-height     → total outer scroll distance (slower/faster)
+       --hero-zoom-end         → image scale at progress=1
+       --hero-overlay-opacity  → starting opacity of the dark overlay
+       --hero-phase-1-end      → progress at which the headline begins exiting
+       --hero-phase-2-end      → progress at which the why block begins exiting */
+  --hero-track-height:    300vh;
   --hero-zoom-end:        1.5;
   --hero-overlay-opacity: 0.8;
+  --hero-phase-1-end:     0.33;
+  --hero-phase-2-end:     0.66;
 }
 /* Responsive initial scale — overrides cascade by viewport width. */
 @media (min-width: 721px)  { :root { --hero-initial-scale: 1.4; } }
@@ -55,8 +63,9 @@
 @media (min-width: 1440px) { :root { --hero-initial-scale: 1.8; } }
 @media (min-width: 1920px) { :root { --hero-initial-scale: 2.0; } }
 
-/* Shorter starting hero on mobile — 80vh feels cramped at small heights. */
-@media (max-width: 720px) { :root { --hero-initial-vh: 70vh; } }
+/* Shorter outer track on mobile — less scroll distance feels better on
+   small screens where each flick covers proportionally more ground. */
+@media (max-width: 720px) { :root { --hero-track-height: 260vh; } }
 
 * { box-sizing: border-box; }
 
@@ -780,17 +789,32 @@ a { color: inherit; text-decoration: none; }
 /* ------------------------ Post page ------------------------ */
 .do-post-page { padding: 0; }
 
-/* Cinematic article hero — scroll-driven zoom-IN that deliberately
-   contrasts the homepage carousel's zoom-out. On load the hero is
-   --hero-initial-vh tall with the article body peeking below, a dark
-   overlay darkening the image for headline contrast, and the title
-   centered on top. As the reader scrolls, the JS listener drives the
-   three animated elements: media scales 1 → --hero-zoom-end, overlay
-   fades --hero-overlay-opacity → 0, headline translates up and fades. */
-.do-post-hero {
+/* Cinematic article hero — sticky two-phase scrollytelling.
+   Structure:
+     .do-post-hero-track     → tall outer section (--hero-track-height),
+                               supplies the scroll distance
+     .do-post-hero           → position:sticky pane pinned to the viewport
+                               (100vh) while the track scrolls past
+       .do-post-hero-media     → image wrapper that scales 1 → zoom-end
+       .do-post-hero-overlay   → dark wash that holds then fades to 0
+       .do-post-hero-phase     → absolute-positioned content layers (the
+                                 headline and the "Why this matters" block)
+                                 cross-faded by the scroll listener
+   Progress is computed as the track's top position vs. viewport, so the
+   sequence feels identical at slow and fast scroll speeds. The three
+   phases gated by --hero-phase-1-end / --hero-phase-2-end: headline
+   holds, crossfade to why, why exits while overlay fades. Once progress
+   reaches 1 the sticky releases and the article body flows in below. */
+.do-post-hero-track {
   position: relative;
   width: 100%;
-  height: var(--hero-initial-vh);
+  height: var(--hero-track-height);
+}
+.do-post-hero {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
   overflow: hidden;
   background: var(--color-dark-warm);
 }
@@ -819,7 +843,7 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
   will-change: opacity;
 }
-.do-post-hero-headline {
+.do-post-hero-phase {
   position: absolute;
   inset: 0;
   display: grid;
@@ -828,6 +852,7 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
   will-change: transform, opacity;
 }
+.do-post-hero-phase--why { opacity: 0; }
 .do-post-hero-title {
   font-family: var(--serif);
   font-weight: 500;
@@ -840,16 +865,62 @@ a { color: inherit; text-decoration: none; }
   margin: 0;
   max-width: 22ch;
 }
+.do-post-hero-why {
+  max-width: 640px;
+  text-align: center;
+  margin: 0;
+}
+.do-post-hero-why-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247,242,234,0.72);
+  margin: 0 0 18px 0;
+}
+.do-post-hero-why-body {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.42;
+  color: var(--cream);
+  text-wrap: balance;
+  margin: 0;
+}
+
+/* Reduced-motion fallback — collapse the track, drop sticky, render
+   both phases stacked inside the hero with the overlay pinned at 0.5
+   so both the headline and the "Why" block are legible at rest. */
 @media (prefers-reduced-motion: reduce) {
-  .do-post-hero-media,
-  .do-post-hero-overlay,
-  .do-post-hero-headline {
-    will-change: auto;
+  .do-post-hero-track {
+    height: auto;
+  }
+  .do-post-hero {
+    position: relative;
+    height: auto;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    padding: 100px var(--gutter);
+  }
+  .do-post-hero-media {
     transform: none !important;
-    opacity: 1 !important;
+    will-change: auto;
   }
   .do-post-hero-overlay {
     opacity: 0.5 !important;
+    will-change: auto;
+  }
+  .do-post-hero-phase {
+    position: relative;
+    inset: auto;
+    padding: 0;
+    z-index: 2;
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto;
   }
 }
 
@@ -872,26 +943,6 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
-}
-
-.do-post-why {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 22px;
-  line-height: 1.4;
-  color: var(--ink-2);
-  margin: 0 0 40px 0;
-  padding-left: 16px;
-  border-left: 2px solid var(--accent);
-  max-width: 56ch;
-}
-.do-post-why-label {
-  font-family: var(--mono);
-  font-style: normal;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
 }
 
 .do-post-byline {
@@ -1125,8 +1176,9 @@ a { color: inherit; text-decoration: none; }
   .do-ctrl { width: 44px; height: 44px; }
 
   /* ── Post ── */
-  .do-post { padding: 32px 20px 60px; }
-  .do-post-hero-title { font-size: clamp(32px, 8vw, 52px); }
+  .do-post { padding: 40px 20px 60px; }
+  .do-post-hero-title     { font-size: clamp(32px, 8vw, 52px); max-width: 18ch; }
+  .do-post-hero-why-body  { font-size: clamp(19px, 4.6vw, 24px); }
   .do-post-byline { grid-template-columns: 40px 1fr; }
   .do-post-byline.is-no-avatar { grid-template-columns: 1fr; }
   .do-post-byline-right { grid-column: 1 / -1; margin-top: 4px; }

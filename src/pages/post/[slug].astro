@@ -53,12 +53,89 @@ const coverRecipe = post.data.coverImage
     <SiteNav client:load currentPath={`/post/${slug}`} />
 
     <!-- Hero -->
-    <div class="do-post-hero">
+    <div
+      class="do-post-hero"
+      data-post-hero
+      data-hero-src={post.data.coverImage ?? ''}
+      data-hero-override={post.data.heroBgColor ?? ''}
+      style={`background: ${post.data.heroBgColor ?? '#F5F0E8'};`}
+    >
       <div class="do-post-hero-inner">
-        <Illustration client:load recipe={coverRecipe} className="do-post-hero-svg" />
+        {post.data.coverImage
+          ? <img
+              src={post.data.coverImage}
+              alt=""
+              class="do-post-hero-img"
+              crossorigin="anonymous"
+              draggable={false}
+              data-post-hero-img
+            />
+          : <Illustration client:load recipe={coverRecipe} className="do-post-hero-svg" />}
       </div>
       <div class="do-post-hero-fade"></div>
     </div>
+
+    <script>
+      import { sampleHeroBg } from '@lib/sampleHeroBg';
+
+      // Sample the image's edge colour and apply it to the container so
+      // the recede transition has no visible seam. Frontmatter heroBgColor
+      // is the fallback (already inlined as the container background),
+      // and we only overwrite if sampling succeeds.
+      (() => {
+        const hero = document.querySelector<HTMLElement>('[data-post-hero]');
+        if (!hero) return;
+        const src = hero.dataset.heroSrc;
+        if (!src) return;
+        sampleHeroBg(src).then(c => { if (c) hero.style.background = c; });
+      })();
+
+      // Scroll-linked hero recede: image scales from --hero-initial-scale
+      // down to --hero-initial-scale * (1 - --hero-zoom-amount) across the
+      // first viewport of scroll, eased cubic ease-out, then held.
+      // Skipped when user prefers reduced motion. One rAF-throttled
+      // listener per page.
+      (() => {
+        const img = document.querySelector<HTMLElement>('[data-post-hero-img]');
+        if (!img) return;
+
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (reduce.matches) return;
+
+        // Read --hero-initial-scale fresh per update — the value is
+        // responsive via media queries, so resizing past a breakpoint
+        // must change the effective start/end scales without a reload.
+        const readScales = () => {
+          const s = getComputedStyle(document.documentElement);
+          const initial = parseFloat(s.getPropertyValue('--hero-initial-scale')) || 1.25;
+          const amount  = parseFloat(s.getPropertyValue('--hero-zoom-amount'))   || 0.2;
+          return { initial, range: initial - initial * (1 - amount) };
+        };
+
+        const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
+        let ticking = false;
+        const update = () => {
+          ticking = false;
+          const { initial, range } = readScales();
+          const vh = window.innerHeight || 1;
+          const progress = Math.min(1, Math.max(0, window.scrollY / vh));
+          const eased = easeOut(progress);
+          const scale = initial - eased * range;
+          img.style.transform = `scale(${scale})`;
+        };
+
+        const onScroll = () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(update);
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        update();
+      })();
+    </script>
 
     <!-- Article -->
     <article class="do-post">

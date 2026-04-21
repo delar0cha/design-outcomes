@@ -9,6 +9,7 @@ export interface PostSummary {
   category: string;
   audience: string;
   coverImage?: string;
+  heroBgColor?: string;
   publishedAt: string; // ISO string
   readingTime: string; // e.g. "4 min read"
   featured: boolean;

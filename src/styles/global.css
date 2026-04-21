@@ -20,7 +20,27 @@
 
   --max: 1360px;
   --gutter: 48px;
+
+  /* Hero motion. Zoom amount is fixed; the initial scale is
+     responsive — the hero containers grow wider while their heights
+     stay capped, so object-fit: contain leaves more background
+     visible on wide viewports. Values below are tuned per breakpoint
+     from actual container measurements so the starting crop feels
+     similarly tight across the full viewport range. Article hero
+     uses these :root values; the carousel overrides them on
+     .do-featured since its art column is narrower per viewport.
+     Start frame: scale(--hero-initial-scale) — image overflows the
+     container and reads as full-bleed.
+     End frame:   scale(--hero-initial-scale * (1 - --hero-zoom-amount))
+     — image fits naturally, sampled bg fills any letterbox. */
+  --hero-initial-scale: 1.25;
+  --hero-zoom-amount:   0.2;
 }
+/* Responsive initial scale — overrides cascade by viewport width. */
+@media (min-width: 721px)  { :root { --hero-initial-scale: 1.4; } }
+@media (min-width: 1081px) { :root { --hero-initial-scale: 1.6; } }
+@media (min-width: 1440px) { :root { --hero-initial-scale: 1.8; } }
+@media (min-width: 1920px) { :root { --hero-initial-scale: 2.0; } }
 
 * { box-sizing: border-box; }
 
@@ -317,12 +337,59 @@ a { color: inherit; text-decoration: none; }
   align-self: end;
 }
 
-/* art */
-.do-featured-art { animation: do-art-in 700ms cubic-bezier(.2,.7,.2,1); }
-.do-featured-svg { width: 100%; height: 100%; display: block; }
-@keyframes do-art-in {
-  from { opacity: 0; transform: scale(1.02); }
-  to   { opacity: 1; transform: scale(1); }
+/* art — stacked slides, crossfade between them, active slide's image
+   animates from scale(--hero-initial-scale) to its end scale over the
+   loader duration. Container keeps its baseline dimensions. */
+.do-featured-art-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 500ms ease;
+  pointer-events: none;
+  overflow: hidden;
+}
+.do-featured-art-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.do-featured-svg,
+.do-featured-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  transform-origin: center;
+  /* Resting state matches the end of the keyframe so an outgoing slide
+     does not snap. The active slide overrides with the keyframe below. */
+  transform: scale(calc(var(--hero-initial-scale) * (1 - var(--hero-zoom-amount))));
+  will-change: transform;
+}
+.do-featured-art-slide.is-active .do-featured-img,
+.do-featured-art-slide.is-active .do-featured-svg {
+  /* Zoom runs over the full slide interval — duration comes from
+     --do-slide-duration, wired from JS `DUR` so the zoom ends exactly
+     when the slide transitions. play-state supplied inline. */
+  animation: do-hero-zoom var(--do-slide-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes do-hero-zoom {
+  from { transform: scale(var(--hero-initial-scale)); }
+  to   { transform: scale(calc(var(--hero-initial-scale) * (1 - var(--hero-zoom-amount)))); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .do-featured-art-slide { transition: none; }
+  .do-featured-img,
+  .do-featured-svg {
+    /* Pin to the tightly-cropped initial framing, no motion. */
+    transform: scale(var(--hero-initial-scale));
+    will-change: auto;
+  }
+  .do-featured-art-slide.is-active .do-featured-img,
+  .do-featured-art-slide.is-active .do-featured-svg {
+    animation: none;
+  }
 }
 
 /* progress */
@@ -342,6 +409,14 @@ a { color: inherit; text-decoration: none; }
   background: var(--rule);
   border-radius: 2px;
 }
+/* Carousel-scoped overrides: the art column is narrower per viewport
+   than the article hero, and jumps to a near-square shape when the
+   layout goes multi-column at 1081px. Uses higher initial scales than
+   :root so the starting crop feels tight across all breakpoints. */
+.do-featured                   { --hero-initial-scale: 1.4; }
+@media (min-width: 721px)  { .do-featured { --hero-initial-scale: 1.6; } }
+@media (min-width: 1081px) { .do-featured { --hero-initial-scale: 2.0; } }
+@media (min-width: 1440px) { .do-featured { --hero-initial-scale: 1.9; } }
 .do-progress-fill {
   position: absolute;
   top: 0; left: 50%;
@@ -350,7 +425,10 @@ a { color: inherit; text-decoration: none; }
   transform: translateX(-2px) scaleY(0);
   transform-origin: top center;
   will-change: transform;
-  animation: do-progress-fill linear forwards;
+  /* Duration comes from --do-slide-duration, set inline on the carousel
+     section from the JS `DUR` constant so the progress and zoom stay in
+     sync with the slide-advance timer. */
+  animation: do-progress-fill var(--do-slide-duration) linear forwards;
   border-radius: 2px;
 }
 @keyframes do-progress-fill {
@@ -695,13 +773,28 @@ a { color: inherit; text-decoration: none; }
 }
 .do-post-hero-inner {
   position: absolute;
-  top: -15%; left: 0;
-  width: 100%; height: 130%;
+  inset: 0;
+}
+.do-post-hero-svg,
+.do-post-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  transform-origin: center;
+  /* Starting scale — scroll listener overrides this with live values. */
+  transform: scale(var(--hero-initial-scale));
   will-change: transform;
 }
-.do-post-hero-svg {
-  width: 100%; height: 100%;
-  display: block;
+@media (prefers-reduced-motion: reduce) {
+  .do-post-hero-img,
+  .do-post-hero-svg {
+    transform: scale(var(--hero-initial-scale)) !important;
+    will-change: auto;
+  }
 }
 .do-post-hero-fade {
   position: absolute;

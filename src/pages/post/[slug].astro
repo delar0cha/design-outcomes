@@ -58,7 +58,7 @@ const coverRecipe = post.data.coverImage
       data-post-hero
       data-hero-src={post.data.coverImage ?? ''}
       data-hero-override={post.data.heroBgColor ?? ''}
-      style={post.data.heroBgColor ? `background: ${post.data.heroBgColor};` : 'background: #F5F0E8;'}
+      style={`background: ${post.data.heroBgColor ?? '#F5F0E8'};`}
     >
       <div class="do-post-hero-inner">
         {post.data.coverImage
@@ -78,22 +78,23 @@ const coverRecipe = post.data.coverImage
     <script>
       import { sampleHeroBg } from '@lib/sampleHeroBg';
 
-      // Sampled container colour — only runs when no heroBgColor override is
-      // set in frontmatter. Until sampling resolves, the container holds the
-      // neutral cream from the inline style so there is no flash.
+      // Sample the image's edge colour and apply it to the container so
+      // the recede transition has no visible seam. Frontmatter heroBgColor
+      // is the fallback (already inlined as the container background),
+      // and we only overwrite if sampling succeeds.
       (() => {
         const hero = document.querySelector<HTMLElement>('[data-post-hero]');
         if (!hero) return;
-        const override = hero.dataset.heroOverride;
-        const src      = hero.dataset.heroSrc;
-        if (override || !src) return;
-        sampleHeroBg(src).then(c => { hero.style.background = c; });
+        const src = hero.dataset.heroSrc;
+        if (!src) return;
+        sampleHeroBg(src).then(c => { if (c) hero.style.background = c; });
       })();
 
-      // Scroll-linked hero recede: image scales from 1 down to
-      // (1 - --hero-zoom-amount) across the first viewport of scroll, eased
-      // with a cubic ease-out, then held. Skipped when user prefers reduced
-      // motion. One rAF-throttled listener per page.
+      // Scroll-linked hero recede: image scales from --hero-initial-scale
+      // down to --hero-initial-scale * (1 - --hero-zoom-amount) across the
+      // first viewport of scroll, eased cubic ease-out, then held.
+      // Skipped when user prefers reduced motion. One rAF-throttled
+      // listener per page.
       (() => {
         const img = document.querySelector<HTMLElement>('[data-post-hero-img]');
         if (!img) return;
@@ -101,10 +102,11 @@ const coverRecipe = post.data.coverImage
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
         if (reduce.matches) return;
 
-        const amountStr = getComputedStyle(document.documentElement)
-          .getPropertyValue('--hero-zoom-amount').trim();
-        const AMOUNT = parseFloat(amountStr) || 0.2;
-        const RANGE  = AMOUNT;  // scale 1 → 1 - AMOUNT
+        const rootStyles = getComputedStyle(document.documentElement);
+        const INITIAL = parseFloat(rootStyles.getPropertyValue('--hero-initial-scale')) || 1.25;
+        const AMOUNT  = parseFloat(rootStyles.getPropertyValue('--hero-zoom-amount'))   || 0.2;
+        const END     = INITIAL * (1 - AMOUNT);
+        const RANGE   = INITIAL - END;
 
         const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
@@ -114,7 +116,7 @@ const coverRecipe = post.data.coverImage
           const vh = window.innerHeight || 1;
           const progress = Math.min(1, Math.max(0, window.scrollY / vh));
           const eased = easeOut(progress);
-          const scale = 1 - eased * RANGE;
+          const scale = INITIAL - eased * RANGE;
           img.style.transform = `scale(${scale})`;
         };
 

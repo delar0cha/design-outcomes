@@ -9,53 +9,49 @@
  *
  * Results are cached per source URL for the life of the page. If the
  * image fails to load, taints the canvas, or the browser blocks the
- * read, we fall back to the site's neutral cream so the container
- * never flashes a jarring colour.
+ * read, the promise resolves to null and callers fall back to the
+ * frontmatter override or the neutral cream.
  */
 
-const FALLBACK = '#F5F0E8';
+const CACHE = new Map<string, string | null>();
+const IN_FLIGHT = new Map<string, Promise<string | null>>();
 
-const CACHE = new Map<string, string>();
-const IN_FLIGHT = new Map<string, Promise<string>>();
+export function sampleHeroBg(src: string): Promise<string | null> {
+  if (!src) return Promise.resolve(null);
 
-export function sampleHeroBg(src: string): Promise<string> {
-  if (!src) return Promise.resolve(FALLBACK);
-
-  const cached = CACHE.get(src);
-  if (cached) return Promise.resolve(cached);
+  if (CACHE.has(src)) return Promise.resolve(CACHE.get(src)!);
 
   const existing = IN_FLIGHT.get(src);
   if (existing) return existing;
 
-  const p = new Promise<string>(resolve => {
+  const p = new Promise<string | null>(resolve => {
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.decoding = 'async';
 
-    const done = (c: string) => {
+    const done = (c: string | null) => {
       CACHE.set(src, c);
       IN_FLIGHT.delete(src);
       resolve(c);
     };
 
-    img.onerror = () => done(FALLBACK);
+    img.onerror = () => done(null);
     img.onload = () => {
       try {
         const w = img.naturalWidth;
         const h = img.naturalHeight;
-        if (!w || !h) return done(FALLBACK);
+        if (!w || !h) return done(null);
 
         const canvas = document.createElement('canvas');
         canvas.width  = w;
         canvas.height = h;
-        const ctx = canvas.getContext('2d', { willReadFrequently: false });
-        if (!ctx) return done(FALLBACK);
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return done(null);
         ctx.drawImage(img, 0, 0);
 
         const px = (x: number, y: number) => ctx.getImageData(x, y, 1, 1).data;
-        const clamp = (v: number, max: number) => Math.max(0, Math.min(max - 1, v));
-        const mx = clamp(Math.floor(w / 2), w);
-        const my = clamp(Math.floor(h / 2), h);
+        const mx = Math.max(0, Math.min(w - 1, Math.floor(w / 2)));
+        const my = Math.max(0, Math.min(h - 1, Math.floor(h / 2)));
         const x0 = 2, y0 = 2, x1 = w - 3, y1 = h - 3;
         const pts: Array<[number, number]> = [
           [x0, y0], [x1, y0], [x0, y1], [x1, y1],  // corners
@@ -70,7 +66,7 @@ export function sampleHeroBg(src: string): Promise<string> {
         const n = pts.length;
         done(`rgb(${Math.round(r / n)}, ${Math.round(g / n)}, ${Math.round(b / n)})`);
       } catch {
-        done(FALLBACK);
+        done(null);
       }
     };
 
@@ -81,4 +77,22 @@ export function sampleHeroBg(src: string): Promise<string> {
   return p;
 }
 
-export { FALLBACK as HERO_BG_FALLBACK };
+export const HERO_BG_FALLBACK = '#F5F0E8';
+
+/**
+ * Resolve a hero background colour with the expected precedence:
+ * sampled → frontmatter override → neutral cream. Synchronous — reads
+ * from the module-level cache; schedule `sampleHeroBg(src)` first if
+ * you need to populate it.
+ */
+export function resolveHeroBg(
+  src: string | undefined,
+  override: string | undefined,
+): string {
+  if (src) {
+    const sampled = CACHE.get(src);
+    if (sampled) return sampled;
+  }
+  if (override) return override;
+  return HERO_BG_FALLBACK;
+}

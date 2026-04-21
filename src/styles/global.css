@@ -21,10 +21,16 @@
   --max: 1360px;
   --gutter: 48px;
 
-  /* Hero shrink amount, tunable in one place for both the homepage carousel
-     and the article detail page. At 0.2 the image ends at scale(0.8),
-     revealing 20% of the sampled container colour around its edges. */
-  --hero-zoom-amount: 0.2;
+  /* Hero motion — tune these two values to change the zoom amount for
+     both the homepage carousel and the article detail page at once.
+     Start frame: scale(--hero-initial-scale) — image overflows its
+     container so it reads as tightly cropped / full-bleed.
+     End frame:   scale(--hero-initial-scale * (1 - --hero-zoom-amount))
+     — with defaults, that lands at exactly 1.0, where the image fits
+     its container naturally and the sampled background fills any
+     letterbox space. */
+  --hero-initial-scale: 1.25;
+  --hero-zoom-amount:   0.2;
 }
 
 * { box-sizing: border-box; }
@@ -265,6 +271,7 @@ a { color: inherit; text-decoration: none; }
 .do-featured.is-framed .do-featured-art {
   position: relative;
   overflow: hidden;
+  background: var(--cream-2);
   grid-column: 2;
   min-height: 580px;
 }
@@ -321,20 +328,16 @@ a { color: inherit; text-decoration: none; }
   align-self: end;
 }
 
-/* art — stacked slides, crossfade between slides; active slide's image
-   shrinks from scale(1) (tightly cropped, matches production framing) to
-   scale(1 - var(--hero-zoom-amount)) over the loader duration, letting the
-   sampled container colour show around its edges. */
-.do-featured-art {
-  position: relative;
-  overflow: hidden;
-}
+/* art — stacked slides, crossfade between them, active slide's image
+   animates from scale(--hero-initial-scale) to its end scale over the
+   loader duration. Container keeps its baseline dimensions. */
 .do-featured-art-slide {
   position: absolute;
   inset: 0;
   opacity: 0;
   transition: opacity 500ms ease;
   pointer-events: none;
+  overflow: hidden;
 }
 .do-featured-art-slide.is-active {
   opacity: 1;
@@ -347,11 +350,12 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   user-select: none;
   transform-origin: center;
-  /* Rest state matches animation end so an outgoing slide does not snap. */
-  transform: scale(calc(1 - var(--hero-zoom-amount)));
+  /* Resting state matches the end of the keyframe so an outgoing slide
+     does not snap. The active slide overrides with the keyframe below. */
+  transform: scale(calc(var(--hero-initial-scale) * (1 - var(--hero-zoom-amount))));
   will-change: transform;
 }
 .do-featured-art-slide.is-active .do-featured-img,
@@ -362,17 +366,15 @@ a { color: inherit; text-decoration: none; }
   /* animation-duration + play-state supplied inline per slide */
 }
 @keyframes do-hero-zoom {
-  from { transform: scale(1); }
-  to   { transform: scale(calc(1 - var(--hero-zoom-amount))); }
+  from { transform: scale(var(--hero-initial-scale)); }
+  to   { transform: scale(calc(var(--hero-initial-scale) * (1 - var(--hero-zoom-amount)))); }
 }
-
 @media (prefers-reduced-motion: reduce) {
-  .do-featured-art-slide {
-    transition: none;
-  }
+  .do-featured-art-slide { transition: none; }
   .do-featured-img,
   .do-featured-svg {
-    transform: none;
+    /* Pin to the tightly-cropped initial framing, no motion. */
+    transform: scale(var(--hero-initial-scale));
     will-change: auto;
   }
   .do-featured-art-slide.is-active .do-featured-img,
@@ -752,32 +754,25 @@ a { color: inherit; text-decoration: none; }
 .do-post-hero-inner {
   position: absolute;
   inset: 0;
-  /* Feathered edges so the image dissolves into the sampled container
-     colour as it recedes — mask stays on the wrapper so it does not
-     scale with the image. */
-  -webkit-mask-image: radial-gradient(ellipse at center, black 55%, transparent 100%);
-          mask-image: radial-gradient(ellipse at center, black 55%, transparent 100%);
 }
 .do-post-hero-svg,
 .do-post-hero-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   user-select: none;
   transform-origin: center;
-  transform: scale(1);
+  /* Starting scale — scroll listener overrides this with live values. */
+  transform: scale(var(--hero-initial-scale));
   will-change: transform;
 }
-
 @media (prefers-reduced-motion: reduce) {
-  .do-post-hero-inner {
-    -webkit-mask-image: none;
-            mask-image: none;
-  }
   .do-post-hero-img,
   .do-post-hero-svg {
-    transform: scale(1) !important;
+    transform: scale(var(--hero-initial-scale)) !important;
     will-change: auto;
   }
 }

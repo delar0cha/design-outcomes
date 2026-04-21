@@ -30,19 +30,18 @@ function recipeFor(post: PostSummary) {
 }
 
 /**
- * Sample the edge colour of every cover image up front. Frontmatter
- * `heroBgColor` wins if set (manual override for edge cases where
- * sampling yields a bad result); otherwise we fall back to a neutral
- * cream while sampling is in flight, then swap in the sampled colour.
+ * Sample every cover image's edge colour on mount. Results populate a
+ * per-URL state map; the fallback chain is sampled → heroBgColor
+ * frontmatter → neutral cream.
  */
 function useSampledBgs(posts: PostSummary[]): Record<string, string> {
   const [bgs, setBgs] = useState<Record<string, string>>({});
   useEffect(() => {
     let cancelled = false;
     for (const p of posts) {
-      if (!p.coverImage || p.heroBgColor) continue;
+      if (!p.coverImage) continue;
       sampleHeroBg(p.coverImage).then(c => {
-        if (cancelled) return;
+        if (cancelled || !c) return;
         setBgs(prev => (prev[p.coverImage!] === c ? prev : { ...prev, [p.coverImage!]: c }));
       });
     }
@@ -88,13 +87,14 @@ export default function FeaturedCarousel({ posts }: Props) {
           />
         </div>
 
-        {/* Illustration stack — crossfade between slides; the active slide's
-            image scales from 1 to (1 - --hero-zoom-amount) over the loader
-            duration while the container's sampled colour bleeds through. */}
+        {/* Illustration — stacked slides with a swift crossfade. Each slide
+            carries its own sampled background; the active slide's image
+            animates from scale(--hero-initial-scale) to the end scale across
+            the loader duration. */}
         <div className="do-featured-art">
           {posts.map((p, i) => {
             const isActive = i === idx;
-            const bg = p.heroBgColor ?? (p.coverImage ? bgs[p.coverImage] : undefined) ?? HERO_BG_FALLBACK;
+            const bg = (p.coverImage && bgs[p.coverImage]) ?? p.heroBgColor ?? HERO_BG_FALLBACK;
             const imgStyle = isActive
               ? { animationDuration: `${DUR}ms`, animationPlayState: paused ? 'paused' : 'running' as const }
               : undefined;

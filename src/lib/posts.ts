@@ -67,6 +67,7 @@ export function toPostSummary(entry: PostEntry): PostSummary {
     category:    entry.data.category,
     audience:    entry.data.audience,
     coverImage:  entry.data.coverImage,
+    heroBgColor: entry.data.heroBgColor,
     publishedAt: entry.data.publishedAt.toISOString(),
     readingTime: calcReadingTime(entry.body ?? ''),
     featured:    entry.data.featured,

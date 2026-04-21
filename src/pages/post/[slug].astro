@@ -53,12 +53,59 @@ const coverRecipe = post.data.coverImage
     <SiteNav client:load currentPath={`/post/${slug}`} />
 
     <!-- Hero -->
-    <div class="do-post-hero">
-      <div class="do-post-hero-inner">
-        <Illustration client:load recipe={coverRecipe} className="do-post-hero-svg" />
+    <div
+      class="do-post-hero"
+      data-post-hero
+      style={`background: ${post.data.heroBgColor ?? 'var(--cream-2)'};`}
+    >
+      <div class="do-post-hero-inner" data-post-hero-inner>
+        {post.data.coverImage
+          ? <img src={post.data.coverImage} alt="" class="do-post-hero-img" draggable={false} />
+          : <Illustration client:load recipe={coverRecipe} className="do-post-hero-svg" />}
       </div>
       <div class="do-post-hero-fade"></div>
     </div>
+
+    <script>
+      // Scroll-linked hero recede: scale 1.5 (image overflows, looks tightly
+      // framed) → 0.75 (full image visible, heroBgColor letterboxes) across the
+      // first viewport height, eased cubic ease-out, then held. Skipped when
+      // user prefers reduced motion. One rAF-throttled listener per page.
+      (() => {
+        const inner = document.querySelector<HTMLElement>('[data-post-hero-inner]');
+        if (!inner) return;
+
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (reduce.matches) return;
+
+        const START = 1.5;
+        const END   = 0.75;
+        const RANGE = START - END;  // 0.75
+
+        // cubic ease-out — decelerates as scroll progresses
+        const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
+        let ticking = false;
+        const update = () => {
+          ticking = false;
+          const vh = window.innerHeight || 1;
+          const progress = Math.min(1, Math.max(0, window.scrollY / vh));
+          const eased = easeOut(progress);
+          const scale = START - eased * RANGE;
+          inner.style.transform = `scale(${scale})`;
+        };
+
+        const onScroll = () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(update);
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        update();
+      })();
+    </script>
 
     <!-- Article -->
     <article class="do-post">

@@ -21,6 +21,13 @@ function CategoryTag({ catId, size = 'sm' }: { catId: string; size?: 'sm' | 'lg'
   );
 }
 
+function recipeFor(post: PostSummary) {
+  const cat = CATEGORIES[post.category];
+  return post.coverImage
+    ? { kind: 'photo' as const, src: post.coverImage }
+    : { kind: 'bars' as const, palette: [cat?.tint ?? '#2F4858', '#E8E0D0', '#15120E'], seed: 1 };
+}
+
 export default function FeaturedCarousel({ posts }: Props) {
   const [idx, setIdx]       = useState(0);
   const [paused, setPaused] = useState(false);
@@ -39,9 +46,6 @@ export default function FeaturedCarousel({ posts }: Props) {
   if (!post) return null;
 
   const cat = CATEGORIES[post.category];
-  const recipe = post.coverImage
-    ? { kind: 'photo' as const, src: post.coverImage }
-    : { kind: 'bars' as const, palette: [cat?.tint ?? '#2F4858', '#E8E0D0', '#15120E'], seed: 1 };
 
   return (
     <section className="do-featured is-framed" aria-label="Featured posts">
@@ -60,9 +64,39 @@ export default function FeaturedCarousel({ posts }: Props) {
           />
         </div>
 
-        {/* Illustration */}
-        <div className="do-featured-art" key={`art-${idx}`}>
-          <Illustration recipe={recipe} className="do-featured-svg" />
+        {/* Illustration stack — crossfade between slides; active slide zooms
+            from scale(1.25) (image overflows, looks tightly framed) to scale(1)
+            (full image visible, heroBgColor letterboxes the natural aspect). */}
+        <div className="do-featured-art">
+          {posts.map((p, i) => {
+            const isActive = i === idx;
+            return (
+              <div
+                key={i}
+                className={`do-featured-art-slide${isActive ? ' is-active' : ''}`}
+                style={{ background: p.heroBgColor ?? 'var(--cream-2)' }}
+                aria-hidden={!isActive}
+              >
+                <div
+                  key={isActive ? `zoom-${idx}` : `rest-${i}`}
+                  className="do-featured-art-zoom"
+                  style={isActive ? {
+                    animationDuration:  `${DUR}ms`,
+                    animationPlayState: paused ? 'paused' : 'running',
+                  } : undefined}
+                >
+                  {p.coverImage
+                    ? <img
+                        src={p.coverImage}
+                        alt=""
+                        className="do-featured-img"
+                        draggable={false}
+                      />
+                    : <Illustration recipe={recipeFor(p)} className="do-featured-svg" />}
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* Text block */}

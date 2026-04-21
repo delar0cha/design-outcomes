@@ -14,6 +14,11 @@
   --accent:  #B8432B;
   --accent-2:#2F4858;
 
+  /* Canonical darkest warm gray — homepage banner, audio player chrome,
+     article hero overlay, listen button. Consolidated from the prior
+     #3D3632 literal so surfaces stay in lockstep if we retune later. */
+  --color-dark-warm: #3d3633;
+
   --serif: "Newsreader", "Source Serif 4", Georgia, serif;
   --sans:  "Instrument Sans", "Inter Tight", system-ui, sans-serif;
   --mono:  "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -21,26 +26,46 @@
   --max: 1360px;
   --gutter: 48px;
 
-  /* Hero motion. Zoom amount is fixed; the initial scale is
-     responsive — the hero containers grow wider while their heights
-     stay capped, so object-fit: contain leaves more background
-     visible on wide viewports. Values below are tuned per breakpoint
-     from actual container measurements so the starting crop feels
-     similarly tight across the full viewport range. Article hero
-     uses these :root values; the carousel overrides them on
-     .do-featured since its art column is narrower per viewport.
-     Start frame: scale(--hero-initial-scale) — image overflows the
-     container and reads as full-bleed.
-     End frame:   scale(--hero-initial-scale * (1 - --hero-zoom-amount))
+  /* Featured carousel zoom-out motion. The carousel's art column is
+     narrower than the article hero, so initial scale is tuned per
+     breakpoint via overrides below. Start frame: scale(--hero-initial-
+     scale) — image overflows the container and reads as full-bleed.
+     End frame: scale(--hero-initial-scale * (1 - --hero-zoom-amount))
      — image fits naturally, sampled bg fills any letterbox. */
   --hero-initial-scale: 1.25;
   --hero-zoom-amount:   0.2;
+
+  /* Article hero — sticky two-phase scrollytelling sequence that
+     deliberately contrasts the carousel's zoom-out. The hero is a
+     position:sticky pane pinned to the viewport while the reader
+     scrolls through an outer track --hero-track-height tall. Phase
+     breakpoints (expressed as progress through the track, 0–1) gate
+     which content phase is on stage at any moment: 0 → phase-1-end
+     holds the headline, phase-1-end → phase-2-end crossfades the
+     headline out and the "Why this matters" block in, phase-2-end → 1
+     exits the "Why" block and fades the overlay toward 0 as the image
+     reaches --hero-zoom-end.
+     Tuning levers:
+       --hero-track-height     → total outer scroll distance (slower/faster)
+       --hero-zoom-end         → image scale at progress=1
+       --hero-overlay-opacity  → starting opacity of the dark overlay
+       --hero-phase-1-end      → progress at which the headline begins exiting
+       --hero-phase-2-end      → progress at which the why block begins exiting */
+  --hero-track-height:    300vh;
+  --hero-zoom-end:        1.5;
+  --hero-overlay-opacity: 0.8;
+  --hero-phase-1-end:     0.33;
+  --hero-phase-2-end:     0.66;
 }
 /* Responsive initial scale — overrides cascade by viewport width. */
 @media (min-width: 721px)  { :root { --hero-initial-scale: 1.4; } }
 @media (min-width: 1081px) { :root { --hero-initial-scale: 1.6; } }
 @media (min-width: 1440px) { :root { --hero-initial-scale: 1.8; } }
 @media (min-width: 1920px) { :root { --hero-initial-scale: 2.0; } }
+
+/* Shorter outer track on mobile — less scroll distance feels better on
+   small screens where each flick covers proportionally more ground. */
+@media (max-width: 720px) { :root { --hero-track-height: 260vh; } }
 
 * { box-sizing: border-box; }
 
@@ -224,7 +249,7 @@ a { color: inherit; text-decoration: none; }
 /* ------------------------ Editorial banner (homepage only) ------------------------ */
 .do-editorial-banner {
   width: 100%;
-  background: #3D3632;
+  background: var(--color-dark-warm);
 }
 .do-editorial-banner-inner {
   display: flex;
@@ -763,59 +788,146 @@ a { color: inherit; text-decoration: none; }
 
 /* ------------------------ Post page ------------------------ */
 .do-post-page { padding: 0; }
-.do-post-hero {
-  width: 100%;
-  aspect-ratio: 21/9;
-  max-height: 544px;
-  overflow: hidden;
+
+/* Cinematic article hero — sticky two-phase scrollytelling.
+   Structure:
+     .do-post-hero-track     → tall outer section (--hero-track-height),
+                               supplies the scroll distance
+     .do-post-hero           → position:sticky pane pinned to the viewport
+                               (100vh) while the track scrolls past
+       .do-post-hero-media     → image wrapper that scales 1 → zoom-end
+       .do-post-hero-overlay   → dark wash that holds then fades to 0
+       .do-post-hero-phase     → absolute-positioned content layers (the
+                                 headline and the "Why this matters" block)
+                                 cross-faded by the scroll listener
+   Progress is computed as the track's top position vs. viewport, so the
+   sequence feels identical at slow and fast scroll speeds. The three
+   phases gated by --hero-phase-1-end / --hero-phase-2-end: headline
+   holds, crossfade to why, why exits while overlay fades. Once progress
+   reaches 1 the sticky releases and the article body flows in below. */
+.do-post-hero-track {
   position: relative;
-  background: var(--cream-2);
+  width: 100%;
+  height: var(--hero-track-height);
 }
-.do-post-hero-inner {
+.do-post-hero {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-dark-warm);
+}
+.do-post-hero-media {
   position: absolute;
   inset: 0;
+  transform-origin: center;
+  transform: scale(1);
+  will-change: transform;
 }
-.do-post-hero-svg,
-.do-post-hero-img {
+.do-post-hero-img,
+.do-post-hero-svg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
   user-select: none;
-  transform-origin: center;
-  /* Starting scale — scroll listener overrides this with live values. */
-  transform: scale(var(--hero-initial-scale));
-  will-change: transform;
 }
-@media (prefers-reduced-motion: reduce) {
-  .do-post-hero-img,
-  .do-post-hero-svg {
-    transform: scale(var(--hero-initial-scale)) !important;
-    will-change: auto;
-  }
-}
-.do-post-hero-fade {
+.do-post-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent                60%,
-    rgba(247,242,234,0.04)     70%,
-    rgba(247,242,234,0.15)     78%,
-    rgba(247,242,234,0.38)     85%,
-    rgba(247,242,234,0.65)     92%,
-    rgba(247,242,234,0.88)     97%,
-    var(--cream)               100%
-  );
+  background: var(--color-dark-warm);
+  opacity: var(--hero-overlay-opacity);
   pointer-events: none;
+  will-change: opacity;
+}
+.do-post-hero-phase {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 0 var(--gutter);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.do-post-hero-phase--why { opacity: 0; }
+.do-post-hero-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(44px, 5.2vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+  color: var(--cream);
+  text-align: center;
+  text-wrap: balance;
+  margin: 0;
+  max-width: 22ch;
+}
+.do-post-hero-why {
+  max-width: 640px;
+  text-align: center;
+  margin: 0;
+}
+.do-post-hero-why-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247,242,234,0.72);
+  margin: 0 0 18px 0;
+}
+.do-post-hero-why-body {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.42;
+  color: var(--cream);
+  text-wrap: balance;
+  margin: 0;
+}
+
+/* Reduced-motion fallback — collapse the track, drop sticky, render
+   both phases stacked inside the hero with the overlay pinned at 0.5
+   so both the headline and the "Why" block are legible at rest. */
+@media (prefers-reduced-motion: reduce) {
+  .do-post-hero-track {
+    height: auto;
+  }
+  .do-post-hero {
+    position: relative;
+    height: auto;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    padding: 100px var(--gutter);
+  }
+  .do-post-hero-media {
+    transform: none !important;
+    will-change: auto;
+  }
+  .do-post-hero-overlay {
+    opacity: 0.5 !important;
+    will-change: auto;
+  }
+  .do-post-hero-phase {
+    position: relative;
+    inset: auto;
+    padding: 0;
+    z-index: 2;
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto;
+  }
 }
 
 .do-post {
   max-width: 680px;
-  margin: -40px auto 0;
-  padding: 0 24px 80px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
   position: relative;
   z-index: 2;
 }
@@ -831,35 +943,6 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
-}
-
-.do-post-title {
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(40px, 4.5vw, 60px);
-  line-height: 1.04;
-  letter-spacing: -0.022em;
-  margin: 0 0 24px 0;
-  text-wrap: balance;
-}
-.do-post-why {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 22px;
-  line-height: 1.4;
-  color: var(--ink-2);
-  margin: 0 0 40px 0;
-  padding-left: 16px;
-  border-left: 2px solid var(--accent);
-  max-width: 56ch;
-}
-.do-post-why-label {
-  font-family: var(--mono);
-  font-style: normal;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
 }
 
 .do-post-byline {
@@ -1093,8 +1176,9 @@ a { color: inherit; text-decoration: none; }
   .do-ctrl { width: 44px; height: 44px; }
 
   /* ── Post ── */
-  .do-post { padding: 0 20px 60px; }
-  .do-post-hero { aspect-ratio: 4/3; }
+  .do-post { padding: 40px 20px 60px; }
+  .do-post-hero-title     { font-size: clamp(32px, 8vw, 52px); max-width: 18ch; }
+  .do-post-hero-why-body  { font-size: clamp(19px, 4.6vw, 24px); }
   .do-post-byline { grid-template-columns: 40px 1fr; }
   .do-post-byline.is-no-avatar { grid-template-columns: 1fr; }
   .do-post-byline-right { grid-column: 1 / -1; margin-top: 4px; }
@@ -1826,8 +1910,8 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 
 /* ── Listen button (byline-anchored, solid dark pill) ──
    Lives in the .do-post-byline-right slot. Background matches the inline
-   player bar / EditorialBanner (#3D3632); label is cream; a small cream
-   circle with a dark play glyph sits at the tail of the pill. */
+   player bar / EditorialBanner (--color-dark-warm); label is cream; a
+   small cream circle with a dark play glyph sits at the tail of the pill. */
 .do-listen-btn {
   display: inline-flex;
   align-items: center;
@@ -1840,7 +1924,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   font-weight: 500;
   letter-spacing: 0.01em;
   color: #F5F0E8;
-  background: #3D3632;
+  background: var(--color-dark-warm);
   cursor: pointer;
   transition: filter 200ms, transform 200ms;
 }
@@ -1865,7 +1949,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   height: 22px;
   border-radius: 50%;
   background: #F5F0E8;
-  color: #3D3632;
+  color: var(--color-dark-warm);
   flex: 0 0 auto;
   padding-left: 1px; /* nudge the triangle to optical center */
   transform-origin: 50% 50%;
@@ -1883,7 +1967,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 /* ── Inline audio player bar ── */
 .do-audio-player {
   width: 100%;
-  background: #3D3632;
+  background: var(--color-dark-warm);
   color: #F5F0E8;
   margin: 0;
 }
@@ -1901,7 +1985,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   border: none;
   border-radius: 50%;
   background: #F5F0E8;
-  color: #3D3632;
+  color: var(--color-dark-warm);
   cursor: pointer;
   flex: 0 0 auto;
   transition: filter 180ms;
@@ -1999,7 +2083,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   left: 0;
   right: 0;
   z-index: 35;
-  background: #3D3632;
+  background: var(--color-dark-warm);
   color: #F5F0E8;
   opacity: 0;
   transform: translateY(-8px);

@@ -52,77 +52,121 @@ const coverRecipe = post.data.coverImage
   <main class="do-page do-post-page">
     <SiteNav client:load currentPath={`/post/${slug}`} />
 
-    <!-- Hero -->
-    <div
-      class="do-post-hero"
-      data-post-hero
-      data-hero-src={post.data.coverImage ?? ''}
-      data-hero-override={post.data.heroBgColor ?? ''}
-      style={`background: ${post.data.heroBgColor ?? '#F5F0E8'};`}
-    >
-      <div class="do-post-hero-inner">
-        {post.data.coverImage
-          ? <img
-              src={post.data.coverImage}
-              alt=""
-              class="do-post-hero-img"
-              crossorigin="anonymous"
-              draggable={false}
-              data-post-hero-img
-            />
-          : <Illustration client:load recipe={coverRecipe} className="do-post-hero-svg" />}
+    <!-- Cinematic sticky hero — two phases cycle text content across a
+         pinned visual stage. Outer .do-post-hero-track is --hero-track-
+         height tall; inner .do-post-hero is position:sticky/100vh and
+         stays pinned while the reader scrolls through the track. The
+         listener below maps track progress (0..1) to: image zoom, overlay
+         fade, and crossfade between the headline phase and the "Why
+         this matters" phase. The Why block only lives here — it's been
+         removed from the article body render path to avoid duplication. -->
+    <section class="do-post-hero-track" data-post-hero-track>
+      <div class="do-post-hero">
+        <div class="do-post-hero-media" data-post-hero-media>
+          {post.data.coverImage
+            ? <img
+                src={post.data.coverImage}
+                alt=""
+                class="do-post-hero-img"
+                draggable={false}
+              />
+            : <Illustration client:load recipe={coverRecipe} className="do-post-hero-svg" />}
+        </div>
+        <div class="do-post-hero-overlay" data-post-hero-overlay></div>
+
+        <div class="do-post-hero-phase do-post-hero-phase--headline" data-post-hero-headline>
+          <h1 class="do-post-hero-title">{post.data.title}</h1>
+        </div>
+
+        {post.data.why && (
+          <div class="do-post-hero-phase do-post-hero-phase--why" data-post-hero-why>
+            <div class="do-post-hero-why">
+              <p class="do-post-hero-why-eyebrow">Why this matters</p>
+              <p class="do-post-hero-why-body">{post.data.why}</p>
+            </div>
+          </div>
+        )}
       </div>
-      <div class="do-post-hero-fade"></div>
-    </div>
+    </section>
 
     <script>
-      import { sampleHeroBg } from '@lib/sampleHeroBg';
-
-      // Sample the image's edge colour and apply it to the container so
-      // the recede transition has no visible seam. Frontmatter heroBgColor
-      // is the fallback (already inlined as the container background),
-      // and we only overwrite if sampling succeeds.
+      // Sticky two-phase hero scrollytelling. One rAF-throttled scroll/
+      // resize listener reads the outer track's position against the
+      // viewport and maps that to a 0..1 progress, then drives:
+      //   • media zoom       1 → --hero-zoom-end (eased, full range)
+      //   • overlay opacity  --hero-overlay-opacity → 0 (holds, then fades
+      //                      during the final phase)
+      //   • headline phase   visible 0 → phase-1-end, exits up+fades
+      //                      during phase-1-end → phase-2-end
+      //   • why phase        enters from below during phase-1-end →
+      //                      phase-2-end, exits up+fades during
+      //                      phase-2-end → 1
+      // Using the track's bounding rect (not viewport scrollY) keeps the
+      // sequence consistent regardless of scroll speed. Skipped when the
+      // user prefers reduced motion — the CSS fallback renders both
+      // phases stacked with a reduced overlay.
       (() => {
-        const hero = document.querySelector<HTMLElement>('[data-post-hero]');
-        if (!hero) return;
-        const src = hero.dataset.heroSrc;
-        if (!src) return;
-        sampleHeroBg(src).then(c => { if (c) hero.style.background = c; });
-      })();
-
-      // Scroll-linked hero recede: image scales from --hero-initial-scale
-      // down to --hero-initial-scale * (1 - --hero-zoom-amount) across the
-      // first viewport of scroll, eased cubic ease-out, then held.
-      // Skipped when user prefers reduced motion. One rAF-throttled
-      // listener per page.
-      (() => {
-        const img = document.querySelector<HTMLElement>('[data-post-hero-img]');
-        if (!img) return;
+        const track    = document.querySelector<HTMLElement>('[data-post-hero-track]');
+        const media    = document.querySelector<HTMLElement>('[data-post-hero-media]');
+        const overlay  = document.querySelector<HTMLElement>('[data-post-hero-overlay]');
+        const headline = document.querySelector<HTMLElement>('[data-post-hero-headline]');
+        const why      = document.querySelector<HTMLElement>('[data-post-hero-why]');
+        if (!track || !media || !overlay || !headline) return;
 
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
         if (reduce.matches) return;
 
-        // Read --hero-initial-scale fresh per update — the value is
-        // responsive via media queries, so resizing past a breakpoint
-        // must change the effective start/end scales without a reload.
-        const readScales = () => {
-          const s = getComputedStyle(document.documentElement);
-          const initial = parseFloat(s.getPropertyValue('--hero-initial-scale')) || 1.25;
-          const amount  = parseFloat(s.getPropertyValue('--hero-zoom-amount'))   || 0.2;
-          return { initial, range: initial - initial * (1 - amount) };
-        };
-
+        const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
         const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
+        // Read tunables fresh per update — CSS vars may cross breakpoint
+        // overrides, so resizing past a threshold must pick up the new
+        // values without a reload.
+        const readVars = () => {
+          const s = getComputedStyle(document.documentElement);
+          return {
+            zoomEnd:      parseFloat(s.getPropertyValue('--hero-zoom-end'))         || 1.5,
+            overlayStart: parseFloat(s.getPropertyValue('--hero-overlay-opacity'))  || 0.8,
+            phase1End:    parseFloat(s.getPropertyValue('--hero-phase-1-end'))      || 0.33,
+            phase2End:    parseFloat(s.getPropertyValue('--hero-phase-2-end'))      || 0.66,
+          };
+        };
 
         let ticking = false;
         const update = () => {
           ticking = false;
-          const { initial, range } = readScales();
-          const vh = window.innerHeight || 1;
-          const progress = Math.min(1, Math.max(0, window.scrollY / vh));
-          const eased = easeOut(progress);
-          const scale = initial - eased * range;
-          img.style.transform = `scale(${scale})`;
+          const rect = track.getBoundingClientRect();
+          const vh   = window.innerHeight || 1;
+          const scrollable = rect.height - vh;
+          const progress = scrollable > 0 ? clamp01(-rect.top / scrollable) : 0;
+          const { zoomEnd, overlayStart, phase1End, phase2End } = readVars();
+
+          // Image zoom runs linearly across the full progress so the
+          // "pushing deeper" feel stays continuous — easing here makes
+          // the image leap to near-final scale before the Why phase is
+          // even on stage, which reads as a snap rather than a push.
+          media.style.transform = `scale(${(1 + (zoomEnd - 1) * progress).toFixed(4)})`;
+
+          // Overlay holds through phase 2, then fades to 0 during phase 3.
+          const overlayFade = clamp01((progress - phase2End) / (1 - phase2End));
+          overlay.style.opacity = (overlayStart * (1 - overlayFade)).toFixed(4);
+
+          // Headline: visible through phase 1, exits during phase 2.
+          const headlineExit = clamp01((progress - phase1End) / (phase2End - phase1End));
+          const headlineExitEased = easeOut(headlineExit);
+          headline.style.opacity   = (1 - headlineExit).toFixed(4);
+          headline.style.transform = `translate3d(0, ${(-headlineExitEased * vh * 0.4).toFixed(2)}px, 0)`;
+
+          // Why: enters during phase 2, exits during phase 3.
+          if (why) {
+            const whyEnter = clamp01((progress - phase1End) / (phase2End - phase1End));
+            const whyExit  = clamp01((progress - phase2End) / (1 - phase2End));
+            const whyEnterEased = easeOut(whyEnter);
+            const whyExitEased  = easeOut(whyExit);
+            const whyY = (1 - whyEnterEased) * vh * 0.4 - whyExitEased * vh * 0.4;
+            why.style.opacity   = (whyEnter * (1 - whyExit)).toFixed(4);
+            why.style.transform = `translate3d(0, ${whyY.toFixed(2)}px, 0)`;
+          }
         };
 
         const onScroll = () => {
@@ -144,14 +188,6 @@ const coverRecipe = post.data.coverImage
         <span class="do-post-sep">·</span>
         <span>{readTime}</span>
       </div>
-
-      <h1 class="do-post-title">{post.data.title}</h1>
-
-      {post.data.why && (
-        <p class="do-post-why">
-          <span class="do-post-why-label">Why this matters — </span>{post.data.why}
-        </p>
-      )}
 
       <div class="do-post-byline is-no-avatar">
         {/*

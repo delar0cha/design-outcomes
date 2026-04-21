@@ -14,6 +14,11 @@
   --accent:  #B8432B;
   --accent-2:#2F4858;
 
+  /* Canonical darkest warm gray — homepage banner, audio player chrome,
+     article hero overlay, listen button. Consolidated from the prior
+     #3D3632 literal so surfaces stay in lockstep if we retune later. */
+  --color-dark-warm: #3d3633;
+
   --serif: "Newsreader", "Source Serif 4", Georgia, serif;
   --sans:  "Instrument Sans", "Inter Tight", system-ui, sans-serif;
   --mono:  "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -21,26 +26,37 @@
   --max: 1360px;
   --gutter: 48px;
 
-  /* Hero motion. Zoom amount is fixed; the initial scale is
-     responsive — the hero containers grow wider while their heights
-     stay capped, so object-fit: contain leaves more background
-     visible on wide viewports. Values below are tuned per breakpoint
-     from actual container measurements so the starting crop feels
-     similarly tight across the full viewport range. Article hero
-     uses these :root values; the carousel overrides them on
-     .do-featured since its art column is narrower per viewport.
-     Start frame: scale(--hero-initial-scale) — image overflows the
-     container and reads as full-bleed.
-     End frame:   scale(--hero-initial-scale * (1 - --hero-zoom-amount))
+  /* Featured carousel zoom-out motion. The carousel's art column is
+     narrower than the article hero, so initial scale is tuned per
+     breakpoint via overrides below. Start frame: scale(--hero-initial-
+     scale) — image overflows the container and reads as full-bleed.
+     End frame: scale(--hero-initial-scale * (1 - --hero-zoom-amount))
      — image fits naturally, sampled bg fills any letterbox. */
   --hero-initial-scale: 1.25;
   --hero-zoom-amount:   0.2;
+
+  /* Article hero cinematic sequence — a scroll-driven zoom-IN that
+     deliberately contrasts the carousel's zoom-out. The initial vh
+     leaves the article body peeking at the bottom of the viewport on
+     page load. Zoom-end is the scale the image reaches by the time the
+     hero is about to leave the viewport; overlay-opacity is the
+     starting darken amount for text contrast.
+     Tuning levers:
+       --hero-initial-vh       → container height on load (also mobile override)
+       --hero-zoom-end         → image scale at the end of the scroll range
+       --hero-overlay-opacity  → starting opacity of the dark overlay */
+  --hero-initial-vh:      80vh;
+  --hero-zoom-end:        1.5;
+  --hero-overlay-opacity: 0.8;
 }
 /* Responsive initial scale — overrides cascade by viewport width. */
 @media (min-width: 721px)  { :root { --hero-initial-scale: 1.4; } }
 @media (min-width: 1081px) { :root { --hero-initial-scale: 1.6; } }
 @media (min-width: 1440px) { :root { --hero-initial-scale: 1.8; } }
 @media (min-width: 1920px) { :root { --hero-initial-scale: 2.0; } }
+
+/* Shorter starting hero on mobile — 80vh feels cramped at small heights. */
+@media (max-width: 720px) { :root { --hero-initial-vh: 70vh; } }
 
 * { box-sizing: border-box; }
 
@@ -224,7 +240,7 @@ a { color: inherit; text-decoration: none; }
 /* ------------------------ Editorial banner (homepage only) ------------------------ */
 .do-editorial-banner {
   width: 100%;
-  background: #3D3632;
+  background: var(--color-dark-warm);
 }
 .do-editorial-banner-inner {
   display: flex;
@@ -763,59 +779,84 @@ a { color: inherit; text-decoration: none; }
 
 /* ------------------------ Post page ------------------------ */
 .do-post-page { padding: 0; }
+
+/* Cinematic article hero — scroll-driven zoom-IN that deliberately
+   contrasts the homepage carousel's zoom-out. On load the hero is
+   --hero-initial-vh tall with the article body peeking below, a dark
+   overlay darkening the image for headline contrast, and the title
+   centered on top. As the reader scrolls, the JS listener drives the
+   three animated elements: media scales 1 → --hero-zoom-end, overlay
+   fades --hero-overlay-opacity → 0, headline translates up and fades. */
 .do-post-hero {
-  width: 100%;
-  aspect-ratio: 21/9;
-  max-height: 544px;
-  overflow: hidden;
   position: relative;
-  background: var(--cream-2);
+  width: 100%;
+  height: var(--hero-initial-vh);
+  overflow: hidden;
+  background: var(--color-dark-warm);
 }
-.do-post-hero-inner {
+.do-post-hero-media {
   position: absolute;
   inset: 0;
+  transform-origin: center;
+  transform: scale(1);
+  will-change: transform;
 }
-.do-post-hero-svg,
-.do-post-hero-img {
+.do-post-hero-img,
+.do-post-hero-svg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
   user-select: none;
-  transform-origin: center;
-  /* Starting scale — scroll listener overrides this with live values. */
-  transform: scale(var(--hero-initial-scale));
-  will-change: transform;
 }
-@media (prefers-reduced-motion: reduce) {
-  .do-post-hero-img,
-  .do-post-hero-svg {
-    transform: scale(var(--hero-initial-scale)) !important;
-    will-change: auto;
-  }
-}
-.do-post-hero-fade {
+.do-post-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent                60%,
-    rgba(247,242,234,0.04)     70%,
-    rgba(247,242,234,0.15)     78%,
-    rgba(247,242,234,0.38)     85%,
-    rgba(247,242,234,0.65)     92%,
-    rgba(247,242,234,0.88)     97%,
-    var(--cream)               100%
-  );
+  background: var(--color-dark-warm);
+  opacity: var(--hero-overlay-opacity);
   pointer-events: none;
+  will-change: opacity;
+}
+.do-post-hero-headline {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 0 var(--gutter);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.do-post-hero-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(44px, 5.2vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+  color: var(--cream);
+  text-align: center;
+  text-wrap: balance;
+  margin: 0;
+  max-width: 22ch;
+}
+@media (prefers-reduced-motion: reduce) {
+  .do-post-hero-media,
+  .do-post-hero-overlay,
+  .do-post-hero-headline {
+    will-change: auto;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .do-post-hero-overlay {
+    opacity: 0.5 !important;
+  }
 }
 
 .do-post {
   max-width: 680px;
-  margin: -40px auto 0;
-  padding: 0 24px 80px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
   position: relative;
   z-index: 2;
 }
@@ -833,15 +874,6 @@ a { color: inherit; text-decoration: none; }
   color: var(--muted);
 }
 
-.do-post-title {
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(40px, 4.5vw, 60px);
-  line-height: 1.04;
-  letter-spacing: -0.022em;
-  margin: 0 0 24px 0;
-  text-wrap: balance;
-}
 .do-post-why {
   font-family: var(--serif);
   font-style: italic;
@@ -1093,8 +1125,8 @@ a { color: inherit; text-decoration: none; }
   .do-ctrl { width: 44px; height: 44px; }
 
   /* ── Post ── */
-  .do-post { padding: 0 20px 60px; }
-  .do-post-hero { aspect-ratio: 4/3; }
+  .do-post { padding: 32px 20px 60px; }
+  .do-post-hero-title { font-size: clamp(32px, 8vw, 52px); }
   .do-post-byline { grid-template-columns: 40px 1fr; }
   .do-post-byline.is-no-avatar { grid-template-columns: 1fr; }
   .do-post-byline-right { grid-column: 1 / -1; margin-top: 4px; }
@@ -1826,8 +1858,8 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 
 /* ── Listen button (byline-anchored, solid dark pill) ──
    Lives in the .do-post-byline-right slot. Background matches the inline
-   player bar / EditorialBanner (#3D3632); label is cream; a small cream
-   circle with a dark play glyph sits at the tail of the pill. */
+   player bar / EditorialBanner (--color-dark-warm); label is cream; a
+   small cream circle with a dark play glyph sits at the tail of the pill. */
 .do-listen-btn {
   display: inline-flex;
   align-items: center;
@@ -1840,7 +1872,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   font-weight: 500;
   letter-spacing: 0.01em;
   color: #F5F0E8;
-  background: #3D3632;
+  background: var(--color-dark-warm);
   cursor: pointer;
   transition: filter 200ms, transform 200ms;
 }
@@ -1865,7 +1897,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   height: 22px;
   border-radius: 50%;
   background: #F5F0E8;
-  color: #3D3632;
+  color: var(--color-dark-warm);
   flex: 0 0 auto;
   padding-left: 1px; /* nudge the triangle to optical center */
   transform-origin: 50% 50%;
@@ -1883,7 +1915,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 /* ── Inline audio player bar ── */
 .do-audio-player {
   width: 100%;
-  background: #3D3632;
+  background: var(--color-dark-warm);
   color: #F5F0E8;
   margin: 0;
 }
@@ -1901,7 +1933,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   border: none;
   border-radius: 50%;
   background: #F5F0E8;
-  color: #3D3632;
+  color: var(--color-dark-warm);
   cursor: pointer;
   flex: 0 0 auto;
   transition: filter 180ms;
@@ -1999,7 +2031,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   left: 0;
   right: 0;
   z-index: 35;
-  background: #3D3632;
+  background: var(--color-dark-warm);
   color: #F5F0E8;
   opacity: 0;
   transform: translateY(-8px);

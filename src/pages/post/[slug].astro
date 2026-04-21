@@ -52,77 +52,71 @@ const coverRecipe = post.data.coverImage
   <main class="do-page do-post-page">
     <SiteNav client:load currentPath={`/post/${slug}`} />
 
-    <!-- Hero -->
-    <div
-      class="do-post-hero"
-      data-post-hero
-      data-hero-src={post.data.coverImage ?? ''}
-      data-hero-override={post.data.heroBgColor ?? ''}
-      style={`background: ${post.data.heroBgColor ?? '#F5F0E8'};`}
-    >
-      <div class="do-post-hero-inner">
+    <!-- Cinematic hero — the scroll listener below drives three animated
+         elements: media (zoom-in), overlay (fade-out), headline (translate
+         up + fade). The article body peeks below on initial load because
+         the hero is --hero-initial-vh (default 80vh, 70vh on mobile). -->
+    <section class="do-post-hero" data-post-hero>
+      <div class="do-post-hero-media" data-post-hero-media>
         {post.data.coverImage
           ? <img
               src={post.data.coverImage}
               alt=""
               class="do-post-hero-img"
-              crossorigin="anonymous"
               draggable={false}
-              data-post-hero-img
             />
           : <Illustration client:load recipe={coverRecipe} className="do-post-hero-svg" />}
       </div>
-      <div class="do-post-hero-fade"></div>
-    </div>
+      <div class="do-post-hero-overlay" data-post-hero-overlay></div>
+      <div class="do-post-hero-headline" data-post-hero-headline>
+        <h1 class="do-post-hero-title">{post.data.title}</h1>
+      </div>
+    </section>
 
     <script>
-      import { sampleHeroBg } from '@lib/sampleHeroBg';
-
-      // Sample the image's edge colour and apply it to the container so
-      // the recede transition has no visible seam. Frontmatter heroBgColor
-      // is the fallback (already inlined as the container background),
-      // and we only overwrite if sampling succeeds.
+      // Cinematic article hero — one rAF-throttled scroll/resize listener
+      // drives three concurrent effects tied to scroll progress through
+      // the hero section:
+      //   1. Image scale 1 → --hero-zoom-end (pushing deeper into the image)
+      //   2. Overlay opacity --hero-overlay-opacity → 0
+      //   3. Headline translate up + fade
+      // Progress = scrollY / heroHeight, cubic ease-out, clamped 0–1.
+      // Skipped when the user prefers reduced motion; the static CSS
+      // fallback handles that case (overlay pinned at 0.5).
       (() => {
-        const hero = document.querySelector<HTMLElement>('[data-post-hero]');
-        if (!hero) return;
-        const src = hero.dataset.heroSrc;
-        if (!src) return;
-        sampleHeroBg(src).then(c => { if (c) hero.style.background = c; });
-      })();
-
-      // Scroll-linked hero recede: image scales from --hero-initial-scale
-      // down to --hero-initial-scale * (1 - --hero-zoom-amount) across the
-      // first viewport of scroll, eased cubic ease-out, then held.
-      // Skipped when user prefers reduced motion. One rAF-throttled
-      // listener per page.
-      (() => {
-        const img = document.querySelector<HTMLElement>('[data-post-hero-img]');
-        if (!img) return;
+        const hero     = document.querySelector<HTMLElement>('[data-post-hero]');
+        const media    = document.querySelector<HTMLElement>('[data-post-hero-media]');
+        const overlay  = document.querySelector<HTMLElement>('[data-post-hero-overlay]');
+        const headline = document.querySelector<HTMLElement>('[data-post-hero-headline]');
+        if (!hero || !media || !overlay || !headline) return;
 
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
         if (reduce.matches) return;
 
-        // Read --hero-initial-scale fresh per update — the value is
-        // responsive via media queries, so resizing past a breakpoint
-        // must change the effective start/end scales without a reload.
-        const readScales = () => {
-          const s = getComputedStyle(document.documentElement);
-          const initial = parseFloat(s.getPropertyValue('--hero-initial-scale')) || 1.25;
-          const amount  = parseFloat(s.getPropertyValue('--hero-zoom-amount'))   || 0.2;
-          return { initial, range: initial - initial * (1 - amount) };
-        };
-
         const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
+        // Read tunables fresh per update — CSS vars may be overridden by
+        // media queries, so crossing a breakpoint must pick up the new
+        // values without a reload.
+        const readVars = () => {
+          const s = getComputedStyle(document.documentElement);
+          const zoomEnd      = parseFloat(s.getPropertyValue('--hero-zoom-end'))        || 1.5;
+          const overlayStart = parseFloat(s.getPropertyValue('--hero-overlay-opacity')) || 0.8;
+          return { zoomEnd, overlayStart };
+        };
 
         let ticking = false;
         const update = () => {
           ticking = false;
-          const { initial, range } = readScales();
-          const vh = window.innerHeight || 1;
-          const progress = Math.min(1, Math.max(0, window.scrollY / vh));
+          const h = hero.offsetHeight || 1;
+          const progress = Math.min(1, Math.max(0, window.scrollY / h));
           const eased = easeOut(progress);
-          const scale = initial - eased * range;
-          img.style.transform = `scale(${scale})`;
+          const { zoomEnd, overlayStart } = readVars();
+
+          media.style.transform    = `scale(${(1 + (zoomEnd - 1) * eased).toFixed(4)})`;
+          overlay.style.opacity    = (overlayStart * (1 - eased)).toFixed(4);
+          headline.style.transform = `translate3d(0, ${(-eased * h * 0.5).toFixed(2)}px, 0)`;
+          headline.style.opacity   = (1 - eased).toFixed(4);
         };
 
         const onScroll = () => {
@@ -144,8 +138,6 @@ const coverRecipe = post.data.coverImage
         <span class="do-post-sep">·</span>
         <span>{readTime}</span>
       </div>
-
-      <h1 class="do-post-title">{post.data.title}</h1>
 
       {post.data.why && (
         <p class="do-post-why">

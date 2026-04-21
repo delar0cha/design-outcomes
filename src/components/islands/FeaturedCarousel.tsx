@@ -3,6 +3,7 @@ import Illustration from './Illustration';
 import type { PostSummary } from '@lib/types';
 import { CATEGORIES } from '@lib/categories';
 import { fmtDate } from '@lib/utils';
+import { sampleHeroBg, HERO_BG_FALLBACK } from '@lib/sampleHeroBg';
 
 interface Props {
   posts: PostSummary[];
@@ -28,10 +29,33 @@ function recipeFor(post: PostSummary) {
     : { kind: 'bars' as const, palette: [cat?.tint ?? '#2F4858', '#E8E0D0', '#15120E'], seed: 1 };
 }
 
+/**
+ * Sample the edge colour of every cover image up front. Frontmatter
+ * `heroBgColor` wins if set (manual override for edge cases where
+ * sampling yields a bad result); otherwise we fall back to a neutral
+ * cream while sampling is in flight, then swap in the sampled colour.
+ */
+function useSampledBgs(posts: PostSummary[]): Record<string, string> {
+  const [bgs, setBgs] = useState<Record<string, string>>({});
+  useEffect(() => {
+    let cancelled = false;
+    for (const p of posts) {
+      if (!p.coverImage || p.heroBgColor) continue;
+      sampleHeroBg(p.coverImage).then(c => {
+        if (cancelled) return;
+        setBgs(prev => (prev[p.coverImage!] === c ? prev : { ...prev, [p.coverImage!]: c }));
+      });
+    }
+    return () => { cancelled = true; };
+  }, [posts]);
+  return bgs;
+}
+
 export default function FeaturedCarousel({ posts }: Props) {
   const [idx, setIdx]       = useState(0);
   const [paused, setPaused] = useState(false);
   const DUR = 8000;
+  const bgs = useSampledBgs(posts);
 
   useEffect(() => {
     if (paused || posts.length <= 1) return;
@@ -64,36 +88,39 @@ export default function FeaturedCarousel({ posts }: Props) {
           />
         </div>
 
-        {/* Illustration stack — crossfade between slides; active slide zooms
-            from scale(1.25) (image overflows, looks tightly framed) to scale(1)
-            (full image visible, heroBgColor letterboxes the natural aspect). */}
+        {/* Illustration stack — crossfade between slides; the active slide's
+            image scales from 1 to (1 - --hero-zoom-amount) over the loader
+            duration while the container's sampled colour bleeds through. */}
         <div className="do-featured-art">
           {posts.map((p, i) => {
             const isActive = i === idx;
+            const bg = p.heroBgColor ?? (p.coverImage ? bgs[p.coverImage] : undefined) ?? HERO_BG_FALLBACK;
+            const imgStyle = isActive
+              ? { animationDuration: `${DUR}ms`, animationPlayState: paused ? 'paused' : 'running' as const }
+              : undefined;
             return (
               <div
                 key={i}
                 className={`do-featured-art-slide${isActive ? ' is-active' : ''}`}
-                style={{ background: p.heroBgColor ?? 'var(--cream-2)' }}
+                style={{ background: bg }}
                 aria-hidden={!isActive}
               >
-                <div
-                  key={isActive ? `zoom-${idx}` : `rest-${i}`}
-                  className="do-featured-art-zoom"
-                  style={isActive ? {
-                    animationDuration:  `${DUR}ms`,
-                    animationPlayState: paused ? 'paused' : 'running',
-                  } : undefined}
-                >
-                  {p.coverImage
-                    ? <img
-                        src={p.coverImage}
-                        alt=""
-                        className="do-featured-img"
-                        draggable={false}
-                      />
-                    : <Illustration recipe={recipeFor(p)} className="do-featured-svg" />}
-                </div>
+                {p.coverImage
+                  ? <img
+                      key={isActive ? `img-${idx}` : `rest-${i}`}
+                      src={p.coverImage}
+                      alt=""
+                      className="do-featured-img"
+                      crossOrigin="anonymous"
+                      draggable={false}
+                      style={imgStyle}
+                    />
+                  : <Illustration
+                      key={isActive ? `svg-${idx}` : `rest-${i}`}
+                      recipe={recipeFor(p)}
+                      className="do-featured-svg"
+                      style={imgStyle}
+                    />}
               </div>
             );
           })}

@@ -20,6 +20,11 @@
 
   --max: 1360px;
   --gutter: 48px;
+
+  /* Hero shrink amount, tunable in one place for both the homepage carousel
+     and the article detail page. At 0.2 the image ends at scale(0.8),
+     revealing 20% of the sampled container colour around its edges. */
+  --hero-zoom-amount: 0.2;
 }
 
 * { box-sizing: border-box; }
@@ -316,7 +321,10 @@ a { color: inherit; text-decoration: none; }
   align-self: end;
 }
 
-/* art — stacked slides, crossfade, active slide zooms 1 → 0.8 */
+/* art — stacked slides, crossfade between slides; active slide's image
+   shrinks from scale(1) (tightly cropped, matches production framing) to
+   scale(1 - var(--hero-zoom-amount)) over the loader duration, letting the
+   sampled container colour show around its edges. */
 .do-featured-art {
   position: relative;
   overflow: hidden;
@@ -332,41 +340,43 @@ a { color: inherit; text-decoration: none; }
   opacity: 1;
   pointer-events: auto;
 }
-.do-featured-art-zoom {
+.do-featured-svg,
+.do-featured-img {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  user-select: none;
   transform-origin: center;
-  transform: scale(1);  /* resting state matches animation end — no snap on deactivation */
+  /* Rest state matches animation end so an outgoing slide does not snap. */
+  transform: scale(calc(1 - var(--hero-zoom-amount)));
   will-change: transform;
 }
-.do-featured-art-slide.is-active .do-featured-art-zoom {
+.do-featured-art-slide.is-active .do-featured-img,
+.do-featured-art-slide.is-active .do-featured-svg {
   animation-name: do-hero-zoom;
   animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   animation-fill-mode: both;
   /* animation-duration + play-state supplied inline per slide */
 }
-.do-featured-svg { width: 100%; height: 100%; display: block; }
-.do-featured-img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  user-select: none;
-}
 @keyframes do-hero-zoom {
-  from { transform: scale(1.25); }
-  to   { transform: scale(1); }
+  from { transform: scale(1); }
+  to   { transform: scale(calc(1 - var(--hero-zoom-amount))); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .do-featured-art-slide {
     transition: none;
   }
-  .do-featured-art-zoom {
+  .do-featured-img,
+  .do-featured-svg {
     transform: none;
     will-change: auto;
   }
-  .do-featured-art-slide.is-active .do-featured-art-zoom {
+  .do-featured-art-slide.is-active .do-featured-img,
+  .do-featured-art-slide.is-active .do-featured-svg {
     animation: none;
   }
 }
@@ -742,31 +752,33 @@ a { color: inherit; text-decoration: none; }
 .do-post-hero-inner {
   position: absolute;
   inset: 0;
-  transform: scale(1.5);  /* initial framing — image overflows the container */
-  transform-origin: center;
-  will-change: transform;
-  /* Feathered edges so the image dissolves into heroBgColor as it recedes. */
+  /* Feathered edges so the image dissolves into the sampled container
+     colour as it recedes — mask stays on the wrapper so it does not
+     scale with the image. */
   -webkit-mask-image: radial-gradient(ellipse at center, black 55%, transparent 100%);
           mask-image: radial-gradient(ellipse at center, black 55%, transparent 100%);
 }
-.do-post-hero-svg {
-  width: 100%; height: 100%;
-  display: block;
-}
+.do-post-hero-svg,
 .do-post-hero-img {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
   user-select: none;
+  transform-origin: center;
+  transform: scale(1);
+  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .do-post-hero-inner {
-    transform: scale(1) !important;
-    will-change: auto;
     -webkit-mask-image: none;
             mask-image: none;
+  }
+  .do-post-hero-img,
+  .do-post-hero-svg {
+    transform: scale(1) !important;
+    will-change: auto;
   }
 }
 .do-post-hero-fade {

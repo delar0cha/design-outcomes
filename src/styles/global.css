@@ -360,10 +360,10 @@ a { color: inherit; text-decoration: none; }
 }
 .do-featured-art-slide.is-active .do-featured-img,
 .do-featured-art-slide.is-active .do-featured-svg {
-  animation-name: do-hero-zoom;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  animation-fill-mode: both;
-  /* animation-duration + play-state supplied inline per slide */
+  /* Zoom runs over the full slide interval — duration comes from
+     --do-slide-duration, wired from JS `DUR` so the zoom ends exactly
+     when the slide transitions. play-state supplied inline. */
+  animation: do-hero-zoom var(--do-slide-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 @keyframes do-hero-zoom {
   from { transform: scale(var(--hero-initial-scale)); }
@@ -400,6 +400,12 @@ a { color: inherit; text-decoration: none; }
   background: var(--rule);
   border-radius: 2px;
 }
+/* Carousel-scoped override: the homepage hero is framed more tightly
+   than the article hero, so it gets a larger initial scale. Article
+   pages keep the root default (1.25). */
+.do-featured {
+  --hero-initial-scale: 1.4;
+}
 .do-progress-fill {
   position: absolute;
   top: 0; left: 50%;
@@ -408,7 +414,10 @@ a { color: inherit; text-decoration: none; }
   transform: translateX(-2px) scaleY(0);
   transform-origin: top center;
   will-change: transform;
-  animation: do-progress-fill linear forwards;
+  /* Duration comes from --do-slide-duration, set inline on the carousel
+     section from the JS `DUR` constant so the progress and zoom stay in
+     sync with the slide-advance timer. */
+  animation: do-progress-fill var(--do-slide-duration) linear forwards;
   border-radius: 2px;
 }
 @keyframes do-progress-fill {

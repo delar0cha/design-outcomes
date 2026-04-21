@@ -70,8 +70,20 @@ export default function FeaturedCarousel({ posts }: Props) {
 
   const cat = CATEGORIES[post.category];
 
+  // Single source of truth for slide pacing: the `DUR` constant above
+  // drives the setTimeout that advances `idx`, and is exposed as
+  // `--do-slide-duration` so both the progress bar and the hero zoom
+  // keyframe read the same value. Change DUR and everything stays in sync.
+  const rootStyle = {
+    '--do-slide-duration': `${DUR}ms`,
+  } as React.CSSProperties;
+
   return (
-    <section className="do-featured is-framed" aria-label="Featured posts">
+    <section
+      className="do-featured is-framed"
+      aria-label="Featured posts"
+      style={rootStyle}
+    >
       <div className="do-featured-inner">
         {/* Vertical progress bar */}
         <div className="do-progress" aria-label="Auto-advance timer">
@@ -81,7 +93,6 @@ export default function FeaturedCarousel({ posts }: Props) {
             className="do-progress-fill"
             style={{
               background:           cat?.tint ?? '#B8432B',
-              animationDuration:    `${DUR}ms`,
               animationPlayState:   paused ? 'paused' : 'running',
             }}
           />
@@ -90,13 +101,14 @@ export default function FeaturedCarousel({ posts }: Props) {
         {/* Illustration — stacked slides with a swift crossfade. Each slide
             carries its own sampled background; the active slide's image
             animates from scale(--hero-initial-scale) to the end scale across
-            the loader duration. */}
+            the full slide duration, so the zoom completes exactly when the
+            slide transitions. */}
         <div className="do-featured-art">
           {posts.map((p, i) => {
             const isActive = i === idx;
             const bg = (p.coverImage && bgs[p.coverImage]) ?? p.heroBgColor ?? HERO_BG_FALLBACK;
             const imgStyle = isActive
-              ? { animationDuration: `${DUR}ms`, animationPlayState: paused ? 'paused' : 'running' as const }
+              ? { animationPlayState: paused ? 'paused' : 'running' as const }
               : undefined;
             return (
               <div

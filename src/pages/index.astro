@@ -1,0 +1,29 @@
+---
+import Base from '@layouts/Base.astro';
+import SiteNav from '@components/islands/SiteNav';
+import EditorialBanner from '@components/ui/EditorialBanner.astro';
+import FeaturedCarousel from '@components/islands/FeaturedCarousel';
+import PostGrid from '@components/islands/PostGrid';
+import SiteFooter from '@components/ui/SiteFooter.astro';
+import { getAllPosts, getFeaturedPosts, toPostSummary } from '@lib/posts';
+
+const allPosts      = await getAllPosts();
+const featuredPosts = await getFeaturedPosts();
+
+const allSummaries      = allPosts.map(toPostSummary);
+const featuredSummaries = featuredPosts.map(toPostSummary);
+---
+
+<Base
+  title="Design Outcomes — Leonardo De La Rocha"
+  description="Weekly design leadership writing by Leonardo De La Rocha, VP Product Design."
+  ogUrl="https://ldlr.design/"
+>
+  <main class="do-page">
+    <SiteNav client:load currentPath="/" />
+    <EditorialBanner />
+    <FeaturedCarousel client:load posts={featuredSummaries} />
+    <PostGrid client:load posts={allSummaries} />
+    <SiteFooter />
+  </main>
+</Base>

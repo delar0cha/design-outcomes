@@ -1,0 +1,34 @@
+---
+import Base from '@layouts/Base.astro';
+import SiteNav from '@components/islands/SiteNav';
+import CaseStudyPage from '@components/islands/CaseStudyPage';
+import SiteFooter from '@components/ui/SiteFooter.astro';
+import { CASE_STUDIES } from '@lib/caseStudies';
+
+export function getStaticPaths() {
+  return CASE_STUDIES.map(cs => ({
+    params: { slug: cs.slug },
+    props:  { cs },
+  }));
+}
+
+const { cs } = Astro.props;
+
+const ogImage = cs.slides?.[0]?.src
+  ? `https://ldlr.design${cs.slides[0].src}`
+  : 'https://ldlr.design/images/work-header.png';
+---
+
+<Base
+  title={cs.title}
+  description={cs.summary}
+  ogImage={ogImage}
+  ogUrl={`https://ldlr.design/work/${cs.slug}`}
+  ogType="article"
+>
+  <main class="do-page do-cs-page">
+    <SiteNav client:load currentPath={`/work/${cs.slug}`} />
+    <CaseStudyPage client:load cs={cs} siteOrigin="https://ldlr.design" />
+    <SiteFooter />
+  </main>
+</Base>

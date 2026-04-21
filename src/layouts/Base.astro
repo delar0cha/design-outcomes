@@ -1,0 +1,63 @@
+---
+import '@styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  ogUrl?: string;
+  ogType?: 'website' | 'article';
+}
+
+const {
+  title       = 'Design Outcomes — Leonardo De La Rocha',
+  description = 'Weekly design leadership writing by Leonardo De La Rocha, VP Product Design.',
+  ogImage     = 'https://ldlr.design/images/work-header.png',
+  ogUrl       = 'https://ldlr.design/',
+  ogType      = 'website',
+} = Astro.props;
+
+const fullTitle = title.includes('Design Outcomes')
+  ? title
+  : `${title} — Design Outcomes`;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+  />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/design-outcomes.svg" />
+
+  <!-- SEO -->
+  <meta name="description" content={description} />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Design Outcomes — Leonardo De La Rocha" />
+  <meta property="og:type"        content={ogType} />
+  <meta property="og:title"       content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image"       content={ogImage} />
+  <meta property="og:url"         content={ogUrl} />
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image"       content={ogImage} />
+</head>
+<body>
+  <slot />
+</body>
+</html>

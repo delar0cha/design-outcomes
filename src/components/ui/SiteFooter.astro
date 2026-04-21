@@ -1,0 +1,59 @@
+---
+import SiteLogo from './SiteLogo.astro';
+import FooterSubscribeForm from '@components/islands/FooterSubscribeForm';
+import { CURRENT_ISSUE } from '@lib/issue';
+
+const issueLabel = `Issue ${String(CURRENT_ISSUE.issueNumber).padStart(2, '0')}`;
+---
+
+<footer class="do-footer">
+  <div class="do-footer-grid">
+    <!-- About column -->
+    <div class="do-footer-about">
+      <SiteLogo width={44} height={50} class="do-footer-logo-mark" />
+      <p>
+        A weekly-updated portfolio of design leadership in practice — real work, real decisions,
+        real thinking. Written by Leonardo De La Rocha, VP Product Design.
+        No sponsors. No popovers. Just the work.
+      </p>
+    </div>
+
+    <!-- Subscribe column -->
+    <div class="do-footer-sub">
+      <div class="do-footer-label">The weekly digest</div>
+      <FooterSubscribeForm client:load />
+      <p class="do-footer-note">
+        One email, Sunday. One link you will actually open. Unsubscribe with one click.
+      </p>
+    </div>
+
+    <!-- Links column -->
+    <div class="do-footer-links">
+      <div class="do-footer-label">Elsewhere</div>
+      <ul>
+        <li>
+          <a href="https://delarocha.myportfolio.com" target="_blank" rel="noopener">
+            delarocha.myportfolio.com →
+          </a>
+        </li>
+        <li>
+          <a href="https://linkedin.com/in/delarocha" target="_blank" rel="noopener">
+            linkedin.com/in/delarocha →
+          </a>
+        </li>
+        <li>
+          <a href="https://instagram.com/delar0cha" target="_blank" rel="noopener">
+            instagram.com/delar0cha →
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="do-footer-rule"></div>
+
+  <div class="do-footer-base">
+    <span>© 2026 Leonardo De La Rocha · ldlr.design · Set in Newsreader &amp; Instrument Sans.</span>
+    <span>{issueLabel} — Week of {CURRENT_ISSUE.weekOfFull}</span>
+  </div>
+</footer>

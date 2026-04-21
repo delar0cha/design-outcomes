@@ -21,17 +21,26 @@
   --max: 1360px;
   --gutter: 48px;
 
-  /* Hero motion — tune these two values to change the zoom amount for
-     both the homepage carousel and the article detail page at once.
-     Start frame: scale(--hero-initial-scale) — image overflows its
-     container so it reads as tightly cropped / full-bleed.
+  /* Hero motion. Zoom amount is fixed; the initial scale is
+     responsive — the hero containers grow wider while their heights
+     stay capped, so object-fit: contain leaves more background
+     visible on wide viewports. Values below are tuned per breakpoint
+     from actual container measurements so the starting crop feels
+     similarly tight across the full viewport range. Article hero
+     uses these :root values; the carousel overrides them on
+     .do-featured since its art column is narrower per viewport.
+     Start frame: scale(--hero-initial-scale) — image overflows the
+     container and reads as full-bleed.
      End frame:   scale(--hero-initial-scale * (1 - --hero-zoom-amount))
-     — with defaults, that lands at exactly 1.0, where the image fits
-     its container naturally and the sampled background fills any
-     letterbox space. */
+     — image fits naturally, sampled bg fills any letterbox. */
   --hero-initial-scale: 1.25;
   --hero-zoom-amount:   0.2;
 }
+/* Responsive initial scale — overrides cascade by viewport width. */
+@media (min-width: 721px)  { :root { --hero-initial-scale: 1.4; } }
+@media (min-width: 1081px) { :root { --hero-initial-scale: 1.6; } }
+@media (min-width: 1440px) { :root { --hero-initial-scale: 1.8; } }
+@media (min-width: 1920px) { :root { --hero-initial-scale: 2.0; } }
 
 * { box-sizing: border-box; }
 
@@ -400,12 +409,14 @@ a { color: inherit; text-decoration: none; }
   background: var(--rule);
   border-radius: 2px;
 }
-/* Carousel-scoped override: the homepage hero is framed more tightly
-   than the article hero, so it gets a larger initial scale. Article
-   pages keep the root default (1.25). */
-.do-featured {
-  --hero-initial-scale: 1.4;
-}
+/* Carousel-scoped overrides: the art column is narrower per viewport
+   than the article hero, and jumps to a near-square shape when the
+   layout goes multi-column at 1081px. Uses higher initial scales than
+   :root so the starting crop feels tight across all breakpoints. */
+.do-featured                   { --hero-initial-scale: 1.4; }
+@media (min-width: 721px)  { .do-featured { --hero-initial-scale: 1.6; } }
+@media (min-width: 1081px) { .do-featured { --hero-initial-scale: 2.0; } }
+@media (min-width: 1440px) { .do-featured { --hero-initial-scale: 1.9; } }
 .do-progress-fill {
   position: absolute;
   top: 0; left: 50%;

@@ -102,21 +102,26 @@ const coverRecipe = post.data.coverImage
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
         if (reduce.matches) return;
 
-        const rootStyles = getComputedStyle(document.documentElement);
-        const INITIAL = parseFloat(rootStyles.getPropertyValue('--hero-initial-scale')) || 1.25;
-        const AMOUNT  = parseFloat(rootStyles.getPropertyValue('--hero-zoom-amount'))   || 0.2;
-        const END     = INITIAL * (1 - AMOUNT);
-        const RANGE   = INITIAL - END;
+        // Read --hero-initial-scale fresh per update — the value is
+        // responsive via media queries, so resizing past a breakpoint
+        // must change the effective start/end scales without a reload.
+        const readScales = () => {
+          const s = getComputedStyle(document.documentElement);
+          const initial = parseFloat(s.getPropertyValue('--hero-initial-scale')) || 1.25;
+          const amount  = parseFloat(s.getPropertyValue('--hero-zoom-amount'))   || 0.2;
+          return { initial, range: initial - initial * (1 - amount) };
+        };
 
         const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
         let ticking = false;
         const update = () => {
           ticking = false;
+          const { initial, range } = readScales();
           const vh = window.innerHeight || 1;
           const progress = Math.min(1, Math.max(0, window.scrollY / vh));
           const eased = easeOut(progress);
-          const scale = INITIAL - eased * RANGE;
+          const scale = initial - eased * range;
           img.style.transform = `scale(${scale})`;
         };
 

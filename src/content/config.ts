@@ -65,6 +65,17 @@ const posts = defineCollection({
     audio:            z.string().url().optional(),
     audioGeneratedAt: z.date().optional(),
 
+    /**
+     * Path (or URL) to the timings JSON used for synced lyric highlighting
+     * in the featured-carousel audio player. Convention: `/timings/<slug>.json`
+     * served from `public/timings/`. File format: `[{ start: <seconds>, text: <string> }]`.
+     *
+     * Optional — if absent, the player renders without active-line sync
+     * (falls back to the description as a static block). Machine-generated
+     * from the MP3 in a separate pipeline; the path just needs to be stable.
+     */
+    timings:          z.string().optional(),
+
     /** Set to true to keep a post out of production builds. */
     draft:   z.boolean().default(false),
 

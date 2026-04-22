@@ -1,0 +1,133 @@
+[
+  {
+    "start": 0.0,
+    "words": [
+      { "start": 0.00, "word": "Leverage" },
+      { "start": 0.50, "word": "as" },
+      { "start": 0.70, "word": "a" },
+      { "start": 0.90, "word": "Leadership" },
+      { "start": 1.50, "word": "Posture." }
+    ]
+  },
+  {
+    "start": 2.50,
+    "words": [
+      { "start": 2.50, "word": "Narrated" },
+      { "start": 3.00, "word": "by" },
+      { "start": 3.20, "word": "the" },
+      { "start": 3.40, "word": "author," },
+      { "start": 3.80, "word": "Leonardo" },
+      { "start": 4.30, "word": "De" },
+      { "start": 4.50, "word": "La" },
+      { "start": 4.70, "word": "Rocha." }
+    ]
+  },
+  {
+    "start": 5.50,
+    "words": [
+      { "start": 5.50, "word": "When" },
+      { "start": 5.75, "word": "a" },
+      { "start": 5.90, "word": "CEO" },
+      { "start": 6.35, "word": "asks" },
+      { "start": 6.65, "word": "leaders" },
+      { "start": 7.05, "word": "to" },
+      { "start": 7.20, "word": "create" },
+      { "start": 7.60, "word": "leverage" },
+      { "start": 8.10, "word": "in" },
+      { "start": 8.25, "word": "a" },
+      { "start": 8.40, "word": "compression" },
+      { "start": 9.10, "word": "quarter," },
+      { "start": 9.60, "word": "the" },
+      { "start": 9.80, "word": "word" },
+      { "start": 10.10, "word": "is" },
+      { "start": 10.30, "word": "doing" },
+      { "start": 10.65, "word": "more" },
+      { "start": 10.95, "word": "work" },
+      { "start": 11.25, "word": "than" },
+      { "start": 11.55, "word": "it" },
+      { "start": 11.70, "word": "appears" },
+      { "start": 12.15, "word": "to." }
+    ]
+  },
+  {
+    "start": 13.00,
+    "words": [
+      { "start": 13.00, "word": "Most" },
+      { "start": 13.30, "word": "leaders" },
+      { "start": 13.75, "word": "read" },
+      { "start": 14.05, "word": "it" },
+      { "start": 14.25, "word": "wrong." }
+    ]
+  },
+  {
+    "start": 15.20,
+    "words": [
+      { "start": 15.20, "word": "Here" },
+      { "start": 15.50, "word": "is" },
+      { "start": 15.70, "word": "the" },
+      { "start": 15.90, "word": "generative" },
+      { "start": 16.55, "word": "version," },
+      { "start": 17.10, "word": "the" },
+      { "start": 17.30, "word": "four" },
+      { "start": 17.60, "word": "questions" },
+      { "start": 18.15, "word": "that" },
+      { "start": 18.45, "word": "distinguish" },
+      { "start": 19.10, "word": "it" },
+      { "start": 19.30, "word": "from" },
+      { "start": 19.60, "word": "the" },
+      { "start": 19.80, "word": "extractive" },
+      { "start": 20.45, "word": "one." }
+    ]
+  },
+  {
+    "start": 21.50,
+    "words": [
+      { "start": 21.50, "word": "And" },
+      { "start": 21.80, "word": "why" },
+      { "start": 22.10, "word": "the" },
+      { "start": 22.30, "word": "posture" },
+      { "start": 22.80, "word": "is" },
+      { "start": 23.00, "word": "also" },
+      { "start": 23.35, "word": "the" },
+      { "start": 23.55, "word": "retention" },
+      { "start": 24.10, "word": "story." }
+    ]
+  },
+  {
+    "start": 25.50,
+    "words": [
+      { "start": 25.50, "word": "The" },
+      { "start": 25.75, "word": "extractive" },
+      { "start": 26.40, "word": "version" },
+      { "start": 26.90, "word": "cuts" },
+      { "start": 27.20, "word": "the" },
+      { "start": 27.40, "word": "slower" },
+      { "start": 27.80, "word": "performers," },
+      { "start": 28.50, "word": "pushes" },
+      { "start": 28.95, "word": "the" },
+      { "start": 29.15, "word": "pace," },
+      { "start": 29.60, "word": "and" },
+      { "start": 29.90, "word": "asks" },
+      { "start": 30.25, "word": "for" },
+      { "start": 30.50, "word": "more" },
+      { "start": 30.85, "word": "hours." }
+    ]
+  },
+  {
+    "start": 32.00,
+    "words": [
+      { "start": 32.00, "word": "The" },
+      { "start": 32.25, "word": "generative" },
+      { "start": 32.90, "word": "version" },
+      { "start": 33.40, "word": "starts" },
+      { "start": 33.85, "word": "with" },
+      { "start": 34.15, "word": "the" },
+      { "start": 34.40, "word": "leader's" },
+      { "start": 34.95, "word": "own" },
+      { "start": 35.25, "word": "behavior," },
+      { "start": 35.90, "word": "not" },
+      { "start": 36.20, "word": "the" },
+      { "start": 36.45, "word": "team's." }
+    ]
+  }
+]

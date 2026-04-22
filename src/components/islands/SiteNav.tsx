@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SubscribeModal from './SubscribeModal';
-import { CURRENT_ISSUE } from '@lib/issue';
+import { formatIssueLabel } from '@lib/issue';
 import SiteLogoSvg from './SiteLogoSvg';
 
 interface Props {
@@ -11,7 +11,6 @@ export default function SiteNav({ currentPath = '/' }: Props) {
   const [subOpen,  setSubOpen]  = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const issueLabel = `Issue ${String(CURRENT_ISSUE.issueNumber).padStart(2, '0')}`;
   const openSub = () => { setMenuOpen(false); setSubOpen(true); };
 
   const isActive = (path: string) =>
@@ -40,11 +39,11 @@ export default function SiteNav({ currentPath = '/' }: Props) {
             <button className="do-nav-sub-btn" onClick={openSub}>Subscribe</button>
           </nav>
 
-          {/* Issue meta (right) */}
+          {/* Issue meta (right) — single span styled via .do-issue-label,
+              shared verbatim with the footer so any future adjustment to
+              the label's typography or format flows to both places. */}
           <div className="do-nav-meta">
-            <span className="do-nav-issue">{issueLabel}</span>
-            <span className="do-nav-dot" />
-            <span>Week of {CURRENT_ISSUE.weekOf}</span>
+            <span className="do-issue-label">{formatIssueLabel()}</span>
           </div>
 
           {/* Hamburger (mobile) */}

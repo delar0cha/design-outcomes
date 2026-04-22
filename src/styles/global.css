@@ -167,9 +167,20 @@ a { color: inherit; text-decoration: none; }
 }
 .do-nav-links a.is-active:hover { color: var(--ink); }
 
-.do-nav-meta { display: flex; align-items: center; gap: 10px; justify-self: end; color: var(--muted); font-variant-numeric: tabular-nums; }
-.do-nav-dot { width: 3px; height: 3px; background: var(--muted); border-radius: 50%; }
-.do-nav-issue { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.do-nav-meta { display: flex; align-items: center; justify-self: end; font-variant-numeric: tabular-nums; }
+
+/* ── Shared issue label ──
+   One source of truth for the "Issue NN — Week of Month DD, YYYY" line
+   shown in both the site header (SiteNav → .do-nav-meta) and the site
+   footer (SiteFooter → .do-footer-base). Typography is defined here and
+   here only; adjust in one place and both surfaces update together. */
+.do-issue-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 
 /* Hamburger — desktop hidden, mobile shown */
 .do-nav-hamburger {
@@ -234,6 +245,14 @@ a { color: inherit; text-decoration: none; }
   font-weight: 500;
   line-height: 1;
 }
+/* Size variants — used by the React CategoryTag in FeaturedCarousel so
+   media queries can shrink the lg tag on narrow viewports (avoids the
+   category name wrapping to two lines inside the meta-row pill). */
+.do-tag--sm { padding: 5px 9px;  font-size: 11px; }
+.do-tag--lg { padding: 8px 12px; font-size: 12px; }
+@media (max-width: 720px) {
+  .do-tag--lg { padding: 6px 10px; font-size: 11px; }
+}
 .do-tag-mono {
   display: inline-grid; place-items: center;
   width: 18px; height: 18px;
@@ -244,7 +263,11 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   letter-spacing: 0.04em;
 }
-.do-tag-name { display: inline-block; padding-right: 4px; }
+.do-tag-name {
+  display: inline-block;
+  padding-right: 4px;
+  white-space: nowrap; /* pill labels must stay on a single line */
+}
 
 /* ------------------------ Editorial banner (homepage only) ------------------------ */
 .do-editorial-banner {
@@ -294,6 +317,7 @@ a { color: inherit; text-decoration: none; }
   padding: 40px var(--gutter) 80px;
 }
 .do-featured.is-framed .do-featured-inner {
+  position: relative; /* positioning context for ArticlePlayer overlay */
   display: grid;
   grid-template-columns: 14px 1.15fr 1fr;
   gap: 40px;
@@ -312,15 +336,13 @@ a { color: inherit; text-decoration: none; }
 .do-featured.is-framed .do-featured-text {
   grid-column: 3;
   padding: 24px 0 0 0;
+  display: flex;
+  flex-direction: column; /* meta + hero at top, CTA row pushed to bottom */
 }
 .do-featured.is-framed .do-progress {
   grid-column: 1;
 }
-.do-featured.is-framed .do-featured-controls {
-  grid-column: 3;
-  align-self: end;
-  padding-bottom: 8px;
-}
+/* Controls now live inside .do-featured-art (overlayed, not in the grid). */
 
 /* FULL BLEED variant */
 .do-featured.is-bleed {
@@ -505,33 +527,58 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink);
   padding: 14px 0;
   border-bottom: 1px solid var(--ink);
-  transition: gap 240ms ease, color 240ms ease;
+  transition: color 240ms ease, border-color 240ms ease;
   width: max-content;
   font-weight: 500;
 }
-.do-featured-cta:hover { gap: 22px; color: var(--accent); border-color: var(--accent); }
+/* Hover: match the category/pill accent (inherited from .do-featured-ctas).
+   Arrow slides right via transform, NOT gap — so the element's width stays
+   fixed and the hover doesn't push the CTA's right edge outward. */
+.do-featured-cta svg { transition: transform 240ms ease; }
+.do-featured-cta:hover {
+  color: var(--player-accent, var(--accent));
+  border-color: var(--player-accent, var(--accent));
+}
+.do-featured-cta:hover svg { transform: translateX(6px); }
 
 /* controls */
+/* Controls overlay — absolute-positioned at the bottom-center of
+   .do-featured-art (sibling of the stacked slides). Slightly smaller than
+   the previous below-illustration row. Crossfades with the illustration
+   when the player opens. */
 .do-featured-controls {
-  display: flex; align-items: center; gap: 14px;
-  margin-top: 48px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;       /* above the stacked slides */
 }
 .do-ctrl {
-  width: 34px; height: 34px;
+  width: 28px; height: 28px;
   display: grid; place-items: center;
   border: 1px solid var(--rule);
   border-radius: 50%;
+  background: transparent;
   color: var(--ink);
-  transition: background 180ms, border-color 180ms;
+  cursor: pointer;
+  transition: background 180ms, border-color 180ms, color 180ms;
 }
 .do-ctrl:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
-.do-dots { display: flex; gap: 8px; margin-left: 8px; }
+.do-dots { display: flex; gap: 6px; margin-left: 6px; }
 .do-dot {
-  width: 22px; height: 2px;
+  width: 18px; height: 2px;
   background: var(--rule);
-  transition: background 240ms, height 240ms;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 240ms;
 }
-.do-dot.is-on { background: var(--ink); }
+/* Active dot picks up the active slide's category tint via --player-accent
+   (cascaded from the .do-featured section root). */
+.do-dot.is-on { background: var(--player-accent, var(--ink)); }
 
 /* ------------------------ Grid (Zone 2) ------------------------ */
 .do-grid-section {
@@ -779,11 +826,8 @@ a { color: inherit; text-decoration: none; }
 .do-footer-base {
   display: flex;
   justify-content: space-between;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  text-transform: uppercase;
+  /* Typography lives on .do-issue-label — applied to each child span so
+     the footer's bottom row matches the header's issue label exactly. */
 }
 
 /* ------------------------ Post page ------------------------ */
@@ -1138,7 +1182,6 @@ a { color: inherit; text-decoration: none; }
   .do-featured.is-framed .do-featured-inner { grid-template-columns: 14px 1fr; }
   .do-featured.is-framed .do-featured-art { grid-column: 2; min-height: 360px; }
   .do-featured.is-framed .do-featured-text { grid-column: 2; padding: 24px 0 0; }
-  .do-featured.is-framed .do-featured-controls { grid-column: 2; }
 }
 @media (max-width: 720px) {
   :root { --gutter: 20px; }
@@ -1161,7 +1204,6 @@ a { color: inherit; text-decoration: none; }
   .do-featured.is-framed .do-progress { display: none; }
   .do-featured.is-framed .do-featured-art { grid-column: 1; height: 260px; min-height: 260px; }
   .do-featured.is-framed .do-featured-text { grid-column: 1; }
-  .do-featured.is-framed .do-featured-controls { grid-column: 1; margin-top: 20px; }
 
   /* ── Featured hero — bleed ── */
   .do-featured.is-bleed .do-featured-inner { grid-template-columns: 1fr; min-height: 500px; }
@@ -1169,11 +1211,9 @@ a { color: inherit; text-decoration: none; }
   .do-featured.is-bleed .do-featured-text { grid-column: 1; padding: 40px 20px 20px; background: linear-gradient(180deg, rgba(247,242,234,0.5), rgba(247,242,234,0.96)); backdrop-filter: blur(4px); }
   .do-featured.is-bleed .do-featured-controls { grid-column: 1; padding: 0 20px 40px; }
 
-  /* ── Featured typography & controls ── */
+  /* ── Featured typography ── */
   .do-featured-title { font-size: clamp(28px, 7.5vw, 42px); }
   .do-featured-excerpt { font-size: 16px; max-width: 100%; }
-  .do-featured-controls { flex-wrap: wrap; margin-top: 20px; }
-  .do-ctrl { width: 44px; height: 44px; }
 
   /* ── Post ── */
   .do-post { padding: 40px 20px 60px; }
@@ -2134,4 +2174,402 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 .do-post-body blockquote p {
   margin: 0;
   display: inline;
+}
+
+/* ─── Bespoke featured-carousel audio player ──────────────────────────────
+   Rendered inside .do-featured-inner (which is now position:relative). The
+   root .do-player is an absolute overlay that inherits the inner's grid so
+   the orb aligns with .do-featured-art (col 2) and the lyrics with
+   .do-featured-text (col 3). At rest only the transport's pill state is
+   visible; .is-open (added imperatively one frame after mount) triggers the
+   width morph + orb/lyrics fade-in. Category accent is supplied via
+   --player-accent on the root.
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* Orb — portaled directly into .do-featured-art as a sibling of the
+   stacked slides. Absolute inset:0 fills the art column, so its canvas
+   is sized to the illustration's box. When the player opens, the active
+   art slide fades to 0 and the orb fades to 1 in the same box. */
+
+/* When any player is open, crossfade out: the slide's own stacked
+   illustration (targeting .do-featured-art-slide rather than the
+   container, so the container stays opacity:1 and the portaled orb
+   remains visible), the pill, and the CTA link. The meta bar, hero
+   content (title + description), and nav controls all stay visible
+   across states — they are NOT in this list. */
+.do-featured.is-player-open .do-featured-controls,
+.do-featured.is-player-open .do-player-pill,
+.do-featured.is-player-open .do-featured-ctas .do-featured-cta {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* Active illustration fades to 10% (not 0) when the player opens, so it
+   sits as a ghost layer behind the karaoke text. Higher specificity than
+   the .is-active rule so it wins the opacity cascade. */
+.do-featured.is-player-open .do-featured-art-slide.is-active {
+  opacity: 0.1;
+  pointer-events: none;
+  transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.do-featured .do-featured-art-slide,
+.do-featured .do-featured-controls,
+.do-featured .do-player-pill,
+.do-featured .do-featured-ctas .do-featured-cta {
+  transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* CTA row — flex row anchored to the bottom of the text column. Pill is
+   portaled in as the first item (via order:0); "Read the piece" is the
+   second item (order:1). The transport is absolute-positioned over the
+   row and morphs from the pill's width to 100% on .is-player-open. */
+.do-featured-ctas {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: auto;  /* pushes this row to the bottom of the flex column */
+  height: 56px;      /* matches pill height */
+  width: 100%;
+}
+.do-featured-ctas .do-player-pill    { order: 0; }
+.do-featured-ctas .do-featured-cta   { order: 1; }
+
+/* ── Karaoke narration panel ──
+   Portaled into .do-featured-art, fills its bounds via inset:0. At rest
+   it's opacity 0 under the illustration; on .is-player-open the
+   illustration fades out and this fades in. Words get a category-tinted
+   highlight bar (var(--player-accent)) as they are read, and the line
+   currently being narrated is always centered vertically (JS measures
+   and translates the inner line stack). */
+.do-player-karaoke {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1) 200ms;
+  pointer-events: none;
+  /* Soft fade at top and bottom so lines at the edges of the scroll
+     view dissolve into the cream background rather than hard-clipping. */
+  -webkit-mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,1) 18%,
+    rgba(0,0,0,1) 82%,
+    rgba(0,0,0,0) 100%);
+          mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,1) 18%,
+    rgba(0,0,0,1) 82%,
+    rgba(0,0,0,0) 100%);
+}
+.do-featured.is-player-open .do-player-karaoke {
+  opacity: 1;
+}
+
+.do-player-karaoke-scroll {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;       /* active-line centering relies on this */
+  justify-content: flex-start;
+  padding: 0 40px;
+  overflow: hidden;
+}
+
+/* The stack of every narration line. When the active index changes, JS
+   sets an inline transform: translateY(Ypx) that shifts the stack so
+   the active line's center aligns with the scroll container's center. */
+.do-player-karaoke-lines {
+  width: 100%;
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Each narration line — a block. Long lines wrap naturally; the
+   measurement in JS accounts for variable per-line height. */
+.do-player-karaoke-line {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 1.22;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  padding: 12px 0;
+  text-wrap: pretty;
+  font-variation-settings: "opsz" 72;
+}
+
+/* Individual word spans. `.is-read` is toggled by React when
+   currentTime passes the word's start time. `box-decoration-break:
+   clone` makes the highlight bar behave correctly when a line wraps —
+   each wrapped fragment of the span gets its own rounded corners. */
+.do-player-karaoke-word {
+  background-color: transparent;
+  color: var(--ink);
+  padding: 2px 0;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: background-color 220ms ease, color 180ms ease;
+}
+.do-player-karaoke-word.is-read {
+  background-color: var(--player-accent, #2F4858);
+  color: var(--cream);
+  /* Slight horizontal padding on the inline background so the bar
+     reads as a continuous "marker" stroke behind the words. */
+  box-shadow: 0.1em 0 0 var(--player-accent, #2F4858),
+              -0.1em 0 0 var(--player-accent, #2F4858);
+}
+
+.do-player-karaoke-fallback {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  padding: 24px 40px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ── Rest-state pill ──
+   Portaled into .do-featured-art (the art column itself, which has
+   position:relative). Anchored to the art column's bottom-left corner in
+   every layout — the way a play button sits on top of a video thumbnail.
+   Fades out automatically via .do-featured.is-player-open. The pill
+   element receives --player-accent via inline style on the element
+   itself, because CSS custom properties don't carry through React portal
+   boundaries (the portal target lives elsewhere in the DOM).
+
+   Typography is aligned with .do-featured-cta (the "READ THE PIECE" link
+   right beside it): same 13px size, 500 weight, uppercase, 0.08em
+   letter-spacing. Layout: gap:16 between label and play circle, and
+   padding-left:16 so the space to the left of the text equals the space
+   between text and play circle. Width auto-sizes to content, so the pill
+   is only as long as "LISTEN NOW" + symmetric padding requires. */
+.do-player-pill {
+  /* Flex item inside .do-featured-ctas (portaled there); static positioning,
+     width auto-sized by content so spacing around "LISTEN NOW" stays symmetric. */
+  width: max-content;
+  height: 56px;
+  border: none;
+  border-radius: 999px;
+  background: var(--player-accent, #B8432B);
+  color: #F5F0E8;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 5px 5px 5px 16px;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: filter 200ms, transform 200ms;
+}
+.do-player-pill:hover    { filter: brightness(1.08); }
+.do-player-pill:active   { transform: translateY(1px); }
+.do-player-pill:disabled { cursor: default; }
+.do-player-pill-label { line-height: 1; }
+.do-player-pill-play {
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #F5F0E8;
+  color: var(--player-accent, #B8432B);
+  flex: 0 0 auto;
+}
+
+/* ── Open-state transport ──
+   Portaled into .do-featured-ctas (the CTA row at the bottom of the text
+   column). Absolute-positioned over the row. At rest it sits invisible at
+   the pill's left edge, sized to the pill's width for a clean morph
+   starting point. On .is-player-open it grows to the full row width and
+   fades in, while the pill + CTA link fade out underneath. Height of the
+   carousel doesn't change — the row is already allotted 56px for the
+   pill, and the transport occupies the same 56px. */
+.do-player-transport {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 174px;                    /* matches pill's natural auto-width */
+  height: 56px;
+  border-radius: 999px;
+  background: var(--player-accent, #B8432B);
+  color: #F5F0E8;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 16px 0 8px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3; /* above the pill + link */
+  transition: width 700ms cubic-bezier(0.45, 0, 0.15, 1),
+              opacity 300ms ease-in 200ms;
+}
+.do-featured.is-player-open .do-player-transport {
+  width: 100%;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.do-player-play {
+  display: grid; place-items: center;
+  width: 40px; height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #F5F0E8;
+  color: var(--player-accent, #B8432B);
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: filter 180ms;
+}
+.do-player-play:hover { filter: brightness(0.92); }
+
+.do-player-time {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  color: rgba(245, 240, 232, 0.9);
+  min-width: 36px;
+  white-space: nowrap;
+}
+.do-player-time.is-right { text-align: right; }
+
+.do-player-scrubber {
+  flex: 1 1 auto;
+  position: relative;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.do-player-scrubber:focus-visible {
+  outline: 2px solid rgba(245, 240, 232, 0.5);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.do-player-scrubber-track {
+  position: absolute; left: 0; right: 0;
+  height: 1px;
+  background: #F5F0E8;
+  opacity: 0.35;
+}
+.do-player-scrubber-bar {
+  position: absolute; left: 0;
+  height: 1px;
+  background: #F5F0E8;
+  transition: width 80ms linear;
+}
+.do-player-scrubber-thumb {
+  position: absolute;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #F5F0E8;
+  transform: translateX(-5px);
+  transition: left 80ms linear;
+}
+
+.do-player-speeds {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.do-player-speed {
+  background: transparent;
+  border: 1px solid #F5F0E8;
+  color: #F5F0E8;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  cursor: pointer;
+  opacity: 0.7;
+  min-width: 36px;
+  transition: opacity 150ms, background 150ms;
+}
+.do-player-speed:hover { opacity: 1; }
+.do-player-speed.is-active {
+  background: rgba(245, 240, 232, 0.2);
+  font-weight: 600;
+  opacity: 1;
+}
+
+/* Mobile: single speed chip that cycles. Hidden above the breakpoint. */
+.do-player-speeds--mobile { display: none; }
+
+.do-player-close {
+  background: transparent;
+  border: none;
+  color: #F5F0E8;
+  width: 24px; height: 24px;
+  display: grid; place-items: center;
+  cursor: pointer;
+  opacity: 0.85;
+  margin-left: 2px;
+  flex-shrink: 0;
+  transition: opacity 150ms;
+}
+.do-player-close:hover { opacity: 1; }
+
+/* ── Mobile: size the CTA row down slightly so pill + link fit more
+   comfortably inside the ~335px-wide art pane, with room to breathe. ── */
+@media (max-width: 720px) {
+  /* Row + pill + transport all share a smaller height so they align. */
+  .do-featured-ctas,
+  .do-player-pill,
+  .do-player-transport {
+    height: 48px;
+  }
+  .do-featured-ctas { gap: 14px; }
+  .do-player-pill {
+    font-size: 12px;
+    padding: 3px 3px 3px 14px;
+    gap: 14px;
+  }
+  .do-player-pill-play {
+    width: 42px;
+    height: 42px;
+  }
+  .do-featured-cta {
+    font-size: 12px;
+    padding: 10px 0;
+  }
+
+  /* Transport internals shrink proportionally so they still fit at 48px. */
+  .do-player-transport {
+    gap: 8px;
+    padding: 0 10px 0 6px;
+  }
+  .do-player-play {
+    width: 32px;
+    height: 32px;
+  }
+  .do-player-time { display: none; }
+  .do-player-speeds--desktop { display: none; }
+  .do-player-speeds--mobile  { display: inline-flex; }
+
+  /* Karaoke text scales down so per-line word count stays similar to
+     desktop. Padding tightens to match the narrower art column. */
+  .do-player-karaoke-scroll { padding: 0 20px; }
+  .do-player-karaoke-line   { font-size: 22px; padding: 8px 0; }
+  .do-player-karaoke-fallback { font-size: 16px; padding: 16px 20px; }
+}
+
+/* Reduced motion — collapse transitions that would otherwise sweep. */
+@media (prefers-reduced-motion: reduce) {
+  .do-player-karaoke,
+  .do-player-karaoke-lines,
+  .do-player-karaoke-word,
+  .do-player-transport,
+  .do-player-pill,
+  .do-player-scrubber-bar,
+  .do-player-scrubber-thumb {
+    transition: none !important;
+  }
 }

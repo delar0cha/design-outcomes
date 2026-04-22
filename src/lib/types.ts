@@ -16,6 +16,7 @@ export interface PostSummary {
   draft: boolean;
   tags: string[];
   audio?: string;
+  timings?: string;
 }
 
 export interface CategoryMeta {

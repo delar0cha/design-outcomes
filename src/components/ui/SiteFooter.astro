@@ -1,9 +1,9 @@
 ---
 import SiteLogo from './SiteLogo.astro';
 import FooterSubscribeForm from '@components/islands/FooterSubscribeForm';
-import { CURRENT_ISSUE } from '@lib/issue';
+import { formatIssueLabel } from '@lib/issue';
 
-const issueLabel = `Issue ${String(CURRENT_ISSUE.issueNumber).padStart(2, '0')}`;
+const issueLabel = formatIssueLabel();
 ---
 
 <footer class="do-footer">
@@ -53,7 +53,7 @@ const issueLabel = `Issue ${String(CURRENT_ISSUE.issueNumber).padStart(2, '0')}`
   <div class="do-footer-rule"></div>
 
   <div class="do-footer-base">
-    <span>© 2026 Leonardo De La Rocha · ldlr.design · Set in Newsreader &amp; Instrument Sans.</span>
-    <span>{issueLabel} — Week of {CURRENT_ISSUE.weekOfFull}</span>
+    <span class="do-issue-label">© 2026 Leonardo De La Rocha · ldlr.design · Set in Newsreader &amp; Instrument Sans.</span>
+    <span class="do-issue-label">{issueLabel}</span>
   </div>
 </footer>

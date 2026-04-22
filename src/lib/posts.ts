@@ -74,5 +74,6 @@ export function toPostSummary(entry: PostEntry): PostSummary {
     draft:       entry.data.draft,
     tags:        entry.data.tags ?? [],
     audio:       entry.data.audio,
+    timings:     entry.data.timings,
   };
 }

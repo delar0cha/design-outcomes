@@ -7,8 +7,9 @@
     "dev":            "astro dev",
     "build":          "astro build",
     "preview":        "astro preview",
-    "new-post":       "tsx scripts/new-post.ts",
-    "generate-audio": "tsx scripts/generate-audio.ts"
+    "new-post":         "tsx scripts/new-post.ts",
+    "generate-audio":   "tsx scripts/generate-audio.ts",
+    "generate-timings": "tsx scripts/generate-timings.ts"
   },
   "dependencies": {
     "@astrojs/mdx":    "^4.0.0",

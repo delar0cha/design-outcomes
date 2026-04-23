@@ -206,7 +206,9 @@ export default function FeaturedCarousel({ posts }: Props) {
             </span>
           </div>
           <div className="do-featured-hero-content">
-            <h1 className="do-featured-title">{post.title}</h1>
+            <h1 className="do-featured-title">
+              <a className="do-featured-title-link" href={`/post/${post.slug}`}>{post.title}</a>
+            </h1>
             <p className="do-featured-excerpt">{post.description}</p>
           </div>
           {/* CTA row — Listen now pill (portaled in by ArticlePlayer when

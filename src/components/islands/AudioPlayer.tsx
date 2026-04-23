@@ -13,6 +13,12 @@ interface Props {
   /** Post slug — used as the localStorage key for playback-position resume. */
   slug: string;
   /**
+   * Category tint for the post — drives the Listen button background and the
+   * inline/sticky player bar background via the --player-accent CSS var.
+   * Falls back to the dark-warm palette when absent.
+   */
+  accent?: string;
+  /**
    * Sticky mini-player entrance/exit style.
    * 'smooth' (default) fades + micro-slides; 'snap' shows/hides instantly.
    * The snap mode powers the /audio-demo-snap preview page.
@@ -48,7 +54,12 @@ function PauseGlyph({ size = 10 }: { size?: number }) {
   );
 }
 
-export default function AudioPlayer({ audio, slug, stickyMode = 'smooth' }: Props) {
+export default function AudioPlayer({ audio, slug, accent, stickyMode = 'smooth' }: Props) {
+  // Apply category tint as a CSS custom property — referenced by .do-listen-btn,
+  // .do-audio-player, and .do-audio-sticky in global.css. Each portal/wrapper
+  // sets it inline because custom properties don't inherit across React portal
+  // boundaries into separate DOM subtrees.
+  const accentStyle = accent ? ({ ['--player-accent' as any]: accent } as React.CSSProperties) : undefined;
   const [open, setOpen]               = useState(false);
   const [isPlaying, setIsPlaying]     = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -196,6 +207,7 @@ export default function AudioPlayer({ audio, slug, stickyMode = 'smooth' }: Prop
     <button
       type="button"
       className="do-listen-btn"
+      style={accentStyle}
       onClick={toggleOpen}
       disabled={open}
       aria-label={listenLabel}
@@ -216,7 +228,7 @@ export default function AudioPlayer({ audio, slug, stickyMode = 'smooth' }: Prop
         stickyMode === 'snap' ? 'is-snap' : '',
         isSticky ? 'is-visible' : '',
       ].filter(Boolean).join(' ')}
-      style={{ top: `${navHeight}px` }}
+      style={{ top: `${navHeight}px`, ...accentStyle }}
       aria-hidden={!isSticky}
     >
       <div className="do-audio-sticky-inner">
@@ -252,7 +264,7 @@ export default function AudioPlayer({ audio, slug, stickyMode = 'smooth' }: Prop
 
       {open && (
         <>
-          <div ref={inlineRef} className="do-audio-player">
+          <div ref={inlineRef} className="do-audio-player" style={accentStyle}>
             <div className="do-audio-player-inner">
               <button
                 type="button"

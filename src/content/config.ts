@@ -80,10 +80,12 @@ const posts = defineCollection({
     draft:   z.boolean().default(false),
 
     /**
-     * Marks a post for the weekly featured carousel.
-     * Flip to true for the current week's 3 articles; flip back after rotation.
+     * The weekly issue this post belongs to. The homepage carousel surfaces
+     * every post whose `issue` matches CURRENT_ISSUE.issueNumber in
+     * src/lib/issue.ts. Posts without an `issue` are reachable from the
+     * index but never appear in the carousel.
      */
-    featured: z.boolean().default(false),
+    issue: z.number().int().positive().optional(),
 
     // readingTime is NOT authored — it is calculated automatically in src/lib/posts.ts
     // from the rendered body content. Do not add it here.

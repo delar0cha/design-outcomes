@@ -1028,6 +1028,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .do-post-byline {
+  position: relative;
   display: grid;
   grid-template-columns: 44px 1fr auto;
   align-items: center;
@@ -1036,6 +1037,15 @@ a { color: inherit; text-decoration: none; }
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
   margin-bottom: 0;
+}
+/* Byline text fades when the audio transport expands over it. Targets the
+   first text column (the non-avatar variant has just two columns). */
+.do-post-byline.is-no-avatar > div:first-child {
+  transition: opacity 300ms ease-in;
+}
+.do-post-byline.is-player-open.is-no-avatar > div:first-child {
+  opacity: 0;
+  pointer-events: none;
 }
 /* Collapses the avatar column when the LR monogram is hidden. */
 .do-post-byline.is-no-avatar { grid-template-columns: 1fr auto; }
@@ -2021,60 +2031,130 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   .do-share-row-link   { font-size: 11px; padding: 3px 6px; }
 }
 
-/* ── Listen button (byline-anchored, solid dark pill) ──
-   Lives in the .do-post-byline-right slot. Background matches the inline
-   player bar / EditorialBanner (--color-dark-warm); label is cream; a
-   small cream circle with a dark play glyph sits at the tail of the pill. */
+/* ── Listen button (byline-anchored pill) ──
+   Lives in the .do-post-byline-right slot. Visual twin of .do-player-pill
+   on the homepage carousel — 56px tall pill with a 46px cream play circle
+   tucked into the right end. The label + play circle are hidden by a
+   background-colored ::before overlay that swipes IN from the right when
+   the player opens (matching the transport's right→left expansion), and
+   swipes back OUT to the right after the transport has finished shrinking
+   on close, revealing the label from the left — matching the transport's
+   closing direction. */
 .do-listen-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 5px 5px 16px;
+  position: relative;
+  overflow: hidden;
+  width: max-content;
+  height: 56px;
   border: none;
   border-radius: 999px;
+  background: var(--player-accent, var(--color-dark-warm));
+  color: #F5F0E8;
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.01em;
-  color: #F5F0E8;
-  background: var(--player-accent, var(--color-dark-warm));
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 5px 5px 5px 16px;
   cursor: pointer;
+  flex: 0 0 auto;
   transition: filter 200ms, transform 200ms;
 }
-.do-listen-btn:hover    { filter: brightness(1.15); }
+.do-listen-btn:hover    { filter: brightness(1.08); }
 .do-listen-btn:active   { transform: translateY(1px); }
 .do-listen-btn:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 2px;
 }
-.do-listen-btn:disabled {
-  opacity: 0.45;
-  cursor: default;
-  transform: none;
-}
-.do-listen-btn:disabled:hover   { filter: none; }
-.do-listen-btn:disabled:active  { transform: none; }
+.do-listen-btn:disabled { cursor: default; }
 .do-listen-btn-label { line-height: 1; }
 .do-listen-btn-play {
   display: inline-grid;
   place-items: center;
-  width: 22px;
-  height: 22px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: #F5F0E8;
   color: var(--player-accent, var(--color-dark-warm));
   flex: 0 0 auto;
-  padding-left: 1px; /* nudge the triangle to optical center */
-  transform-origin: 50% 50%;
-  transition: transform 420ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-/* Rotate the whole circle clockwise to point the arrow down-and-slightly-
-   left (toward the player bar below) while the player is open. The circle
-   is symmetric so its rotation is visually invisible; only the triangle
-   inside appears to spin. (CSS transform on an <svg> root is flaky across
-   engines — rotating the wrapping span is the robust path.) */
-.do-listen-btn[aria-expanded="true"] .do-listen-btn-play {
-  transform: rotate(115deg);
+/* Swipe overlay — same colour as the pill so the label+circle visually
+   "disappear" as the overlay slides over them. Rest-state transform parks
+   it off to the RIGHT (the direction the transport will recede on close),
+   and the rest-state transition carries a 700ms delay so on close the
+   reveal only starts AFTER the transport has finished shrinking back to
+   the pill's width. */
+.do-listen-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  border-radius: inherit;
+  transform: translateX(101%);
+  transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1) 700ms;
+  pointer-events: none;
+  z-index: 1;
+}
+.do-post-byline.is-player-open .do-listen-btn {
+  pointer-events: none;
+}
+.do-post-byline.is-player-open .do-listen-btn::before {
+  transform: translateX(0);
+  transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+/* ── Listen transport (open state) ──
+   Portaled into .do-post-byline-right alongside the pill. Absolute-
+   positioned against .do-post-byline (which is position:relative), anchored
+   to the byline's right edge so it starts at the pill's width and expands
+   leftward to cover the byline text when opened. Mirror of the carousel's
+   .do-player-transport, inverted on the horizontal axis. */
+.do-listen-transport {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 174px;                    /* matches pill's natural auto-width */
+  height: 56px;
+  border-radius: 999px;
+  background: var(--player-accent, var(--color-dark-warm));
+  color: #F5F0E8;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 16px 0 8px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  transition: width 700ms cubic-bezier(0.45, 0, 0.15, 1),
+              opacity 300ms ease-in 200ms;
+}
+/* Controls "paint-in" overlay — mirror of the carousel rule, but flipped
+   on the horizontal axis since this transport expands R→L. On open the
+   overlay slides off to the left, revealing controls right-to-left; on
+   close it slides back in from the left, covering controls left-to-right
+   in sync with the transport shrinking back to the pill. */
+.do-listen-transport::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  border-radius: inherit;
+  transform: translateX(0);
+  transition: transform 700ms cubic-bezier(0.45, 0, 0.15, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+.do-post-byline.is-player-open .do-listen-transport {
+  width: 100%;
+  opacity: 1;
+  pointer-events: auto;
+}
+.do-post-byline.is-player-open .do-listen-transport::before {
+  transform: translateX(-101%);
 }
 
 /* ── Inline audio player bar ── */
@@ -2229,6 +2309,26 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   .do-audio-player-inner { gap: 10px; padding: 12px 14px; flex-wrap: wrap; }
   .do-audio-speeds       { order: 10; }
   .do-audio-sticky-inner { padding: 10px 20px; }
+
+  /* Byline pill + transport scale down in lockstep so they stay aligned
+     and the transport still covers the byline text on narrow screens. */
+  .do-listen-btn,
+  .do-listen-transport {
+    height: 48px;
+  }
+  .do-listen-btn {
+    font-size: 12px;
+    padding: 3px 3px 3px 14px;
+    gap: 14px;
+  }
+  .do-listen-btn-play {
+    width: 42px;
+    height: 42px;
+  }
+  .do-listen-transport {
+    gap: 8px;
+    padding: 0 10px 0 6px;
+  }
 }
 
 /* ── MDX blockquote: decorative quote mark via ::before (no JSX span) ── */
@@ -2271,11 +2371,16 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
    content (title + description), and nav controls all stay visible
    across states — they are NOT in this list. */
 .do-featured.is-player-open .do-featured-controls,
-.do-featured.is-player-open .do-player-pill,
 .do-featured.is-player-open .do-featured-ctas .do-featured-cta {
   opacity: 0;
   pointer-events: none;
   transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* The pill itself doesn't fade — a background-colored overlay swipes
+   across it to hide the LISTEN NOW label as the transport expands — but
+   it still has to become un-clickable while the transport is on top. */
+.do-featured.is-player-open .do-player-pill {
+  pointer-events: none;
 }
 /* Active illustration fades to 10% (not 0) when the player opens, so it
    sits as a ghost layer behind the karaoke text. Higher specificity than
@@ -2287,7 +2392,6 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 }
 .do-featured .do-featured-art-slide,
 .do-featured .do-featured-controls,
-.do-featured .do-player-pill,
 .do-featured .do-featured-ctas .do-featured-cta {
   transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -2420,6 +2524,8 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 .do-player-pill {
   /* Flex item inside .do-featured-ctas (portaled there); static positioning,
      width auto-sized by content so spacing around "LISTEN NOW" stays symmetric. */
+  position: relative;
+  overflow: hidden;
   width: max-content;
   height: 56px;
   border: none;
@@ -2453,6 +2559,26 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   color: var(--player-accent, #B8432B);
   flex: 0 0 auto;
 }
+/* Swipe overlay — same colour as the pill so the label+circle visually
+   "disappear" as the overlay slides across. Parked off-screen to the LEFT
+   at rest (the direction the transport will recede to on close), and the
+   rest-state transition carries a 700ms delay so the reveal only starts
+   AFTER the transport has finished shrinking back to the pill's width. */
+.do-player-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  border-radius: inherit;
+  transform: translateX(-101%);
+  transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1) 700ms;
+  pointer-events: none;
+  z-index: 1;
+}
+.do-featured.is-player-open .do-player-pill::before {
+  transform: translateX(0);
+  transition: transform 320ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
 
 /* ── Open-state transport ──
    Portaled into .do-featured-ctas (the CTA row at the bottom of the text
@@ -2483,10 +2609,31 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   transition: width 700ms cubic-bezier(0.45, 0, 0.15, 1),
               opacity 300ms ease-in 200ms;
 }
+/* Controls "paint-in" overlay — same colour as the transport so the
+   controls behind it are effectively hidden until the overlay slides off.
+   On open it tracks the transport's L→R expansion by sliding off the
+   right (revealing controls left-to-right); on close it slides back in
+   from the right, covering controls right-to-left in sync with the
+   transport shrinking back to the pill. Duration matches the width
+   transition so they progress together. */
+.do-player-transport::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  border-radius: inherit;
+  transform: translateX(0);
+  transition: transform 700ms cubic-bezier(0.45, 0, 0.15, 1);
+  pointer-events: none;
+  z-index: 2;
+}
 .do-featured.is-player-open .do-player-transport {
   width: 100%;
   opacity: 1;
   pointer-events: auto;
+}
+.do-featured.is-player-open .do-player-transport::before {
+  transform: translateX(101%);
 }
 
 .do-player-play {
@@ -2640,7 +2787,13 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   .do-player-karaoke-lines,
   .do-player-karaoke-word,
   .do-player-transport,
+  .do-player-transport::before,
   .do-player-pill,
+  .do-player-pill::before,
+  .do-listen-btn,
+  .do-listen-btn::before,
+  .do-listen-transport,
+  .do-listen-transport::before,
   .do-player-scrubber-bar,
   .do-player-scrubber-thumb {
     transition: none !important;

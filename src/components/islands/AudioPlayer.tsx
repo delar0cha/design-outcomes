@@ -74,7 +74,7 @@ export default function AudioPlayer({ audio, slug, accent, stickyMode = 'smooth'
   const [navHeight, setNavHeight]     = useState(65);
 
   const audioRef      = useRef<HTMLAudioElement | null>(null);
-  const inlineRef     = useRef<HTMLDivElement   | null>(null);
+  const transportRef  = useRef<HTMLDivElement   | null>(null);
   // Set when the user opens the player via the Listen button, cleared once the
   // audio starts playing. Keeps auto-play tethered to the original user gesture
   // so it passes Chrome/Safari autoplay policy.
@@ -105,10 +105,10 @@ export default function AudioPlayer({ audio, slug, accent, stickyMode = 'smooth'
 
   // IntersectionObserver decides when the sticky mini-player should appear.
   // rootMargin top offset shrinks the viewport by the nav height so the
-  // inline player reads as "gone" the moment it slides under the nav.
+  // transport reads as "gone" the moment it slides under the nav.
   useEffect(() => {
-    if (!open || !inlineRef.current) return;
-    const el = inlineRef.current;
+    if (!open || !transportRef.current) return;
+    const el = transportRef.current;
     const obs = new IntersectionObserver(
       ([entry]) => {
         const aboveViewport = entry.boundingClientRect.top < 0;
@@ -119,6 +119,17 @@ export default function AudioPlayer({ audio, slug, accent, stickyMode = 'smooth'
     obs.observe(el);
     return () => obs.disconnect();
   }, [open, navHeight]);
+
+  // Toggle the open-state class on the parent byline so the transport's
+  // width/opacity transition fires and the pill + byline text fade under
+  // the expanding pill. The byline is in the Astro template, not owned by
+  // this island, so we reach across via a DOM query.
+  useEffect(() => {
+    const byline = document.querySelector('.do-post-byline');
+    if (!byline) return;
+    byline.classList.toggle('is-player-open', open);
+    return () => { byline.classList.remove('is-player-open'); };
+  }, [open]);
 
   // Keyboard shortcuts — only active while the player is open.
   useEffect(() => {
@@ -198,11 +209,11 @@ export default function AudioPlayer({ audio, slug, accent, stickyMode = 'smooth'
 
   const progressPct = duration > 0 ? (currentTime / duration) * 100 : 0;
 
-  // ── Listen button (portaled into the byline-right slot) ─────────────────
-  // Disabled while the player is open. The only close path in that state is
-  // the X button in the inline player; once the user closes, the byline
-  // button re-enables for the next open.
-  const listenLabel = open ? 'Playing…' : 'Listen now';
+  // ── Listen pill (rest state) + transport (open state) ─────────────────
+  // Both portal into the byline-right slot. The pill fades out via
+  // .do-post-byline.is-player-open while the transport — absolute-positioned
+  // against the byline — expands from the pill's width to the full byline
+  // width, covering the name + "Published …" text on its way left.
   const listenButton = (
     <button
       type="button"
@@ -210,14 +221,100 @@ export default function AudioPlayer({ audio, slug, accent, stickyMode = 'smooth'
       style={accentStyle}
       onClick={toggleOpen}
       disabled={open}
-      aria-label={listenLabel}
+      aria-label="Listen now"
       aria-expanded={open}
     >
-      <span className="do-listen-btn-label">{listenLabel}</span>
+      <span className="do-listen-btn-label">Listen now</span>
       <span className="do-listen-btn-play" aria-hidden="true">
-        <PlayGlyph size={8} />
+        <PlayGlyph size={14} />
       </span>
     </button>
+  );
+
+  const transport = (
+    <div
+      ref={transportRef}
+      className="do-listen-transport"
+      style={accentStyle}
+      role="group"
+      aria-label="Audio transport"
+      aria-hidden={!open}
+    >
+      <button
+        type="button"
+        className="do-player-play"
+        onClick={togglePlay}
+        aria-label={isPlaying ? 'Pause' : 'Play'}
+        tabIndex={open ? 0 : -1}
+      >
+        {isPlaying ? <PauseGlyph size={12} /> : <PlayGlyph size={12} />}
+      </button>
+
+      <span className="do-player-time">{formatTime(currentTime)}</span>
+
+      <div
+        className="do-player-scrubber"
+        role="slider"
+        tabIndex={open ? 0 : -1}
+        aria-label="Audio progress"
+        aria-valuemin={0}
+        aria-valuemax={Math.max(1, Math.round(duration))}
+        aria-valuenow={Math.round(currentTime)}
+        onClick={(e) => scrubTo(e.clientX, e.currentTarget.getBoundingClientRect())}
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowLeft')  { e.preventDefault(); seek(-5); }
+          if (e.key === 'ArrowRight') { e.preventDefault(); seek( 5); }
+        }}
+      >
+        <div className="do-player-scrubber-track" />
+        <div className="do-player-scrubber-bar"   style={{ width: `${progressPct}%` }} />
+        <div className="do-player-scrubber-thumb" style={{ left:  `${progressPct}%` }} />
+      </div>
+
+      <span className="do-player-time is-right">{formatTime(duration)}</span>
+
+      <div className="do-player-speeds do-player-speeds--desktop" role="group" aria-label="Playback speed">
+        {SPEEDS.map((s) => (
+          <button
+            key={s}
+            type="button"
+            className={`do-player-speed${rate === s ? ' is-active' : ''}`}
+            onClick={() => changeRate(s)}
+            aria-label={`Playback speed ${s}x`}
+            aria-pressed={rate === s}
+            tabIndex={open ? 0 : -1}
+          >
+            {s}x
+          </button>
+        ))}
+      </div>
+
+      <button
+        type="button"
+        className="do-player-speeds--mobile do-player-speed is-active"
+        onClick={() => {
+          const idx = SPEEDS.indexOf(rate as (typeof SPEEDS)[number]);
+          const next = SPEEDS[(idx + 1) % SPEEDS.length];
+          changeRate(next);
+        }}
+        aria-label={`Playback speed ${rate}x — tap to cycle`}
+        tabIndex={open ? 0 : -1}
+      >
+        {rate}x
+      </button>
+
+      <button
+        type="button"
+        className="do-player-close"
+        onClick={toggleOpen}
+        aria-label="Close player"
+        tabIndex={open ? 0 : -1}
+      >
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+          <path d="M2 2 L10 10 M10 2 L2 10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        </svg>
+      </button>
+    </div>
   );
 
   // ── Sticky mini-player (portaled to document.body) ──────────────────────
@@ -260,64 +357,16 @@ export default function AudioPlayer({ audio, slug, accent, stickyMode = 'smooth'
 
   return (
     <>
-      {listenSlot && createPortal(listenButton, listenSlot)}
+      {listenSlot && createPortal(
+        <>
+          {listenButton}
+          {transport}
+        </>,
+        listenSlot
+      )}
 
       {open && (
         <>
-          <div ref={inlineRef} className="do-audio-player" style={accentStyle}>
-            <div className="do-audio-player-inner">
-              <button
-                type="button"
-                className="do-audio-play"
-                onClick={togglePlay}
-                aria-label={isPlaying ? 'Pause' : 'Play'}
-              >
-                {isPlaying ? <PauseGlyph size={12} /> : <PlayGlyph size={12} />}
-              </button>
-              <span className="do-audio-time">{formatTime(currentTime)}</span>
-              <div
-                className="do-audio-scrubber"
-                role="slider"
-                tabIndex={0}
-                aria-label="Audio progress"
-                aria-valuemin={0}
-                aria-valuemax={Math.max(1, Math.round(duration))}
-                aria-valuenow={Math.round(currentTime)}
-                onClick={(e) => scrubTo(e.clientX, e.currentTarget.getBoundingClientRect())}
-                onKeyDown={(e) => {
-                  if (e.key === 'ArrowLeft')  { e.preventDefault(); seek(-5); }
-                  if (e.key === 'ArrowRight') { e.preventDefault(); seek( 5); }
-                }}
-              >
-                <div className="do-audio-scrubber-bar" style={{ width: `${progressPct}%` }} />
-              </div>
-              <span className="do-audio-time">{formatTime(duration)}</span>
-              <div className="do-audio-speeds" role="group" aria-label="Playback speed">
-                {SPEEDS.map((s) => (
-                  <button
-                    key={s}
-                    type="button"
-                    className={`do-audio-speed${rate === s ? ' is-active' : ''}`}
-                    onClick={() => changeRate(s)}
-                    aria-label={`Playback speed ${s}x`}
-                    aria-pressed={rate === s}
-                  >
-                    {s}x
-                  </button>
-                ))}
-              </div>
-              <button
-                type="button"
-                className="do-audio-close"
-                onClick={toggleOpen}
-                aria-label="Close player"
-              >
-                <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
-                  <path d="M2 2 L10 10 M10 2 L2 10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
           <p className="do-audio-caption">{AUDIO_CAPTION}</p>
 
           <audio

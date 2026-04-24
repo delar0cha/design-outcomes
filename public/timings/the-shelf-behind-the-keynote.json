@@ -1,0 +1,4340 @@
+[
+  {
+    "start": 0,
+    "words": [
+      {
+        "start": 0,
+        "word": "The"
+      },
+      {
+        "start": 0.4,
+        "word": "Shelf"
+      },
+      {
+        "start": 0.8,
+        "word": "Behind"
+      },
+      {
+        "start": 1.2,
+        "word": "the"
+      },
+      {
+        "start": 1.6,
+        "word": "Keynote."
+      }
+    ]
+  },
+  {
+    "start": 3.05,
+    "words": [
+      {
+        "start": 3.05,
+        "word": "Narrated"
+      },
+      {
+        "start": 3.45,
+        "word": "by"
+      },
+      {
+        "start": 3.85,
+        "word": "the"
+      },
+      {
+        "start": 4.25,
+        "word": "author,"
+      },
+      {
+        "start": 4.65,
+        "word": "Leonardo"
+      },
+      {
+        "start": 5.05,
+        "word": "De"
+      },
+      {
+        "start": 5.45,
+        "word": "La"
+      },
+      {
+        "start": 5.85,
+        "word": "Rocha."
+      }
+    ]
+  },
+  {
+    "start": 7.3,
+    "words": [
+      {
+        "start": 7.3,
+        "word": "Why"
+      },
+      {
+        "start": 7.7,
+        "word": "it"
+      },
+      {
+        "start": 8.1,
+        "word": "matters."
+      }
+    ]
+  },
+  {
+    "start": 9.35,
+    "words": [
+      {
+        "start": 9.35,
+        "word": "Because"
+      },
+      {
+        "start": 9.75,
+        "word": "the"
+      },
+      {
+        "start": 10.15,
+        "word": "most"
+      },
+      {
+        "start": 10.55,
+        "word": "common"
+      },
+      {
+        "start": 10.95,
+        "word": "question"
+      },
+      {
+        "start": 11.35,
+        "word": "after"
+      },
+      {
+        "start": 11.75,
+        "word": "a"
+      },
+      {
+        "start": 12.15,
+        "word": "leadership"
+      },
+      {
+        "start": 12.55,
+        "word": "talk"
+      },
+      {
+        "start": 12.95,
+        "word": "isn't"
+      },
+      {
+        "start": 13.35,
+        "word": "about"
+      },
+      {
+        "start": 13.75,
+        "word": "design."
+      }
+    ]
+  },
+  {
+    "start": 14.4,
+    "words": [
+      {
+        "start": 14.4,
+        "word": "It's"
+      },
+      {
+        "start": 14.8,
+        "word": "about"
+      },
+      {
+        "start": 15.2,
+        "word": "how"
+      },
+      {
+        "start": 15.6,
+        "word": "to"
+      },
+      {
+        "start": 16,
+        "word": "sound"
+      },
+      {
+        "start": 16.4,
+        "word": "credible"
+      },
+      {
+        "start": 16.8,
+        "word": "in"
+      },
+      {
+        "start": 17.2,
+        "word": "rooms"
+      },
+      {
+        "start": 17.6,
+        "word": "where"
+      },
+      {
+        "start": 18,
+        "word": "no"
+      },
+      {
+        "start": 18.4,
+        "word": "one"
+      },
+      {
+        "start": 18.8,
+        "word": "else"
+      },
+      {
+        "start": 19.2,
+        "word": "is"
+      },
+      {
+        "start": 19.6,
+        "word": "a"
+      },
+      {
+        "start": 20,
+        "word": "designer."
+      }
+    ]
+  },
+  {
+    "start": 21.65,
+    "words": [
+      {
+        "start": 21.65,
+        "word": "When"
+      },
+      {
+        "start": 22.05,
+        "word": "I"
+      },
+      {
+        "start": 22.45,
+        "word": "give"
+      },
+      {
+        "start": 22.85,
+        "word": "talks"
+      },
+      {
+        "start": 23.25,
+        "word": "on"
+      },
+      {
+        "start": 23.65,
+        "word": "design"
+      },
+      {
+        "start": 24.05,
+        "word": "leadership,"
+      },
+      {
+        "start": 24.45,
+        "word": "a"
+      },
+      {
+        "start": 24.85,
+        "word": "common"
+      },
+      {
+        "start": 25.25,
+        "word": "question"
+      },
+      {
+        "start": 25.65,
+        "word": "I"
+      },
+      {
+        "start": 26.05,
+        "word": "get"
+      },
+      {
+        "start": 26.45,
+        "word": "is"
+      },
+      {
+        "start": 26.85,
+        "word": "not"
+      },
+      {
+        "start": 27.25,
+        "word": "about"
+      },
+      {
+        "start": 27.65,
+        "word": "portfolio,"
+      },
+      {
+        "start": 28.05,
+        "word": "process,"
+      },
+      {
+        "start": 28.45,
+        "word": "or"
+      },
+      {
+        "start": 28.85,
+        "word": "team"
+      },
+      {
+        "start": 29.25,
+        "word": "structure."
+      }
+    ]
+  },
+  {
+    "start": 29.9,
+    "words": [
+      {
+        "start": 29.9,
+        "word": "\""
+      },
+      {
+        "start": 30.3,
+        "word": "After"
+      },
+      {
+        "start": 30.7,
+        "word": "I"
+      },
+      {
+        "start": 31.1,
+        "word": "gave"
+      },
+      {
+        "start": 31.5,
+        "word": "a"
+      },
+      {
+        "start": 31.9,
+        "word": "talk"
+      },
+      {
+        "start": 32.3,
+        "word": "this"
+      },
+      {
+        "start": 32.7,
+        "word": "week"
+      },
+      {
+        "start": 33.1,
+        "word": "to"
+      },
+      {
+        "start": 33.5,
+        "word": "an"
+      },
+      {
+        "start": 33.9,
+        "word": "employee"
+      },
+      {
+        "start": 34.3,
+        "word": "resource"
+      },
+      {
+        "start": 34.7,
+        "word": "group"
+      },
+      {
+        "start": 35.1,
+        "word": "on"
+      },
+      {
+        "start": 35.5,
+        "word": "pathways"
+      },
+      {
+        "start": 35.9,
+        "word": "to"
+      },
+      {
+        "start": 36.3,
+        "word": "leadership,"
+      },
+      {
+        "start": 36.7,
+        "word": "that"
+      },
+      {
+        "start": 37.1,
+        "word": "question"
+      },
+      {
+        "start": 37.5,
+        "word": "came"
+      },
+      {
+        "start": 37.9,
+        "word": "up"
+      },
+      {
+        "start": 38.3,
+        "word": "again"
+      },
+      {
+        "start": 38.7,
+        "word": "in"
+      },
+      {
+        "start": 39.1,
+        "word": "three"
+      },
+      {
+        "start": 39.5,
+        "word": "different"
+      },
+      {
+        "start": 39.9,
+        "word": "forms."
+      }
+    ]
+  },
+  {
+    "start": 40.55,
+    "words": [
+      {
+        "start": 40.55,
+        "word": "This"
+      },
+      {
+        "start": 40.95,
+        "word": "article"
+      },
+      {
+        "start": 41.35,
+        "word": "is"
+      },
+      {
+        "start": 41.75,
+        "word": "my"
+      },
+      {
+        "start": 42.15,
+        "word": "attempt"
+      },
+      {
+        "start": 42.55,
+        "word": "to"
+      },
+      {
+        "start": 42.95,
+        "word": "answer"
+      },
+      {
+        "start": 43.35,
+        "word": "it"
+      },
+      {
+        "start": 43.75,
+        "word": "honestly."
+      }
+    ]
+  },
+  {
+    "start": 45,
+    "words": [
+      {
+        "start": 45,
+        "word": "There"
+      },
+      {
+        "start": 45.4,
+        "word": "are"
+      },
+      {
+        "start": 45.8,
+        "word": "thousands"
+      },
+      {
+        "start": 46.2,
+        "word": "of"
+      },
+      {
+        "start": 46.6,
+        "word": "books"
+      },
+      {
+        "start": 47,
+        "word": "on"
+      },
+      {
+        "start": 47.4,
+        "word": "leadership."
+      }
+    ]
+  },
+  {
+    "start": 48.05,
+    "words": [
+      {
+        "start": 48.05,
+        "word": "A"
+      },
+      {
+        "start": 48.45,
+        "word": "smaller"
+      },
+      {
+        "start": 48.85,
+        "word": "number"
+      },
+      {
+        "start": 49.25,
+        "word": "of"
+      },
+      {
+        "start": 49.65,
+        "word": "them"
+      },
+      {
+        "start": 50.05,
+        "word": "are"
+      },
+      {
+        "start": 50.45,
+        "word": "useful"
+      },
+      {
+        "start": 50.85,
+        "word": "for"
+      },
+      {
+        "start": 51.25,
+        "word": "a"
+      },
+      {
+        "start": 51.65,
+        "word": "designer"
+      },
+      {
+        "start": 52.05,
+        "word": "trying"
+      },
+      {
+        "start": 52.45,
+        "word": "to"
+      },
+      {
+        "start": 52.85,
+        "word": "become"
+      },
+      {
+        "start": 53.25,
+        "word": "a"
+      },
+      {
+        "start": 53.65,
+        "word": "design"
+      },
+      {
+        "start": 54.05,
+        "word": "leader."
+      }
+    ]
+  },
+  {
+    "start": 54.7,
+    "words": [
+      {
+        "start": 54.7,
+        "word": "And"
+      },
+      {
+        "start": 55.1,
+        "word": "an"
+      },
+      {
+        "start": 55.5,
+        "word": "even"
+      },
+      {
+        "start": 55.9,
+        "word": "smaller"
+      },
+      {
+        "start": 56.3,
+        "word": "number"
+      },
+      {
+        "start": 56.7,
+        "word": "speak"
+      },
+      {
+        "start": 57.1,
+        "word": "to"
+      },
+      {
+        "start": 57.5,
+        "word": "the"
+      },
+      {
+        "start": 57.9,
+        "word": "three"
+      },
+      {
+        "start": 58.3,
+        "word": "competencies"
+      },
+      {
+        "start": 58.7,
+        "word": "that,"
+      },
+      {
+        "start": 59.1,
+        "word": "in"
+      },
+      {
+        "start": 59.5,
+        "word": "my"
+      },
+      {
+        "start": 59.9,
+        "word": "experience,"
+      },
+      {
+        "start": 60.3,
+        "word": "separate"
+      },
+      {
+        "start": 60.7,
+        "word": "senior"
+      },
+      {
+        "start": 61.1,
+        "word": "craft"
+      },
+      {
+        "start": 61.5,
+        "word": "practitioners"
+      },
+      {
+        "start": 61.9,
+        "word": "from"
+      },
+      {
+        "start": 62.3,
+        "word": "leaders"
+      },
+      {
+        "start": 62.7,
+        "word": "who"
+      },
+      {
+        "start": 63.1,
+        "word": "can"
+      },
+      {
+        "start": 63.5,
+        "word": "operate"
+      },
+      {
+        "start": 63.9,
+        "word": "at"
+      },
+      {
+        "start": 64.3,
+        "word": "the"
+      },
+      {
+        "start": 64.7,
+        "word": "executive"
+      },
+      {
+        "start": 65.1,
+        "word": "level."
+      }
+    ]
+  },
+  {
+    "start": 65.75,
+    "words": [
+      {
+        "start": 65.75,
+        "word": "Those"
+      },
+      {
+        "start": 66.15,
+        "word": "three"
+      },
+      {
+        "start": 66.55,
+        "word": "competencies"
+      },
+      {
+        "start": 66.95,
+        "word": "are"
+      },
+      {
+        "start": 67.35,
+        "word": "financial"
+      },
+      {
+        "start": 67.75,
+        "word": "literacy,"
+      },
+      {
+        "start": 68.15,
+        "word": "executive"
+      },
+      {
+        "start": 68.55,
+        "word": "communication,"
+      },
+      {
+        "start": 68.95,
+        "word": "and"
+      },
+      {
+        "start": 69.35,
+        "word": "change"
+      },
+      {
+        "start": 69.75,
+        "word": "management."
+      }
+    ]
+  },
+  {
+    "start": 70.4,
+    "words": [
+      {
+        "start": 70.4,
+        "word": "None"
+      },
+      {
+        "start": 70.8,
+        "word": "of"
+      },
+      {
+        "start": 71.2,
+        "word": "them"
+      },
+      {
+        "start": 71.6,
+        "word": "are"
+      },
+      {
+        "start": 72,
+        "word": "taught"
+      },
+      {
+        "start": 72.4,
+        "word": "in"
+      },
+      {
+        "start": 72.8,
+        "word": "design"
+      },
+      {
+        "start": 73.2,
+        "word": "school."
+      }
+    ]
+  },
+  {
+    "start": 73.85,
+    "words": [
+      {
+        "start": 73.85,
+        "word": "All"
+      },
+      {
+        "start": 74.25,
+        "word": "of"
+      },
+      {
+        "start": 74.65,
+        "word": "them"
+      },
+      {
+        "start": 75.05,
+        "word": "are"
+      },
+      {
+        "start": 75.45,
+        "word": "learnable."
+      }
+    ]
+  },
+  {
+    "start": 76.1,
+    "words": [
+      {
+        "start": 76.1,
+        "word": "And"
+      },
+      {
+        "start": 76.5,
+        "word": "the"
+      },
+      {
+        "start": 76.9,
+        "word": "shelf"
+      },
+      {
+        "start": 77.3,
+        "word": "space"
+      },
+      {
+        "start": 77.7,
+        "word": "needed"
+      },
+      {
+        "start": 78.1,
+        "word": "for"
+      },
+      {
+        "start": 78.5,
+        "word": "each"
+      },
+      {
+        "start": 78.9,
+        "word": "is"
+      },
+      {
+        "start": 79.3,
+        "word": "smaller"
+      },
+      {
+        "start": 79.7,
+        "word": "than"
+      },
+      {
+        "start": 80.1,
+        "word": "you"
+      },
+      {
+        "start": 80.5,
+        "word": "might"
+      },
+      {
+        "start": 80.9,
+        "word": "think."
+      }
+    ]
+  },
+  {
+    "start": 82.75,
+    "words": [
+      {
+        "start": 82.75,
+        "word": "Financial"
+      },
+      {
+        "start": 83.15,
+        "word": "literacy:"
+      },
+      {
+        "start": 83.55,
+        "word": "Learning"
+      },
+      {
+        "start": 83.95,
+        "word": "to"
+      },
+      {
+        "start": 84.35,
+        "word": "speak"
+      },
+      {
+        "start": 84.75,
+        "word": "in"
+      },
+      {
+        "start": 85.15,
+        "word": "money."
+      }
+    ]
+  },
+  {
+    "start": 86.6,
+    "words": [
+      {
+        "start": 86.6,
+        "word": "I'm"
+      },
+      {
+        "start": 87,
+        "word": "not"
+      },
+      {
+        "start": 87.4,
+        "word": "talking"
+      },
+      {
+        "start": 87.8,
+        "word": "about"
+      },
+      {
+        "start": 88.2,
+        "word": "becoming"
+      },
+      {
+        "start": 88.6,
+        "word": "a"
+      },
+      {
+        "start": 89,
+        "word": "finance"
+      },
+      {
+        "start": 89.4,
+        "word": "person."
+      }
+    ]
+  },
+  {
+    "start": 90.05,
+    "words": [
+      {
+        "start": 90.05,
+        "word": "I"
+      },
+      {
+        "start": 90.45,
+        "word": "am"
+      },
+      {
+        "start": 90.85,
+        "word": "talking"
+      },
+      {
+        "start": 91.25,
+        "word": "about"
+      },
+      {
+        "start": 91.65,
+        "word": "reaching"
+      },
+      {
+        "start": 92.05,
+        "word": "the"
+      },
+      {
+        "start": 92.45,
+        "word": "point"
+      },
+      {
+        "start": 92.85,
+        "word": "where"
+      },
+      {
+        "start": 93.25,
+        "word": "you"
+      },
+      {
+        "start": 93.65,
+        "word": "can"
+      },
+      {
+        "start": 94.05,
+        "word": "read"
+      },
+      {
+        "start": 94.45,
+        "word": "a"
+      },
+      {
+        "start": 94.85,
+        "word": "P&L,"
+      },
+      {
+        "start": 95.25,
+        "word": "understand"
+      },
+      {
+        "start": 95.65,
+        "word": "what"
+      },
+      {
+        "start": 96.05,
+        "word": "EBITDA"
+      },
+      {
+        "start": 96.45,
+        "word": "is,"
+      },
+      {
+        "start": 96.85,
+        "word": "and"
+      },
+      {
+        "start": 97.25,
+        "word": "explain"
+      },
+      {
+        "start": 97.65,
+        "word": "the"
+      },
+      {
+        "start": 98.05,
+        "word": "business"
+      },
+      {
+        "start": 98.45,
+        "word": "impact"
+      },
+      {
+        "start": 98.85,
+        "word": "of"
+      },
+      {
+        "start": 99.25,
+        "word": "a"
+      },
+      {
+        "start": 99.65,
+        "word": "design"
+      },
+      {
+        "start": 100.05,
+        "word": "initiative"
+      },
+      {
+        "start": 100.45,
+        "word": "in"
+      },
+      {
+        "start": 100.85,
+        "word": "revenue,"
+      },
+      {
+        "start": 101.25,
+        "word": "retention,"
+      },
+      {
+        "start": 101.65,
+        "word": "or"
+      },
+      {
+        "start": 102.05,
+        "word": "cost-reduction"
+      },
+      {
+        "start": 102.45,
+        "word": "terms"
+      },
+      {
+        "start": 102.85,
+        "word": "without"
+      },
+      {
+        "start": 103.25,
+        "word": "flinching."
+      }
+    ]
+  },
+  {
+    "start": 103.9,
+    "words": [
+      {
+        "start": 103.9,
+        "word": "The"
+      },
+      {
+        "start": 104.3,
+        "word": "goal"
+      },
+      {
+        "start": 104.7,
+        "word": "is"
+      },
+      {
+        "start": 105.1,
+        "word": "fluency,"
+      },
+      {
+        "start": 105.5,
+        "word": "not"
+      },
+      {
+        "start": 105.9,
+        "word": "expertise."
+      }
+    ]
+  },
+  {
+    "start": 106.55,
+    "words": [
+      {
+        "start": 106.55,
+        "word": "When"
+      },
+      {
+        "start": 106.95,
+        "word": "a"
+      },
+      {
+        "start": 107.35,
+        "word": "board"
+      },
+      {
+        "start": 107.75,
+        "word": "member"
+      },
+      {
+        "start": 108.15,
+        "word": "asks"
+      },
+      {
+        "start": 108.55,
+        "word": "what"
+      },
+      {
+        "start": 108.95,
+        "word": "your"
+      },
+      {
+        "start": 109.35,
+        "word": "team"
+      },
+      {
+        "start": 109.75,
+        "word": "is"
+      },
+      {
+        "start": 110.15,
+        "word": "working"
+      },
+      {
+        "start": 110.55,
+        "word": "on,"
+      },
+      {
+        "start": 110.95,
+        "word": "you"
+      },
+      {
+        "start": 111.35,
+        "word": "should"
+      },
+      {
+        "start": 111.75,
+        "word": "be"
+      },
+      {
+        "start": 112.15,
+        "word": "able"
+      },
+      {
+        "start": 112.55,
+        "word": "to"
+      },
+      {
+        "start": 112.95,
+        "word": "answer"
+      },
+      {
+        "start": 113.35,
+        "word": "in"
+      },
+      {
+        "start": 113.75,
+        "word": "language"
+      },
+      {
+        "start": 114.15,
+        "word": "that"
+      },
+      {
+        "start": 114.55,
+        "word": "maps"
+      },
+      {
+        "start": 114.95,
+        "word": "to"
+      },
+      {
+        "start": 115.35,
+        "word": "the"
+      },
+      {
+        "start": 115.75,
+        "word": "metrics"
+      },
+      {
+        "start": 116.15,
+        "word": "they"
+      },
+      {
+        "start": 116.55,
+        "word": "already"
+      },
+      {
+        "start": 116.95,
+        "word": "have"
+      },
+      {
+        "start": 117.35,
+        "word": "in"
+      },
+      {
+        "start": 117.75,
+        "word": "their"
+      },
+      {
+        "start": 118.15,
+        "word": "head."
+      }
+    ]
+  },
+  {
+    "start": 119.4,
+    "words": [
+      {
+        "start": 119.4,
+        "word": "Two"
+      },
+      {
+        "start": 119.8,
+        "word": "resources"
+      },
+      {
+        "start": 120.2,
+        "word": "moved"
+      },
+      {
+        "start": 120.6,
+        "word": "the"
+      },
+      {
+        "start": 121,
+        "word": "needle"
+      },
+      {
+        "start": 121.4,
+        "word": "for"
+      },
+      {
+        "start": 121.8,
+        "word": "me."
+      }
+    ]
+  },
+  {
+    "start": 122.45,
+    "words": [
+      {
+        "start": 122.45,
+        "word": "Josh"
+      },
+      {
+        "start": 122.85,
+        "word": "Kaufman's"
+      },
+      {
+        "start": 123.25,
+        "word": "The"
+      },
+      {
+        "start": 123.65,
+        "word": "Personal"
+      },
+      {
+        "start": 124.05,
+        "word": "MBA"
+      },
+      {
+        "start": 124.45,
+        "word": "is"
+      },
+      {
+        "start": 124.85,
+        "word": "the"
+      },
+      {
+        "start": 125.25,
+        "word": "foundational"
+      },
+      {
+        "start": 125.65,
+        "word": "read,"
+      },
+      {
+        "start": 126.05,
+        "word": "not"
+      },
+      {
+        "start": 126.45,
+        "word": "deep"
+      },
+      {
+        "start": 126.85,
+        "word": "in"
+      },
+      {
+        "start": 127.25,
+        "word": "any"
+      },
+      {
+        "start": 127.65,
+        "word": "one"
+      },
+      {
+        "start": 128.05,
+        "word": "area,"
+      },
+      {
+        "start": 128.45,
+        "word": "but"
+      },
+      {
+        "start": 128.85,
+        "word": "wide"
+      },
+      {
+        "start": 129.25,
+        "word": "in"
+      },
+      {
+        "start": 129.65,
+        "word": "all"
+      },
+      {
+        "start": 130.05,
+        "word": "the"
+      },
+      {
+        "start": 130.45,
+        "word": "right"
+      },
+      {
+        "start": 130.85,
+        "word": "ones"
+      },
+      {
+        "start": 131.25,
+        "word": "(marketing,"
+      },
+      {
+        "start": 131.65,
+        "word": "sales,"
+      },
+      {
+        "start": 132.05,
+        "word": "finance,"
+      },
+      {
+        "start": 132.45,
+        "word": "value"
+      },
+      {
+        "start": 132.85,
+        "word": "creation)"
+      },
+      {
+        "start": 133.25,
+        "word": "and"
+      },
+      {
+        "start": 133.65,
+        "word": "it"
+      },
+      {
+        "start": 134.05,
+        "word": "gives"
+      },
+      {
+        "start": 134.45,
+        "word": "you"
+      },
+      {
+        "start": 134.85,
+        "word": "a"
+      },
+      {
+        "start": 135.25,
+        "word": "working"
+      },
+      {
+        "start": 135.65,
+        "word": "vocabulary"
+      },
+      {
+        "start": 136.05,
+        "word": "in"
+      },
+      {
+        "start": 136.45,
+        "word": "a"
+      },
+      {
+        "start": 136.85,
+        "word": "few"
+      },
+      {
+        "start": 137.25,
+        "word": "weekends."
+      }
+    ]
+  },
+  {
+    "start": 137.9,
+    "words": [
+      {
+        "start": 137.9,
+        "word": "Start"
+      },
+      {
+        "start": 138.3,
+        "word": "here"
+      },
+      {
+        "start": 138.7,
+        "word": "if"
+      },
+      {
+        "start": 139.1,
+        "word": "you"
+      },
+      {
+        "start": 139.5,
+        "word": "have"
+      },
+      {
+        "start": 139.9,
+        "word": "never"
+      },
+      {
+        "start": 140.3,
+        "word": "taken"
+      },
+      {
+        "start": 140.7,
+        "word": "a"
+      },
+      {
+        "start": 141.1,
+        "word": "business"
+      },
+      {
+        "start": 141.5,
+        "word": "course."
+      }
+    ]
+  },
+  {
+    "start": 142.15,
+    "words": [
+      {
+        "start": 142.15,
+        "word": "Karen"
+      },
+      {
+        "start": 142.55,
+        "word": "Berman"
+      },
+      {
+        "start": 142.95,
+        "word": "and"
+      },
+      {
+        "start": 143.35,
+        "word": "Joe"
+      },
+      {
+        "start": 143.75,
+        "word": "Knight's"
+      },
+      {
+        "start": 144.15,
+        "word": "Financial"
+      },
+      {
+        "start": 144.55,
+        "word": "Intelligence"
+      },
+      {
+        "start": 144.95,
+        "word": "is"
+      },
+      {
+        "start": 145.35,
+        "word": "the"
+      },
+      {
+        "start": 145.75,
+        "word": "next"
+      },
+      {
+        "start": 146.15,
+        "word": "step."
+      }
+    ]
+  },
+  {
+    "start": 146.8,
+    "words": [
+      {
+        "start": 146.8,
+        "word": "It"
+      },
+      {
+        "start": 147.2,
+        "word": "is"
+      },
+      {
+        "start": 147.6,
+        "word": "written"
+      },
+      {
+        "start": 148,
+        "word": "for"
+      },
+      {
+        "start": 148.4,
+        "word": "managers"
+      },
+      {
+        "start": 148.8,
+        "word": "who"
+      },
+      {
+        "start": 149.2,
+        "word": "are"
+      },
+      {
+        "start": 149.6,
+        "word": "not"
+      },
+      {
+        "start": 150,
+        "word": "trained"
+      },
+      {
+        "start": 150.4,
+        "word": "in"
+      },
+      {
+        "start": 150.8,
+        "word": "finance"
+      },
+      {
+        "start": 151.2,
+        "word": "but"
+      },
+      {
+        "start": 151.6,
+        "word": "who"
+      },
+      {
+        "start": 152,
+        "word": "are"
+      },
+      {
+        "start": 152.4,
+        "word": "being"
+      },
+      {
+        "start": 152.8,
+        "word": "asked"
+      },
+      {
+        "start": 153.2,
+        "word": "to"
+      },
+      {
+        "start": 153.6,
+        "word": "make"
+      },
+      {
+        "start": 154,
+        "word": "financial"
+      },
+      {
+        "start": 154.4,
+        "word": "decisions."
+      }
+    ]
+  },
+  {
+    "start": 155.05,
+    "words": [
+      {
+        "start": 155.05,
+        "word": "It"
+      },
+      {
+        "start": 155.45,
+        "word": "will"
+      },
+      {
+        "start": 155.85,
+        "word": "teach"
+      },
+      {
+        "start": 156.25,
+        "word": "you"
+      },
+      {
+        "start": 156.65,
+        "word": "how"
+      },
+      {
+        "start": 157.05,
+        "word": "to"
+      },
+      {
+        "start": 157.45,
+        "word": "read"
+      },
+      {
+        "start": 157.85,
+        "word": "the"
+      },
+      {
+        "start": 158.25,
+        "word": "three"
+      },
+      {
+        "start": 158.65,
+        "word": "main"
+      },
+      {
+        "start": 159.05,
+        "word": "financial"
+      },
+      {
+        "start": 159.45,
+        "word": "statements"
+      },
+      {
+        "start": 159.85,
+        "word": "and,"
+      },
+      {
+        "start": 160.25,
+        "word": "more"
+      },
+      {
+        "start": 160.65,
+        "word": "importantly,"
+      },
+      {
+        "start": 161.05,
+        "word": "how"
+      },
+      {
+        "start": 161.45,
+        "word": "to"
+      },
+      {
+        "start": 161.85,
+        "word": "interrogate"
+      },
+      {
+        "start": 162.25,
+        "word": "the"
+      },
+      {
+        "start": 162.65,
+        "word": "assumptions"
+      },
+      {
+        "start": 163.05,
+        "word": "behind"
+      },
+      {
+        "start": 163.45,
+        "word": "them."
+      }
+    ]
+  },
+  {
+    "start": 164.1,
+    "words": [
+      {
+        "start": 164.1,
+        "word": "If"
+      },
+      {
+        "start": 164.5,
+        "word": "you"
+      },
+      {
+        "start": 164.9,
+        "word": "want"
+      },
+      {
+        "start": 165.3,
+        "word": "to"
+      },
+      {
+        "start": 165.7,
+        "word": "be"
+      },
+      {
+        "start": 166.1,
+        "word": "the"
+      },
+      {
+        "start": 166.5,
+        "word": "design"
+      },
+      {
+        "start": 166.9,
+        "word": "leader"
+      },
+      {
+        "start": 167.3,
+        "word": "who"
+      },
+      {
+        "start": 167.7,
+        "word": "asks"
+      },
+      {
+        "start": 168.1,
+        "word": "good"
+      },
+      {
+        "start": 168.5,
+        "word": "questions"
+      },
+      {
+        "start": 168.9,
+        "word": "about"
+      },
+      {
+        "start": 169.3,
+        "word": "unit"
+      },
+      {
+        "start": 169.7,
+        "word": "economics,"
+      },
+      {
+        "start": 170.1,
+        "word": "this"
+      },
+      {
+        "start": 170.5,
+        "word": "book"
+      },
+      {
+        "start": 170.9,
+        "word": "will"
+      },
+      {
+        "start": 171.3,
+        "word": "get"
+      },
+      {
+        "start": 171.7,
+        "word": "you"
+      },
+      {
+        "start": 172.1,
+        "word": "there."
+      }
+    ]
+  },
+  {
+    "start": 173.95,
+    "words": [
+      {
+        "start": 173.95,
+        "word": "Executive"
+      },
+      {
+        "start": 174.35,
+        "word": "communication:"
+      },
+      {
+        "start": 174.75,
+        "word": "Writing"
+      },
+      {
+        "start": 175.15,
+        "word": "and"
+      },
+      {
+        "start": 175.55,
+        "word": "speaking"
+      },
+      {
+        "start": 175.95,
+        "word": "for"
+      },
+      {
+        "start": 176.35,
+        "word": "leaders."
+      }
+    ]
+  },
+  {
+    "start": 177.8,
+    "words": [
+      {
+        "start": 177.8,
+        "word": "Most"
+      },
+      {
+        "start": 178.2,
+        "word": "design"
+      },
+      {
+        "start": 178.6,
+        "word": "leaders"
+      },
+      {
+        "start": 179,
+        "word": "can"
+      },
+      {
+        "start": 179.4,
+        "word": "talk"
+      },
+      {
+        "start": 179.8,
+        "word": "about"
+      },
+      {
+        "start": 180.2,
+        "word": "design"
+      },
+      {
+        "start": 180.6,
+        "word": "fluently."
+      }
+    ]
+  },
+  {
+    "start": 181.25,
+    "words": [
+      {
+        "start": 181.25,
+        "word": "Fewer"
+      },
+      {
+        "start": 181.65,
+        "word": "can"
+      },
+      {
+        "start": 182.05,
+        "word": "talk"
+      },
+      {
+        "start": 182.45,
+        "word": "about"
+      },
+      {
+        "start": 182.85,
+        "word": "it"
+      },
+      {
+        "start": 183.25,
+        "word": "crisply"
+      },
+      {
+        "start": 183.65,
+        "word": "to"
+      },
+      {
+        "start": 184.05,
+        "word": "people"
+      },
+      {
+        "start": 184.45,
+        "word": "who"
+      },
+      {
+        "start": 184.85,
+        "word": "don't"
+      },
+      {
+        "start": 185.25,
+        "word": "care"
+      },
+      {
+        "start": 185.65,
+        "word": "about"
+      },
+      {
+        "start": 186.05,
+        "word": "design,"
+      },
+      {
+        "start": 186.45,
+        "word": "or"
+      },
+      {
+        "start": 186.85,
+        "word": "don't"
+      },
+      {
+        "start": 187.25,
+        "word": "understand"
+      },
+      {
+        "start": 187.65,
+        "word": "the"
+      },
+      {
+        "start": 188.05,
+        "word": "full"
+      },
+      {
+        "start": 188.45,
+        "word": "value"
+      },
+      {
+        "start": 188.85,
+        "word": "we"
+      },
+      {
+        "start": 189.25,
+        "word": "can"
+      },
+      {
+        "start": 189.65,
+        "word": "bring"
+      },
+      {
+        "start": 190.05,
+        "word": "to"
+      },
+      {
+        "start": 190.45,
+        "word": "the"
+      },
+      {
+        "start": 190.85,
+        "word": "table."
+      }
+    ]
+  },
+  {
+    "start": 191.5,
+    "words": [
+      {
+        "start": 191.5,
+        "word": "Executive"
+      },
+      {
+        "start": 191.9,
+        "word": "communication"
+      },
+      {
+        "start": 192.3,
+        "word": "is"
+      },
+      {
+        "start": 192.7,
+        "word": "the"
+      },
+      {
+        "start": 193.1,
+        "word": "discipline"
+      },
+      {
+        "start": 193.5,
+        "word": "of"
+      },
+      {
+        "start": 193.9,
+        "word": "tightening"
+      },
+      {
+        "start": 194.3,
+        "word": "your"
+      },
+      {
+        "start": 194.7,
+        "word": "thinking"
+      },
+      {
+        "start": 195.1,
+        "word": "until"
+      },
+      {
+        "start": 195.5,
+        "word": "it"
+      },
+      {
+        "start": 195.9,
+        "word": "fits"
+      },
+      {
+        "start": 196.3,
+        "word": "into"
+      },
+      {
+        "start": 196.7,
+        "word": "the"
+      },
+      {
+        "start": 197.1,
+        "word": "time"
+      },
+      {
+        "start": 197.5,
+        "word": "a"
+      },
+      {
+        "start": 197.9,
+        "word": "senior"
+      },
+      {
+        "start": 198.3,
+        "word": "stakeholder"
+      },
+      {
+        "start": 198.7,
+        "word": "will"
+      },
+      {
+        "start": 199.1,
+        "word": "actually"
+      },
+      {
+        "start": 199.5,
+        "word": "give"
+      },
+      {
+        "start": 199.9,
+        "word": "you,"
+      },
+      {
+        "start": 200.3,
+        "word": "and"
+      },
+      {
+        "start": 200.7,
+        "word": "then"
+      },
+      {
+        "start": 201.1,
+        "word": "delivering"
+      },
+      {
+        "start": 201.5,
+        "word": "it"
+      },
+      {
+        "start": 201.9,
+        "word": "in"
+      },
+      {
+        "start": 202.3,
+        "word": "a"
+      },
+      {
+        "start": 202.7,
+        "word": "way"
+      },
+      {
+        "start": 203.1,
+        "word": "that"
+      },
+      {
+        "start": 203.5,
+        "word": "leaves"
+      },
+      {
+        "start": 203.9,
+        "word": "them"
+      },
+      {
+        "start": 204.3,
+        "word": "more"
+      },
+      {
+        "start": 204.7,
+        "word": "aligned"
+      },
+      {
+        "start": 205.1,
+        "word": "than"
+      },
+      {
+        "start": 205.5,
+        "word": "they"
+      },
+      {
+        "start": 205.9,
+        "word": "were"
+      },
+      {
+        "start": 206.3,
+        "word": "before"
+      },
+      {
+        "start": 206.7,
+        "word": "the"
+      },
+      {
+        "start": 207.1,
+        "word": "meeting."
+      }
+    ]
+  },
+  {
+    "start": 208.35,
+    "words": [
+      {
+        "start": 208.35,
+        "word": "Nancy"
+      },
+      {
+        "start": 208.75,
+        "word": "Duarte's"
+      },
+      {
+        "start": 209.15,
+        "word": "Resonate"
+      },
+      {
+        "start": 209.55,
+        "word": "and"
+      },
+      {
+        "start": 209.95,
+        "word": "her"
+      },
+      {
+        "start": 210.35,
+        "word": "Harvard"
+      },
+      {
+        "start": 210.75,
+        "word": "Business"
+      },
+      {
+        "start": 211.15,
+        "word": "Review"
+      },
+      {
+        "start": 211.55,
+        "word": "Guide"
+      },
+      {
+        "start": 211.95,
+        "word": "to"
+      },
+      {
+        "start": 212.35,
+        "word": "Persuasive"
+      },
+      {
+        "start": 212.75,
+        "word": "Presentations"
+      },
+      {
+        "start": 213.15,
+        "word": "are"
+      },
+      {
+        "start": 213.55,
+        "word": "the"
+      },
+      {
+        "start": 213.95,
+        "word": "two"
+      },
+      {
+        "start": 214.35,
+        "word": "I"
+      },
+      {
+        "start": 214.75,
+        "word": "recommend"
+      },
+      {
+        "start": 215.15,
+        "word": "most"
+      },
+      {
+        "start": 215.55,
+        "word": "often."
+      }
+    ]
+  },
+  {
+    "start": 216.2,
+    "words": [
+      {
+        "start": 216.2,
+        "word": "Resonate"
+      },
+      {
+        "start": 216.6,
+        "word": "is"
+      },
+      {
+        "start": 217,
+        "word": "more"
+      },
+      {
+        "start": 217.4,
+        "word": "structural"
+      },
+      {
+        "start": 217.8,
+        "word": "and"
+      },
+      {
+        "start": 218.2,
+        "word": "inspirational,"
+      },
+      {
+        "start": 218.6,
+        "word": "it"
+      },
+      {
+        "start": 219,
+        "word": "teaches"
+      },
+      {
+        "start": 219.4,
+        "word": "you"
+      },
+      {
+        "start": 219.8,
+        "word": "to"
+      },
+      {
+        "start": 220.2,
+        "word": "build"
+      },
+      {
+        "start": 220.6,
+        "word": "a"
+      },
+      {
+        "start": 221,
+        "word": "talk"
+      },
+      {
+        "start": 221.4,
+        "word": "the"
+      },
+      {
+        "start": 221.8,
+        "word": "way"
+      },
+      {
+        "start": 222.2,
+        "word": "a"
+      },
+      {
+        "start": 222.6,
+        "word": "screenwriter"
+      },
+      {
+        "start": 223,
+        "word": "builds"
+      },
+      {
+        "start": 223.4,
+        "word": "a"
+      },
+      {
+        "start": 223.8,
+        "word": "story,"
+      },
+      {
+        "start": 224.2,
+        "word": "with"
+      },
+      {
+        "start": 224.6,
+        "word": "tension"
+      },
+      {
+        "start": 225,
+        "word": "and"
+      },
+      {
+        "start": 225.4,
+        "word": "resolution."
+      }
+    ]
+  },
+  {
+    "start": 226.05,
+    "words": [
+      {
+        "start": 226.05,
+        "word": "The"
+      },
+      {
+        "start": 226.45,
+        "word": "HBR"
+      },
+      {
+        "start": 226.85,
+        "word": "guide"
+      },
+      {
+        "start": 227.25,
+        "word": "is"
+      },
+      {
+        "start": 227.65,
+        "word": "more"
+      },
+      {
+        "start": 228.05,
+        "word": "tactical,"
+      },
+      {
+        "start": 228.45,
+        "word": "the"
+      },
+      {
+        "start": 228.85,
+        "word": "field"
+      },
+      {
+        "start": 229.25,
+        "word": "manual"
+      },
+      {
+        "start": 229.65,
+        "word": "you"
+      },
+      {
+        "start": 230.05,
+        "word": "revisit"
+      },
+      {
+        "start": 230.45,
+        "word": "before"
+      },
+      {
+        "start": 230.85,
+        "word": "a"
+      },
+      {
+        "start": 231.25,
+        "word": "big"
+      },
+      {
+        "start": 231.65,
+        "word": "moment."
+      }
+    ]
+  },
+  {
+    "start": 232.3,
+    "words": [
+      {
+        "start": 232.3,
+        "word": "Read"
+      },
+      {
+        "start": 232.7,
+        "word": "Resonate"
+      },
+      {
+        "start": 233.1,
+        "word": "first,"
+      },
+      {
+        "start": 233.5,
+        "word": "then"
+      },
+      {
+        "start": 233.9,
+        "word": "keep"
+      },
+      {
+        "start": 234.3,
+        "word": "the"
+      },
+      {
+        "start": 234.7,
+        "word": "HBR"
+      },
+      {
+        "start": 235.1,
+        "word": "guide"
+      },
+      {
+        "start": 235.5,
+        "word": "on"
+      },
+      {
+        "start": 235.9,
+        "word": "your"
+      },
+      {
+        "start": 236.3,
+        "word": "desk."
+      }
+    ]
+  },
+  {
+    "start": 237.55,
+    "words": [
+      {
+        "start": 237.55,
+        "word": "For"
+      },
+      {
+        "start": 237.95,
+        "word": "writing"
+      },
+      {
+        "start": 238.35,
+        "word": "specifically,"
+      },
+      {
+        "start": 238.75,
+        "word": "William"
+      },
+      {
+        "start": 239.15,
+        "word": "Zinsser's"
+      },
+      {
+        "start": 239.55,
+        "word": "On"
+      },
+      {
+        "start": 239.95,
+        "word": "Writing"
+      },
+      {
+        "start": 240.35,
+        "word": "Well"
+      },
+      {
+        "start": 240.75,
+        "word": "is"
+      },
+      {
+        "start": 241.15,
+        "word": "still"
+      },
+      {
+        "start": 241.55,
+        "word": "the"
+      },
+      {
+        "start": 241.95,
+        "word": "best"
+      },
+      {
+        "start": 242.35,
+        "word": "short"
+      },
+      {
+        "start": 242.75,
+        "word": "book"
+      },
+      {
+        "start": 243.15,
+        "word": "on"
+      },
+      {
+        "start": 243.55,
+        "word": "removing"
+      },
+      {
+        "start": 243.95,
+        "word": "everything"
+      },
+      {
+        "start": 244.35,
+        "word": "that"
+      },
+      {
+        "start": 244.75,
+        "word": "does"
+      },
+      {
+        "start": 245.15,
+        "word": "not"
+      },
+      {
+        "start": 245.55,
+        "word": "belong."
+      }
+    ]
+  },
+  {
+    "start": 246.2,
+    "words": [
+      {
+        "start": 246.2,
+        "word": "Every"
+      },
+      {
+        "start": 246.6,
+        "word": "time"
+      },
+      {
+        "start": 247,
+        "word": "I"
+      },
+      {
+        "start": 247.4,
+        "word": "re-read"
+      },
+      {
+        "start": 247.8,
+        "word": "it,"
+      },
+      {
+        "start": 248.2,
+        "word": "my"
+      },
+      {
+        "start": 248.6,
+        "word": "emails"
+      },
+      {
+        "start": 249,
+        "word": "get"
+      },
+      {
+        "start": 249.4,
+        "word": "shorter"
+      },
+      {
+        "start": 249.8,
+        "word": "and"
+      },
+      {
+        "start": 250.2,
+        "word": "my"
+      },
+      {
+        "start": 250.6,
+        "word": "narratives"
+      },
+      {
+        "start": 251,
+        "word": "get"
+      },
+      {
+        "start": 251.4,
+        "word": "cleaner."
+      }
+    ]
+  },
+  {
+    "start": 252.05,
+    "words": [
+      {
+        "start": 252.05,
+        "word": "If"
+      },
+      {
+        "start": 252.45,
+        "word": "you"
+      },
+      {
+        "start": 252.85,
+        "word": "prefer"
+      },
+      {
+        "start": 253.25,
+        "word": "audio,"
+      },
+      {
+        "start": 253.65,
+        "word": "Lenny's"
+      },
+      {
+        "start": 254.05,
+        "word": "Newsletter"
+      },
+      {
+        "start": 254.45,
+        "word": "and"
+      },
+      {
+        "start": 254.85,
+        "word": "podcast"
+      },
+      {
+        "start": 255.25,
+        "word": "is"
+      },
+      {
+        "start": 255.65,
+        "word": "the"
+      },
+      {
+        "start": 256.05,
+        "word": "single"
+      },
+      {
+        "start": 256.45,
+        "word": "best"
+      },
+      {
+        "start": 256.85,
+        "word": "source"
+      },
+      {
+        "start": 257.25,
+        "word": "I"
+      },
+      {
+        "start": 257.65,
+        "word": "have"
+      },
+      {
+        "start": 258.05,
+        "word": "found"
+      },
+      {
+        "start": 258.45,
+        "word": "for"
+      },
+      {
+        "start": 258.85,
+        "word": "learning"
+      },
+      {
+        "start": 259.25,
+        "word": "how"
+      },
+      {
+        "start": 259.65,
+        "word": "senior"
+      },
+      {
+        "start": 260.05,
+        "word": "product"
+      },
+      {
+        "start": 260.45,
+        "word": "leaders"
+      },
+      {
+        "start": 260.85,
+        "word": "frame"
+      },
+      {
+        "start": 261.25,
+        "word": "trade-offs"
+      },
+      {
+        "start": 261.65,
+        "word": "in"
+      },
+      {
+        "start": 262.05,
+        "word": "their"
+      },
+      {
+        "start": 262.45,
+        "word": "own"
+      },
+      {
+        "start": 262.85,
+        "word": "words."
+      }
+    ]
+  },
+  {
+    "start": 263.5,
+    "words": [
+      {
+        "start": 263.5,
+        "word": "Listen"
+      },
+      {
+        "start": 263.9,
+        "word": "as"
+      },
+      {
+        "start": 264.3,
+        "word": "a"
+      },
+      {
+        "start": 264.7,
+        "word": "way"
+      },
+      {
+        "start": 265.1,
+        "word": "of"
+      },
+      {
+        "start": 265.5,
+        "word": "training"
+      },
+      {
+        "start": 265.9,
+        "word": "your"
+      },
+      {
+        "start": 266.3,
+        "word": "ear"
+      },
+      {
+        "start": 266.7,
+        "word": "for"
+      },
+      {
+        "start": 267.1,
+        "word": "the"
+      },
+      {
+        "start": 267.5,
+        "word": "register"
+      },
+      {
+        "start": 267.9,
+        "word": "of"
+      },
+      {
+        "start": 268.3,
+        "word": "the"
+      },
+      {
+        "start": 268.7,
+        "word": "room"
+      },
+      {
+        "start": 269.1,
+        "word": "you"
+      },
+      {
+        "start": 269.5,
+        "word": "are"
+      },
+      {
+        "start": 269.9,
+        "word": "trying"
+      },
+      {
+        "start": 270.3,
+        "word": "to"
+      },
+      {
+        "start": 270.7,
+        "word": "enter."
+      }
+    ]
+  },
+  {
+    "start": 272.55,
+    "words": [
+      {
+        "start": 272.55,
+        "word": "Change"
+      },
+      {
+        "start": 272.95,
+        "word": "management:"
+      },
+      {
+        "start": 273.35,
+        "word": "Leading"
+      },
+      {
+        "start": 273.75,
+        "word": "when"
+      },
+      {
+        "start": 274.15,
+        "word": "people"
+      },
+      {
+        "start": 274.55,
+        "word": "would"
+      },
+      {
+        "start": 274.95,
+        "word": "rather"
+      },
+      {
+        "start": 275.35,
+        "word": "you"
+      },
+      {
+        "start": 275.75,
+        "word": "did"
+      },
+      {
+        "start": 276.15,
+        "word": "not."
+      }
+    ]
+  },
+  {
+    "start": 277.6,
+    "words": [
+      {
+        "start": 277.6,
+        "word": "This"
+      },
+      {
+        "start": 278,
+        "word": "is"
+      },
+      {
+        "start": 278.4,
+        "word": "the"
+      },
+      {
+        "start": 278.8,
+        "word": "competency"
+      },
+      {
+        "start": 279.2,
+        "word": "I"
+      },
+      {
+        "start": 279.6,
+        "word": "underinvested"
+      },
+      {
+        "start": 280,
+        "word": "in"
+      },
+      {
+        "start": 280.4,
+        "word": "for"
+      },
+      {
+        "start": 280.8,
+        "word": "the"
+      },
+      {
+        "start": 281.2,
+        "word": "longest"
+      },
+      {
+        "start": 281.6,
+        "word": "time."
+      }
+    ]
+  },
+  {
+    "start": 282.25,
+    "words": [
+      {
+        "start": 282.25,
+        "word": "I"
+      },
+      {
+        "start": 282.65,
+        "word": "assumed"
+      },
+      {
+        "start": 283.05,
+        "word": "that"
+      },
+      {
+        "start": 283.45,
+        "word": "if"
+      },
+      {
+        "start": 283.85,
+        "word": "a"
+      },
+      {
+        "start": 284.25,
+        "word": "change"
+      },
+      {
+        "start": 284.65,
+        "word": "made"
+      },
+      {
+        "start": 285.05,
+        "word": "sense,"
+      },
+      {
+        "start": 285.45,
+        "word": "people"
+      },
+      {
+        "start": 285.85,
+        "word": "would"
+      },
+      {
+        "start": 286.25,
+        "word": "come"
+      },
+      {
+        "start": 286.65,
+        "word": "along."
+      }
+    ]
+  },
+  {
+    "start": 287.3,
+    "words": [
+      {
+        "start": 287.3,
+        "word": "They"
+      },
+      {
+        "start": 287.7,
+        "word": "do"
+      },
+      {
+        "start": 288.1,
+        "word": "not."
+      }
+    ]
+  },
+  {
+    "start": 288.75,
+    "words": [
+      {
+        "start": 288.75,
+        "word": "People"
+      },
+      {
+        "start": 289.15,
+        "word": "resist"
+      },
+      {
+        "start": 289.55,
+        "word": "change,"
+      },
+      {
+        "start": 289.95,
+        "word": "and"
+      },
+      {
+        "start": 290.35,
+        "word": "the"
+      },
+      {
+        "start": 290.75,
+        "word": "resistance"
+      },
+      {
+        "start": 291.15,
+        "word": "is"
+      },
+      {
+        "start": 291.55,
+        "word": "usually"
+      },
+      {
+        "start": 291.95,
+        "word": "about"
+      },
+      {
+        "start": 292.35,
+        "word": "something"
+      },
+      {
+        "start": 292.75,
+        "word": "deeper"
+      },
+      {
+        "start": 293.15,
+        "word": "than"
+      },
+      {
+        "start": 293.55,
+        "word": "the"
+      },
+      {
+        "start": 293.95,
+        "word": "change"
+      },
+      {
+        "start": 294.35,
+        "word": "itself."
+      }
+    ]
+  },
+  {
+    "start": 295,
+    "words": [
+      {
+        "start": 295,
+        "word": "The"
+      },
+      {
+        "start": 295.4,
+        "word": "most"
+      },
+      {
+        "start": 295.8,
+        "word": "senior"
+      },
+      {
+        "start": 296.2,
+        "word": "leaders"
+      },
+      {
+        "start": 296.6,
+        "word": "I"
+      },
+      {
+        "start": 297,
+        "word": "know"
+      },
+      {
+        "start": 297.4,
+        "word": "are"
+      },
+      {
+        "start": 297.8,
+        "word": "not"
+      },
+      {
+        "start": 298.2,
+        "word": "the"
+      },
+      {
+        "start": 298.6,
+        "word": "ones"
+      },
+      {
+        "start": 299,
+        "word": "with"
+      },
+      {
+        "start": 299.4,
+        "word": "the"
+      },
+      {
+        "start": 299.8,
+        "word": "best"
+      },
+      {
+        "start": 300.2,
+        "word": "ideas."
+      }
+    ]
+  },
+  {
+    "start": 300.85,
+    "words": [
+      {
+        "start": 300.85,
+        "word": "They"
+      },
+      {
+        "start": 301.25,
+        "word": "are"
+      },
+      {
+        "start": 301.65,
+        "word": "the"
+      },
+      {
+        "start": 302.05,
+        "word": "ones"
+      },
+      {
+        "start": 302.45,
+        "word": "who"
+      },
+      {
+        "start": 302.85,
+        "word": "can"
+      },
+      {
+        "start": 303.25,
+        "word": "actually"
+      },
+      {
+        "start": 303.65,
+        "word": "land"
+      },
+      {
+        "start": 304.05,
+        "word": "those"
+      },
+      {
+        "start": 304.45,
+        "word": "ideas"
+      },
+      {
+        "start": 304.85,
+        "word": "inside"
+      },
+      {
+        "start": 305.25,
+        "word": "a"
+      },
+      {
+        "start": 305.65,
+        "word": "stubborn"
+      },
+      {
+        "start": 306.05,
+        "word": "organization."
+      }
+    ]
+  },
+  {
+    "start": 307.3,
+    "words": [
+      {
+        "start": 307.3,
+        "word": "Chip"
+      },
+      {
+        "start": 307.7,
+        "word": "and"
+      },
+      {
+        "start": 308.1,
+        "word": "Dan"
+      },
+      {
+        "start": 308.5,
+        "word": "Heath's"
+      },
+      {
+        "start": 308.9,
+        "word": "Switch"
+      },
+      {
+        "start": 309.3,
+        "word": "is"
+      },
+      {
+        "start": 309.7,
+        "word": "the"
+      },
+      {
+        "start": 310.1,
+        "word": "single"
+      },
+      {
+        "start": 310.5,
+        "word": "most"
+      },
+      {
+        "start": 310.9,
+        "word": "useful"
+      },
+      {
+        "start": 311.3,
+        "word": "book"
+      },
+      {
+        "start": 311.7,
+        "word": "I"
+      },
+      {
+        "start": 312.1,
+        "word": "can"
+      },
+      {
+        "start": 312.5,
+        "word": "recommend."
+      }
+    ]
+  },
+  {
+    "start": 313.15,
+    "words": [
+      {
+        "start": 313.15,
+        "word": "Their"
+      },
+      {
+        "start": 313.55,
+        "word": "Rider-Elephant-Path"
+      },
+      {
+        "start": 313.95,
+        "word": "model"
+      },
+      {
+        "start": 314.35,
+        "word": "is"
+      },
+      {
+        "start": 314.75,
+        "word": "a"
+      },
+      {
+        "start": 315.15,
+        "word": "cheat"
+      },
+      {
+        "start": 315.55,
+        "word": "code"
+      },
+      {
+        "start": 315.95,
+        "word": "for"
+      },
+      {
+        "start": 316.35,
+        "word": "any"
+      },
+      {
+        "start": 316.75,
+        "word": "\"change\""
+      },
+      {
+        "start": 317.15,
+        "word": "conversation."
+      }
+    ]
+  },
+  {
+    "start": 317.8,
+    "words": [
+      {
+        "start": 317.8,
+        "word": "It"
+      },
+      {
+        "start": 318.2,
+        "word": "separates"
+      },
+      {
+        "start": 318.6,
+        "word": "the"
+      },
+      {
+        "start": 319,
+        "word": "rational"
+      },
+      {
+        "start": 319.4,
+        "word": "argument"
+      },
+      {
+        "start": 319.8,
+        "word": "(the"
+      },
+      {
+        "start": 320.2,
+        "word": "rider)"
+      },
+      {
+        "start": 320.6,
+        "word": "from"
+      },
+      {
+        "start": 321,
+        "word": "the"
+      },
+      {
+        "start": 321.4,
+        "word": "emotional"
+      },
+      {
+        "start": 321.8,
+        "word": "buy-in"
+      },
+      {
+        "start": 322.2,
+        "word": "(the"
+      },
+      {
+        "start": 322.6,
+        "word": "elephant)"
+      },
+      {
+        "start": 323,
+        "word": "from"
+      },
+      {
+        "start": 323.4,
+        "word": "the"
+      },
+      {
+        "start": 323.8,
+        "word": "environmental"
+      },
+      {
+        "start": 324.2,
+        "word": "friction"
+      },
+      {
+        "start": 324.6,
+        "word": "(the"
+      },
+      {
+        "start": 325,
+        "word": "path),"
+      },
+      {
+        "start": 325.4,
+        "word": "and"
+      },
+      {
+        "start": 325.8,
+        "word": "it"
+      },
+      {
+        "start": 326.2,
+        "word": "shows"
+      },
+      {
+        "start": 326.6,
+        "word": "you"
+      },
+      {
+        "start": 327,
+        "word": "why"
+      },
+      {
+        "start": 327.4,
+        "word": "most"
+      },
+      {
+        "start": 327.8,
+        "word": "change"
+      },
+      {
+        "start": 328.2,
+        "word": "efforts"
+      },
+      {
+        "start": 328.6,
+        "word": "fail"
+      },
+      {
+        "start": 329,
+        "word": "at"
+      },
+      {
+        "start": 329.4,
+        "word": "only"
+      },
+      {
+        "start": 329.8,
+        "word": "one"
+      },
+      {
+        "start": 330.2,
+        "word": "of"
+      },
+      {
+        "start": 330.6,
+        "word": "the"
+      },
+      {
+        "start": 331,
+        "word": "three."
+      }
+    ]
+  },
+  {
+    "start": 332.25,
+    "words": [
+      {
+        "start": 332.25,
+        "word": "Kegan"
+      },
+      {
+        "start": 332.65,
+        "word": "and"
+      },
+      {
+        "start": 333.05,
+        "word": "Lahey's"
+      },
+      {
+        "start": 333.45,
+        "word": "Immunity"
+      },
+      {
+        "start": 333.85,
+        "word": "to"
+      },
+      {
+        "start": 334.25,
+        "word": "Change"
+      },
+      {
+        "start": 334.65,
+        "word": "is"
+      },
+      {
+        "start": 335.05,
+        "word": "harder"
+      },
+      {
+        "start": 335.45,
+        "word": "going"
+      },
+      {
+        "start": 335.85,
+        "word": "but"
+      },
+      {
+        "start": 336.25,
+        "word": "more"
+      },
+      {
+        "start": 336.65,
+        "word": "profound."
+      }
+    ]
+  },
+  {
+    "start": 337.3,
+    "words": [
+      {
+        "start": 337.3,
+        "word": "It"
+      },
+      {
+        "start": 337.7,
+        "word": "argues"
+      },
+      {
+        "start": 338.1,
+        "word": "that"
+      },
+      {
+        "start": 338.5,
+        "word": "resistance"
+      },
+      {
+        "start": 338.9,
+        "word": "to"
+      },
+      {
+        "start": 339.3,
+        "word": "change"
+      },
+      {
+        "start": 339.7,
+        "word": "is"
+      },
+      {
+        "start": 340.1,
+        "word": "rarely"
+      },
+      {
+        "start": 340.5,
+        "word": "about"
+      },
+      {
+        "start": 340.9,
+        "word": "stubbornness;"
+      },
+      {
+        "start": 341.3,
+        "word": "it"
+      },
+      {
+        "start": 341.7,
+        "word": "is"
+      },
+      {
+        "start": 342.1,
+        "word": "about"
+      },
+      {
+        "start": 342.5,
+        "word": "competing"
+      },
+      {
+        "start": 342.9,
+        "word": "commitments"
+      },
+      {
+        "start": 343.3,
+        "word": "the"
+      },
+      {
+        "start": 343.7,
+        "word": "person"
+      },
+      {
+        "start": 344.1,
+        "word": "is"
+      },
+      {
+        "start": 344.5,
+        "word": "not"
+      },
+      {
+        "start": 344.9,
+        "word": "fully"
+      },
+      {
+        "start": 345.3,
+        "word": "aware"
+      },
+      {
+        "start": 345.7,
+        "word": "of."
+      }
+    ]
+  },
+  {
+    "start": 346.35,
+    "words": [
+      {
+        "start": 346.35,
+        "word": "For"
+      },
+      {
+        "start": 346.75,
+        "word": "coaching"
+      },
+      {
+        "start": 347.15,
+        "word": "people"
+      },
+      {
+        "start": 347.55,
+        "word": "through"
+      },
+      {
+        "start": 347.95,
+        "word": "reorgs,"
+      },
+      {
+        "start": 348.35,
+        "word": "role"
+      },
+      {
+        "start": 348.75,
+        "word": "changes,"
+      },
+      {
+        "start": 349.15,
+        "word": "or"
+      },
+      {
+        "start": 349.55,
+        "word": "process"
+      },
+      {
+        "start": 349.95,
+        "word": "overhauls,"
+      },
+      {
+        "start": 350.35,
+        "word": "this"
+      },
+      {
+        "start": 350.75,
+        "word": "is"
+      },
+      {
+        "start": 351.15,
+        "word": "the"
+      },
+      {
+        "start": 351.55,
+        "word": "book"
+      },
+      {
+        "start": 351.95,
+        "word": "I"
+      },
+      {
+        "start": 352.35,
+        "word": "keep"
+      },
+      {
+        "start": 352.75,
+        "word": "returning"
+      },
+      {
+        "start": 353.15,
+        "word": "to."
+      }
+    ]
+  },
+  {
+    "start": 353.8,
+    "words": [
+      {
+        "start": 353.8,
+        "word": "For"
+      },
+      {
+        "start": 354.2,
+        "word": "tactical"
+      },
+      {
+        "start": 354.6,
+        "word": "day-to-day"
+      },
+      {
+        "start": 355,
+        "word": "leadership"
+      },
+      {
+        "start": 355.4,
+        "word": "reading,"
+      },
+      {
+        "start": 355.8,
+        "word": "Julie"
+      },
+      {
+        "start": 356.2,
+        "word": "Zhuo's"
+      },
+      {
+        "start": 356.6,
+        "word": "The"
+      },
+      {
+        "start": 357,
+        "word": "Making"
+      },
+      {
+        "start": 357.4,
+        "word": "of"
+      },
+      {
+        "start": 357.8,
+        "word": "a"
+      },
+      {
+        "start": 358.2,
+        "word": "Manager"
+      },
+      {
+        "start": 358.6,
+        "word": "is"
+      },
+      {
+        "start": 359,
+        "word": "still"
+      },
+      {
+        "start": 359.4,
+        "word": "the"
+      },
+      {
+        "start": 359.8,
+        "word": "kindest"
+      },
+      {
+        "start": 360.2,
+        "word": "on-ramp"
+      },
+      {
+        "start": 360.6,
+        "word": "I"
+      },
+      {
+        "start": 361,
+        "word": "have"
+      },
+      {
+        "start": 361.4,
+        "word": "found."
+      }
+    ]
+  },
+  {
+    "start": 362.05,
+    "words": [
+      {
+        "start": 362.05,
+        "word": "It"
+      },
+      {
+        "start": 362.45,
+        "word": "was"
+      },
+      {
+        "start": 362.85,
+        "word": "written"
+      },
+      {
+        "start": 363.25,
+        "word": "for"
+      },
+      {
+        "start": 363.65,
+        "word": "first-time"
+      },
+      {
+        "start": 364.05,
+        "word": "managers,"
+      },
+      {
+        "start": 364.45,
+        "word": "but"
+      },
+      {
+        "start": 364.85,
+        "word": "senior"
+      },
+      {
+        "start": 365.25,
+        "word": "leaders"
+      },
+      {
+        "start": 365.65,
+        "word": "will"
+      },
+      {
+        "start": 366.05,
+        "word": "still"
+      },
+      {
+        "start": 366.45,
+        "word": "recognize"
+      },
+      {
+        "start": 366.85,
+        "word": "themselves"
+      },
+      {
+        "start": 367.25,
+        "word": "in"
+      },
+      {
+        "start": 367.65,
+        "word": "it."
+      }
+    ]
+  },
+  {
+    "start": 369.5,
+    "words": [
+      {
+        "start": 369.5,
+        "word": "The"
+      },
+      {
+        "start": 369.9,
+        "word": "shelf"
+      },
+      {
+        "start": 370.3,
+        "word": "I"
+      },
+      {
+        "start": 370.7,
+        "word": "did"
+      },
+      {
+        "start": 371.1,
+        "word": "not"
+      },
+      {
+        "start": 371.5,
+        "word": "list."
+      }
+    ]
+  },
+  {
+    "start": 372.95,
+    "words": [
+      {
+        "start": 372.95,
+        "word": "None"
+      },
+      {
+        "start": 373.35,
+        "word": "of"
+      },
+      {
+        "start": 373.75,
+        "word": "the"
+      },
+      {
+        "start": 374.15,
+        "word": "above"
+      },
+      {
+        "start": 374.55,
+        "word": "is"
+      },
+      {
+        "start": 374.95,
+        "word": "about"
+      },
+      {
+        "start": 375.35,
+        "word": "design"
+      },
+      {
+        "start": 375.75,
+        "word": "and"
+      },
+      {
+        "start": 376.15,
+        "word": "that's"
+      },
+      {
+        "start": 376.55,
+        "word": "intentional."
+      }
+    ]
+  },
+  {
+    "start": 377.2,
+    "words": [
+      {
+        "start": 377.2,
+        "word": "The"
+      },
+      {
+        "start": 377.6,
+        "word": "design"
+      },
+      {
+        "start": 378,
+        "word": "books"
+      },
+      {
+        "start": 378.4,
+        "word": "you"
+      },
+      {
+        "start": 378.8,
+        "word": "already"
+      },
+      {
+        "start": 379.2,
+        "word": "have"
+      },
+      {
+        "start": 379.6,
+        "word": "are"
+      },
+      {
+        "start": 380,
+        "word": "the"
+      },
+      {
+        "start": 380.4,
+        "word": "ones"
+      },
+      {
+        "start": 380.8,
+        "word": "that"
+      },
+      {
+        "start": 381.2,
+        "word": "got"
+      },
+      {
+        "start": 381.6,
+        "word": "you"
+      },
+      {
+        "start": 382,
+        "word": "here;"
+      },
+      {
+        "start": 382.4,
+        "word": "they"
+      },
+      {
+        "start": 382.8,
+        "word": "are"
+      },
+      {
+        "start": 383.2,
+        "word": "not"
+      },
+      {
+        "start": 383.6,
+        "word": "the"
+      },
+      {
+        "start": 384,
+        "word": "ones"
+      },
+      {
+        "start": 384.4,
+        "word": "that"
+      },
+      {
+        "start": 384.8,
+        "word": "will"
+      },
+      {
+        "start": 385.2,
+        "word": "get"
+      },
+      {
+        "start": 385.6,
+        "word": "you"
+      },
+      {
+        "start": 386,
+        "word": "further."
+      }
+    ]
+  },
+  {
+    "start": 386.65,
+    "words": [
+      {
+        "start": 386.65,
+        "word": "\""
+      },
+      {
+        "start": 387.05,
+        "word": "My"
+      },
+      {
+        "start": 387.45,
+        "word": "honest"
+      },
+      {
+        "start": 387.85,
+        "word": "answer"
+      },
+      {
+        "start": 388.25,
+        "word": "is"
+      },
+      {
+        "start": 388.65,
+        "word": "that"
+      },
+      {
+        "start": 389.05,
+        "word": "the"
+      },
+      {
+        "start": 389.45,
+        "word": "design"
+      },
+      {
+        "start": 389.85,
+        "word": "field"
+      },
+      {
+        "start": 390.25,
+        "word": "has"
+      },
+      {
+        "start": 390.65,
+        "word": "not"
+      },
+      {
+        "start": 391.05,
+        "word": "produced"
+      },
+      {
+        "start": 391.45,
+        "word": "many"
+      },
+      {
+        "start": 391.85,
+        "word": "that"
+      },
+      {
+        "start": 392.25,
+        "word": "work"
+      },
+      {
+        "start": 392.65,
+        "word": "at"
+      },
+      {
+        "start": 393.05,
+        "word": "the"
+      },
+      {
+        "start": 393.45,
+        "word": "leadership"
+      },
+      {
+        "start": 393.85,
+        "word": "level."
+      }
+    ]
+  },
+  {
+    "start": 394.5,
+    "words": [
+      {
+        "start": 394.5,
+        "word": "The"
+      },
+      {
+        "start": 394.9,
+        "word": "best"
+      },
+      {
+        "start": 395.3,
+        "word": "design-leadership"
+      },
+      {
+        "start": 395.7,
+        "word": "writing"
+      },
+      {
+        "start": 396.1,
+        "word": "lives"
+      },
+      {
+        "start": 396.5,
+        "word": "in"
+      },
+      {
+        "start": 396.9,
+        "word": "blogs,"
+      },
+      {
+        "start": 397.3,
+        "word": "podcasts,"
+      },
+      {
+        "start": 397.7,
+        "word": "and"
+      },
+      {
+        "start": 398.1,
+        "word": "newsletters"
+      },
+      {
+        "start": 398.5,
+        "word": "rather"
+      },
+      {
+        "start": 398.9,
+        "word": "than"
+      },
+      {
+        "start": 399.3,
+        "word": "in"
+      },
+      {
+        "start": 399.7,
+        "word": "books,"
+      },
+      {
+        "start": 400.1,
+        "word": "which"
+      },
+      {
+        "start": 400.5,
+        "word": "is"
+      },
+      {
+        "start": 400.9,
+        "word": "why"
+      },
+      {
+        "start": 401.3,
+        "word": "the"
+      },
+      {
+        "start": 401.7,
+        "word": "Reading"
+      },
+      {
+        "start": 402.1,
+        "word": "List"
+      },
+      {
+        "start": 402.5,
+        "word": "on"
+      },
+      {
+        "start": 402.9,
+        "word": "this"
+      },
+      {
+        "start": 403.3,
+        "word": "site"
+      },
+      {
+        "start": 403.7,
+        "word": "is"
+      },
+      {
+        "start": 404.1,
+        "word": "going"
+      },
+      {
+        "start": 404.5,
+        "word": "to"
+      },
+      {
+        "start": 404.9,
+        "word": "keep"
+      },
+      {
+        "start": 405.3,
+        "word": "growing."
+      }
+    ]
+  },
+  {
+    "start": 406.55,
+    "words": [
+      {
+        "start": 406.55,
+        "word": "The"
+      },
+      {
+        "start": 406.95,
+        "word": "point"
+      },
+      {
+        "start": 407.35,
+        "word": "of"
+      },
+      {
+        "start": 407.75,
+        "word": "a"
+      },
+      {
+        "start": 408.15,
+        "word": "reading"
+      },
+      {
+        "start": 408.55,
+        "word": "list"
+      },
+      {
+        "start": 408.95,
+        "word": "for"
+      },
+      {
+        "start": 409.35,
+        "word": "leaders"
+      },
+      {
+        "start": 409.75,
+        "word": "is"
+      },
+      {
+        "start": 410.15,
+        "word": "not"
+      },
+      {
+        "start": 410.55,
+        "word": "to"
+      },
+      {
+        "start": 410.95,
+        "word": "finish"
+      },
+      {
+        "start": 411.35,
+        "word": "the"
+      },
+      {
+        "start": 411.75,
+        "word": "shelf."
+      }
+    ]
+  },
+  {
+    "start": 412.4,
+    "words": [
+      {
+        "start": 412.4,
+        "word": "It"
+      },
+      {
+        "start": 412.8,
+        "word": "is"
+      },
+      {
+        "start": 413.2,
+        "word": "to"
+      },
+      {
+        "start": 413.6,
+        "word": "build"
+      },
+      {
+        "start": 414,
+        "word": "the"
+      },
+      {
+        "start": 414.4,
+        "word": "ladder."
+      }
+    ]
+  },
+  {
+    "start": 415.05,
+    "words": [
+      {
+        "start": 415.05,
+        "word": "Each"
+      },
+      {
+        "start": 415.45,
+        "word": "book"
+      },
+      {
+        "start": 415.85,
+        "word": "is"
+      },
+      {
+        "start": 416.25,
+        "word": "a"
+      },
+      {
+        "start": 416.65,
+        "word": "rung,"
+      },
+      {
+        "start": 417.05,
+        "word": "and"
+      },
+      {
+        "start": 417.45,
+        "word": "you"
+      },
+      {
+        "start": 417.85,
+        "word": "climb"
+      },
+      {
+        "start": 418.25,
+        "word": "by"
+      },
+      {
+        "start": 418.65,
+        "word": "actually"
+      },
+      {
+        "start": 419.05,
+        "word": "using"
+      },
+      {
+        "start": 419.45,
+        "word": "what"
+      },
+      {
+        "start": 419.85,
+        "word": "you"
+      },
+      {
+        "start": 420.25,
+        "word": "take"
+      },
+      {
+        "start": 420.65,
+        "word": "from"
+      },
+      {
+        "start": 421.05,
+        "word": "it."
+      }
+    ]
+  },
+  {
+    "start": 421.7,
+    "words": [
+      {
+        "start": 421.7,
+        "word": "Pick"
+      },
+      {
+        "start": 422.1,
+        "word": "one"
+      },
+      {
+        "start": 422.5,
+        "word": "from"
+      },
+      {
+        "start": 422.9,
+        "word": "each"
+      },
+      {
+        "start": 423.3,
+        "word": "of"
+      },
+      {
+        "start": 423.7,
+        "word": "the"
+      },
+      {
+        "start": 424.1,
+        "word": "three"
+      },
+      {
+        "start": 424.5,
+        "word": "sections"
+      },
+      {
+        "start": 424.9,
+        "word": "above."
+      }
+    ]
+  },
+  {
+    "start": 425.55,
+    "words": [
+      {
+        "start": 425.55,
+        "word": "Read"
+      },
+      {
+        "start": 425.95,
+        "word": "it"
+      },
+      {
+        "start": 426.35,
+        "word": "over"
+      },
+      {
+        "start": 426.75,
+        "word": "the"
+      },
+      {
+        "start": 427.15,
+        "word": "next"
+      },
+      {
+        "start": 427.55,
+        "word": "two"
+      },
+      {
+        "start": 427.95,
+        "word": "months."
+      }
+    ]
+  },
+  {
+    "start": 428.6,
+    "words": [
+      {
+        "start": 428.6,
+        "word": "Then"
+      },
+      {
+        "start": 429,
+        "word": "come"
+      },
+      {
+        "start": 429.4,
+        "word": "back."
+      }
+    ]
+  },
+  {
+    "start": 430.05,
+    "words": [
+      {
+        "start": 430.05,
+        "word": "The"
+      },
+      {
+        "start": 430.45,
+        "word": "shelf"
+      },
+      {
+        "start": 430.85,
+        "word": "will"
+      },
+      {
+        "start": 431.25,
+        "word": "still"
+      },
+      {
+        "start": 431.65,
+        "word": "be"
+      },
+      {
+        "start": 432.05,
+        "word": "here."
+      }
+    ]
+  }
+]

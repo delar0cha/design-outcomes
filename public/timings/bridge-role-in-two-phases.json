@@ -1,0 +1,3721 @@
+[
+  {
+    "start": 0,
+    "words": [
+      {
+        "start": 0,
+        "word": "Designing"
+      },
+      {
+        "start": 0.4,
+        "word": "the"
+      },
+      {
+        "start": 0.8,
+        "word": "Bridge"
+      },
+      {
+        "start": 1.2,
+        "word": "Role"
+      },
+      {
+        "start": 1.6,
+        "word": "in"
+      },
+      {
+        "start": 2,
+        "word": "Two"
+      },
+      {
+        "start": 2.4,
+        "word": "Phases."
+      }
+    ]
+  },
+  {
+    "start": 3.85,
+    "words": [
+      {
+        "start": 3.85,
+        "word": "Narrated"
+      },
+      {
+        "start": 4.25,
+        "word": "by"
+      },
+      {
+        "start": 4.65,
+        "word": "the"
+      },
+      {
+        "start": 5.05,
+        "word": "author,"
+      },
+      {
+        "start": 5.45,
+        "word": "Leonardo"
+      },
+      {
+        "start": 5.85,
+        "word": "De"
+      },
+      {
+        "start": 6.25,
+        "word": "La"
+      },
+      {
+        "start": 6.65,
+        "word": "Rocha."
+      }
+    ]
+  },
+  {
+    "start": 8.1,
+    "words": [
+      {
+        "start": 8.1,
+        "word": "Why"
+      },
+      {
+        "start": 8.5,
+        "word": "it"
+      },
+      {
+        "start": 8.9,
+        "word": "matters."
+      }
+    ]
+  },
+  {
+    "start": 10.15,
+    "words": [
+      {
+        "start": 10.15,
+        "word": "Because"
+      },
+      {
+        "start": 10.55,
+        "word": "roles"
+      },
+      {
+        "start": 10.95,
+        "word": "are"
+      },
+      {
+        "start": 11.35,
+        "word": "artifacts"
+      },
+      {
+        "start": 11.75,
+        "word": "of"
+      },
+      {
+        "start": 12.15,
+        "word": "scoping,"
+      },
+      {
+        "start": 12.55,
+        "word": "and"
+      },
+      {
+        "start": 12.95,
+        "word": "most"
+      },
+      {
+        "start": 13.35,
+        "word": "teams"
+      },
+      {
+        "start": 13.75,
+        "word": "mis-scope"
+      },
+      {
+        "start": 14.15,
+        "word": "bridge"
+      },
+      {
+        "start": 14.55,
+        "word": "roles"
+      },
+      {
+        "start": 14.95,
+        "word": "by"
+      },
+      {
+        "start": 15.35,
+        "word": "hiring"
+      },
+      {
+        "start": 15.75,
+        "word": "for"
+      },
+      {
+        "start": 16.15,
+        "word": "the"
+      },
+      {
+        "start": 16.55,
+        "word": "endgame"
+      },
+      {
+        "start": 16.95,
+        "word": "instead"
+      },
+      {
+        "start": 17.35,
+        "word": "of"
+      },
+      {
+        "start": 17.75,
+        "word": "the"
+      },
+      {
+        "start": 18.15,
+        "word": "entry"
+      },
+      {
+        "start": 18.55,
+        "word": "point."
+      }
+    ]
+  },
+  {
+    "start": 20.2,
+    "words": [
+      {
+        "start": 20.2,
+        "word": "Design"
+      },
+      {
+        "start": 20.6,
+        "word": "technologist"
+      },
+      {
+        "start": 21,
+        "word": "is"
+      },
+      {
+        "start": 21.4,
+        "word": "one"
+      },
+      {
+        "start": 21.8,
+        "word": "of"
+      },
+      {
+        "start": 22.2,
+        "word": "the"
+      },
+      {
+        "start": 22.6,
+        "word": "most"
+      },
+      {
+        "start": 23,
+        "word": "discussed"
+      },
+      {
+        "start": 23.4,
+        "word": "roles"
+      },
+      {
+        "start": 23.8,
+        "word": "in"
+      },
+      {
+        "start": 24.2,
+        "word": "our"
+      },
+      {
+        "start": 24.6,
+        "word": "field"
+      },
+      {
+        "start": 25,
+        "word": "right"
+      },
+      {
+        "start": 25.4,
+        "word": "now."
+      }
+    ]
+  },
+  {
+    "start": 26.05,
+    "words": [
+      {
+        "start": 26.05,
+        "word": "It"
+      },
+      {
+        "start": 26.45,
+        "word": "is"
+      },
+      {
+        "start": 26.85,
+        "word": "the"
+      },
+      {
+        "start": 27.25,
+        "word": "designer"
+      },
+      {
+        "start": 27.65,
+        "word": "who"
+      },
+      {
+        "start": 28.05,
+        "word": "can"
+      },
+      {
+        "start": 28.45,
+        "word": "actually"
+      },
+      {
+        "start": 28.85,
+        "word": "ship"
+      },
+      {
+        "start": 29.25,
+        "word": "production"
+      },
+      {
+        "start": 29.65,
+        "word": "code,"
+      },
+      {
+        "start": 30.05,
+        "word": "the"
+      },
+      {
+        "start": 30.45,
+        "word": "one"
+      },
+      {
+        "start": 30.85,
+        "word": "who"
+      },
+      {
+        "start": 31.25,
+        "word": "closes"
+      },
+      {
+        "start": 31.65,
+        "word": "the"
+      },
+      {
+        "start": 32.05,
+        "word": "gap"
+      },
+      {
+        "start": 32.45,
+        "word": "between"
+      },
+      {
+        "start": 32.85,
+        "word": "Figma"
+      },
+      {
+        "start": 33.25,
+        "word": "and"
+      },
+      {
+        "start": 33.65,
+        "word": "the"
+      },
+      {
+        "start": 34.05,
+        "word": "deployed"
+      },
+      {
+        "start": 34.45,
+        "word": "interface,"
+      },
+      {
+        "start": 34.85,
+        "word": "the"
+      },
+      {
+        "start": 35.25,
+        "word": "unicorn."
+      }
+    ]
+  },
+  {
+    "start": 35.9,
+    "words": [
+      {
+        "start": 35.9,
+        "word": "Every"
+      },
+      {
+        "start": 36.3,
+        "word": "design"
+      },
+      {
+        "start": 36.7,
+        "word": "leader"
+      },
+      {
+        "start": 37.1,
+        "word": "I"
+      },
+      {
+        "start": 37.5,
+        "word": "talk"
+      },
+      {
+        "start": 37.9,
+        "word": "to"
+      },
+      {
+        "start": 38.3,
+        "word": "wants"
+      },
+      {
+        "start": 38.7,
+        "word": "one."
+      }
+    ]
+  },
+  {
+    "start": 39.35,
+    "words": [
+      {
+        "start": 39.35,
+        "word": "Most"
+      },
+      {
+        "start": 39.75,
+        "word": "of"
+      },
+      {
+        "start": 40.15,
+        "word": "the"
+      },
+      {
+        "start": 40.55,
+        "word": "ones"
+      },
+      {
+        "start": 40.95,
+        "word": "who"
+      },
+      {
+        "start": 41.35,
+        "word": "have"
+      },
+      {
+        "start": 41.75,
+        "word": "tried"
+      },
+      {
+        "start": 42.15,
+        "word": "to"
+      },
+      {
+        "start": 42.55,
+        "word": "hire"
+      },
+      {
+        "start": 42.95,
+        "word": "one"
+      },
+      {
+        "start": 43.35,
+        "word": "have"
+      },
+      {
+        "start": 43.75,
+        "word": "been"
+      },
+      {
+        "start": 44.15,
+        "word": "disappointed,"
+      },
+      {
+        "start": 44.55,
+        "word": "and"
+      },
+      {
+        "start": 44.95,
+        "word": "almost"
+      },
+      {
+        "start": 45.35,
+        "word": "always"
+      },
+      {
+        "start": 45.75,
+        "word": "for"
+      },
+      {
+        "start": 46.15,
+        "word": "the"
+      },
+      {
+        "start": 46.55,
+        "word": "same"
+      },
+      {
+        "start": 46.95,
+        "word": "reason:"
+      },
+      {
+        "start": 47.35,
+        "word": "they"
+      },
+      {
+        "start": 47.75,
+        "word": "hired"
+      },
+      {
+        "start": 48.15,
+        "word": "for"
+      },
+      {
+        "start": 48.55,
+        "word": "the"
+      },
+      {
+        "start": 48.95,
+        "word": "endgame."
+      }
+    ]
+  },
+  {
+    "start": 49.6,
+    "words": [
+      {
+        "start": 49.6,
+        "word": "They"
+      },
+      {
+        "start": 50,
+        "word": "pictured"
+      },
+      {
+        "start": 50.4,
+        "word": "the"
+      },
+      {
+        "start": 50.8,
+        "word": "senior"
+      },
+      {
+        "start": 51.2,
+        "word": "person"
+      },
+      {
+        "start": 51.6,
+        "word": "who"
+      },
+      {
+        "start": 52,
+        "word": "would"
+      },
+      {
+        "start": 52.4,
+        "word": "single-handedly"
+      },
+      {
+        "start": 52.8,
+        "word": "automate"
+      },
+      {
+        "start": 53.2,
+        "word": "the"
+      },
+      {
+        "start": 53.6,
+        "word": "design"
+      },
+      {
+        "start": 54,
+        "word": "system,"
+      },
+      {
+        "start": 54.4,
+        "word": "write"
+      },
+      {
+        "start": 54.8,
+        "word": "production"
+      },
+      {
+        "start": 55.2,
+        "word": "code,"
+      },
+      {
+        "start": 55.6,
+        "word": "and"
+      },
+      {
+        "start": 56,
+        "word": "partner"
+      },
+      {
+        "start": 56.4,
+        "word": "with"
+      },
+      {
+        "start": 56.8,
+        "word": "engineering"
+      },
+      {
+        "start": 57.2,
+        "word": "as"
+      },
+      {
+        "start": 57.6,
+        "word": "an"
+      },
+      {
+        "start": 58,
+        "word": "equal"
+      },
+      {
+        "start": 58.4,
+        "word": "and"
+      },
+      {
+        "start": 58.8,
+        "word": "they"
+      },
+      {
+        "start": 59.2,
+        "word": "wrote"
+      },
+      {
+        "start": 59.6,
+        "word": "a"
+      },
+      {
+        "start": 60,
+        "word": "job"
+      },
+      {
+        "start": 60.4,
+        "word": "description"
+      },
+      {
+        "start": 60.8,
+        "word": "to"
+      },
+      {
+        "start": 61.2,
+        "word": "match."
+      }
+    ]
+  },
+  {
+    "start": 61.85,
+    "words": [
+      {
+        "start": 61.85,
+        "word": "The"
+      },
+      {
+        "start": 62.25,
+        "word": "market"
+      },
+      {
+        "start": 62.65,
+        "word": "responded,"
+      },
+      {
+        "start": 63.05,
+        "word": "either"
+      },
+      {
+        "start": 63.45,
+        "word": "by"
+      },
+      {
+        "start": 63.85,
+        "word": "returning"
+      },
+      {
+        "start": 64.25,
+        "word": "too"
+      },
+      {
+        "start": 64.65,
+        "word": "few"
+      },
+      {
+        "start": 65.05,
+        "word": "candidates"
+      },
+      {
+        "start": 65.45,
+        "word": "or"
+      },
+      {
+        "start": 65.85,
+        "word": "by"
+      },
+      {
+        "start": 66.25,
+        "word": "surfacing"
+      },
+      {
+        "start": 66.65,
+        "word": "people"
+      },
+      {
+        "start": 67.05,
+        "word": "who"
+      },
+      {
+        "start": 67.45,
+        "word": "could"
+      },
+      {
+        "start": 67.85,
+        "word": "hit"
+      },
+      {
+        "start": 68.25,
+        "word": "two"
+      },
+      {
+        "start": 68.65,
+        "word": "of"
+      },
+      {
+        "start": 69.05,
+        "word": "the"
+      },
+      {
+        "start": 69.45,
+        "word": "three"
+      },
+      {
+        "start": 69.85,
+        "word": "bars"
+      },
+      {
+        "start": 70.25,
+        "word": "but"
+      },
+      {
+        "start": 70.65,
+        "word": "not"
+      },
+      {
+        "start": 71.05,
+        "word": "the"
+      },
+      {
+        "start": 71.45,
+        "word": "third."
+      }
+    ]
+  },
+  {
+    "start": 72.7,
+    "words": [
+      {
+        "start": 72.7,
+        "word": "We"
+      },
+      {
+        "start": 73.1,
+        "word": "decided"
+      },
+      {
+        "start": 73.5,
+        "word": "to"
+      },
+      {
+        "start": 73.9,
+        "word": "take"
+      },
+      {
+        "start": 74.3,
+        "word": "a"
+      },
+      {
+        "start": 74.7,
+        "word": "different"
+      },
+      {
+        "start": 75.1,
+        "word": "approach."
+      }
+    ]
+  },
+  {
+    "start": 76.95,
+    "words": [
+      {
+        "start": 76.95,
+        "word": "What"
+      },
+      {
+        "start": 77.35,
+        "word": "the"
+      },
+      {
+        "start": 77.75,
+        "word": "team"
+      },
+      {
+        "start": 78.15,
+        "word": "is"
+      },
+      {
+        "start": 78.55,
+        "word": "actually"
+      },
+      {
+        "start": 78.95,
+        "word": "ready"
+      },
+      {
+        "start": 79.35,
+        "word": "for."
+      }
+    ]
+  },
+  {
+    "start": 80.8,
+    "words": [
+      {
+        "start": 80.8,
+        "word": "The"
+      },
+      {
+        "start": 81.2,
+        "word": "honest"
+      },
+      {
+        "start": 81.6,
+        "word": "starting"
+      },
+      {
+        "start": 82,
+        "word": "point"
+      },
+      {
+        "start": 82.4,
+        "word": "is"
+      },
+      {
+        "start": 82.8,
+        "word": "that"
+      },
+      {
+        "start": 83.2,
+        "word": "our"
+      },
+      {
+        "start": 83.6,
+        "word": "mobile"
+      },
+      {
+        "start": 84,
+        "word": "design"
+      },
+      {
+        "start": 84.4,
+        "word": "coverage"
+      },
+      {
+        "start": 84.8,
+        "word": "has"
+      },
+      {
+        "start": 85.2,
+        "word": "a"
+      },
+      {
+        "start": 85.6,
+        "word": "known"
+      },
+      {
+        "start": 86,
+        "word": "gap."
+      }
+    ]
+  },
+  {
+    "start": 86.65,
+    "words": [
+      {
+        "start": 86.65,
+        "word": "A"
+      },
+      {
+        "start": 87.05,
+        "word": "senior"
+      },
+      {
+        "start": 87.45,
+        "word": "designer"
+      },
+      {
+        "start": 87.85,
+        "word": "is"
+      },
+      {
+        "start": 88.25,
+        "word": "on"
+      },
+      {
+        "start": 88.65,
+        "word": "parental"
+      },
+      {
+        "start": 89.05,
+        "word": "leave."
+      }
+    ]
+  },
+  {
+    "start": 89.7,
+    "words": [
+      {
+        "start": 89.7,
+        "word": "The"
+      },
+      {
+        "start": 90.1,
+        "word": "mobile"
+      },
+      {
+        "start": 90.5,
+        "word": "backlog"
+      },
+      {
+        "start": 90.9,
+        "word": "has"
+      },
+      {
+        "start": 91.3,
+        "word": "been"
+      },
+      {
+        "start": 91.7,
+        "word": "building."
+      }
+    ]
+  },
+  {
+    "start": 92.35,
+    "words": [
+      {
+        "start": 92.35,
+        "word": "We"
+      },
+      {
+        "start": 92.75,
+        "word": "have"
+      },
+      {
+        "start": 93.15,
+        "word": "a"
+      },
+      {
+        "start": 93.55,
+        "word": "design"
+      },
+      {
+        "start": 93.95,
+        "word": "director"
+      },
+      {
+        "start": 94.35,
+        "word": "on"
+      },
+      {
+        "start": 94.75,
+        "word": "mobile"
+      },
+      {
+        "start": 95.15,
+        "word": "who"
+      },
+      {
+        "start": 95.55,
+        "word": "needs"
+      },
+      {
+        "start": 95.95,
+        "word": "a"
+      },
+      {
+        "start": 96.35,
+        "word": "senior"
+      },
+      {
+        "start": 96.75,
+        "word": "partner"
+      },
+      {
+        "start": 97.15,
+        "word": "now,"
+      },
+      {
+        "start": 97.55,
+        "word": "not"
+      },
+      {
+        "start": 97.95,
+        "word": "in"
+      },
+      {
+        "start": 98.35,
+        "word": "six"
+      },
+      {
+        "start": 98.75,
+        "word": "months."
+      }
+    ]
+  },
+  {
+    "start": 99.4,
+    "words": [
+      {
+        "start": 99.4,
+        "word": "Whatever"
+      },
+      {
+        "start": 99.8,
+        "word": "we"
+      },
+      {
+        "start": 100.2,
+        "word": "hire,"
+      },
+      {
+        "start": 100.6,
+        "word": "it"
+      },
+      {
+        "start": 101,
+        "word": "has"
+      },
+      {
+        "start": 101.4,
+        "word": "to"
+      },
+      {
+        "start": 101.8,
+        "word": "solve"
+      },
+      {
+        "start": 102.2,
+        "word": "this"
+      },
+      {
+        "start": 102.6,
+        "word": "problem"
+      },
+      {
+        "start": 103,
+        "word": "in"
+      },
+      {
+        "start": 103.4,
+        "word": "the"
+      },
+      {
+        "start": 103.8,
+        "word": "first"
+      },
+      {
+        "start": 104.2,
+        "word": "quarter"
+      },
+      {
+        "start": 104.6,
+        "word": "of"
+      },
+      {
+        "start": 105,
+        "word": "ramp,"
+      },
+      {
+        "start": 105.4,
+        "word": "or"
+      },
+      {
+        "start": 105.8,
+        "word": "we"
+      },
+      {
+        "start": 106.2,
+        "word": "will"
+      },
+      {
+        "start": 106.6,
+        "word": "have"
+      },
+      {
+        "start": 107,
+        "word": "hired"
+      },
+      {
+        "start": 107.4,
+        "word": "the"
+      },
+      {
+        "start": 107.8,
+        "word": "wrong"
+      },
+      {
+        "start": 108.2,
+        "word": "thing."
+      }
+    ]
+  },
+  {
+    "start": 109.45,
+    "words": [
+      {
+        "start": 109.45,
+        "word": "At"
+      },
+      {
+        "start": 109.85,
+        "word": "the"
+      },
+      {
+        "start": 110.25,
+        "word": "same"
+      },
+      {
+        "start": 110.65,
+        "word": "time,"
+      },
+      {
+        "start": 111.05,
+        "word": "we"
+      },
+      {
+        "start": 111.45,
+        "word": "have"
+      },
+      {
+        "start": 111.85,
+        "word": "real"
+      },
+      {
+        "start": 112.25,
+        "word": "ambitions"
+      },
+      {
+        "start": 112.65,
+        "word": "for"
+      },
+      {
+        "start": 113.05,
+        "word": "automating"
+      },
+      {
+        "start": 113.45,
+        "word": "our"
+      },
+      {
+        "start": 113.85,
+        "word": "design"
+      },
+      {
+        "start": 114.25,
+        "word": "system."
+      }
+    ]
+  },
+  {
+    "start": 114.9,
+    "words": [
+      {
+        "start": 114.9,
+        "word": "We"
+      },
+      {
+        "start": 115.3,
+        "word": "want"
+      },
+      {
+        "start": 115.7,
+        "word": "to"
+      },
+      {
+        "start": 116.1,
+        "word": "use"
+      },
+      {
+        "start": 116.5,
+        "word": "AI-assisted"
+      },
+      {
+        "start": 116.9,
+        "word": "tooling"
+      },
+      {
+        "start": 117.3,
+        "word": "--"
+      },
+      {
+        "start": 117.7,
+        "word": "Claude"
+      },
+      {
+        "start": 118.1,
+        "word": "Code,"
+      },
+      {
+        "start": 118.5,
+        "word": "Devon-like"
+      },
+      {
+        "start": 118.9,
+        "word": "agents,"
+      },
+      {
+        "start": 119.3,
+        "word": "and"
+      },
+      {
+        "start": 119.7,
+        "word": "whatever"
+      },
+      {
+        "start": 120.1,
+        "word": "else"
+      },
+      {
+        "start": 120.5,
+        "word": "lands"
+      },
+      {
+        "start": 120.9,
+        "word": "in"
+      },
+      {
+        "start": 121.3,
+        "word": "the"
+      },
+      {
+        "start": 121.7,
+        "word": "next"
+      },
+      {
+        "start": 122.1,
+        "word": "six"
+      },
+      {
+        "start": 122.5,
+        "word": "months"
+      },
+      {
+        "start": 122.9,
+        "word": "--"
+      },
+      {
+        "start": 123.3,
+        "word": "to"
+      },
+      {
+        "start": 123.7,
+        "word": "codify"
+      },
+      {
+        "start": 124.1,
+        "word": "components,"
+      },
+      {
+        "start": 124.5,
+        "word": "auto-generate"
+      },
+      {
+        "start": 124.9,
+        "word": "documentation,"
+      },
+      {
+        "start": 125.3,
+        "word": "and"
+      },
+      {
+        "start": 125.7,
+        "word": "reduce"
+      },
+      {
+        "start": 126.1,
+        "word": "the"
+      },
+      {
+        "start": 126.5,
+        "word": "tax"
+      },
+      {
+        "start": 126.9,
+        "word": "the"
+      },
+      {
+        "start": 127.3,
+        "word": "design"
+      },
+      {
+        "start": 127.7,
+        "word": "system"
+      },
+      {
+        "start": 128.1,
+        "word": "team"
+      },
+      {
+        "start": 128.5,
+        "word": "is"
+      },
+      {
+        "start": 128.9,
+        "word": "carrying"
+      },
+      {
+        "start": 129.3,
+        "word": "manually."
+      }
+    ]
+  },
+  {
+    "start": 129.95,
+    "words": [
+      {
+        "start": 129.95,
+        "word": "This"
+      },
+      {
+        "start": 130.35,
+        "word": "is"
+      },
+      {
+        "start": 130.75,
+        "word": "not"
+      },
+      {
+        "start": 131.15,
+        "word": "the"
+      },
+      {
+        "start": 131.55,
+        "word": "work"
+      },
+      {
+        "start": 131.95,
+        "word": "of"
+      },
+      {
+        "start": 132.35,
+        "word": "the"
+      },
+      {
+        "start": 132.75,
+        "word": "first"
+      },
+      {
+        "start": 133.15,
+        "word": "ninety"
+      },
+      {
+        "start": 133.55,
+        "word": "days."
+      }
+    ]
+  },
+  {
+    "start": 134.2,
+    "words": [
+      {
+        "start": 134.2,
+        "word": "It"
+      },
+      {
+        "start": 134.6,
+        "word": "is"
+      },
+      {
+        "start": 135,
+        "word": "the"
+      },
+      {
+        "start": 135.4,
+        "word": "work"
+      },
+      {
+        "start": 135.8,
+        "word": "of"
+      },
+      {
+        "start": 136.2,
+        "word": "the"
+      },
+      {
+        "start": 136.6,
+        "word": "next"
+      },
+      {
+        "start": 137,
+        "word": "six"
+      },
+      {
+        "start": 137.4,
+        "word": "months."
+      }
+    ]
+  },
+  {
+    "start": 138.05,
+    "words": [
+      {
+        "start": 138.05,
+        "word": "And"
+      },
+      {
+        "start": 138.45,
+        "word": "it"
+      },
+      {
+        "start": 138.85,
+        "word": "will"
+      },
+      {
+        "start": 139.25,
+        "word": "not"
+      },
+      {
+        "start": 139.65,
+        "word": "happen"
+      },
+      {
+        "start": 140.05,
+        "word": "in"
+      },
+      {
+        "start": 140.45,
+        "word": "a"
+      },
+      {
+        "start": 140.85,
+        "word": "role"
+      },
+      {
+        "start": 141.25,
+        "word": "whose"
+      },
+      {
+        "start": 141.65,
+        "word": "first"
+      },
+      {
+        "start": 142.05,
+        "word": "months"
+      },
+      {
+        "start": 142.45,
+        "word": "were"
+      },
+      {
+        "start": 142.85,
+        "word": "spent"
+      },
+      {
+        "start": 143.25,
+        "word": "in"
+      },
+      {
+        "start": 143.65,
+        "word": "mobile"
+      },
+      {
+        "start": 144.05,
+        "word": "feature"
+      },
+      {
+        "start": 144.45,
+        "word": "execution."
+      }
+    ]
+  },
+  {
+    "start": 145.7,
+    "words": [
+      {
+        "start": 145.7,
+        "word": "Those"
+      },
+      {
+        "start": 146.1,
+        "word": "two"
+      },
+      {
+        "start": 146.5,
+        "word": "realities,"
+      },
+      {
+        "start": 146.9,
+        "word": "held"
+      },
+      {
+        "start": 147.3,
+        "word": "together,"
+      },
+      {
+        "start": 147.7,
+        "word": "gave"
+      },
+      {
+        "start": 148.1,
+        "word": "us"
+      },
+      {
+        "start": 148.5,
+        "word": "the"
+      },
+      {
+        "start": 148.9,
+        "word": "decision."
+      }
+    ]
+  },
+  {
+    "start": 150.75,
+    "words": [
+      {
+        "start": 150.75,
+        "word": "The"
+      },
+      {
+        "start": 151.15,
+        "word": "two-phase"
+      },
+      {
+        "start": 151.55,
+        "word": "scope."
+      }
+    ]
+  },
+  {
+    "start": 153,
+    "words": [
+      {
+        "start": 153,
+        "word": "The"
+      },
+      {
+        "start": 153.4,
+        "word": "first"
+      },
+      {
+        "start": 153.8,
+        "word": "phase"
+      },
+      {
+        "start": 154.2,
+        "word": "is"
+      },
+      {
+        "start": 154.6,
+        "word": "ninety"
+      },
+      {
+        "start": 155,
+        "word": "days"
+      },
+      {
+        "start": 155.4,
+        "word": "of"
+      },
+      {
+        "start": 155.8,
+        "word": "senior"
+      },
+      {
+        "start": 156.2,
+        "word": "product"
+      },
+      {
+        "start": 156.6,
+        "word": "design"
+      },
+      {
+        "start": 157,
+        "word": "work,"
+      },
+      {
+        "start": 157.4,
+        "word": "paired"
+      },
+      {
+        "start": 157.8,
+        "word": "with"
+      },
+      {
+        "start": 158.2,
+        "word": "our"
+      },
+      {
+        "start": 158.6,
+        "word": "mobile"
+      },
+      {
+        "start": 159,
+        "word": "design"
+      },
+      {
+        "start": 159.4,
+        "word": "director,"
+      },
+      {
+        "start": 159.8,
+        "word": "cutting"
+      },
+      {
+        "start": 160.2,
+        "word": "into"
+      },
+      {
+        "start": 160.6,
+        "word": "the"
+      },
+      {
+        "start": 161,
+        "word": "backlog."
+      }
+    ]
+  },
+  {
+    "start": 161.65,
+    "words": [
+      {
+        "start": 161.65,
+        "word": "During"
+      },
+      {
+        "start": 162.05,
+        "word": "that"
+      },
+      {
+        "start": 162.45,
+        "word": "window,"
+      },
+      {
+        "start": 162.85,
+        "word": "the"
+      },
+      {
+        "start": 163.25,
+        "word": "hire"
+      },
+      {
+        "start": 163.65,
+        "word": "is"
+      },
+      {
+        "start": 164.05,
+        "word": "a"
+      },
+      {
+        "start": 164.45,
+        "word": "senior"
+      },
+      {
+        "start": 164.85,
+        "word": "product"
+      },
+      {
+        "start": 165.25,
+        "word": "designer"
+      },
+      {
+        "start": 165.65,
+        "word": "in"
+      },
+      {
+        "start": 166.05,
+        "word": "every"
+      },
+      {
+        "start": 166.45,
+        "word": "functional"
+      },
+      {
+        "start": 166.85,
+        "word": "sense:"
+      },
+      {
+        "start": 167.25,
+        "word": "contributing"
+      },
+      {
+        "start": 167.65,
+        "word": "to"
+      },
+      {
+        "start": 168.05,
+        "word": "features,"
+      },
+      {
+        "start": 168.45,
+        "word": "partnering"
+      },
+      {
+        "start": 168.85,
+        "word": "with"
+      },
+      {
+        "start": 169.25,
+        "word": "engineers,"
+      },
+      {
+        "start": 169.65,
+        "word": "shipping."
+      }
+    ]
+  },
+  {
+    "start": 170.3,
+    "words": [
+      {
+        "start": 170.3,
+        "word": "The"
+      },
+      {
+        "start": 170.7,
+        "word": "design"
+      },
+      {
+        "start": 171.1,
+        "word": "technologist"
+      },
+      {
+        "start": 171.5,
+        "word": "title"
+      },
+      {
+        "start": 171.9,
+        "word": "is"
+      },
+      {
+        "start": 172.3,
+        "word": "maintained"
+      },
+      {
+        "start": 172.7,
+        "word": "because"
+      },
+      {
+        "start": 173.1,
+        "word": "we"
+      },
+      {
+        "start": 173.5,
+        "word": "want"
+      },
+      {
+        "start": 173.9,
+        "word": "the"
+      },
+      {
+        "start": 174.3,
+        "word": "person's"
+      },
+      {
+        "start": 174.7,
+        "word": "title"
+      },
+      {
+        "start": 175.1,
+        "word": "to"
+      },
+      {
+        "start": 175.5,
+        "word": "reflect"
+      },
+      {
+        "start": 175.9,
+        "word": "where"
+      },
+      {
+        "start": 176.3,
+        "word": "the"
+      },
+      {
+        "start": 176.7,
+        "word": "role"
+      },
+      {
+        "start": 177.1,
+        "word": "is"
+      },
+      {
+        "start": 177.5,
+        "word": "going,"
+      },
+      {
+        "start": 177.9,
+        "word": "but"
+      },
+      {
+        "start": 178.3,
+        "word": "the"
+      },
+      {
+        "start": 178.7,
+        "word": "scope"
+      },
+      {
+        "start": 179.1,
+        "word": "is"
+      },
+      {
+        "start": 179.5,
+        "word": "deliberately"
+      },
+      {
+        "start": 179.9,
+        "word": "narrower"
+      },
+      {
+        "start": 180.3,
+        "word": "than"
+      },
+      {
+        "start": 180.7,
+        "word": "the"
+      },
+      {
+        "start": 181.1,
+        "word": "title"
+      },
+      {
+        "start": 181.5,
+        "word": "implies."
+      }
+    ]
+  },
+  {
+    "start": 182.75,
+    "words": [
+      {
+        "start": 182.75,
+        "word": "After"
+      },
+      {
+        "start": 183.15,
+        "word": "ninety"
+      },
+      {
+        "start": 183.55,
+        "word": "days,"
+      },
+      {
+        "start": 183.95,
+        "word": "the"
+      },
+      {
+        "start": 184.35,
+        "word": "scope"
+      },
+      {
+        "start": 184.75,
+        "word": "shifts."
+      }
+    ]
+  },
+  {
+    "start": 185.4,
+    "words": [
+      {
+        "start": 185.4,
+        "word": "Mobile"
+      },
+      {
+        "start": 185.8,
+        "word": "coverage"
+      },
+      {
+        "start": 186.2,
+        "word": "is"
+      },
+      {
+        "start": 186.6,
+        "word": "no"
+      },
+      {
+        "start": 187,
+        "word": "longer"
+      },
+      {
+        "start": 187.4,
+        "word": "the"
+      },
+      {
+        "start": 187.8,
+        "word": "crisis."
+      }
+    ]
+  },
+  {
+    "start": 188.45,
+    "words": [
+      {
+        "start": 188.45,
+        "word": "The"
+      },
+      {
+        "start": 188.85,
+        "word": "hire"
+      },
+      {
+        "start": 189.25,
+        "word": "partners"
+      },
+      {
+        "start": 189.65,
+        "word": "with"
+      },
+      {
+        "start": 190.05,
+        "word": "our"
+      },
+      {
+        "start": 190.45,
+        "word": "design"
+      },
+      {
+        "start": 190.85,
+        "word": "system"
+      },
+      {
+        "start": 191.25,
+        "word": "lead"
+      },
+      {
+        "start": 191.65,
+        "word": "on"
+      },
+      {
+        "start": 192.05,
+        "word": "automation"
+      },
+      {
+        "start": 192.45,
+        "word": "building"
+      },
+      {
+        "start": 192.85,
+        "word": "AI-assisted"
+      },
+      {
+        "start": 193.25,
+        "word": "workflows"
+      },
+      {
+        "start": 193.65,
+        "word": "for"
+      },
+      {
+        "start": 194.05,
+        "word": "component"
+      },
+      {
+        "start": 194.45,
+        "word": "codification,"
+      },
+      {
+        "start": 194.85,
+        "word": "documentation,"
+      },
+      {
+        "start": 195.25,
+        "word": "and"
+      },
+      {
+        "start": 195.65,
+        "word": "the"
+      },
+      {
+        "start": 196.05,
+        "word": "systems"
+      },
+      {
+        "start": 196.45,
+        "word": "work"
+      },
+      {
+        "start": 196.85,
+        "word": "that"
+      },
+      {
+        "start": 197.25,
+        "word": "has"
+      },
+      {
+        "start": 197.65,
+        "word": "historically"
+      },
+      {
+        "start": 198.05,
+        "word": "been"
+      },
+      {
+        "start": 198.45,
+        "word": "manual,"
+      },
+      {
+        "start": 198.85,
+        "word": "slow,"
+      },
+      {
+        "start": 199.25,
+        "word": "and"
+      },
+      {
+        "start": 199.65,
+        "word": "under-resourced."
+      }
+    ]
+  },
+  {
+    "start": 200.3,
+    "words": [
+      {
+        "start": 200.3,
+        "word": "This"
+      },
+      {
+        "start": 200.7,
+        "word": "is"
+      },
+      {
+        "start": 201.1,
+        "word": "the"
+      },
+      {
+        "start": 201.5,
+        "word": "phase"
+      },
+      {
+        "start": 201.9,
+        "word": "the"
+      },
+      {
+        "start": 202.3,
+        "word": "title"
+      },
+      {
+        "start": 202.7,
+        "word": "is"
+      },
+      {
+        "start": 203.1,
+        "word": "actually"
+      },
+      {
+        "start": 203.5,
+        "word": "designed"
+      },
+      {
+        "start": 203.9,
+        "word": "for."
+      }
+    ]
+  },
+  {
+    "start": 205.15,
+    "words": [
+      {
+        "start": 205.15,
+        "word": "The"
+      },
+      {
+        "start": 205.55,
+        "word": "hire"
+      },
+      {
+        "start": 205.95,
+        "word": "gets"
+      },
+      {
+        "start": 206.35,
+        "word": "one"
+      },
+      {
+        "start": 206.75,
+        "word": "role"
+      },
+      {
+        "start": 207.15,
+        "word": "and"
+      },
+      {
+        "start": 207.55,
+        "word": "one"
+      },
+      {
+        "start": 207.95,
+        "word": "manager."
+      }
+    ]
+  },
+  {
+    "start": 208.6,
+    "words": [
+      {
+        "start": 208.6,
+        "word": "But"
+      },
+      {
+        "start": 209,
+        "word": "they"
+      },
+      {
+        "start": 209.4,
+        "word": "get"
+      },
+      {
+        "start": 209.8,
+        "word": "two"
+      },
+      {
+        "start": 210.2,
+        "word": "distinct"
+      },
+      {
+        "start": 210.6,
+        "word": "bodies"
+      },
+      {
+        "start": 211,
+        "word": "of"
+      },
+      {
+        "start": 211.4,
+        "word": "work,"
+      },
+      {
+        "start": 211.8,
+        "word": "in"
+      },
+      {
+        "start": 212.2,
+        "word": "sequence,"
+      },
+      {
+        "start": 212.6,
+        "word": "with"
+      },
+      {
+        "start": 213,
+        "word": "the"
+      },
+      {
+        "start": 213.4,
+        "word": "handoff"
+      },
+      {
+        "start": 213.8,
+        "word": "planned"
+      },
+      {
+        "start": 214.2,
+        "word": "from"
+      },
+      {
+        "start": 214.6,
+        "word": "day"
+      },
+      {
+        "start": 215,
+        "word": "one."
+      }
+    ]
+  },
+  {
+    "start": 216.85,
+    "words": [
+      {
+        "start": 216.85,
+        "word": "Why"
+      },
+      {
+        "start": 217.25,
+        "word": "we"
+      },
+      {
+        "start": 217.65,
+        "word": "scoped"
+      },
+      {
+        "start": 218.05,
+        "word": "it"
+      },
+      {
+        "start": 218.45,
+        "word": "this"
+      },
+      {
+        "start": 218.85,
+        "word": "way."
+      }
+    ]
+  },
+  {
+    "start": 220.3,
+    "words": [
+      {
+        "start": 220.3,
+        "word": "There"
+      },
+      {
+        "start": 220.7,
+        "word": "are"
+      },
+      {
+        "start": 221.1,
+        "word": "three"
+      },
+      {
+        "start": 221.5,
+        "word": "reasons"
+      },
+      {
+        "start": 221.9,
+        "word": "this"
+      },
+      {
+        "start": 222.3,
+        "word": "structure"
+      },
+      {
+        "start": 222.7,
+        "word": "beats"
+      },
+      {
+        "start": 223.1,
+        "word": "the"
+      },
+      {
+        "start": 223.5,
+        "word": "usual"
+      },
+      {
+        "start": 223.9,
+        "word": "approach."
+      }
+    ]
+  },
+  {
+    "start": 225.15,
+    "words": [
+      {
+        "start": 225.15,
+        "word": "First,"
+      },
+      {
+        "start": 225.55,
+        "word": "it"
+      },
+      {
+        "start": 225.95,
+        "word": "matches"
+      },
+      {
+        "start": 226.35,
+        "word": "the"
+      },
+      {
+        "start": 226.75,
+        "word": "team's"
+      },
+      {
+        "start": 227.15,
+        "word": "absorptive"
+      },
+      {
+        "start": 227.55,
+        "word": "capacity."
+      }
+    ]
+  },
+  {
+    "start": 228.2,
+    "words": [
+      {
+        "start": 228.2,
+        "word": "The"
+      },
+      {
+        "start": 228.6,
+        "word": "design"
+      },
+      {
+        "start": 229,
+        "word": "technologist"
+      },
+      {
+        "start": 229.4,
+        "word": "role"
+      },
+      {
+        "start": 229.8,
+        "word": "only"
+      },
+      {
+        "start": 230.2,
+        "word": "works"
+      },
+      {
+        "start": 230.6,
+        "word": "if"
+      },
+      {
+        "start": 231,
+        "word": "the"
+      },
+      {
+        "start": 231.4,
+        "word": "team"
+      },
+      {
+        "start": 231.8,
+        "word": "around"
+      },
+      {
+        "start": 232.2,
+        "word": "it"
+      },
+      {
+        "start": 232.6,
+        "word": "can"
+      },
+      {
+        "start": 233,
+        "word": "productively"
+      },
+      {
+        "start": 233.4,
+        "word": "use"
+      },
+      {
+        "start": 233.8,
+        "word": "what"
+      },
+      {
+        "start": 234.2,
+        "word": "the"
+      },
+      {
+        "start": 234.6,
+        "word": "hire"
+      },
+      {
+        "start": 235,
+        "word": "produces."
+      }
+    ]
+  },
+  {
+    "start": 235.65,
+    "words": [
+      {
+        "start": 235.65,
+        "word": "Right"
+      },
+      {
+        "start": 236.05,
+        "word": "now,"
+      },
+      {
+        "start": 236.45,
+        "word": "our"
+      },
+      {
+        "start": 236.85,
+        "word": "design"
+      },
+      {
+        "start": 237.25,
+        "word": "system"
+      },
+      {
+        "start": 237.65,
+        "word": "team"
+      },
+      {
+        "start": 238.05,
+        "word": "is"
+      },
+      {
+        "start": 238.45,
+        "word": "still"
+      },
+      {
+        "start": 238.85,
+        "word": "building"
+      },
+      {
+        "start": 239.25,
+        "word": "the"
+      },
+      {
+        "start": 239.65,
+        "word": "foundations"
+      },
+      {
+        "start": 240.05,
+        "word": "that"
+      },
+      {
+        "start": 240.45,
+        "word": "an"
+      },
+      {
+        "start": 240.85,
+        "word": "automation"
+      },
+      {
+        "start": 241.25,
+        "word": "layer"
+      },
+      {
+        "start": 241.65,
+        "word": "would"
+      },
+      {
+        "start": 242.05,
+        "word": "accelerate."
+      }
+    ]
+  },
+  {
+    "start": 242.7,
+    "words": [
+      {
+        "start": 242.7,
+        "word": "In"
+      },
+      {
+        "start": 243.1,
+        "word": "ninety"
+      },
+      {
+        "start": 243.5,
+        "word": "days,"
+      },
+      {
+        "start": 243.9,
+        "word": "those"
+      },
+      {
+        "start": 244.3,
+        "word": "foundations"
+      },
+      {
+        "start": 244.7,
+        "word": "will"
+      },
+      {
+        "start": 245.1,
+        "word": "be"
+      },
+      {
+        "start": 245.5,
+        "word": "further"
+      },
+      {
+        "start": 245.9,
+        "word": "along,"
+      },
+      {
+        "start": 246.3,
+        "word": "and"
+      },
+      {
+        "start": 246.7,
+        "word": "the"
+      },
+      {
+        "start": 247.1,
+        "word": "team"
+      },
+      {
+        "start": 247.5,
+        "word": "will"
+      },
+      {
+        "start": 247.9,
+        "word": "have"
+      },
+      {
+        "start": 248.3,
+        "word": "actual"
+      },
+      {
+        "start": 248.7,
+        "word": "capacity"
+      },
+      {
+        "start": 249.1,
+        "word": "to"
+      },
+      {
+        "start": 249.5,
+        "word": "collaborate"
+      },
+      {
+        "start": 249.9,
+        "word": "on"
+      },
+      {
+        "start": 250.3,
+        "word": "automation."
+      }
+    ]
+  },
+  {
+    "start": 250.95,
+    "words": [
+      {
+        "start": 250.95,
+        "word": "Hiring"
+      },
+      {
+        "start": 251.35,
+        "word": "the"
+      },
+      {
+        "start": 251.75,
+        "word": "endgame"
+      },
+      {
+        "start": 252.15,
+        "word": "role"
+      },
+      {
+        "start": 252.55,
+        "word": "today"
+      },
+      {
+        "start": 252.95,
+        "word": "would"
+      },
+      {
+        "start": 253.35,
+        "word": "mean"
+      },
+      {
+        "start": 253.75,
+        "word": "hiring"
+      },
+      {
+        "start": 254.15,
+        "word": "someone"
+      },
+      {
+        "start": 254.55,
+        "word": "to"
+      },
+      {
+        "start": 254.95,
+        "word": "build"
+      },
+      {
+        "start": 255.35,
+        "word": "on"
+      },
+      {
+        "start": 255.75,
+        "word": "sand."
+      }
+    ]
+  },
+  {
+    "start": 257,
+    "words": [
+      {
+        "start": 257,
+        "word": "Second,"
+      },
+      {
+        "start": 257.4,
+        "word": "it"
+      },
+      {
+        "start": 257.8,
+        "word": "gives"
+      },
+      {
+        "start": 258.2,
+        "word": "the"
+      },
+      {
+        "start": 258.6,
+        "word": "hire"
+      },
+      {
+        "start": 259,
+        "word": "a"
+      },
+      {
+        "start": 259.4,
+        "word": "credible"
+      },
+      {
+        "start": 259.8,
+        "word": "first"
+      },
+      {
+        "start": 260.2,
+        "word": "win."
+      }
+    ]
+  },
+  {
+    "start": 260.85,
+    "words": [
+      {
+        "start": 260.85,
+        "word": "Nothing"
+      },
+      {
+        "start": 261.25,
+        "word": "de-risks"
+      },
+      {
+        "start": 261.65,
+        "word": "a"
+      },
+      {
+        "start": 262.05,
+        "word": "complicated"
+      },
+      {
+        "start": 262.45,
+        "word": "role"
+      },
+      {
+        "start": 262.85,
+        "word": "faster"
+      },
+      {
+        "start": 263.25,
+        "word": "than"
+      },
+      {
+        "start": 263.65,
+        "word": "shipping"
+      },
+      {
+        "start": 264.05,
+        "word": "something"
+      },
+      {
+        "start": 264.45,
+        "word": "real"
+      },
+      {
+        "start": 264.85,
+        "word": "in"
+      },
+      {
+        "start": 265.25,
+        "word": "the"
+      },
+      {
+        "start": 265.65,
+        "word": "first"
+      },
+      {
+        "start": 266.05,
+        "word": "quarter."
+      }
+    ]
+  },
+  {
+    "start": 266.7,
+    "words": [
+      {
+        "start": 266.7,
+        "word": "Mobile"
+      },
+      {
+        "start": 267.1,
+        "word": "backlog"
+      },
+      {
+        "start": 267.5,
+        "word": "work"
+      },
+      {
+        "start": 267.9,
+        "word": "is"
+      },
+      {
+        "start": 268.3,
+        "word": "legible,"
+      },
+      {
+        "start": 268.7,
+        "word": "scoped,"
+      },
+      {
+        "start": 269.1,
+        "word": "and"
+      },
+      {
+        "start": 269.5,
+        "word": "high-leverage."
+      }
+    ]
+  },
+  {
+    "start": 270.15,
+    "words": [
+      {
+        "start": 270.15,
+        "word": "The"
+      },
+      {
+        "start": 270.55,
+        "word": "hire"
+      },
+      {
+        "start": 270.95,
+        "word": "will"
+      },
+      {
+        "start": 271.35,
+        "word": "have"
+      },
+      {
+        "start": 271.75,
+        "word": "real"
+      },
+      {
+        "start": 272.15,
+        "word": "wins"
+      },
+      {
+        "start": 272.55,
+        "word": "to"
+      },
+      {
+        "start": 272.95,
+        "word": "point"
+      },
+      {
+        "start": 273.35,
+        "word": "to"
+      },
+      {
+        "start": 273.75,
+        "word": "before"
+      },
+      {
+        "start": 274.15,
+        "word": "they"
+      },
+      {
+        "start": 274.55,
+        "word": "start"
+      },
+      {
+        "start": 274.95,
+        "word": "the"
+      },
+      {
+        "start": 275.35,
+        "word": "harder,"
+      },
+      {
+        "start": 275.75,
+        "word": "more"
+      },
+      {
+        "start": 276.15,
+        "word": "ambiguous"
+      },
+      {
+        "start": 276.55,
+        "word": "work"
+      },
+      {
+        "start": 276.95,
+        "word": "of"
+      },
+      {
+        "start": 277.35,
+        "word": "automation."
+      }
+    ]
+  },
+  {
+    "start": 278.6,
+    "words": [
+      {
+        "start": 278.6,
+        "word": "Third,"
+      },
+      {
+        "start": 279,
+        "word": "it"
+      },
+      {
+        "start": 279.4,
+        "word": "teaches"
+      },
+      {
+        "start": 279.8,
+        "word": "the"
+      },
+      {
+        "start": 280.2,
+        "word": "organization"
+      },
+      {
+        "start": 280.6,
+        "word": "what"
+      },
+      {
+        "start": 281,
+        "word": "the"
+      },
+      {
+        "start": 281.4,
+        "word": "role"
+      },
+      {
+        "start": 281.8,
+        "word": "actually"
+      },
+      {
+        "start": 282.2,
+        "word": "is."
+      }
+    ]
+  },
+  {
+    "start": 282.85,
+    "words": [
+      {
+        "start": 282.85,
+        "word": "Half"
+      },
+      {
+        "start": 283.25,
+        "word": "the"
+      },
+      {
+        "start": 283.65,
+        "word": "friction"
+      },
+      {
+        "start": 284.05,
+        "word": "around"
+      },
+      {
+        "start": 284.45,
+        "word": "design"
+      },
+      {
+        "start": 284.85,
+        "word": "technologist"
+      },
+      {
+        "start": 285.25,
+        "word": "roles"
+      },
+      {
+        "start": 285.65,
+        "word": "is"
+      },
+      {
+        "start": 286.05,
+        "word": "that"
+      },
+      {
+        "start": 286.45,
+        "word": "nobody"
+      },
+      {
+        "start": 286.85,
+        "word": "on"
+      },
+      {
+        "start": 287.25,
+        "word": "the"
+      },
+      {
+        "start": 287.65,
+        "word": "cross-functional"
+      },
+      {
+        "start": 288.05,
+        "word": "side"
+      },
+      {
+        "start": 288.45,
+        "word": "knows"
+      },
+      {
+        "start": 288.85,
+        "word": "what"
+      },
+      {
+        "start": 289.25,
+        "word": "one"
+      },
+      {
+        "start": 289.65,
+        "word": "does."
+      }
+    ]
+  },
+  {
+    "start": 290.3,
+    "words": [
+      {
+        "start": 290.3,
+        "word": "By"
+      },
+      {
+        "start": 290.7,
+        "word": "running"
+      },
+      {
+        "start": 291.1,
+        "word": "phase"
+      },
+      {
+        "start": 291.5,
+        "word": "one"
+      },
+      {
+        "start": 291.9,
+        "word": "as"
+      },
+      {
+        "start": 292.3,
+        "word": "\"senior"
+      },
+      {
+        "start": 292.7,
+        "word": "product"
+      },
+      {
+        "start": 293.1,
+        "word": "designer"
+      },
+      {
+        "start": 293.5,
+        "word": "on"
+      },
+      {
+        "start": 293.9,
+        "word": "mobile,\""
+      },
+      {
+        "start": 294.3,
+        "word": "we"
+      },
+      {
+        "start": 294.7,
+        "word": "give"
+      },
+      {
+        "start": 295.1,
+        "word": "engineering,"
+      },
+      {
+        "start": 295.5,
+        "word": "product,"
+      },
+      {
+        "start": 295.9,
+        "word": "and"
+      },
+      {
+        "start": 296.3,
+        "word": "the"
+      },
+      {
+        "start": 296.7,
+        "word": "rest"
+      },
+      {
+        "start": 297.1,
+        "word": "of"
+      },
+      {
+        "start": 297.5,
+        "word": "design"
+      },
+      {
+        "start": 297.9,
+        "word": "a"
+      },
+      {
+        "start": 298.3,
+        "word": "shared"
+      },
+      {
+        "start": 298.7,
+        "word": "understanding"
+      },
+      {
+        "start": 299.1,
+        "word": "of"
+      },
+      {
+        "start": 299.5,
+        "word": "how"
+      },
+      {
+        "start": 299.9,
+        "word": "the"
+      },
+      {
+        "start": 300.3,
+        "word": "person"
+      },
+      {
+        "start": 300.7,
+        "word": "works,"
+      },
+      {
+        "start": 301.1,
+        "word": "how"
+      },
+      {
+        "start": 301.5,
+        "word": "they"
+      },
+      {
+        "start": 301.9,
+        "word": "communicate,"
+      },
+      {
+        "start": 302.3,
+        "word": "how"
+      },
+      {
+        "start": 302.7,
+        "word": "they"
+      },
+      {
+        "start": 303.1,
+        "word": "scope."
+      }
+    ]
+  },
+  {
+    "start": 303.75,
+    "words": [
+      {
+        "start": 303.75,
+        "word": "By"
+      },
+      {
+        "start": 304.15,
+        "word": "the"
+      },
+      {
+        "start": 304.55,
+        "word": "time"
+      },
+      {
+        "start": 304.95,
+        "word": "phase"
+      },
+      {
+        "start": 305.35,
+        "word": "two"
+      },
+      {
+        "start": 305.75,
+        "word": "starts,"
+      },
+      {
+        "start": 306.15,
+        "word": "the"
+      },
+      {
+        "start": 306.55,
+        "word": "political"
+      },
+      {
+        "start": 306.95,
+        "word": "and"
+      },
+      {
+        "start": 307.35,
+        "word": "trust"
+      },
+      {
+        "start": 307.75,
+        "word": "capital"
+      },
+      {
+        "start": 308.15,
+        "word": "needed"
+      },
+      {
+        "start": 308.55,
+        "word": "for"
+      },
+      {
+        "start": 308.95,
+        "word": "systems"
+      },
+      {
+        "start": 309.35,
+        "word": "work"
+      },
+      {
+        "start": 309.75,
+        "word": "already"
+      },
+      {
+        "start": 310.15,
+        "word": "exists."
+      }
+    ]
+  },
+  {
+    "start": 312,
+    "words": [
+      {
+        "start": 312,
+        "word": "What"
+      },
+      {
+        "start": 312.4,
+        "word": "this"
+      },
+      {
+        "start": 312.8,
+        "word": "decision"
+      },
+      {
+        "start": 313.2,
+        "word": "is"
+      },
+      {
+        "start": 313.6,
+        "word": "really"
+      },
+      {
+        "start": 314,
+        "word": "about."
+      }
+    ]
+  },
+  {
+    "start": 315.45,
+    "words": [
+      {
+        "start": 315.45,
+        "word": "Role"
+      },
+      {
+        "start": 315.85,
+        "word": "design"
+      },
+      {
+        "start": 316.25,
+        "word": "is"
+      },
+      {
+        "start": 316.65,
+        "word": "a"
+      },
+      {
+        "start": 317.05,
+        "word": "design"
+      },
+      {
+        "start": 317.45,
+        "word": "problem."
+      }
+    ]
+  },
+  {
+    "start": 318.1,
+    "words": [
+      {
+        "start": 318.1,
+        "word": "It"
+      },
+      {
+        "start": 318.5,
+        "word": "has"
+      },
+      {
+        "start": 318.9,
+        "word": "scope,"
+      },
+      {
+        "start": 319.3,
+        "word": "constraints,"
+      },
+      {
+        "start": 319.7,
+        "word": "users"
+      },
+      {
+        "start": 320.1,
+        "word": "(the"
+      },
+      {
+        "start": 320.5,
+        "word": "hire,"
+      },
+      {
+        "start": 320.9,
+        "word": "their"
+      },
+      {
+        "start": 321.3,
+        "word": "manager,"
+      },
+      {
+        "start": 321.7,
+        "word": "and"
+      },
+      {
+        "start": 322.1,
+        "word": "the"
+      },
+      {
+        "start": 322.5,
+        "word": "team"
+      },
+      {
+        "start": 322.9,
+        "word": "around"
+      },
+      {
+        "start": 323.3,
+        "word": "them),"
+      },
+      {
+        "start": 323.7,
+        "word": "and"
+      },
+      {
+        "start": 324.1,
+        "word": "a"
+      },
+      {
+        "start": 324.5,
+        "word": "set"
+      },
+      {
+        "start": 324.9,
+        "word": "of"
+      },
+      {
+        "start": 325.3,
+        "word": "outcomes"
+      },
+      {
+        "start": 325.7,
+        "word": "to"
+      },
+      {
+        "start": 326.1,
+        "word": "optimize"
+      },
+      {
+        "start": 326.5,
+        "word": "for."
+      }
+    ]
+  },
+  {
+    "start": 327.15,
+    "words": [
+      {
+        "start": 327.15,
+        "word": "Most"
+      },
+      {
+        "start": 327.55,
+        "word": "role"
+      },
+      {
+        "start": 327.95,
+        "word": "design"
+      },
+      {
+        "start": 328.35,
+        "word": "fails"
+      },
+      {
+        "start": 328.75,
+        "word": "for"
+      },
+      {
+        "start": 329.15,
+        "word": "the"
+      },
+      {
+        "start": 329.55,
+        "word": "same"
+      },
+      {
+        "start": 329.95,
+        "word": "reason"
+      },
+      {
+        "start": 330.35,
+        "word": "most"
+      },
+      {
+        "start": 330.75,
+        "word": "product"
+      },
+      {
+        "start": 331.15,
+        "word": "design"
+      },
+      {
+        "start": 331.55,
+        "word": "fails:"
+      },
+      {
+        "start": 331.95,
+        "word": "it"
+      },
+      {
+        "start": 332.35,
+        "word": "optimizes"
+      },
+      {
+        "start": 332.75,
+        "word": "for"
+      },
+      {
+        "start": 333.15,
+        "word": "the"
+      },
+      {
+        "start": 333.55,
+        "word": "ideal"
+      },
+      {
+        "start": 333.95,
+        "word": "case"
+      },
+      {
+        "start": 334.35,
+        "word": "and"
+      },
+      {
+        "start": 334.75,
+        "word": "ignores"
+      },
+      {
+        "start": 335.15,
+        "word": "the"
+      },
+      {
+        "start": 335.55,
+        "word": "onboarding"
+      },
+      {
+        "start": 335.95,
+        "word": "case."
+      }
+    ]
+  },
+  {
+    "start": 336.6,
+    "words": [
+      {
+        "start": 336.6,
+        "word": "We"
+      },
+      {
+        "start": 337,
+        "word": "wrote"
+      },
+      {
+        "start": 337.4,
+        "word": "a"
+      },
+      {
+        "start": 337.8,
+        "word": "role"
+      },
+      {
+        "start": 338.2,
+        "word": "that"
+      },
+      {
+        "start": 338.6,
+        "word": "works"
+      },
+      {
+        "start": 339,
+        "word": "on"
+      },
+      {
+        "start": 339.4,
+        "word": "day"
+      },
+      {
+        "start": 339.8,
+        "word": "one"
+      },
+      {
+        "start": 340.2,
+        "word": "and"
+      },
+      {
+        "start": 340.6,
+        "word": "grows"
+      },
+      {
+        "start": 341,
+        "word": "into"
+      },
+      {
+        "start": 341.4,
+        "word": "its"
+      },
+      {
+        "start": 341.8,
+        "word": "title"
+      },
+      {
+        "start": 342.2,
+        "word": "over"
+      },
+      {
+        "start": 342.6,
+        "word": "the"
+      },
+      {
+        "start": 343,
+        "word": "first"
+      },
+      {
+        "start": 343.4,
+        "word": "year."
+      }
+    ]
+  },
+  {
+    "start": 344.05,
+    "words": [
+      {
+        "start": 344.05,
+        "word": "The"
+      },
+      {
+        "start": 344.45,
+        "word": "alternative"
+      },
+      {
+        "start": 344.85,
+        "word": "was"
+      },
+      {
+        "start": 345.25,
+        "word": "writing"
+      },
+      {
+        "start": 345.65,
+        "word": "a"
+      },
+      {
+        "start": 346.05,
+        "word": "role"
+      },
+      {
+        "start": 346.45,
+        "word": "that"
+      },
+      {
+        "start": 346.85,
+        "word": "was"
+      },
+      {
+        "start": 347.25,
+        "word": "right"
+      },
+      {
+        "start": 347.65,
+        "word": "on"
+      },
+      {
+        "start": 348.05,
+        "word": "paper"
+      },
+      {
+        "start": 348.45,
+        "word": "and"
+      },
+      {
+        "start": 348.85,
+        "word": "wrong"
+      },
+      {
+        "start": 349.25,
+        "word": "in"
+      },
+      {
+        "start": 349.65,
+        "word": "practice."
+      }
+    ]
+  },
+  {
+    "start": 350.9,
+    "words": [
+      {
+        "start": 350.9,
+        "word": "If"
+      },
+      {
+        "start": 351.3,
+        "word": "you"
+      },
+      {
+        "start": 351.7,
+        "word": "are"
+      },
+      {
+        "start": 352.1,
+        "word": "hiring"
+      },
+      {
+        "start": 352.5,
+        "word": "a"
+      },
+      {
+        "start": 352.9,
+        "word": "design"
+      },
+      {
+        "start": 353.3,
+        "word": "technologist"
+      },
+      {
+        "start": 353.7,
+        "word": "this"
+      },
+      {
+        "start": 354.1,
+        "word": "year,"
+      },
+      {
+        "start": 354.5,
+        "word": "my"
+      },
+      {
+        "start": 354.9,
+        "word": "recommendation"
+      },
+      {
+        "start": 355.3,
+        "word": "is"
+      },
+      {
+        "start": 355.7,
+        "word": "to"
+      },
+      {
+        "start": 356.1,
+        "word": "resist"
+      },
+      {
+        "start": 356.5,
+        "word": "the"
+      },
+      {
+        "start": 356.9,
+        "word": "temptation"
+      },
+      {
+        "start": 357.3,
+        "word": "to"
+      },
+      {
+        "start": 357.7,
+        "word": "write"
+      },
+      {
+        "start": 358.1,
+        "word": "the"
+      },
+      {
+        "start": 358.5,
+        "word": "role"
+      },
+      {
+        "start": 358.9,
+        "word": "you"
+      },
+      {
+        "start": 359.3,
+        "word": "eventually"
+      },
+      {
+        "start": 359.7,
+        "word": "want."
+      }
+    ]
+  },
+  {
+    "start": 360.35,
+    "words": [
+      {
+        "start": 360.35,
+        "word": "Write"
+      },
+      {
+        "start": 360.75,
+        "word": "the"
+      },
+      {
+        "start": 361.15,
+        "word": "role"
+      },
+      {
+        "start": 361.55,
+        "word": "your"
+      },
+      {
+        "start": 361.95,
+        "word": "team"
+      },
+      {
+        "start": 362.35,
+        "word": "is"
+      },
+      {
+        "start": 362.75,
+        "word": "ready"
+      },
+      {
+        "start": 363.15,
+        "word": "for"
+      },
+      {
+        "start": 363.55,
+        "word": "today,"
+      },
+      {
+        "start": 363.95,
+        "word": "with"
+      },
+      {
+        "start": 364.35,
+        "word": "a"
+      },
+      {
+        "start": 364.75,
+        "word": "clear"
+      },
+      {
+        "start": 365.15,
+        "word": "second"
+      },
+      {
+        "start": 365.55,
+        "word": "phase."
+      }
+    ]
+  },
+  {
+    "start": 366.2,
+    "words": [
+      {
+        "start": 366.2,
+        "word": "Hire"
+      },
+      {
+        "start": 366.6,
+        "word": "into"
+      },
+      {
+        "start": 367,
+        "word": "the"
+      },
+      {
+        "start": 367.4,
+        "word": "first"
+      },
+      {
+        "start": 367.8,
+        "word": "phase."
+      }
+    ]
+  },
+  {
+    "start": 368.45,
+    "words": [
+      {
+        "start": 368.45,
+        "word": "Budget"
+      },
+      {
+        "start": 368.85,
+        "word": "for"
+      },
+      {
+        "start": 369.25,
+        "word": "the"
+      },
+      {
+        "start": 369.65,
+        "word": "second."
+      }
+    ]
+  },
+  {
+    "start": 370.3,
+    "words": [
+      {
+        "start": 370.3,
+        "word": "And"
+      },
+      {
+        "start": 370.7,
+        "word": "be"
+      },
+      {
+        "start": 371.1,
+        "word": "honest"
+      },
+      {
+        "start": 371.5,
+        "word": "about"
+      },
+      {
+        "start": 371.9,
+        "word": "where"
+      },
+      {
+        "start": 372.3,
+        "word": "the"
+      },
+      {
+        "start": 372.7,
+        "word": "handoff"
+      },
+      {
+        "start": 373.1,
+        "word": "sits."
+      }
+    ]
+  }
+]

@@ -12,7 +12,7 @@ export interface PostSummary {
   heroBgColor?: string;
   publishedAt: string; // ISO string
   readingTime: string; // e.g. "4 min read"
-  featured: boolean;
+  issue?: number;
   draft: boolean;
   tags: string[];
   audio?: string;

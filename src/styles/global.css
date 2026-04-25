@@ -1140,6 +1140,7 @@ a { color: inherit; text-decoration: none; }
   margin-top: 36px;
 }
 .do-post-body p { margin: 0 0 26px 0; text-wrap: pretty; }
+.do-post-body strong { color: var(--ink); font-weight: 500; }
 .do-post-body h2 {
   font-family: var(--serif);
   font-weight: 500;

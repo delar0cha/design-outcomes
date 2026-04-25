@@ -15,6 +15,8 @@ audioGeneratedAt: 2026-04-24T23:27:32.883Z
 timings: /timings/the-shelf-behind-the-keynote.json
 ---
 
+import ReadingShelf from '@components/islands/ReadingShelf';
+
 When I give talks on design leadership, a common question I get is not about portfolio, process, or team structure. It is some version of: "What should I be reading, watching, or practicing to prepare for a bigger role?" After I gave a talk this week to an employee resource group on pathways to leadership, that question came up again in three different forms. This article is my attempt to answer it honestly.
 
 There are thousands of books on leadership. A smaller number of them are useful for a designer trying to become a design leader. And an even smaller number speak to the three competencies that, in my experience, separate senior craft practitioners from leaders who can operate at the executive level. Those three competencies are financial literacy, executive communication, and change management. None of them are taught in design school. All of them are learnable. And the shelf space needed for each is smaller than you might think.
@@ -46,3 +48,16 @@ Kegan and Lahey's Immunity to Change is harder going but more profound. It argue
 None of the above is about design and that's intentional. The design books you already have are the ones that got you here; they are not the ones that will get you further. If you are a senior IC or a lead reading this and thinking "but what about the design-specific books?" My honest answer is that the design field has not produced many that work at the leadership level. The best design-leadership writing lives in blogs, podcasts, and newsletters rather than in books, which is why the Reading List on this site is going to keep growing.
 
 The point of a reading list for leaders is not to finish the shelf. It is to build the ladder. Each book is a rung, and you climb by actually using what you take from it. Pick one from each of the three sections above. Read it over the next two months. Then come back. The shelf will still be here.
+
+Here's everything I mentioned above, in one place. Pick the rung you need next.
+
+<ReadingShelf client:load books={[
+  { isbn: "1591843529", title: "The Personal MBA", author: "Josh Kaufman", note: "Foundational business vocabulary in a few weekends." },
+  { isbn: "1422144119", title: "Financial Intelligence", author: "Karen Berman & Joe Knight", note: "How to read the three statements and interrogate the assumptions." },
+  { isbn: "0470632011", title: "Resonate", author: "Nancy Duarte", note: "Build a talk like a screenwriter builds a story." },
+  { isbn: "1422187101", title: "HBR Guide to Persuasive Presentations", author: "Nancy Duarte", note: "The field manual to revisit before a big moment." },
+  { isbn: "0060891548", title: "On Writing Well", author: "William Zinsser", note: "Removes everything that does not belong." },
+  { isbn: "0385528752", title: "Switch", author: "Chip & Dan Heath", note: "Rider, Elephant, Path. The change-management cheat code." },
+  { isbn: "1422117367", title: "Immunity to Change", author: "Robert Kegan & Lisa Lahey", note: "Resistance is rarely about stubbornness." },
+  { isbn: "0735219567", title: "The Making of a Manager", author: "Julie Zhuo", note: "The kindest on-ramp for first-time managers." }
+]} />

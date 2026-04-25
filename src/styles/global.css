@@ -1196,6 +1196,145 @@ a { color: inherit; text-decoration: none; }
 }
 .do-post-end-sub { font-family: var(--serif); font-size: 14px; font-style: italic; text-transform: none; letter-spacing: 0; color: var(--muted); }
 
+/* ------------------------ Reading shelf ------------------------ */
+/* Inline shelf rendered inside .do-post-body. Desktop = 4-up grid that
+   stays within the 680px article column. Tablet collapses to 2-up.
+   Mobile becomes a one-row horizontal scroller for a true shelf feel. */
+.do-shelf {
+  margin: 56px 0 8px;
+}
+.do-shelf-heading {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -0.012em;
+  margin: 0 0 24px 0;
+  color: var(--ink);
+}
+.do-shelf-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px 20px;
+}
+.do-shelf-item { margin: 0; }
+
+.do-shelf-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: transform 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.do-shelf-card:hover { transform: translateY(-3px); }
+.do-shelf-card:hover .do-shelf-cover {
+  box-shadow: 0 12px 28px rgba(21,18,14,0.18);
+}
+.do-shelf-card:hover .do-shelf-title { color: var(--accent); }
+
+.do-shelf-cover {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  background: var(--cream-2);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(21,18,14,0.10);
+  transition: box-shadow 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.do-shelf-cover-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.do-shelf-cover-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px 14px 16px;
+  background: linear-gradient(165deg, var(--cream-3) 0%, var(--cream-2) 100%);
+  color: var(--ink);
+}
+.do-shelf-cover-fallback-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+}
+.do-shelf-cover-fallback-author {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.do-shelf-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.do-shelf-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  margin: 0;
+  color: var(--ink);
+  transition: color 160ms;
+}
+.do-shelf-author {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.35;
+  margin: 0;
+  color: var(--muted);
+}
+.do-shelf-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 6px 0 0;
+  color: var(--ink-2);
+}
+
+@media (max-width: 1080px) {
+  .do-shelf-list { grid-template-columns: repeat(2, 1fr); gap: 28px 24px; }
+}
+
+/* Mobile: single row, horizontal scroll, edge-to-edge bleed past the
+   24px article padding so the rightmost card peeks under the edge and
+   advertises that the row scrolls. */
+@media (max-width: 720px) {
+  .do-shelf-list {
+    display: flex;
+    grid-template-columns: none;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -20px;
+    padding: 4px 20px 16px;
+    scrollbar-width: none;
+  }
+  .do-shelf-list::-webkit-scrollbar { display: none; }
+  .do-shelf-item {
+    flex: 0 0 46%;
+    max-width: 220px;
+    scroll-snap-align: start;
+  }
+}
+
 /* Related */
 .do-related {
   max-width: var(--max);

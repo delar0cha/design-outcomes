@@ -1,33 +1,26 @@
-// React version of SiteLogo — used inside React islands.
-// Astro templates use SiteLogo.astro. Both pull paths from @lib/logo.
-
-import { LOGO_PATHS, LOGO_VIEW_BOX, LOGO_DEFAULT_FILL } from '@lib/logo';
+// Renders the Design Outcomes mark by referencing the favicon SVG at
+// /public/design-outcomes.svg — single source of truth shared with the
+// Astro variant (SiteLogo.astro) and the browser favicon.
 
 interface Props {
   width?: number;
   height?: number;
-  fill?: string;
   className?: string;
 }
 
 export default function SiteLogoSvg({
   width = 34,
   height = 38,
-  fill = LOGO_DEFAULT_FILL,
   className = '',
 }: Props) {
   return (
-    <svg
+    <img
+      src="/design-outcomes.svg"
+      alt=""
       width={width}
       height={height}
-      viewBox={LOGO_VIEW_BOX}
-      xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-hidden="true"
-    >
-      <g fill={fill}>
-        {LOGO_PATHS.map((d, i) => <path key={i} d={d} />)}
-      </g>
-    </svg>
+    />
   );
 }

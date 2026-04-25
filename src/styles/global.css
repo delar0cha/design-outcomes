@@ -792,7 +792,6 @@ a { color: inherit; text-decoration: none; }
 .do-footer-logo-mark {
   display: block;
   margin-bottom: 20px;
-  opacity: 0.85;
 }
 .do-footer-about p {
   font-family: var(--serif);
@@ -840,7 +839,7 @@ a { color: inherit; text-decoration: none; }
 .do-footer-note {
   font-size: 13px;
   color: var(--muted);
-  margin: 0;
+  margin: 5px 0 0;
   line-height: 1.45;
   max-width: 36ch;
 }

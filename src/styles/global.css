@@ -26,15 +26,6 @@
   --max: 1360px;
   --gutter: 48px;
 
-  /* Featured carousel zoom-out motion. The carousel's art column is
-     narrower than the article hero, so initial scale is tuned per
-     breakpoint via overrides below. Start frame: scale(--hero-initial-
-     scale) — image overflows the container and reads as full-bleed.
-     End frame: scale(--hero-initial-scale * (1 - --hero-zoom-amount))
-     — image fits naturally, sampled bg fills any letterbox. */
-  --hero-initial-scale: 1.25;
-  --hero-zoom-amount:   0.2;
-
   /* Article hero — sticky two-phase scrollytelling sequence that
      deliberately contrasts the carousel's zoom-out. The hero is a
      position:sticky pane pinned to the viewport while the reader
@@ -57,11 +48,6 @@
   --hero-phase-1-end:     0.33;
   --hero-phase-2-end:     0.66;
 }
-/* Responsive initial scale — overrides cascade by viewport width. */
-@media (min-width: 721px)  { :root { --hero-initial-scale: 1.4; } }
-@media (min-width: 1081px) { :root { --hero-initial-scale: 1.6; } }
-@media (min-width: 1440px) { :root { --hero-initial-scale: 1.8; } }
-@media (min-width: 1920px) { :root { --hero-initial-scale: 2.0; } }
 
 /* Shorter outer track on mobile — less scroll distance feels better on
    small screens where each flick covers proportionally more ground. */
@@ -385,8 +371,12 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* art — stacked slides, crossfade between them, active slide's image
-   animates from scale(--hero-initial-scale) to its end scale over the
-   loader duration. Container keeps its baseline dimensions. */
+   animates from scale(--hero-initial-scale) down to scale(1) (the floor)
+   over the loader duration. The image is sized so its rendered height
+   exactly equals the frame's height at scale(1) — width is intrinsic
+   (auto), so wide illustrations overflow horizontally and get clipped
+   by the slide's overflow:hidden. Container keeps its baseline
+   dimensions. */
 .do-featured-art-slide {
   position: absolute;
   inset: 0;
@@ -402,16 +392,17 @@ a { color: inherit; text-decoration: none; }
 .do-featured-svg,
 .do-featured-img {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
+  left: 50%;
   height: 100%;
+  width: auto;
+  max-width: none;
   display: block;
-  object-fit: contain;
   user-select: none;
-  transform-origin: center;
-  /* Resting state matches the end of the keyframe so an outgoing slide
-     does not snap. The active slide overrides with the keyframe below. */
-  transform: scale(calc(var(--hero-initial-scale) * (1 - var(--hero-zoom-amount))));
+  transform-origin: center center;
+  /* Resting state is the keyframe's end (the floor) so an outgoing slide
+     does not snap when its .is-active class is removed. */
+  transform: translateX(-50%) scale(1);
   will-change: transform;
 }
 .do-featured-art-slide.is-active .do-featured-img,
@@ -422,15 +413,15 @@ a { color: inherit; text-decoration: none; }
   animation: do-hero-zoom var(--do-slide-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 @keyframes do-hero-zoom {
-  from { transform: scale(var(--hero-initial-scale)); }
-  to   { transform: scale(calc(var(--hero-initial-scale) * (1 - var(--hero-zoom-amount)))); }
+  from { transform: translateX(-50%) scale(var(--hero-initial-scale)); }
+  to   { transform: translateX(-50%) scale(1); }
 }
 @media (prefers-reduced-motion: reduce) {
   .do-featured-art-slide { transition: none; }
   .do-featured-img,
   .do-featured-svg {
     /* Pin to the tightly-cropped initial framing, no motion. */
-    transform: scale(var(--hero-initial-scale));
+    transform: translateX(-50%) scale(var(--hero-initial-scale));
     will-change: auto;
   }
   .do-featured-art-slide.is-active .do-featured-img,
@@ -456,14 +447,15 @@ a { color: inherit; text-decoration: none; }
   background: var(--rule);
   border-radius: 2px;
 }
-/* Carousel-scoped overrides: the art column is narrower per viewport
-   than the article hero, and jumps to a near-square shape when the
-   layout goes multi-column at 1081px. Uses higher initial scales than
-   :root so the starting crop feels tight across all breakpoints. */
-.do-featured                   { --hero-initial-scale: 1.4; }
-@media (min-width: 721px)  { .do-featured { --hero-initial-scale: 1.6; } }
-@media (min-width: 1081px) { .do-featured { --hero-initial-scale: 2.0; } }
-@media (min-width: 1440px) { .do-featured { --hero-initial-scale: 1.9; } }
+/* Carousel-scoped tunables: --hero-initial-scale is the start (zoomed-in)
+   transform on the active slide; the keyframe ends at scale(1), the
+   floor where the illustration's full vertical height fills the frame.
+   Values are kept in the 1.3–1.5 range so the zoom-out has visible range
+   without cropping so aggressively that the start frame looks blown up. */
+.do-featured                   { --hero-initial-scale: 1.35; }
+@media (min-width: 721px)  { .do-featured { --hero-initial-scale: 1.4; } }
+@media (min-width: 1081px) { .do-featured { --hero-initial-scale: 1.5; } }
+@media (min-width: 1440px) { .do-featured { --hero-initial-scale: 1.5; } }
 .do-progress-fill {
   position: absolute;
   top: 0; left: 50%;

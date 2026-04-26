@@ -34,27 +34,6 @@ const posts = defineCollection({
     coverImage:       z.string().optional(),
 
     /**
-     * Dominant background color of the cover image, drawn from the site palette.
-     * Used as the container background behind the hero image on the homepage
-     * carousel and the article detail page so the image can zoom/recede into
-     * a seamless field without exposing its edges.
-     *
-     * Palette:
-     *   #F5F0E8 cream   — default for warm off-white illustrations
-     *   #2F4858 teal    — deep blue-green
-     *   #4A5D3A sage    — muted green
-     *   #B8432B terracotta
-     *   #15120E near-black
-     */
-    heroBgColor: z.enum([
-      '#F5F0E8',
-      '#2F4858',
-      '#4A5D3A',
-      '#B8432B',
-      '#15120E',
-    ]).optional(),
-
-    /**
      * URL to an ElevenLabs-generated MP3 on Vercel Blob.
      * Populated by the audio generation script (to be built in a separate pass).
      * Leave absent until the article has been narrated.

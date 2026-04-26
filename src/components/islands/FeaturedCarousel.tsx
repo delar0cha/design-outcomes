@@ -4,7 +4,6 @@ import ArticlePlayer from './ArticlePlayer';
 import type { PostSummary } from '@lib/types';
 import { CATEGORIES } from '@lib/categories';
 import { fmtDate } from '@lib/utils';
-import { sampleHeroBg, HERO_BG_FALLBACK } from '@lib/sampleHeroBg';
 
 interface Props {
   posts: PostSummary[];
@@ -32,27 +31,6 @@ function recipeFor(post: PostSummary) {
     : { kind: 'bars' as const, palette: [cat?.tint ?? '#2F4858', '#E8E0D0', '#15120E'], seed: 1 };
 }
 
-/**
- * Sample every cover image's edge colour on mount. Results populate a
- * per-URL state map; the fallback chain is sampled → heroBgColor
- * frontmatter → neutral cream.
- */
-function useSampledBgs(posts: PostSummary[]): Record<string, string> {
-  const [bgs, setBgs] = useState<Record<string, string>>({});
-  useEffect(() => {
-    let cancelled = false;
-    for (const p of posts) {
-      if (!p.coverImage) continue;
-      sampleHeroBg(p.coverImage).then(c => {
-        if (cancelled || !c) return;
-        setBgs(prev => (prev[p.coverImage!] === c ? prev : { ...prev, [p.coverImage!]: c }));
-      });
-    }
-    return () => { cancelled = true; };
-  }, [posts]);
-  return bgs;
-}
-
 export default function FeaturedCarousel({ posts }: Props) {
   const [idx, setIdx]               = useState(0);
   const [paused, setPaused]         = useState(false);
@@ -62,7 +40,6 @@ export default function FeaturedCarousel({ posts }: Props) {
   // mid-sentence by a slide transition.
   const [playerOpen, setPlayerOpen] = useState(false);
   const DUR = 8000;
-  const bgs = useSampledBgs(posts);
 
   const handlePlayerOpen  = useCallback(() => setPlayerOpen(true),  []);
   const handlePlayerClose = useCallback(() => setPlayerOpen(false), []);
@@ -115,15 +92,14 @@ export default function FeaturedCarousel({ posts }: Props) {
           />
         </div>
 
-        {/* Illustration — stacked slides with a swift crossfade. Each slide
-            carries its own sampled background; the active slide's image
-            animates from scale(--hero-initial-scale) to the end scale across
+        {/* Illustration — stacked slides with a swift crossfade. The active
+            slide's image animates from scale(--hero-initial-scale) down to
+            scale(1) (the floor — image height equals frame height) across
             the full slide duration, so the zoom completes exactly when the
             slide transitions. */}
         <div className="do-featured-art">
           {posts.map((p, i) => {
             const isActive = i === idx;
-            const bg = (p.coverImage && bgs[p.coverImage]) ?? p.heroBgColor ?? HERO_BG_FALLBACK;
             const imgStyle = isActive
               ? { animationPlayState: (paused || playerOpen) ? 'paused' : 'running' as const }
               : undefined;
@@ -131,7 +107,6 @@ export default function FeaturedCarousel({ posts }: Props) {
               <div
                 key={i}
                 className={`do-featured-art-slide${isActive ? ' is-active' : ''}`}
-                style={{ background: bg }}
                 aria-hidden={!isActive}
               >
                 {p.coverImage
@@ -140,7 +115,6 @@ export default function FeaturedCarousel({ posts }: Props) {
                       src={p.coverImage}
                       alt=""
                       className="do-featured-img"
-                      crossOrigin="anonymous"
                       draggable={false}
                       style={imgStyle}
                     />

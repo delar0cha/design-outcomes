@@ -34,6 +34,29 @@ const posts = defineCollection({
     coverImage:       z.string().optional(),
 
     /**
+     * Free-text themes the post engages with, used by the Field Notes agent
+     * to map connections between published articles and external pieces it
+     * surfaces. Populated by `npm run field-notes:migrate-articles`.
+     */
+    themes:           z.array(z.string()).optional().default([]),
+
+    /**
+     * Tactic tags from the controlled vocabulary the Field Notes agent uses
+     * for connection mapping. Populated by
+     * `npm run field-notes:migrate-articles`.
+     */
+    tactics: z.array(z.enum([
+      'research_and_validation',
+      'systems_and_primitives',
+      'prototyping_and_exploration',
+      'critique_and_decision_making',
+      'craft_and_detail',
+      'cross_functional_and_process',
+      'storytelling_and_narrative',
+      'hiring_and_team',
+    ])).optional().default([]),
+
+    /**
      * URL to an ElevenLabs-generated MP3 on Vercel Blob.
      * Populated by the audio generation script (to be built in a separate pass).
      * Leave absent until the article has been narrated.

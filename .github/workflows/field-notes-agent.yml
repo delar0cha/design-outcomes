@@ -1,0 +1,116 @@
+name: Field Notes agent
+
+on:
+  # Sundays at 11pm Pacific = Mondays 07:00 UTC.
+  schedule:
+    - cron: '0 7 * * MON'
+  # Manual trigger for ad-hoc runs.
+  workflow_dispatch:
+
+# Single concurrent run.
+concurrency:
+  group: field-notes-agent
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents:       write
+      pull-requests:  write
+
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Restore agent state
+        # Pull last-run state from a dedicated branch so we don't reprocess old URLs.
+        run: |
+          if git show-ref --verify --quiet refs/remotes/origin/field-notes-state; then
+            git fetch origin field-notes-state:field-notes-state
+            git show field-notes-state:.field-notes-state.json > .field-notes-state.json 2>/dev/null || true
+          fi
+
+      - name: Run Field Notes agent
+        run: npm run field-notes:run
+
+      - name: Compute branch and date
+        id: vars
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          BRANCH="field-notes-staging-${DATE}"
+          echo "date=${DATE}"     >> "$GITHUB_OUTPUT"
+          echo "branch=${BRANCH}" >> "$GITHUB_OUTPUT"
+
+      - name: Persist state on dedicated branch
+        # Store .field-notes-state.json on its own branch so it persists across
+        # runs without polluting main or feature branches.
+        run: |
+          if [ -f .field-notes-state.json ]; then
+            git config user.name  "field-notes-agent[bot]"
+            git config user.email "field-notes-agent@users.noreply.github.com"
+            git checkout --orphan field-notes-state-tmp
+            git rm -rf --cached . > /dev/null 2>&1 || true
+            git add -f .field-notes-state.json
+            git commit -m "field-notes: state ${{ steps.vars.outputs.date }}" || true
+            git push -f origin field-notes-state-tmp:field-notes-state || true
+            git checkout -
+          fi
+
+      - name: Stage results on review branch
+        id: stage
+        run: |
+          git config user.name  "field-notes-agent[bot]"
+          git config user.email "field-notes-agent@users.noreply.github.com"
+          git checkout -B "${{ steps.vars.outputs.branch }}"
+
+          # Stage staging output and run logs (state is on its own branch).
+          git add src/content/field-notes/staging src/agent/logs
+
+          if git diff --cached --quiet; then
+            echo "No changes from this run."
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "field-notes: staging for week of ${{ steps.vars.outputs.date }}"
+            git push -f origin "${{ steps.vars.outputs.branch }}"
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open draft PR
+        if: steps.stage.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DIGEST="src/content/field-notes/staging/digest.md"
+          BODY_FILE=$(mktemp)
+          if [ -f "$DIGEST" ]; then
+            cat "$DIGEST" > "$BODY_FILE"
+          else
+            echo "Run completed but no digest was produced." > "$BODY_FILE"
+          fi
+
+          # Create the PR if one doesn't already exist for this branch.
+          if ! gh pr view "${{ steps.vars.outputs.branch }}" >/dev/null 2>&1; then
+            gh pr create \
+              --base   main \
+              --head   "${{ steps.vars.outputs.branch }}" \
+              --title  "Field Notes staging: week of ${{ steps.vars.outputs.date }}" \
+              --body-file "$BODY_FILE" \
+              --draft
+          else
+            gh pr edit "${{ steps.vars.outputs.branch }}" --body-file "$BODY_FILE"
+          fi

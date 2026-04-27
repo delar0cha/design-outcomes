@@ -4,33 +4,41 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev":            "astro dev",
-    "build":          "astro build",
-    "preview":        "astro preview",
-    "new-post":         "tsx scripts/new-post.ts",
-    "generate-audio":   "tsx scripts/generate-audio.ts",
-    "generate-timings": "tsx scripts/generate-timings.ts"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "new-post": "tsx scripts/new-post.ts",
+    "generate-audio": "tsx scripts/generate-audio.ts",
+    "generate-timings": "tsx scripts/generate-timings.ts",
+    "field-notes:check": "tsx src/agent/run.ts --local",
+    "field-notes:run": "tsx src/agent/run.ts",
+    "field-notes:publish": "tsx src/agent/publish.ts",
+    "field-notes:migrate-articles": "tsx src/agent/migrate-articles.ts"
   },
   "dependencies": {
-    "@astrojs/mdx":    "^4.0.0",
-    "@astrojs/react":  "^4.0.0",
+    "@anthropic-ai/sdk": "^0.91.1",
+    "@astrojs/mdx": "^4.0.0",
+    "@astrojs/react": "^4.0.0",
     "@astrojs/vercel": "^8.0.0",
-    "astro":           "^5.0.0",
-    "react":           "^18.3.1",
-    "react-dom":       "^18.3.1",
-    "reading-time":    "^1.5.0"
+    "astro": "^5.0.0",
+    "js-yaml": "^4.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "reading-time": "^1.5.0"
   },
   "devDependencies": {
     "@elevenlabs/elevenlabs-js": "^2.43.0",
-    "@types/react":              "^18.3.1",
-    "@types/react-dom":          "^18.3.1",
-    "@vercel/blob":              "^2.3.3",
-    "gray-matter":               "^4.0.3",
-    "mdast-util-to-string":      "^4.0.0",
-    "remark-mdx":                "^3.1.1",
-    "remark-parse":              "^11.0.0",
-    "tsx":                       "^4.0.0",
-    "typescript":                "^5.0.0",
-    "unified":                   "^11.0.5"
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^25.6.0",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@vercel/blob": "^2.3.3",
+    "gray-matter": "^4.0.3",
+    "mdast-util-to-string": "^4.0.0",
+    "remark-mdx": "^3.1.1",
+    "remark-parse": "^11.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "unified": "^11.0.5"
   }
 }

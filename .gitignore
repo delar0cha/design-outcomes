@@ -2,3 +2,6 @@
 .env.local
 .claude/
 scripts/audio-generation.log
+
+# Field Notes agent: persistent state of seen URLs per source.
+.field-notes-state.json

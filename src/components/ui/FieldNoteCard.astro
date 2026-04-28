@@ -31,11 +31,20 @@ interface Props {
   source:             string;
   source_id:          string;
   source_url:         string;
+  /** The source piece's actual title. Shown on the flip page as small
+   *  attribution; the kraft band displays the editorial card_title
+   *  instead, when present. */
   piece_title:        string;
   piece_author?:      string;
   piece_published_at?: Date;
   tactic_tags:        readonly string[];
   rubric_rationale:   string;
+  /** Editorial cover headline for the kraft band. Falls back to
+   *  piece_title when missing (older entries pre-migration). */
+  card_title?:        string;
+  /** Editorial cover abstract for the kraft band. Falls back to a
+   *  derived excerpt (bullets or rubric_rationale) when missing. */
+  card_abstract?:     string;
   /** Pull quote shown on the dot-grid page. May contain ==phrase==
    *  highlight markers that get rendered with a scratch underline. */
   pull_quote?:        string;
@@ -50,9 +59,15 @@ const {
   slug, source, source_id, source_url,
   piece_title, piece_author, piece_published_at,
   tactic_tags, rubric_rationale,
+  card_title, card_abstract,
   pull_quote, pull_quote_candidate, bullets,
   display_type = 'company',
 } = Astro.props;
+
+// Kraft band displays the editorial card title/abstract when present.
+// Falls back to the source's piece_title and a derived excerpt for
+// legacy entries that haven't been migrated yet.
+const bandTitle = card_title ?? piece_title;
 
 // Map a tactic tag to the CSS variable suffix used in :root tokens.
 const TACTIC_VAR_KEY: Record<string, string> = {
@@ -200,19 +215,20 @@ if (display_type === 'individual') {
     : (piece_author ? `BY ${piece_author.toUpperCase()}` : dateLabel);
 }
 
-// Kraft-band excerpt: prefer the editorial bullets over the rubric prose.
-// When bullets exist, join the first two with " · " — that surfaces the
-// strongest editorial framing rather than the agent's own assessment.
+// Kraft-band excerpt: prefer the editorial card_abstract. Fall back to
+// joined bullets or the rubric rationale for legacy entries that
+// haven't been migrated yet. CSS line-clamp caps at 3 lines visually.
 let excerpt: string;
-if (bullets && bullets.length >= 2) {
+if (card_abstract) {
+  excerpt = card_abstract;
+} else if (bullets && bullets.length >= 2) {
   excerpt = `${bullets[0]} · ${bullets[1]}`;
 } else if (bullets && bullets.length === 1) {
   excerpt = bullets[0];
 } else {
   const excerptRaw = rubric_rationale.split(/(?<=[.?!])\s+/)[0] ?? '';
-  excerpt = excerptRaw.length > 140 ? excerptRaw.slice(0, 137) + '…' : excerptRaw;
+  excerpt = excerptRaw.length > 200 ? excerptRaw.slice(0, 197) + '…' : excerptRaw;
 }
-if (excerpt.length > 160) excerpt = excerpt.slice(0, 157) + '…';
 
 // Resolve the pull quote: prefer the editorial pull_quote, fall back to the
 // agent-generated pull_quote_candidate, then to nothing. Parse ==phrase==
@@ -328,7 +344,7 @@ const cardStyle = `--cover-color: ${coverColor}; --quiet-color: ${quietColor}; -
       <span>FIELD NOTES</span>
     </div>
     <div class="do-fn-card-band-rule" aria-hidden="true"></div>
-    <h3 class="do-fn-card-title">{piece_title}</h3>
+    <h3 class="do-fn-card-title">{bandTitle}</h3>
     {excerpt && <p class="do-fn-card-excerpt">{excerpt}</p>}
   </header>
 
@@ -360,6 +376,12 @@ const cardStyle = `--cover-color: ${coverColor}; --quiet-color: ${quietColor}; -
           <path d="M19 5 Q15.5 8 12 12 Q8.5 15 5 19" />
         </svg>
       </button>
+
+      {/* Source title — sits between the close button and the pull quote
+          as small attribution. Lets the reader see exactly which piece
+          they're about to read on the source site, which the editorial
+          card_title (on the kraft band) deliberately doesn't reveal. */}
+      <p class="do-fn-card-page-source">{piece_title}</p>
 
       {quoteTokens.length > 0 && (
         <p class="do-fn-card-page-quote">

@@ -93,10 +93,10 @@ interface RubricResult {
 }
 
 interface AnnotationResult {
-  annotation_draft:      string;
-  draft_notes:           string;
-  alternative_phrasings: string[] | null;
-  uncertainty_flags:     string | null;
+  pull_quote:        string;
+  bullets:           string[];
+  draft_notes:       string;
+  uncertainty_flags: string | null;
 }
 
 interface ConnectionResult {
@@ -669,13 +669,16 @@ function writeStagingMdx(c: Candidate): string {
   } else {
     lines.push(`  []`);
   }
+  if (c.annotation?.pull_quote) {
+    lines.push(`pull_quote: ${yamlEscape(c.annotation.pull_quote)}`);
+  }
+  if (c.annotation?.bullets && c.annotation.bullets.length) {
+    lines.push(`bullets:`);
+    for (const b of c.annotation.bullets) lines.push(`  - ${yamlEscape(b)}`);
+  }
   lines.push(`draft_annotation_metadata:`);
   if (c.annotation) {
     lines.push(`  draft_notes: ${yamlEscape(c.annotation.draft_notes)}`);
-    if (c.annotation.alternative_phrasings && c.annotation.alternative_phrasings.length) {
-      lines.push(`  alternative_phrasings:`);
-      for (const a of c.annotation.alternative_phrasings) lines.push(`    - ${yamlEscape(a)}`);
-    }
     if (c.annotation.uncertainty_flags) {
       lines.push(`  uncertainty_flags: ${yamlEscape(c.annotation.uncertainty_flags)}`);
     }
@@ -687,7 +690,9 @@ function writeStagingMdx(c: Candidate): string {
   lines.push(`generated_at: ${new Date().toISOString()}`);
   lines.push('---');
   lines.push('');
-  lines.push(c.annotation?.annotation_draft ?? '(annotation drafting failed; see agent_errors in frontmatter)');
+  // Body is no longer the primary editorial content (bullets are). Leave
+  // a placeholder so MDX still has body content; editors can choose to
+  // write longer-form prose here if they want.
   lines.push('');
 
   const filePath = path.join(STAGING_DIR, `${c.slug}.mdx`);
@@ -813,7 +818,11 @@ async function processOne(
   let connections: ConnectionResult | null = null;
   if (annotation) {
     try {
-      connections = await callConnections(client, source, item, rubric, annotation.annotation_draft, corpus);
+      // Pass the pull quote + first bullet as the connection-mapping
+      // context. The full bullets list gives more signal than a single
+      // prose paragraph would.
+      const annotationContext = [annotation.pull_quote, ...annotation.bullets].join('\n');
+      connections = await callConnections(client, source, item, rubric, annotationContext, corpus);
     } catch (err) {
       const msg = `connections failed: ${(err as Error).message}`;
       console.error(`    ${msg}`);

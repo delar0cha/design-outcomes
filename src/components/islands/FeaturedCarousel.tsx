@@ -4,6 +4,7 @@ import ArticlePlayer from './ArticlePlayer';
 import type { PostSummary } from '@lib/types';
 import { CATEGORIES } from '@lib/categories';
 import { fmtDate } from '@lib/utils';
+import { formatPostIssueLabel } from '@lib/issue';
 
 interface Props {
   posts: PostSummary[];
@@ -185,6 +186,13 @@ export default function FeaturedCarousel({ posts }: Props) {
             </h1>
             <p className="do-featured-excerpt">{post.description}</p>
           </div>
+          {/* Per-slide issue metadata — sits between the blurb and the CTA
+              row. Renders nothing when the post has no issue assigned. */}
+          {formatPostIssueLabel(post) && (
+            <div className="do-featured-issue">
+              <span className="do-issue-label">{formatPostIssueLabel(post)}</span>
+            </div>
+          )}
           {/* CTA row — Listen now pill (portaled in by ArticlePlayer when
               audio is present) + Read the piece link. The transport is
               also portaled here and absolute-positioned to morph from the

@@ -1,0 +1,129 @@
+---
+/**
+ * /field-notes/[slug] — entry detail page.
+ *
+ * Renders the full annotation body, source attribution, pull quote,
+ * tactic tags, related articles, and "more from this source" cluster.
+ */
+
+import Base                from '@layouts/Base.astro';
+import SiteNav             from '@components/islands/SiteNav';
+import SiteFooter          from '@components/ui/SiteFooter.astro';
+import { getCollection, render } from 'astro:content';
+import { TACTIC_LABEL } from '@lib/field-notes';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('field-notes');
+  return entries.map(entry => ({
+    params: { slug: entry.id },
+    props:  { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const data = entry.data;
+
+const primaryTactic = data.tactic_tags[0];
+const primaryLabel  = TACTIC_LABEL[primaryTactic] ?? primaryTactic;
+
+const formattedDate = data.piece_published_at
+  ? data.piece_published_at.toLocaleDateString('en-US',
+      { month: 'long', day: 'numeric', year: 'numeric' })
+  : null;
+
+// "More from this source" — query other published entries with the same
+// source_id (excluding this one). Limited to a small handful.
+const allEntries = await getCollection('field-notes');
+const moreFromSource = allEntries
+  .filter(e => e.data.source_id === data.source_id && e.id !== entry.id)
+  .slice(0, 4);
+---
+
+<Base
+  title={`${data.piece_title} — Field Notes`}
+  description={data.rubric_rationale}
+  ogUrl={`https://ldlr.design/field-notes/${entry.id}`}
+  ogType="article"
+>
+  <main class="do-page">
+    <SiteNav client:load currentPath={`/field-notes/${entry.id}`} />
+
+    <article class="do-fn-detail">
+      <nav class="do-fn-detail-crumbs" aria-label="Breadcrumb">
+        <a href="/field-notes">Field Notes</a>
+        <span> › </span>
+        <a href={`/field-notes/tag/${primaryTactic}`}>{primaryLabel}</a>
+        <span> › </span>
+        <span>{data.piece_title}</span>
+      </nav>
+
+      <p class="do-fn-detail-source">
+        {data.source}
+        {data.piece_author && ` · ${data.piece_author}`}
+        {formattedDate && ` · ${formattedDate}`}
+      </p>
+      <h1 class="do-fn-detail-title">{data.piece_title}</h1>
+
+      <div class="do-fn-detail-actions">
+        <a class="do-fn-detail-cta" href={data.source_url}
+           target="_blank" rel="noopener noreferrer">Read original →</a>
+        {data.paywall_encountered && (
+          <span class="do-fn-detail-paywall">Paywalled source</span>
+        )}
+      </div>
+
+      {data.pull_quote_candidate && (
+        <blockquote class="do-fn-detail-pullquote">
+          {data.pull_quote_candidate}
+        </blockquote>
+      )}
+
+      <div class="do-fn-detail-body">
+        <Content />
+      </div>
+
+      <div class="do-fn-detail-tags">
+        {data.tactic_tags.map(tag => (
+          <a class="do-fn-tag-pill" href={`/field-notes/tag/${tag}`}>
+            {TACTIC_LABEL[tag] ?? tag}
+          </a>
+        ))}
+      </div>
+
+      {data.suggested_connections.length > 0 && (
+        <>
+          <h2 class="do-fn-detail-section-title">Related on Design Outcomes</h2>
+          <div class="do-fn-detail-related">
+            {data.suggested_connections.map(c => (
+              <a class="do-fn-detail-related-item" href={`/post/${c.article_slug}`}>
+                <h3 class="do-fn-detail-related-title">{c.article_title}</h3>
+                <p class="do-fn-detail-related-rationale">{c.rationale}</p>
+              </a>
+            ))}
+          </div>
+        </>
+      )}
+
+      {moreFromSource.length > 0 && (
+        <>
+          <h2 class="do-fn-detail-section-title">More from {data.source}</h2>
+          <div class="do-fn-detail-related">
+            {moreFromSource.map(e => (
+              <a class="do-fn-detail-related-item" href={`/field-notes/${e.id}`}>
+                <h3 class="do-fn-detail-related-title">{e.data.piece_title}</h3>
+                <p class="do-fn-detail-related-rationale">{e.data.rubric_rationale}</p>
+              </a>
+            ))}
+          </div>
+        </>
+      )}
+
+      <p class="do-fn-detail-back">
+        <a href="/field-notes">← See all Field Notes</a>
+      </p>
+    </article>
+
+    <SiteFooter />
+  </main>
+</Base>

@@ -1,0 +1,134 @@
+---
+/**
+ * /field-notes/tag/[tag] — filtered catalog view by tactic tag.
+ *
+ * Smaller header instead of the full hero, the same filter row with the
+ * active tag highlighted, and the same grid layout below.
+ */
+
+import Base                from '@layouts/Base.astro';
+import SiteNav             from '@components/islands/SiteNav';
+import SiteFooter          from '@components/ui/SiteFooter.astro';
+import FieldNoteCard       from '@components/ui/FieldNoteCard.astro';
+import { getCollection }   from 'astro:content';
+import { TACTICS } from '@lib/field-notes';
+
+export async function getStaticPaths() {
+  // Re-import inside the function — Astro extracts getStaticPaths and runs
+  // it before the rest of the frontmatter, so module-level consts in this
+  // file aren't available here.
+  const { TACTICS } = await import('@lib/field-notes');
+  return TACTICS.map(t => ({ params: { tag: t.id } }));
+}
+
+const { tag } = Astro.params;
+const meta = TACTICS.find(t => t.id === tag);
+if (!meta) throw new Error(`Unknown tactic tag: ${tag}`);
+
+const all = await getCollection('field-notes');
+const entries = all
+  .filter(e => e.data.tactic_tags.includes(tag as any))
+  .sort((a, b) => {
+    const ad = a.data.piece_published_at?.getTime() ?? 0;
+    const bd = b.data.piece_published_at?.getTime() ?? 0;
+    return bd - ad;
+  });
+
+const tagCounts: Record<string, number> = Object.fromEntries(
+  TACTICS.map(t => [t.id, 0]),
+);
+for (const entry of all) {
+  for (const t of entry.data.tactic_tags) {
+    tagCounts[t] = (tagCounts[t] ?? 0) + 1;
+  }
+}
+
+---
+
+<Base
+  title={`${meta.label} — Field Notes`}
+  description={meta.sub}
+  ogUrl={`https://ldlr.design/field-notes/tag/${tag}`}
+>
+  <main class="do-page do-fn-page">
+    <SiteNav client:load currentPath={`/field-notes/tag/${tag}`} />
+
+    <header class="do-fn-tag-header">
+      <div class="do-fn-tag-header-eyebrow">Field Notes · Tactic</div>
+      <h1 class="do-fn-tag-header-title">{meta.label}</h1>
+      <p class="do-fn-tag-header-sub">{meta.sub}</p>
+      <p class="do-fn-tag-header-count">{entries.length} {entries.length === 1 ? 'entry' : 'entries'}</p>
+    </header>
+
+    <div class="do-fn-filter-wrap">
+      <div class="do-fn-filter">
+        <div class="do-fn-filter-pills">
+          <a class="do-fn-filter-pill" href="/field-notes">Show all</a>
+          {TACTICS.map(t => (
+            <a class={`do-fn-filter-pill${t.id === tag ? ' is-active' : ''}`} href={`/field-notes/tag/${t.id}`}>
+              {t.label}
+              <span class="do-fn-filter-pill-count">({tagCounts[t.id]})</span>
+            </a>
+          ))}
+        </div>
+        <div class="do-fn-filter-controls">
+          <a class="do-fn-filter-issues" href="/field-notes">Clear filter</a>
+        </div>
+      </div>
+    </div>
+
+    {entries.length === 0 ? (
+      <section class="do-fn-empty">
+        <h2 class="do-fn-empty-title">No entries yet</h2>
+        <p class="do-fn-empty-body">Nothing tagged "{meta.label}" in the catalog yet.</p>
+        <a class="do-fn-empty-cta" href="/field-notes">Back to all Field Notes</a>
+      </section>
+    ) : (
+      <section class="do-fn-grid">
+        {entries.map(entry => {
+          const data = entry.data;
+          return (
+            <article class="do-fn-grid-item">
+              <FieldNoteCard
+                slug={data.slug}
+                source={data.source}
+                source_id={data.source_id}
+                source_url={data.source_url}
+                piece_title={data.piece_title}
+                piece_author={data.piece_author}
+                piece_published_at={data.piece_published_at}
+                tactic_tags={data.tactic_tags}
+                rubric_rationale={data.rubric_rationale}
+                pull_quote={data.pull_quote}
+                pull_quote_candidate={data.pull_quote_candidate}
+                bullets={data.bullets}
+                display_type={data.display_type}
+              />
+              <div class="do-fn-grid-meta">
+                <div class="do-fn-meta-tags">
+                  {data.tactic_tags.map(t => (
+                    <a class="do-fn-tag-pill" href={`/field-notes/tag/${t}`}>
+                      {TACTICS.find(x => x.id === t)?.label ?? t}
+                    </a>
+                  ))}
+                </div>
+                {data.suggested_connections.length > 0 && (
+                  <div class="do-fn-meta-related">
+                    Related: {data.suggested_connections.map((c, i) => (
+                      <>
+                        {i > 0 && ', '}
+                        <a href={`/post/${c.article_slug}`}>{c.article_title}</a>
+                      </>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </section>
+    )}
+
+    <SiteFooter />
+  </main>
+</Base>

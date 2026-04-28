@@ -93,6 +93,8 @@ interface RubricResult {
 }
 
 interface AnnotationResult {
+  card_title:        string;
+  card_abstract:     string;
   pull_quote:        string;
   bullets:           string[];
   draft_notes:       string;
@@ -668,6 +670,12 @@ function writeStagingMdx(c: Candidate): string {
     }
   } else {
     lines.push(`  []`);
+  }
+  if (c.annotation?.card_title) {
+    lines.push(`card_title: ${yamlEscape(c.annotation.card_title)}`);
+  }
+  if (c.annotation?.card_abstract) {
+    lines.push(`card_abstract: ${yamlEscape(c.annotation.card_abstract)}`);
   }
   if (c.annotation?.pull_quote) {
     lines.push(`pull_quote: ${yamlEscape(c.annotation.pull_quote)}`);

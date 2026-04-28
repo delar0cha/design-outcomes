@@ -148,6 +148,22 @@ const fieldNotes = defineCollection({
     paywall_encountered: z.boolean().default(false),
 
     /**
+     * Editorial card title shown on the kraft band of the catalog card —
+     * Leonardo's framing in a Jim Holt-inspired register, not a description
+     * of the source piece. The source's actual title (piece_title) still
+     * shows on the flip page so a reader who opens a card sees fidelity
+     * to the original. 4-7 words, max 45 characters.
+     */
+    card_title: z.string().max(45).optional(),
+
+    /**
+     * Editorial card abstract shown below the card title in the kraft
+     * band. 1-3 sentences in the same Jim Holt voice. Target 100-180
+     * characters; rendering caps display at 3 lines via CSS line-clamp.
+     */
+    card_abstract: z.string().max(300).optional(),
+
+    /**
      * Editorial pull quote shown on the dot-grid flip page. ≤ 25 words.
      * Supports a markdown-style highlight syntax: wrapping a 3-7 word
      * phrase in ==double equals== marks it for scratch-style underline

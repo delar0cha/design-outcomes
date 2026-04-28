@@ -2998,7 +2998,10 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 
   --kraft-band:   #EEBB82;
   --kraft-rule:   #8B5E2A;
-  --card-text-dark: #19232E;
+  /* Kraft-band ink — used by band-top labels, title, and abstract.
+     Warm dark brown that sits naturally on the kraft paper background
+     instead of the previous near-black. */
+  --card-text-dark: #57340C;
 
   /* SF Pro Text stack used across the Field Notes card typography. The
      -apple-system alias resolves to the system font on macOS/iOS where SF
@@ -3198,7 +3201,10 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 .do-fn-card-spine-indent-bottom { bottom: 12%; }
 
 .do-fn-card-cover {
-  flex: 0 0 40%;
+  /* 40% of the card less 30px so the kraft band (and the footer below
+     it) sits 30px higher than the default 40% split, without
+     negative-margin overlap. */
+  flex: 0 0 calc(40% - 30px);
   /* Position context for the absolute wear-layer SVG. */
   position: relative;
   display: flex;
@@ -3262,12 +3268,18 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 }
 
 .do-fn-card-band {
-  /* Slightly taller flex-basis to absorb the increased vertical padding. */
-  flex: 0 0 26%;
+  /* Tall enough to fit the full editorial card_abstract (up to ~6
+     lines at 13px / 1.3 line-height). Cover keeps its calc(40% - 10px)
+     allocation; the footer absorbs the remainder via flex: 1 1 auto. */
+  flex: 0 0 36%;
   background: var(--kraft-band);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* flex-start (default) so items stack consecutively at the top.
+     Previously space-between, which distributed leftover band height
+     into the gaps and pushed the title down on cards with shorter
+     abstracts (uneven across the catalog). */
+  justify-content: flex-start;
   /* Paper-wrap effect: 3px jut past each card edge. */
   width: calc(100% + 6px);
   margin: 0 -3px;
@@ -3307,7 +3319,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   text-transform: uppercase;
   color: var(--card-text-dark);
   text-align: center;
-  margin: 0;
+  margin: 6px 0 0;
   /* Clamp to 2 lines so cards stay aligned. */
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -3321,14 +3333,17 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 .do-fn-card-title a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
 .do-fn-card-excerpt {
   font-family: var(--sf-text-stack);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.3;
   color: var(--card-text-dark);
   text-align: center;
-  margin: 4px 0 0;
+  margin: 10px 0 0;
+  /* Clamp at 6 lines as a backstop — the band's flex-basis (36%) gives
+     enough vertical room to fit the full abstract for any entry within
+     the schema's 300-char ceiling. The clamp only engages on outliers. */
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
   opacity: 0.85;
@@ -3677,12 +3692,12 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   display: flex;
   flex-direction: column;
   /* Top padding clears the close button (top-right, ~36px square at
-     top: 12px) plus 8px of breathing space before the pull quote.
-     Bottom padding reserves room for the absolute-positioned CTA pill
-     and tactic illustration. The page-clip parent handles visual
-     clipping for the flip animation, so the page itself stays
-     overflow:visible. */
-  padding: 56px 32px 96px 32px;
+     top: 12px) by 16px so the source attribution line below has room to
+     breathe and never sits under the close button. Bottom padding
+     reserves room for the absolute-positioned CTA pill and tactic
+     illustration. The page-clip parent handles visual clipping for the
+     flip animation, so the page itself stays overflow:visible. */
+  padding: 64px 32px 96px 32px;
   background: #FAFAF7;
   background-image: radial-gradient(circle, #D8D8D5 1px, transparent 1.5px);
   background-size: 20px 20px;
@@ -3738,6 +3753,27 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 .do-fn-card-close:focus-visible {
   outline: 2px solid #2C2C2C;
   outline-offset: 2px;
+}
+
+/* ── Source attribution at the top of the flip page ───────────── */
+
+.do-fn-card-page-source {
+  /* Small Caveat italic attribution line between the close button and
+     the pull quote. Reads like a margin note: "this is what the source
+     called it." Lower contrast than the pull quote so the editorial
+     voice still leads visually. */
+  font-family: "Caveat", "Comic Sans MS", cursive;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.35;
+  color: #6E6E6A;
+  margin: 0 0 18px;
+  /* Cap at 2 lines with ellipsis if the source title is unusually long. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ── Pull quote with scratch underline on highlighted phrase ───── */

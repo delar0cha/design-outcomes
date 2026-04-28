@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const posts = defineCollection({
   type: 'content',
@@ -32,6 +33,29 @@ const posts = defineCollection({
 
     tags:             z.array(z.string()).optional().default([]),
     coverImage:       z.string().optional(),
+
+    /**
+     * Free-text themes the post engages with, used by the Field Notes agent
+     * to map connections between published articles and external pieces it
+     * surfaces. Populated by `npm run field-notes:migrate-articles`.
+     */
+    themes:           z.array(z.string()).optional().default([]),
+
+    /**
+     * Tactic tags from the controlled vocabulary the Field Notes agent uses
+     * for connection mapping. Populated by
+     * `npm run field-notes:migrate-articles`.
+     */
+    tactics: z.array(z.enum([
+      'research_and_validation',
+      'systems_and_primitives',
+      'prototyping_and_exploration',
+      'critique_and_decision_making',
+      'craft_and_detail',
+      'cross_functional_and_process',
+      'storytelling_and_narrative',
+      'hiring_and_team',
+    ])).optional().default([]),
 
     /**
      * URL to an ElevenLabs-generated MP3 on Vercel Blob.
@@ -71,4 +95,108 @@ const posts = defineCollection({
   }),
 });
 
-export const collections = { posts };
+// ── Field Notes ──────────────────────────────────────────────────────────────
+//
+// Curated catalog of design work from teams and individuals worldwide, with
+// editorial annotations. Entries live in src/content/field-notes/published/
+// (the /staging/ subdirectory holds agent-generated drafts before review and
+// is intentionally excluded from this collection so drafts don't appear on
+// the site).
+
+const TACTIC_VOCABULARY = [
+  'research_and_validation',
+  'systems_and_primitives',
+  'prototyping_and_exploration',
+  'critique_and_decision_making',
+  'craft_and_detail',
+  'cross_functional_and_process',
+  'storytelling_and_narrative',
+  'hiring_and_team',
+] as const;
+
+const fieldNotes = defineCollection({
+  // Glob loader so we can scope to /published/ and ignore /staging/ drafts.
+  loader: glob({ pattern: '*.mdx', base: 'src/content/field-notes/published' }),
+  schema: z.object({
+    /** Stable slug; matches the filename and the URL segment under /field-notes/. */
+    slug:               z.string(),
+    /** Human-readable source name shown on the card and the detail page. */
+    source:             z.string(),
+    /** Identifier used to look up source-specific assets (e.g. logo SVG). */
+    source_id:          z.string(),
+    /** External URL of the original piece. */
+    source_url:         z.string().url(),
+    piece_title:        z.string(),
+    piece_author:       z.string().optional(),
+    piece_published_at: z.date().optional(),
+
+    /** One to three controlled tactic tags from the rubric vocabulary. */
+    tactic_tags:        z.array(z.enum(TACTIC_VOCABULARY)).min(1).max(3),
+
+    /** Five-dimensional rubric scores plus the total. */
+    rubric_scores: z.object({
+      process_visibility:  z.number().int().min(0).max(5),
+      decision_visibility: z.number().int().min(0).max(5),
+      specificity:         z.number().int().min(0).max(5),
+      originality:         z.number().int().min(0).max(5),
+      audience_fit:        z.number().int().min(0).max(5),
+      total:               z.number().int().min(0).max(25),
+    }),
+    rubric_verdict:    z.enum(['explicit_tactics', 'inferred_candidate', 'drop']),
+    rubric_rationale:  z.string(),
+    pull_quote_candidate: z.string().nullable().optional(),
+    paywall_encountered: z.boolean().default(false),
+
+    /**
+     * Editorial pull quote shown on the dot-grid flip page. ≤ 25 words.
+     * Supports a markdown-style highlight syntax: wrapping a 3-7 word
+     * phrase in ==double equals== marks it for scratch-style underline
+     * rendering on the page (e.g. "...by breaking the work into ==small,
+     * targeted steps=="). When set, this takes precedence over the
+     * agent-generated pull_quote_candidate for display.
+     */
+    pull_quote: z.string().optional(),
+
+    /**
+     * Three to five "why it matters" bullets in Leonardo's voice. Each
+     * bullet is one discrete observation, 8-15 words. The bullets array
+     * is the primary editorial content rendered on the flip page;
+     * the MDX body becomes archival-only.
+     */
+    bullets: z.array(z.string()).min(3).max(5).optional(),
+
+    /** Up to two related Design Outcomes articles surfaced by the agent. */
+    suggested_connections: z.array(z.object({
+      article_slug:    z.string(),
+      article_title:   z.string(),
+      connection_type: z.enum(['shared_tactic', 'argumentative_dialogue', 'shared_theme']),
+      confidence:      z.enum(['high', 'medium', 'low']),
+      rationale:       z.string(),
+    })).default([]),
+
+    /** Agent-side notes about the annotation draft for editor reference. */
+    draft_annotation_metadata: z.object({
+      draft_notes:           z.string().optional(),
+      alternative_phrasings: z.array(z.string()).optional().default([]),
+      uncertainty_flags:     z.string().nullable().optional(),
+    }).optional(),
+
+    /**
+     * How the source name renders on the card footer.
+     *   "company"    — "BY {author} / {date}"
+     *   "individual" — "{date}" only
+     * Defaults to "company".
+     */
+    display_type: z.enum(['company', 'individual']).default('company'),
+
+    /**
+     * Optional Field Notes Friday issue number this entry was bundled into.
+     * Surfaces on /field-notes/issue/{n} once issue MDX exists.
+     */
+    issue_number: z.number().int().positive().optional(),
+
+    generated_at: z.date().optional(),
+  }),
+});
+
+export const collections = { posts, 'field-notes': fieldNotes };

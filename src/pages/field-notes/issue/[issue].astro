@@ -1,0 +1,53 @@
+---
+/**
+ * /field-notes/issue/[issue] — Field Notes Friday issue page.
+ *
+ * Stub for now: no issue MDX files exist yet, so any number renders the
+ * "coming soon" placeholder. Once issue collections land, this page will
+ * pull entries by issue_number and render an issue-specific intro plus
+ * the catalog grid.
+ *
+ * TODO: when issue MDX files are created (e.g. src/content/field-notes-issues/),
+ *   add a content collection for them, switch this route to getStaticPaths
+ *   over those issues, and render the issue-specific intro + grid.
+ */
+
+import Base       from '@layouts/Base.astro';
+import SiteNav    from '@components/islands/SiteNav';
+import SiteFooter from '@components/ui/SiteFooter.astro';
+export async function getStaticPaths() {
+  // Pre-render a small range so the route exists during the stub phase.
+  // No issues exist yet, so this just ensures the URL resolves to the
+  // placeholder rather than a 404.
+  return [...Array(12).keys()].map(i => ({ params: { issue: String(i + 1) } }));
+}
+
+const { issue } = Astro.params;
+---
+
+<Base
+  title={`Field Notes Friday — Issue ${issue}`}
+  description="Field Notes Friday — weekly issues of curated design tactics, coming soon."
+  ogUrl={`https://ldlr.design/field-notes/issue/${issue}`}
+>
+  <main class="do-page do-fn-page">
+    <SiteNav client:load currentPath={`/field-notes/issue/${issue}`} />
+
+    <section class="do-fn-issue-stub">
+      <h1 class="do-fn-hero-title" style="font-size:clamp(36px,5vw,56px);">
+        Field Notes Friday issues coming soon
+      </h1>
+      <p style="margin-top:24px;font-family:var(--serif);font-size:18px;line-height:1.6;">
+        Issue {issue} hasn't been bundled yet. The weekly issue view will
+        gather a Friday's worth of entries into a single browseable
+        package once the catalog has enough material to make that
+        useful.
+      </p>
+      <p style="margin-top:32px;">
+        <a class="do-fn-empty-cta" href="/field-notes">Browse the full catalog</a>
+      </p>
+    </section>
+
+    <SiteFooter />
+  </main>
+</Base>

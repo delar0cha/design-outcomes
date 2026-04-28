@@ -2,41 +2,54 @@
 import Base from '@layouts/Base.astro';
 import SiteNav from '@components/islands/SiteNav';
 import SiteFooter from '@components/ui/SiteFooter.astro';
+
+// Hero illustration is intentionally hidden for now; the {false && ...}
+// gate below preserves the markup so it can be re-enabled later without
+// having to rewrite it. Don't remove.
+const SHOW_HERO = false;
 ---
 
 <Base
   title="About — Design Outcomes"
-  description="Design Outcomes is a weekly editorial site about design leadership in practice, written by Leonardo De La Rocha, VP Product Design."
+  description="Design Outcomes is the working notebook of a designer in practice, written by Leonardo De La Rocha."
   ogUrl="https://ldlr.design/about"
 >
   <main class="do-page do-about-page">
     <SiteNav client:load currentPath="/about" />
 
-    <!-- Hero -->
-    <div class="do-about-hero">
-      <div class="do-cs-hero-inner" style="background: #1A1610;">
-        <img
-          src="/images/about-hero.jpg"
-          alt=""
-          aria-hidden="true"
-          style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
-        />
+    {SHOW_HERO && (
+      <div class="do-about-hero">
+        <div class="do-cs-hero-inner" style="background: #1A1610;">
+          <img
+            src="/images/about-hero.jpg"
+            alt=""
+            aria-hidden="true"
+            style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"
+          />
+        </div>
+        <div class="do-cs-hero-fade"></div>
       </div>
-      <div class="do-cs-hero-fade"></div>
-    </div>
+    )}
+
+    {/*
+      New top region — mirrors /field-notes hero proportions exactly so
+      the two pages read as siblings: same display title, same subhead
+      treatment, same generous breathing room.
+    */}
+    <section class="do-fn-hero">
+      <h1 class="do-fn-hero-title">About</h1>
+      <p class="do-fn-hero-subhead">Real work, real time, in two formats.</p>
+    </section>
 
     <div class="do-about">
 
-      <!-- Section 1 -->
+      {/* Primary intro copy. Replaces the previous "What this is, and
+          why it exists" section. The author bio below stays as-is. */}
       <section class="do-about-section">
         <div class="do-about-section-inner">
-          <div class="do-about-label">The publication</div>
-          <h1 class="do-about-headline">What this is, and why it exists</h1>
           <div class="do-about-body">
-            <p>Design Outcomes is a weekly editorial site about design leadership in practice. Not the conference keynote version. Not the LinkedIn post version. The version that lives in the actual texture of the work: the cross-functional Slack thread, the hiring debrief, the org design conversation, the moment in a crit where you realize the feedback you are about to give is really about a structural problem three levels up.</p>
-            <p>Every piece published here comes from real work. The articles are drawn from actual conversations, actual decisions, and actual artifacts produced during the course of leading a design organization at a growth-stage SaaS company. Nothing is manufactured for the site. The constraint is authenticity, and the rhythm is weekly.</p>
-            <p>The content is organized into recurring formats: <strong>The Reframe</strong> examines common design leadership assumptions through real-world examples. <strong>Crit Notes</strong> shares anonymized design feedback with the reasoning made visible. <strong>The Decision</strong> unpacks real product and organizational decisions, showing what was weighed and what was chosen. <strong>Maker's Log</strong> documents hands-on illustration, branding, and lettering work with process visibility. <strong>Toolbox</strong> offers reusable frameworks, scorecards, and methods. <strong>Reading List</strong> curates weekly links with personal commentary. And <strong>State of the Craft</strong> is a monthly synthesis of themes across recent posts.</p>
-            <p>The audience is design leaders, product leaders, senior ICs, and anyone who believes that the craft of leadership deserves the same rigor and attention we give to the craft of design itself.</p>
+            <p>Design Outcomes is the working notebook of a designer in practice. Written by Leonardo De La Rocha, it shares the actual work of design leadership in real time, in two formats. Articles are full-length pieces on the decisions, frameworks, and tradeoffs that come up running design organizations. Field Notes are shorter, curated takes on the tactics other teams are getting right, with annotations on what makes them worth studying.</p>
+            <p>The goal is to share the practice of design leadership openly, in the moment, without the distance of polish. No sponsors. No popovers. Just the work.</p>
           </div>
         </div>
       </section>

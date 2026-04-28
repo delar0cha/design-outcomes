@@ -1,0 +1,150 @@
+---
+/**
+ * /field-notes — catalog landing page.
+ *
+ * Hero illustration → title/subhead → filter row → 3-col grid of
+ * FieldNoteCard with annotation/teaser/tags rendered below each notebook.
+ * Empty state covers the pre-launch case where no published entries exist.
+ */
+
+import Base                  from '@layouts/Base.astro';
+import SiteNav               from '@components/islands/SiteNav';
+import SiteFooter            from '@components/ui/SiteFooter.astro';
+import EditorialBanner       from '@components/ui/EditorialBanner.astro';
+import FieldNoteCard         from '@components/ui/FieldNoteCard.astro';
+import { getCollection }     from 'astro:content';
+import { TACTICS } from '@lib/field-notes';
+
+// Hero illustration (optional). Vite's import.meta.glob lets us check for
+// the asset without throwing if it isn't there yet — the file lives at
+// src/assets/field-notes-hero.png and Leonardo drops it in when ready.
+const heroAssets = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/field-notes-hero.{png,jpg,jpeg,webp}',
+  { eager: true },
+);
+const heroAsset = Object.values(heroAssets)[0]?.default ?? null;
+
+// Pull every published entry, sort by piece_published_at descending.
+const entries = await getCollection('field-notes');
+entries.sort((a, b) => {
+  const ad = a.data.piece_published_at?.getTime() ?? 0;
+  const bd = b.data.piece_published_at?.getTime() ?? 0;
+  return bd - ad;
+});
+
+const tagCounts: Record<string, number> = Object.fromEntries(
+  TACTICS.map(t => [t.id, 0]),
+);
+for (const entry of entries) {
+  for (const tag of entry.data.tactic_tags) {
+    tagCounts[tag] = (tagCounts[tag] ?? 0) + 1;
+  }
+}
+
+const isEmpty = entries.length === 0;
+---
+
+<Base
+  title="Field Notes — Design Outcomes"
+  description="Tactics from the best design teams and individuals working today, with notes on how the work got made."
+  ogUrl="https://ldlr.design/field-notes"
+>
+  <main class="do-page do-fn-page">
+    <SiteNav client:load currentPath="/field-notes" />
+    <EditorialBanner />
+
+    <section class="do-fn-hero">
+      {heroAsset
+        ? <img class="do-fn-hero-img" src={heroAsset.src} alt="" width={heroAsset.width} height={heroAsset.height} />
+        : <div class="do-fn-hero-img-fallback" aria-hidden="true"></div>}
+      <h1 class="do-fn-hero-title">Field Notes</h1>
+      <p class="do-fn-hero-subhead">
+        Tactics from the best design teams and individuals working today,
+        with notes on how the work got made.
+      </p>
+      <p class="do-fn-hero-cadence">New entries every Friday.</p>
+    </section>
+
+    {!isEmpty && (
+      <div class="do-fn-filter-wrap">
+        <div class="do-fn-filter">
+          <div class="do-fn-filter-pills">
+            <a class="do-fn-filter-pill is-active" href="/field-notes">Show all</a>
+            {TACTICS.map(t => (
+              <a class="do-fn-filter-pill" href={`/field-notes/tag/${t.id}`}>
+                {t.label}
+                <span class="do-fn-filter-pill-count">({tagCounts[t.id]})</span>
+              </a>
+            ))}
+          </div>
+          <div class="do-fn-filter-controls">
+            <select class="do-fn-filter-sort" aria-label="Sort entries">
+              <option>Newest</option>
+              <option>Oldest</option>
+              <option>Most referenced</option>
+            </select>
+            <a class="do-fn-filter-issues" href="/field-notes/issue/1">View by issue</a>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {isEmpty ? (
+      <section class="do-fn-empty">
+        <h2 class="do-fn-empty-title">First entries arrive soon.</h2>
+        <p class="do-fn-empty-body">
+          Subscribe for the Friday roundup and we'll send the first batch
+          when it lands.
+        </p>
+        <a class="do-fn-empty-cta" href="/about#subscribe">Subscribe</a>
+      </section>
+    ) : (
+      <section class="do-fn-grid">
+        {entries.map(entry => {
+          const data       = entry.data;
+          const tagsForUrl = data.tactic_tags.map(t => `/field-notes/tag/${t}`);
+          return (
+            <article class="do-fn-grid-item">
+              <FieldNoteCard
+                slug={data.slug}
+                source={data.source}
+                source_id={data.source_id}
+                source_url={data.source_url}
+                piece_title={data.piece_title}
+                piece_author={data.piece_author}
+                piece_published_at={data.piece_published_at}
+                tactic_tags={data.tactic_tags}
+                rubric_rationale={data.rubric_rationale}
+                pull_quote={data.pull_quote}
+                pull_quote_candidate={data.pull_quote_candidate}
+                bullets={data.bullets}
+                display_type={data.display_type}
+              />
+              <div class="do-fn-grid-meta">
+                <div class="do-fn-meta-tags">
+                  {data.tactic_tags.map((tag, i) => (
+                    <a class="do-fn-tag-pill" href={tagsForUrl[i]}>
+                      {TACTICS.find(t => t.id === tag)?.label ?? tag}
+                    </a>
+                  ))}
+                </div>
+                {data.suggested_connections.length > 0 && (
+                  <div class="do-fn-meta-related">
+                    Related: {data.suggested_connections.map((c, i) => (
+                      <>
+                        {i > 0 && ', '}
+                        <a href={`/post/${c.article_slug}`}>{c.article_title}</a>
+                      </>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </section>
+    )}
+
+    <SiteFooter />
+  </main>
+</Base>

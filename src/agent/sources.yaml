@@ -1,0 +1,398 @@
+# Field Notes source registry
+#
+# Tier values:         priority, standard, low_frequency, meta_source
+# Content_type values: explicit_tactics_likely, mixed, mostly_inferred
+# Category values:     company_blog, designer_personal_site, newsletter,
+#                      conference, podcast, agency, community, meta_source,
+#                      design_leader
+#
+# Optional fields:
+#   rss           Direct feed URL when verified. Leave null to fall back to
+#                 page-listing scraping. RSS is always preferred since it
+#                 delivers clean post URLs without the nav/marketing noise of
+#                 listing-page scraping.
+#   path_pattern  Substring that must appear in a candidate URL's path for it
+#                 to be considered a post. Only used by the page-scrape
+#                 fallback; ignored when an RSS feed is present. Set this for
+#                 sites whose posts live under a known prefix (e.g. Linear's
+#                 posts live under /now/).
+
+# ── Priority tier ───────────────────────────────────────────────────────────
+
+- id: nubank-design
+  name: "Nubank Design"
+  url: "https://nubank.design"
+  rss: "https://building.nubank.com/design/feed/"
+  tier: priority
+  content_type: explicit_tactics_likely
+  category: company_blog
+  notes: "Design culture and process from Nubank"
+
+- id: building-nubank
+  name: "Building Nubank"
+  url: "https://medium.com/building-nubank"
+  rss: "https://medium.com/feed/building-nubank"
+  tier: priority
+  content_type: explicit_tactics_likely
+  category: company_blog
+  notes: "Engineering and design publication from Nubank on Medium"
+
+- id: microsoft-design
+  name: "Microsoft Design"
+  url: "https://microsoft.design"
+  rss: "https://microsoft.design/feed/"
+  tier: priority
+  content_type: mixed
+  category: company_blog
+  notes: "Microsoft Design. AI and Copilot articles are the highest-priority subset within this source."
+
+- id: paypal-tech-design
+  name: "PayPal Tech Blog (Design tag)"
+  url: "https://medium.com/paypal-tech/tagged/design"
+  rss: "https://medium.com/feed/paypal-tech/tagged/design"
+  tier: priority
+  content_type: mixed
+  category: company_blog
+  notes: "PayPal engineering blog filtered to the design tag"
+
+- id: paypal-tech-design-systems
+  name: "PayPal Tech Blog (Design Systems tag)"
+  url: "https://medium.com/paypal-tech/tagged/design-systems"
+  rss: "https://medium.com/feed/paypal-tech/tagged/design-systems"
+  tier: priority
+  content_type: explicit_tactics_likely
+  category: company_blog
+  notes: "PayPal engineering blog filtered to the design-systems tag"
+
+- id: pentagram
+  name: "Pentagram"
+  url: "https://www.pentagram.com"
+  rss: null
+  tier: priority
+  content_type: mixed
+  category: agency
+  notes: "Pentagram project writeups and editorial"
+
+# ── Standard tier (company blogs) ───────────────────────────────────────────
+
+- id: linear
+  name: "Linear"
+  url: "https://linear.app/now"
+  rss: null
+  path_pattern: "/now/"
+  tier: standard
+  content_type: explicit_tactics_likely
+  category: company_blog
+  notes: "Linear has no public RSS. Posts live under /now/<slug>; the path_pattern filters out marketing nav links during page-scrape fallback."
+
+- id: figma
+  name: "Figma"
+  url: "https://www.figma.com/blog"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: vercel
+  name: "Vercel"
+  url: "https://vercel.com/blog"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: stripe
+  name: "Stripe"
+  url: "https://stripe.com/blog"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: airbnb-design
+  name: "Airbnb Design"
+  url: "https://airbnb.design"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: shopify-ux
+  name: "Shopify UX"
+  url: "https://ux.shopify.com"
+  rss: null
+  tier: standard
+  content_type: explicit_tactics_likely
+  category: company_blog
+  notes: null
+
+- id: spotify-design
+  name: "Spotify Design"
+  url: "https://spotify.design"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: atlassian-design
+  name: "Atlassian Design"
+  url: "https://atlassian.design"
+  rss: null
+  tier: standard
+  content_type: explicit_tactics_likely
+  category: company_blog
+  notes: null
+
+- id: github-engineering-design
+  name: "GitHub (Engineering & Design)"
+  url: "https://github.blog/category/engineering-design"
+  rss: "https://github.blog/feed/"
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: discord-design
+  name: "Discord Design"
+  url: "https://discord.design"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: notion
+  name: "Notion"
+  url: "https://www.notion.so/blog"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: intercom
+  name: "Intercom"
+  url: "https://www.intercom.com/blog"
+  rss: "https://www.intercom.com/blog/feed/"
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: slack-design
+  name: "Slack Design"
+  url: "https://slack.design"
+  rss: "https://slack.design/feed/"
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: pitch
+  name: "Pitch"
+  url: "https://pitch.com/blog"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: raycast
+  name: "Raycast"
+  url: "https://www.raycast.com/blog"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: mercury
+  name: "Mercury"
+  url: "https://mercury.com/blog"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: replit
+  name: "Replit"
+  url: "https://blog.replit.com"
+  rss: "https://blog.replit.com/feed.xml"
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: webflow
+  name: "Webflow"
+  url: "https://webflow.com/blog"
+  rss: "https://webflow.com/blog/rss.xml"
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: dropbox-design
+  name: "Dropbox Design"
+  url: "https://dropbox.design"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: ibm-design
+  name: "IBM Design"
+  url: "https://www.ibm.com/design"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+- id: google-design
+  name: "Google Design"
+  url: "https://design.google"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: company_blog
+  notes: null
+
+# ── Design leaders ──────────────────────────────────────────────────────────
+
+- id: rachel-kobetz-perspective
+  name: "Rachel Kobetz — Perspective"
+  url: "https://kobewan.com/perspective"
+  rss: "https://www.kobewan.com/perspective/feed"
+  tier: standard
+  content_type: mixed
+  category: design_leader
+  notes: null
+
+- id: rachel-kobetz-defining-experience
+  name: "Rachel Kobetz — Defining Experience"
+  url: "https://defining-experience.substack.com"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: design_leader
+  notes: "Substack newsletter from Rachel Kobetz"
+
+- id: karri-saarinen
+  name: "Karri Saarinen"
+  url: "https://www.karrisaarinen.com"
+  rss: null
+  tier: standard
+  content_type: explicit_tactics_likely
+  category: design_leader
+  notes: "Karri also writes on linear.app/blog, which is a separate source"
+
+- id: diana-mounter
+  name: "Diana Mounter — broccolini.net"
+  url: "https://broccolini.net"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: design_leader
+  notes: null
+
+- id: john-maeda
+  name: "John Maeda"
+  url: "https://maeda.pm"
+  rss: "https://maeda.pm/feed/"
+  tier: standard
+  content_type: mixed
+  category: design_leader
+  notes: null
+
+- id: daniel-burka
+  name: "Daniel Burka — Delta Tango Echo"
+  url: "https://deltatangoecho.com"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: design_leader
+  notes: null
+
+- id: joey-banks
+  name: "Joey Banks"
+  url: "https://joeybanks.me"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: design_leader
+  notes: null
+
+- id: brian-lovin
+  name: "Brian Lovin"
+  url: "https://brianlovin.com"
+  rss: null
+  tier: standard
+  content_type: mixed
+  category: design_leader
+  notes: null
+
+- id: rauno-freiberg
+  name: "Rauno Freiberg"
+  url: "https://rauno.me"
+  rss: null
+  tier: standard
+  content_type: explicit_tactics_likely
+  category: design_leader
+  notes: null
+
+- id: julie-zhuo
+  name: "Julie Zhuo — The Looking Glass"
+  url: "https://lookingglass.substack.com"
+  rss: "https://lookingglass.substack.com/feed"
+  tier: standard
+  content_type: mixed
+  category: design_leader
+  notes: "Substack newsletter"
+
+- id: maggie-appleton
+  name: "Maggie Appleton"
+  url: "https://maggieappleton.com"
+  rss: "https://maggieappleton.com/rss.xml"
+  tier: standard
+  content_type: mixed
+  category: design_leader
+  notes: null
+
+# ── Meta sources ────────────────────────────────────────────────────────────
+
+- id: design-systems-collective
+  name: "Design Systems Collective"
+  url: "https://designsystemscollective.substack.com"
+  rss: "https://designsystemscollective.substack.com/feed"
+  tier: meta_source
+  content_type: mixed
+  category: meta_source
+  notes: "Curates and synthesizes work from across the design systems community"
+
+# ── Newsletters and others ──────────────────────────────────────────────────
+
+- id: built-for-mars
+  name: "Built for Mars"
+  url: "https://builtformars.com"
+  rss: null
+  tier: standard
+  content_type: explicit_tactics_likely
+  category: newsletter
+  notes: "Long-form UX teardowns by Peter Ramsey"
+
+- id: verified-insider
+  name: "Verified Insider"
+  url: "https://verifiedinsider.substack.com"
+  rss: "https://verifiedinsider.substack.com/feed"
+  tier: standard
+  content_type: mixed
+  category: newsletter
+  notes: null

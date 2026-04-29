@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useLayoutEffect, useRef } from 'react';
 import Illustration from './Illustration';
 import type { PostSummary } from '@lib/types';
 import type { CategoryMeta } from '@lib/types';
@@ -44,9 +44,145 @@ function PostCard({ post }: { post: PostSummary }) {
   );
 }
 
+function CategoryChipWithTooltip({
+  meta, isOn, onClick,
+}: { meta: CategoryMeta; isOn: boolean; onClick: () => void }) {
+  const [show, setShow] = useState(false);
+  const [tipStyle, setTipStyle] = useState<React.CSSProperties>({ position: 'fixed', left: -9999, top: -9999, width: 280 });
+  const [pointerLeft, setPointerLeft] = useState<number>(140);
+  const showTimer = useRef<number | null>(null);
+  const chipRef = useRef<HTMLButtonElement>(null);
+  const tipRef = useRef<HTMLDivElement>(null);
+  const tipId = `do-cat-tip-${meta.id}`;
+
+  const open = () => {
+    if (showTimer.current) window.clearTimeout(showTimer.current);
+    showTimer.current = window.setTimeout(() => setShow(true), 250);
+  };
+  const close = () => {
+    if (showTimer.current) {
+      window.clearTimeout(showTimer.current);
+      showTimer.current = null;
+    }
+    setShow(false);
+  };
+
+  useEffect(() => () => {
+    if (showTimer.current) window.clearTimeout(showTimer.current);
+  }, []);
+
+  useEffect(() => {
+    if (!show) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [show]);
+
+  useLayoutEffect(() => {
+    if (!show) return;
+    const place = () => {
+      if (!chipRef.current || !tipRef.current) return;
+      const chip = chipRef.current.getBoundingClientRect();
+      const tipW = 280;
+      const tipH = tipRef.current.getBoundingClientRect().height;
+      const center = chip.left + chip.width / 2;
+      let left = center - tipW / 2;
+      if (left < 8) left = 8;
+      if (left + tipW > window.innerWidth - 8) left = window.innerWidth - 8 - tipW;
+      const top = chip.top - tipH - 12;
+      setTipStyle({ position: 'fixed', left, top, width: tipW });
+      setPointerLeft(center - left);
+    };
+    place();
+    const onScroll = () => place();
+    window.addEventListener('scroll', onScroll, true);
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll, true);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [show]);
+
+  return (
+    <span className="do-chip-wrap">
+      <button
+        ref={chipRef}
+        className={`do-chip${isOn ? ' is-on' : ''}`}
+        onClick={onClick}
+        onMouseEnter={open}
+        onMouseLeave={close}
+        onFocus={open}
+        onBlur={close}
+        aria-describedby={show ? tipId : undefined}
+      >
+        {meta.name}
+      </button>
+      <div
+        ref={tipRef}
+        id={tipId}
+        role="tooltip"
+        className={`do-cat-tip${show ? ' is-on' : ''}`}
+        style={tipStyle}
+        aria-hidden={!show}
+      >
+        <div className="do-cat-tip-title">{meta.sub}</div>
+        <div className="do-cat-tip-rule" style={{ background: meta.tint }} />
+        <div className="do-cat-tip-body">{meta.description}</div>
+        <div className="do-cat-tip-pointer" style={{ left: pointerLeft }} />
+      </div>
+    </span>
+  );
+}
+
+function MobileExplainer({ catId }: { catId: string | null }) {
+  const [renderCat, setRenderCat] = useState<string | null>(catId);
+  const [open, setOpen] = useState<boolean>(catId !== null);
+
+  useEffect(() => {
+    if (catId !== null) {
+      setRenderCat(catId);
+      setOpen(true);
+    } else if (renderCat !== null) {
+      setOpen(false);
+      const t = window.setTimeout(() => setRenderCat(null), 320);
+      return () => window.clearTimeout(t);
+    }
+  }, [catId]);
+
+  if (renderCat === null) return null;
+  const c = CATEGORIES[renderCat];
+  if (!c) return null;
+
+  return (
+    <div
+      className={`do-cat-panel${open ? ' is-open' : ' is-closing'}`}
+      role="region"
+      aria-live="polite"
+      aria-label="Category description"
+    >
+      <div className="do-cat-panel-inner" key={renderCat}>
+        <div className="do-cat-panel-title">{c.sub}</div>
+        <div className="do-cat-panel-rule" style={{ background: c.tint }} />
+        <div className="do-cat-panel-body">{c.description}</div>
+      </div>
+    </div>
+  );
+}
+
 export default function PostGrid({ posts }: Props) {
   const [cat, setCat] = useState('all');
   const [aud, setAud] = useState('Everyone');
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 720px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   const filtered = useMemo(() =>
     [...posts]
@@ -75,15 +211,28 @@ export default function PostGrid({ posts }: Props) {
           <div className="do-filter-block">
             <div className="do-filter-label">Category</div>
             <div className="do-filter-chips">
-              {categoryList.map(([id, name]) => (
-                <button
-                  key={id}
-                  className={`do-chip${cat === id ? ' is-on' : ''}`}
-                  onClick={() => setCat(id)}
-                >
-                  {name}
-                </button>
-              ))}
+              {categoryList.map(([id, name]) => {
+                const meta = CATEGORIES[id];
+                if (!meta || isMobile) {
+                  return (
+                    <button
+                      key={id}
+                      className={`do-chip${cat === id ? ' is-on' : ''}`}
+                      onClick={() => setCat(id)}
+                    >
+                      {name}
+                    </button>
+                  );
+                }
+                return (
+                  <CategoryChipWithTooltip
+                    key={id}
+                    meta={meta}
+                    isOn={cat === id}
+                    onClick={() => setCat(id)}
+                  />
+                );
+              })}
             </div>
           </div>
           <div className="do-filter-block">
@@ -102,6 +251,10 @@ export default function PostGrid({ posts }: Props) {
           </div>
         </div>
       </header>
+
+      {isMobile && (
+        <MobileExplainer catId={cat !== 'all' ? cat : null} />
+      )}
 
       <div className="do-grid">
         {filtered.map(p => <PostCard key={p.slug} post={p} />)}

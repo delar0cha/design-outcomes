@@ -188,11 +188,11 @@ export default function FeaturedCarousel({ posts }: Props) {
           </div>
           {/* Per-slide issue metadata — sits between the blurb and the CTA
               row. Renders nothing when the post has no issue assigned. */}
-          {formatPostIssueLabel(post) && (
+          {/* {formatPostIssueLabel(post) && (
             <div className="do-featured-issue">
               <span className="do-issue-label">{formatPostIssueLabel(post)}</span>
             </div>
-          )}
+          )} */}
           {/* CTA row — Listen now pill (portaled in by ArticlePlayer when
               audio is present) + Read the piece link. The transport is
               also portaled here and absolute-positioned to morph from the

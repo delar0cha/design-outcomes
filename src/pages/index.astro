@@ -21,7 +21,7 @@ const featuredSummaries = featuredPosts.map(toPostSummary);
 >
   <main class="do-page">
     <SiteNav client:load currentPath="/" />
-    <EditorialBanner />
+    {/* <EditorialBanner /> */}
     <FeaturedCarousel client:load posts={featuredSummaries} />
     <PostGrid client:load posts={allSummaries} />
     <SiteFooter />

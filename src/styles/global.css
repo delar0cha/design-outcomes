@@ -807,10 +807,6 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 16px;
 }
 .do-footer-logo span { color: var(--accent); }
-.do-footer-logo-mark {
-  display: block;
-  margin-bottom: 20px;
-}
 .do-footer-about p {
   font-family: var(--serif);
   font-size: 17px;
@@ -819,6 +815,14 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink-2);
   margin: 0;
   max-width: 44ch;
+}
+.do-footer-dropcap {
+  float: left;
+  width: auto;
+  height: 72px;
+  margin: 6px 14px 2px 0;
+  color: var(--color-dark-warm);
+  shape-outside: inset(0 8px 4px 0);
 }
 .do-footer-label {
   font-family: var(--mono);
@@ -1474,6 +1478,7 @@ a { color: inherit; text-decoration: none; }
 
   /* ── Footer ── */
   .do-footer { padding: 60px var(--gutter) 40px; }
+  .do-footer-dropcap { height: 56px; margin: 4px 12px 2px 0; }
 }
 
 /* ------------------------ Tweaks panel ------------------------ */

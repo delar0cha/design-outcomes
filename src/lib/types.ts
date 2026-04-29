@@ -24,6 +24,7 @@ export interface CategoryMeta {
   monogram: string;
   tint: string;
   sub: string;
+  description: string;
 }
 
 export interface ProjectMeta {

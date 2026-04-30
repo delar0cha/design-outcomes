@@ -6,6 +6,7 @@ import ShareRow from '@components/islands/ShareRow';
 import AudioPlayer from '@components/islands/AudioPlayer';
 import Illustration from '@components/islands/Illustration';
 import SiteFooter from '@components/ui/SiteFooter.astro';
+import SiteCursor from '@components/ui/SiteCursor.astro';
 import { getAllPosts, toPostSummary, calcReadingTime } from '@lib/posts';
 import { CATEGORIES } from '@lib/categories';
 import { fmtDate } from '@lib/utils';
@@ -49,7 +50,7 @@ const coverRecipe = post.data.coverImage
   ogUrl={pageUrl}
   ogType="article"
 >
-  <main class="do-page do-post-page">
+  <main class="do-page do-post-page do-cursor-host">
     <SiteNav client:load currentPath={`/post/${slug}`} />
 
     <!-- Cinematic sticky hero — two phases cycle text content across a
@@ -238,6 +239,8 @@ const coverRecipe = post.data.coverImage
         </div>
       </div>
     </article>
+
+    <SiteCursor issue={post.data.issue} />
 
     <!-- Related posts -->
     {related.length > 0 && (

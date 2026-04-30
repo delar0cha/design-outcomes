@@ -4007,3 +4007,81 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   .do-cat-panel,
   .do-cat-panel-inner { transition: opacity 1ms; animation: none; }
 }
+
+/* ---------- Custom cursor (homepage + post detail) ---------- */
+/* Routes opt in by adding `do-cursor-host` to a wrapping element (typically
+   the page's <main>). The universal selector beats UA pointer styles on
+   anchors and buttons. */
+.do-cursor-host,
+.do-cursor-host * { cursor: none !important; }
+
+.do-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  /* Start offscreen until the first mousemove positions it. */
+  transform: translate3d(-200px, -200px, 0);
+  will-change: transform;
+}
+
+.do-cursor-pill {
+  position: absolute;
+  /* Offset slightly down/right of the pointer hot spot so the pill doesn't
+     occlude what's directly under the cursor. */
+  top: 14px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: var(--color-dark-warm);
+  color: var(--cream);
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  white-space: nowrap;
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.do-cursor-logo {
+  width: 14px;
+  height: 14px;
+  display: block;
+  flex: 0 0 auto;
+  color: var(--cream);
+}
+
+.do-cursor-sep { opacity: 0.55; }
+
+.do-cursor-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-dark-warm);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.do-cursor.is-hover .do-cursor-pill {
+  opacity: 0;
+  transform: translate(0, 4px);
+}
+.do-cursor.is-hover .do-cursor-dot {
+  opacity: 1;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .do-cursor-host,
+  .do-cursor-host * { cursor: auto !important; }
+  .do-cursor { display: none; }
+}

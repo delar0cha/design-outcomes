@@ -5,7 +5,9 @@ import EditorialBanner from '@components/ui/EditorialBanner.astro';
 import FeaturedCarousel from '@components/islands/FeaturedCarousel';
 import PostGrid from '@components/islands/PostGrid';
 import SiteFooter from '@components/ui/SiteFooter.astro';
+import SiteCursor from '@components/ui/SiteCursor.astro';
 import { getAllPosts, getFeaturedPosts, toPostSummary } from '@lib/posts';
+import { CURRENT_ISSUE } from '@lib/issue';
 
 const allPosts      = await getAllPosts();
 const featuredPosts = await getFeaturedPosts();
@@ -19,11 +21,12 @@ const featuredSummaries = featuredPosts.map(toPostSummary);
   description="Weekly design leadership writing by Leonardo De La Rocha, VP Product Design."
   ogUrl="https://ldlr.design/"
 >
-  <main class="do-page">
+  <main class="do-page do-cursor-host">
     <SiteNav client:load currentPath="/" />
     {/* <EditorialBanner /> */}
     <FeaturedCarousel client:load posts={featuredSummaries} />
     <PostGrid client:load posts={allSummaries} />
+    <SiteCursor issue={CURRENT_ISSUE.issueNumber} />
     <SiteFooter />
   </main>
 </Base>

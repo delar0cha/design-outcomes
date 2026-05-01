@@ -1,0 +1,164 @@
+{
+  "timestamp": "2026-05-01T17:26:20.821Z",
+  "reason": "tier_2_or_3_not_selected",
+  "notes": "Editor selected 5 of 20 staged candidates for the 2026-05-01 Field Notes Friday. The other 15 were not chosen for this issue; reason is editorial selection, not a quality signal against the source.",
+  "kept": [
+    "rauno-freiberg-field-notes.mdx",
+    "maggie-appleton-gas-towns-agent-patterns-design-bottlenecks-and-vibecoding-at-scale.mdx",
+    "maggie-appleton-one-developer-two-dozen-agents-zero-alignment.mdx",
+    "microsoft-design-paper-please-the-box-that-did-more-with-less.mdx",
+    "linear-how-we-use-linear-agent-at-linear.mdx"
+  ],
+  "rejected": [
+    {
+      "slug": "github-engineering-design-securing-the-git-push-pipeline-responding-to-a-critical-remote-code-execution-vu",
+      "source_id": "github-engineering-design",
+      "source": "GitHub (Engineering & Design)",
+      "url": "https://github.blog/security/securing-the-git-push-pipeline-responding-to-a-critical-remote-code-execution-vulnerability/",
+      "title": "Securing the git push pipeline: Responding to a critical remote code execution vulnerability",
+      "rubric_total": 13,
+      "rubric_verdict": "inferred_candidate",
+      "file": "github-engineering-design-securing-the-git-push-pipeline-responding-to-a-critical-remote-code-execution-vu.mdx"
+    },
+    {
+      "slug": "intercom-ai-is-the-answer-to-the-sales-growth-without-headcount-problem",
+      "source_id": "intercom",
+      "source": "Intercom",
+      "url": "https://www.intercom.com/blog/the-sales-growth-without-headcount-problem/",
+      "title": "AI is the answer to the sales growth-without-headcount problem",
+      "rubric_total": 12,
+      "rubric_verdict": "inferred_candidate",
+      "file": "intercom-ai-is-the-answer-to-the-sales-growth-without-headcount-problem.mdx"
+    },
+    {
+      "slug": "john-maeda-a-jtbd-first-pattern-for-agentic-tool-systems",
+      "source_id": "john-maeda",
+      "source": "John Maeda",
+      "url": "https://maeda.pm/2026/01/30/a-jtbd-first-pattern-for-agentic-tool-systems/",
+      "title": "A JTBD-First Pattern for Agentic Tool Systems",
+      "rubric_total": 13,
+      "rubric_verdict": "inferred_candidate",
+      "file": "john-maeda-a-jtbd-first-pattern-for-agentic-tool-systems.mdx"
+    },
+    {
+      "slug": "john-maeda-macos-run-hf-huggingface-model-in-ollama-part-1-2025",
+      "source_id": "john-maeda",
+      "source": "John Maeda",
+      "url": "https://maeda.pm/2025/12/27/macos-run-hf-huggingface-model-in-ollama-part-1-2025/",
+      "title": "MacOS Run HF (HuggingFace) Model In Ollama, Part 1 (2025)",
+      "rubric_total": 12,
+      "rubric_verdict": "inferred_candidate",
+      "file": "john-maeda-macos-run-hf-huggingface-model-in-ollama-part-1-2025.mdx"
+    },
+    {
+      "slug": "linear-how-we-hire-at-linear",
+      "source_id": "linear",
+      "source": "Linear",
+      "url": "https://linear.app/now/how-we-hire-at-linear",
+      "title": "How we hire at Linear",
+      "rubric_total": 13,
+      "rubric_verdict": "inferred_candidate",
+      "file": "linear-how-we-hire-at-linear.mdx"
+    },
+    {
+      "slug": "microsoft-design-self-potraits-you-zhang",
+      "source_id": "microsoft-design",
+      "source": "Microsoft Design",
+      "url": "https://microsoft.design/articles/self-potraits-you-zhang/",
+      "title": "Self potraits: You Zhang",
+      "rubric_total": 13,
+      "rubric_verdict": "inferred_candidate",
+      "file": "microsoft-design-self-potraits-you-zhang.mdx"
+    },
+    {
+      "slug": "microsoft-design-the-missing-seat-at-the-frontier-team-table",
+      "source_id": "microsoft-design",
+      "source": "Microsoft Design",
+      "url": "https://microsoft.design/articles/the-missing-seat-at-the-frontier-team-table/",
+      "title": "The missing seat at the frontier team table",
+      "rubric_total": 16,
+      "rubric_verdict": "inferred_candidate",
+      "file": "microsoft-design-the-missing-seat-at-the-frontier-team-table.mdx"
+    },
+    {
+      "slug": "nubank-design-ab-testing-for-decision-of-scaling-or-decommissioning-an-human-resources-product",
+      "source_id": "nubank-design",
+      "source": "Nubank Design",
+      "url": "https://building.nubank.com/ab-testing-hr-products/",
+      "title": "A/B Testing for Decision of scaling or decommissioning an Human Resources product",
+      "rubric_total": 12,
+      "rubric_verdict": "inferred_candidate",
+      "file": "nubank-design-ab-testing-for-decision-of-scaling-or-decommissioning-an-human-resources-product.mdx"
+    },
+    {
+      "slug": "pentagram-methanesat",
+      "source_id": "pentagram",
+      "source": "Pentagram",
+      "url": "https://www.pentagram.com/work/methanesat?setKey=9&amp;exclude-slug=methanesat",
+      "title": "MethaneSAT",
+      "rubric_total": 12,
+      "rubric_verdict": "inferred_candidate",
+      "file": "pentagram-methanesat.mdx"
+    },
+    {
+      "slug": "slack-design-no-small-task-evolving-the-way-millions-catch-up-in-slack",
+      "source_id": "slack-design",
+      "source": "Slack Design",
+      "url": "https://slack.design/articles/no-small-task-evolving-the-way-millions-catch-up-in-slack/",
+      "title": "No Small Task: Evolving the Way Millions Catch Up in Slack",
+      "rubric_total": 13,
+      "rubric_verdict": "inferred_candidate",
+      "file": "slack-design-no-small-task-evolving-the-way-millions-catch-up-in-slack.mdx"
+    },
+    {
+      "slug": "slack-design-raising-the-volume-quietly-a-designers-challenge",
+      "source_id": "slack-design",
+      "source": "Slack Design",
+      "url": "https://slack.design/articles/raising-the-volume-quietly/",
+      "title": "Raising the Volume Quietly: A Designer’s Challenge",
+      "rubric_total": 14,
+      "rubric_verdict": "inferred_candidate",
+      "file": "slack-design-raising-the-volume-quietly-a-designers-challenge.mdx"
+    },
+    {
+      "slug": "verified-insider-design-at-remote",
+      "source_id": "verified-insider",
+      "source": "Verified Insider",
+      "url": "https://verifiedinsider.substack.com/p/design-at-remote",
+      "title": "Design at Remote",
+      "rubric_total": 13,
+      "rubric_verdict": "inferred_candidate",
+      "file": "verified-insider-design-at-remote.mdx"
+    },
+    {
+      "slug": "verified-insider-inside-amplemarkets-design-team",
+      "source_id": "verified-insider",
+      "source": "Verified Insider",
+      "url": "https://verifiedinsider.substack.com/p/inside-amplemarkets-design-team",
+      "title": "Inside Amplemarket's design team",
+      "rubric_total": 16,
+      "rubric_verdict": "inferred_candidate",
+      "file": "verified-insider-inside-amplemarkets-design-team.mdx"
+    },
+    {
+      "slug": "verified-insider-learnings-from-design-teams",
+      "source_id": "verified-insider",
+      "source": "Verified Insider",
+      "url": "https://verifiedinsider.substack.com/p/learnings-from-design-teams",
+      "title": "Learnings from design teams",
+      "rubric_total": 12,
+      "rubric_verdict": "inferred_candidate",
+      "file": "verified-insider-learnings-from-design-teams.mdx"
+    },
+    {
+      "slug": "webflow-two-ai-paths-to-a-webflow-code-component",
+      "source_id": "webflow",
+      "source": "Webflow",
+      "url": "https://webflowmarketingmain.com/blog/webflow-ai-code-components",
+      "title": "Two AI paths to a Webflow Code Component",
+      "rubric_total": 12,
+      "rubric_verdict": "inferred_candidate",
+      "file": "webflow-two-ai-paths-to-a-webflow-code-component.mdx"
+    }
+  ]
+}

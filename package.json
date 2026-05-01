@@ -13,7 +13,11 @@
     "field-notes:check": "tsx src/agent/run.ts --local",
     "field-notes:run": "tsx src/agent/run.ts",
     "field-notes:publish": "tsx src/agent/publish.ts",
-    "field-notes:migrate-articles": "tsx src/agent/migrate-articles.ts"
+    "field-notes:migrate-articles": "tsx src/agent/migrate-articles.ts",
+    "field-notes:migrate-covers": "tsx src/agent/migrate-field-notes-covers.ts",
+    "field-notes:migrate-annotations": "tsx src/agent/migrate-annotations.ts",
+    "generate-ascii": "node scripts/generate-ascii.mjs",
+    "generate-pixelart": "node scripts/generate-pixelart.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",

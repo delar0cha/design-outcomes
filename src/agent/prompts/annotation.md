@@ -9,7 +9,7 @@ You produce four pieces of content for each entry:
 1. A card title — the editorial cover headline shown on the kraft band of the catalog card.
 2. A card abstract — 1-3 sentences in the same voice, also on the kraft band.
 3. A pull quote — drawn from the source piece, shown on the flip page.
-4. Three to five bullets — Leonardo's read of the piece, shown on the flip page.
+4. Exactly four bullets — Leonardo's read of the piece, shown on the flip page.
 
 The card title and abstract are NOT descriptions of the source piece. They are Leonardo's editorial framing of why the entry is in the catalog. The pull quote and bullets attribute back to the source.
 
@@ -91,8 +91,8 @@ Example:
 
 # Bullet rules
 
-- 3 to 5 bullets. If you cannot produce 3 strong bullets, the piece probably should not be in the catalog. In that case, lower your verdict consideration and surface the issue in `uncertainty_flags`.
-- Each bullet 8 to 15 words.
+- Exactly 4 bullets. Not three, not five. If you cannot produce 4 strong bullets, the piece probably should not be in the catalog: lower your verdict consideration and surface the issue in `uncertainty_flags`.
+- Each bullet max 90 characters. Aim for 60-85; 90 is the hard ceiling, not the target. Compress before submitting.
 - Lead with the most transferable insight, not what the piece is about.
 - Use specific framing where possible: named tools, named patterns, specific decisions.
 - Calibrated skepticism is welcome. Examples: "marketing-shaped piece, but the underlying tactics are real" or "works here because the change was small, not because the agent was magic."
@@ -142,7 +142,6 @@ Bullets:
 - "Working version behind a feature flag by end of week, ready for internal testing"
 - "Compressed loop only works when the team has trust to skip handoff rituals"
 - "Concrete technical decisions (LCH vs HSL color spaces, Electron constraints)"
-- "Counter-example to design-then-handoff playbook for teams ready to move faster"
 
 ---
 
@@ -157,10 +156,9 @@ Pull quote:
 
 Bullets:
 - "Task scoping for an agent is the same discipline as scoping for a junior engineer"
-- "Linear's three-team workflow (CX, Product, Engineering) shows where agents add real leverage"
-- "The PM-ships-the-fix example works because the change was small, not because the agent was magic"
+- "Three-team workflow (CX, Product, Engineering) shows where agents add real leverage"
+- "PM-ships-the-fix works because the change was small, not because the agent was magic"
 - "Marketing-shaped piece, but the underlying tactics are real"
-- "Read it as a forcing function for your own task decomposition habits"
 
 ---
 
@@ -176,26 +174,52 @@ Pull quote:
 Bullets:
 - "A/B testing applied to decommissioning, not just feature launches"
 - "Internal tools deserve the same rigor as customer-facing products"
-- "Specific framework: when usage is below threshold X, kill it; above X, scale it"
+- "Specific framework: usage below threshold X, kill it; above X, scale it"
 - "Hardest part isn't the data; it's letting the team accept the verdict"
-- "Useful for any team running internal tools that nobody asks about"
 
 # Output format
 
-Respond in JSON with this exact shape:
+Respond with a single JSON object and nothing else. No preamble, no reasoning prose, no commentary on the rubric scores, no markdown code fences, no trailing text. The first character of your response must be `{` and the last character must be `}`. If you need to think through the bullets before answering, do so silently. Any prose outside the JSON object will break downstream parsing.
+
+## Hard length budgets
+
+These are character ceilings the card layout cannot grow past. Output that exceeds them will be rejected and you will be asked to regenerate. Count characters, not words. Spaces and punctuation count. The `==phrase==` markers in `pull_quote` count toward the limit (they survive into the rendered output).
+
+- `pull_quote`: max **120 characters**. One sentence, ideally with one 3-7 word phrase wrapped in `==phrase==` for highlighted emphasis.
+- `bullets`: exactly **4 entries**, each max **90 characters**. Not three. Not five. Four.
+- `card_abstract`: max **240 characters**. 1-3 sentences.
+- `card_title`: max **45 characters**, 4-7 words.
+- `draft_notes`: no character cap (digest-only, not on card).
+
+### Pull quote — good vs. bad
+
+- **Good** (104 chars): `Matthijs gets the best results from coding agents by breaking the work into ==small, targeted steps==.`
+- **Bad** (172 chars, too long): `Matthijs has consistently found that the best results from coding agents come from carefully breaking the work down into small, targeted steps that the agent can complete one at a time.`
+
+### Bullet — good vs. bad
+
+- **Good** (80 chars): `Athens offsite pattern: designers iterated mornings, engineers paired afternoons`
+- **Bad** (134 chars, too long): `The Athens offsite pattern that Linear ran involved designers spending mornings iterating on visuals while engineers paired together in the afternoons`
+
+### Card abstract — good vs. bad
+
+- **Good** (188 chars): `Nubank ran a real A/B test on whether to scale or shut down an internal HR product. The data was unambiguous. The team's feelings about the data were considerably less so.`
+- **Bad** (321 chars, too long): `Nubank Engineering ran an honest-to-goodness statistical A/B test to determine whether they should continue scaling their internal HR product or shut it down completely. The result that the data produced was completely unambiguous in its conclusion. The team's feelings about that data and what it implied were considerably less so.`
+
+The JSON object must have this exact shape:
 
 {
-  "card_title": "<4-7 words, max 45 chars. Editorial framing in the Jim Holt voice. Renders all-caps; do not write in all-caps.>",
-  "card_abstract": "<1-3 sentences, target 100-180 chars. Same voice as the title.>",
-  "pull_quote": "<15-25 words. Mark the salient 3-7 word phrase with ==phrase== highlight syntax. No surrounding quotes; the quote marks shown in the template are part of the rendered output, not the JSON value.>",
+  "card_title": "<max 45 chars, 4-7 words. Editorial framing in the Jim Holt voice. Renders all-caps; do not write in all-caps.>",
+  "card_abstract": "<max 240 chars, 1-3 sentences. Same voice as the title.>",
+  "pull_quote": "<max 120 chars, one sentence. Mark the salient 3-7 word phrase with ==phrase== highlight syntax. No surrounding quotes; the quote marks shown in the template are part of the rendered output, not the JSON value.>",
   "bullets": [
-    "<bullet 1, 8-15 words>",
-    "<bullet 2, 8-15 words>",
-    "<bullet 3, 8-15 words>"
-    /* up to 5 total */
+    "<bullet 1, max 90 chars>",
+    "<bullet 2, max 90 chars>",
+    "<bullet 3, max 90 chars>",
+    "<bullet 4, max 90 chars>"
   ],
-  "draft_notes": "<one to two sentences explaining the choices made: which tactic the bullets foreground, anything Leonardo should reconsider>",
-  "uncertainty_flags": "<anything the model was guessing about voice, tone, source attribution, or whether the piece really earns inclusion. If you could not produce 3 strong bullets, say so here so Leonardo can decide whether to drop the entry. Or null.>"
+  "draft_notes": "<one to two sentences explaining the choices made: which tactic the bullets foreground, anything Leonardo should reconsider. No character cap.>",
+  "uncertainty_flags": "<anything the model was guessing about voice, tone, source attribution, or whether the piece really earns inclusion. If you could not produce 4 strong bullets, say so here so Leonardo can decide whether to drop the entry. Or null.>"
 }
 
 # Now draft for the following piece

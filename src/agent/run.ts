@@ -21,6 +21,15 @@ import yaml              from 'js-yaml';
 import Anthropic         from '@anthropic-ai/sdk';
 import { buildCorpus }   from './corpus.js';
 import type { CorpusEntry } from './corpus.js';
+import { assignCoverColors, COVER_PALETTE } from './cover-assign.js';
+import type { CoverColor, PublishedRef, AssignCandidate } from './cover-assign.js';
+import {
+  AnnotationSchema,
+  ANNOTATION_LIMITS,
+  findAnnotationLengthViolations,
+  truncateAnnotationToBudget,
+} from './schemas.js';
+import type { AnnotationResult } from './schemas.js';
 
 // ── .env.local loader ───────────────────────────────────────────────────────
 // Mirrors the pattern in scripts/generate-audio.ts so local dev works the same
@@ -92,15 +101,6 @@ interface RubricResult {
   uncertainty_notes:    string | null;
 }
 
-interface AnnotationResult {
-  card_title:        string;
-  card_abstract:     string;
-  pull_quote:        string;
-  bullets:           string[];
-  draft_notes:       string;
-  uncertainty_flags: string | null;
-}
-
 interface ConnectionResult {
   connections: Array<{
     article_slug:    string;
@@ -130,6 +130,7 @@ const REPO_ROOT     = path.resolve(process.cwd());
 const AGENT_DIR     = path.join(REPO_ROOT, 'src/agent');
 const PROMPTS_DIR   = path.join(AGENT_DIR, 'prompts');
 const STAGING_DIR   = path.join(REPO_ROOT, 'src/content/field-notes/staging');
+const PUBLISHED_DIR = path.join(REPO_ROOT, 'src/content/field-notes/published');
 const RUN_LOG_DIR   = path.join(AGENT_DIR, 'logs/runs');
 const STATE_FILE    = path.join(REPO_ROOT, '.field-notes-state.json');
 const SOURCES_FILE  = path.join(AGENT_DIR, 'sources.yaml');
@@ -238,14 +239,28 @@ function extractText(response: Anthropic.Message): string {
   return '';
 }
 
-// JSON parsing with fallback that strips ```json fences if the model wrapped output.
+// JSON parsing with fallbacks for common model deviations:
+//   1. ```json fences wrapping the output
+//   2. Preamble prose before the opening { (the model "thinks out loud")
+//   3. Trailing prose after the closing }
 function parseJson<T>(raw: string, label: string): T {
   let cleaned = raw.trim();
   const fence = cleaned.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/);
   if (fence) cleaned = fence[1];
   try {
     return JSON.parse(cleaned) as T;
-  } catch (err) {
+  } catch {
+    // Fallback: strip everything before the first { and after the last }.
+    const first = cleaned.indexOf('{');
+    const last  = cleaned.lastIndexOf('}');
+    if (first !== -1 && last !== -1 && last > first) {
+      const sliced = cleaned.slice(first, last + 1);
+      try {
+        return JSON.parse(sliced) as T;
+      } catch {
+        // fall through to throw with original cleaned excerpt
+      }
+    }
     throw new Error(`${label}: failed to parse JSON. First 300 chars: ${cleaned.slice(0, 300)}`);
   }
 }
@@ -588,15 +603,57 @@ async function callAnnotation(
     FULL_TEXT:           fullText,
   });
 
-  const res = await client.messages.create({
+  const annotationCallParams = {
     model:       MODEL,
     max_tokens:  1500,
     temperature: 0.7,
-    system: [{ type: 'text', text: ANNOTATION_PROMPT.system, cache_control: { type: 'ephemeral' } }],
+    system: [{ type: 'text' as const, text: ANNOTATION_PROMPT.system, cache_control: { type: 'ephemeral' as const } }],
+  };
+
+  // First attempt.
+  const res1  = await client.messages.create({
+    ...annotationCallParams,
     messages: [{ role: 'user', content: userMessage }],
   });
+  const raw1  = parseJson<unknown>(extractText(res1), 'annotation');
 
-  return parseJson<AnnotationResult>(extractText(res), 'annotation');
+  // Card layout has fixed slots; the LLM regularly drifts past them. Inspect
+  // the response for length-budget violations and retry once with a pointed
+  // correction message before falling back to truncation.
+  const violations1 = findAnnotationLengthViolations(raw1);
+  if (violations1.length === 0) {
+    return AnnotationSchema.parse(raw1);
+  }
+
+  console.error(`    annotation: budget violations on first attempt, retrying once.`);
+  for (const v of violations1) console.error(`      ${v}`);
+
+  const retryNote = [
+    'Your previous response violated the hard length budgets:',
+    ...violations1.map(v => `- ${v}`),
+    `Regenerate the JSON object satisfying every budget. Pull quote ≤ ${ANNOTATION_LIMITS.pullQuote} chars, exactly ${ANNOTATION_LIMITS.bulletCount} bullets each ≤ ${ANNOTATION_LIMITS.bullet} chars, card abstract ≤ ${ANNOTATION_LIMITS.cardAbstract} chars, card title ≤ ${ANNOTATION_LIMITS.cardTitle} chars. Same JSON-only output rules.`,
+  ].join('\n');
+
+  const res2 = await client.messages.create({
+    ...annotationCallParams,
+    messages: [
+      { role: 'user',      content: userMessage },
+      { role: 'assistant', content: extractText(res1) },
+      { role: 'user',      content: retryNote },
+    ],
+  });
+  const raw2 = parseJson<unknown>(extractText(res2), 'annotation');
+  const violations2 = findAnnotationLengthViolations(raw2);
+  if (violations2.length === 0) {
+    return AnnotationSchema.parse(raw2);
+  }
+
+  // Retry still over budget. Log and truncate at word boundaries so the
+  // candidate still gets staged with usable (if compressed) editorial.
+  console.error(`    annotation: retry still over budget for ${source.id}; truncating.`);
+  for (const v of violations2) console.error(`      ${v}`);
+  const truncated = truncateAnnotationToBudget(raw2);
+  return AnnotationSchema.parse(truncated);
 }
 
 async function callConnections(
@@ -634,7 +691,30 @@ function yamlEscape(s: string): string {
   return `"${s.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`;
 }
 
-function writeStagingMdx(c: Candidate): string {
+/** Read frontmatter for the N most-recently-published Field Notes, sorted by
+ *  piece_published_at desc. Used by the cover-color assigner to avoid color
+ *  clashes with the grid neighborhood the new staged entries will join. */
+function loadLastPublished(n: number): PublishedRef[] {
+  if (!fs.existsSync(PUBLISHED_DIR)) return [];
+  const files = fs.readdirSync(PUBLISHED_DIR).filter(f => f.endsWith('.mdx'));
+  const refs: PublishedRef[] = [];
+  for (const file of files) {
+    const raw = fs.readFileSync(path.join(PUBLISHED_DIR, file), 'utf8');
+    const fm  = raw.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '';
+    const slug = fm.match(/^slug:\s*"?([^"\n]+)"?/m)?.[1]?.trim() ?? file.replace(/\.mdx$/, '');
+    const dateStr = fm.match(/^piece_published_at:\s*([^\s#]+)/m)?.[1]?.trim();
+    const dateMs  = dateStr ? Date.parse(dateStr) : NaN;
+    const ccRaw   = fm.match(/^coverColor:\s*"?([a-z-]+)"?/m)?.[1]?.trim() ?? null;
+    const cc      = (ccRaw && (COVER_PALETTE as readonly string[]).includes(ccRaw))
+                    ? ccRaw as CoverColor
+                    : null;
+    refs.push({ slug, coverColor: cc, publishedAt: Number.isFinite(dateMs) ? dateMs : 0 });
+  }
+  refs.sort((a, b) => b.publishedAt - a.publishedAt);
+  return refs.slice(0, n);
+}
+
+function writeStagingMdx(c: Candidate, coverColor: CoverColor | null = null): string {
   const lines: string[] = [];
   lines.push('---');
   lines.push(`slug: ${yamlEscape(c.slug)}`);
@@ -659,6 +739,7 @@ function writeStagingMdx(c: Candidate): string {
     lines.push(`pull_quote_candidate: ${yamlEscape(c.rubric.pull_quote_candidate)}`);
   }
   lines.push(`paywall_encountered: ${c.rubric.paywall_encountered || c.paywallSuspected}`);
+  if (coverColor) lines.push(`coverColor: ${yamlEscape(coverColor)}`);
   lines.push(`suggested_connections:`);
   if (c.connections && c.connections.connections.length) {
     for (const conn of c.connections.connections) {
@@ -727,25 +808,40 @@ function writeDigest(candidates: Candidate[], droppedCount: number, errorCount: 
     lines.push('## Staged candidates');
     lines.push('');
     for (const c of candidates) {
-      const verdictLabel = c.rubric.verdict === 'explicit_tactics' ? 'Explicit tactics' : 'Inferred candidate';
-      lines.push(`### ${c.item.title ?? c.slug}`);
+      const verdictLabel = c.rubric?.verdict === 'explicit_tactics' ? 'Explicit tactics' : 'Inferred candidate';
+      const total = c.rubric?.total ?? '?';
+      const tags  = c.rubric?.suggested_tags ?? [];
+      lines.push(`### ${c.item?.title ?? c.slug}`);
       lines.push('');
-      lines.push(`- Source: ${c.source.name}`);
-      lines.push(`- URL: ${c.item.url}`);
-      lines.push(`- Verdict: ${verdictLabel} (total ${c.rubric.total}/25)`);
-      lines.push(`- Tags: ${c.rubric.suggested_tags.join(', ') || '(none)'}`);
-      if (c.rubric.paywall_encountered || c.paywallSuspected) lines.push(`- Paywall: yes`);
+      lines.push(`- Source: ${c.source?.name ?? '(unknown)'}`);
+      lines.push(`- URL: ${c.item?.url ?? '(unknown)'}`);
+      lines.push(`- Verdict: ${verdictLabel} (total ${total}/25)`);
+      lines.push(`- Tags: ${tags.join(', ') || '(none)'}`);
+      if (c.rubric?.paywall_encountered || c.paywallSuspected) lines.push(`- Paywall: yes`);
       lines.push(`- Staging file: \`src/content/field-notes/staging/${c.slug}.mdx\``);
       if (c.annotation) {
-        lines.push('');
-        lines.push('> ' + c.annotation.annotation_draft.split('\n').join('\n> '));
+        const pq = c.annotation.pull_quote;
+        if (pq) {
+          lines.push('');
+          lines.push('> ' + pq.split('\n').join('\n> '));
+        }
+        const bullets = c.annotation.bullets ?? [];
+        if (bullets.length) {
+          lines.push('');
+          for (const b of bullets) lines.push(`- ${b}`);
+        }
       }
-      if (c.connections && c.connections.connections.length) {
+      if (c.connections?.connections?.length) {
         lines.push('');
         lines.push(`Connections:`);
         for (const conn of c.connections.connections) {
           lines.push(`- ${conn.article_title} (${conn.confidence}): ${conn.rationale}`);
         }
+      }
+      if (c.errors?.length) {
+        lines.push('');
+        lines.push(`Errors during processing:`);
+        for (const e of c.errors) lines.push(`- ${e}`);
       }
       lines.push('');
     }
@@ -873,7 +969,7 @@ async function main(): Promise<void> {
     const c = await processOne(client, stub, item, corpus, 'monitored');
     if (c) {
       if (c.rubric.verdict === 'drop') { dropped++; }
-      else { writeStagingMdx(c); staged.push(c); }
+      else { staged.push(c); }
     } else {
       errored++;
     }
@@ -911,7 +1007,7 @@ async function main(): Promise<void> {
             continue;
           }
           if (c.rubric.verdict === 'drop') { dropped++; }
-          else { writeStagingMdx(c); staged.push(c); }
+          else { staged.push(c); }
         } catch (err) {
           console.error(`  unexpected error: ${(err as Error).message}`);
           errored++;
@@ -926,9 +1022,80 @@ async function main(): Promise<void> {
     }
   }
 
-  // Write digest, log run, save state.
-  const digestPath = writeDigest(staged, dropped, errored, runStart);
-  console.error(`\nWrote ${digestPath}`);
+  // Assign cover colors with grid-aware adjacency before writing any MDX.
+  // The catalog renders a 3-column grid sorted by piece_published_at desc,
+  // and same-color cards next to each other read as visual clusters. We
+  // pick colors so no card shares its color with any of its 4 grid
+  // neighbors, weighted toward least-used colors across the current run
+  // plus the last 6 published entries.
+  const lastPublished = loadLastPublished(6);
+  const assignInputs: AssignCandidate[] = staged.map(c => ({
+    slug:        c.slug,
+    sourceId:    c.source.id,
+    publishedAt: c.item.publicationDate ? Date.parse(c.item.publicationDate) || 0 : 0,
+  }));
+  const coverColors = assignCoverColors(assignInputs, lastPublished, msg => console.error(`  ${msg}`));
+
+  // Sanity check: confirm no staged card shares its color with any of its
+  // 4 grid neighbors in the combined newest-first sequence.
+  const combinedColors: (CoverColor | null)[] = [
+    ...coverColors,
+    ...lastPublished.map(p => p.coverColor),
+  ];
+  for (let i = 0; i < coverColors.length; i++) {
+    const my = combinedColors[i];
+    if (!my) continue;
+    const COLS = 3;
+    const col  = i % COLS;
+    const checks: number[] = [];
+    if (i - COLS >= 0)                                   checks.push(i - COLS);
+    if (i + COLS < combinedColors.length)                checks.push(i + COLS);
+    if (col > 0)                                          checks.push(i - 1);
+    if (col < COLS - 1 && i + 1 < combinedColors.length) checks.push(i + 1);
+    for (const ni of checks) {
+      if (combinedColors[ni] === my) {
+        console.error(`  coverAssign: WARNING ${staged[i].slug} shares ${my} with neighbor at position ${ni}`);
+      }
+    }
+  }
+
+  // Write the staging MDX files now that colors are assigned.
+  for (let i = 0; i < staged.length; i++) {
+    writeStagingMdx(staged[i], coverColors[i] ?? null);
+  }
+  if (coverColors.length) {
+    const summary = staged.map((c, i) => `${c.slug} → ${coverColors[i]}`).join('\n  ');
+    console.error(`\nCover color assignments:\n  ${summary}`);
+  }
+
+  // Write digest, log run, save state. The digest is a convenience for review;
+  // staging MDX files are the real output. A bug in digest formatting must
+  // never abort the run and lose the MDX work.
+  let digestPath: string;
+  try {
+    digestPath = writeDigest(staged, dropped, errored, runStart);
+    console.error(`\nWrote ${digestPath}`);
+  } catch (err) {
+    const msg = (err as Error).message;
+    console.error(`\nDigest write failed (continuing): ${msg}`);
+    if ((err as Error).stack) console.error((err as Error).stack);
+    const placeholder = [
+      `# Field Notes — staging digest, ${runStart.toISOString().split('T')[0]}`,
+      ``,
+      `Run started ${runStart.toISOString()}.`,
+      ``,
+      `- Staged: **${staged.length}**`,
+      `- Dropped: ${dropped}`,
+      `- Errored: ${errored}`,
+      ``,
+      `Digest formatting failed: ${msg}`,
+      `See staging MDX files for the actual output.`,
+      ``,
+    ].join('\n');
+    digestPath = path.join(STAGING_DIR, 'digest.md');
+    fs.writeFileSync(digestPath, placeholder, 'utf8');
+    console.error(`Wrote placeholder ${digestPath}`);
+  }
 
   const logPath = path.join(RUN_LOG_DIR, `${runStart.toISOString().replace(/[:.]/g, '-')}.json`);
   fs.writeFileSync(logPath, JSON.stringify({
@@ -953,10 +1120,30 @@ async function main(): Promise<void> {
   console.error(`\nDone. Staged ${staged.length}, dropped ${dropped}, errored ${errored}.`);
 }
 
-main().catch((err: Error) => {
-  console.error(`\nFatal error: ${err.message}`);
-  console.error(err.stack);
-  // Try to leave a partial digest if we crashed mid-run.
-  try { writeDigest([], 0, 1, new Date()); } catch { /* ignore */ }
-  process.exit(1);
-});
+// Only run main() when this file is invoked directly (tsx/node). When it's
+// imported as a module — e.g. by migrate-annotations.ts re-using
+// callAnnotation and fetchFullText — we do NOT want main() to execute.
+import { fileURLToPath } from 'node:url';
+const isDirectInvocation = (() => {
+  try {
+    return process.argv[1] === fileURLToPath(import.meta.url);
+  } catch {
+    return false;
+  }
+})();
+if (isDirectInvocation) {
+  main().catch((err: Error) => {
+    console.error(`\nFatal error: ${err.message}`);
+    console.error(err.stack);
+    // Try to leave a partial digest if we crashed mid-run.
+    try { writeDigest([], 0, 1, new Date()); } catch { /* ignore */ }
+    process.exit(1);
+  });
+}
+
+// ── Public exports for one-off scripts (e.g. migrate-annotations.ts) ────────
+// Note: no `export` keywords on the originals so we keep the existing
+// top-of-file types-and-helpers organization untouched. Re-exporting at the
+// bottom is the smallest patch.
+export { callAnnotation, fetchFullText, makeClient };
+export type { Source, DiscoveredItem, RubricResult, ConnectionResult };

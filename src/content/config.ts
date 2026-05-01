@@ -211,6 +211,17 @@ const fieldNotes = defineCollection({
      */
     issue_number: z.number().int().positive().optional(),
 
+    /**
+     * Semantic name of the cover background color. The agent assigns this at
+     * staging time with grid-aware adjacency (no two neighbors on the catalog
+     * grid share a color). Hex resolution lives in CSS via --cover-{name}-*
+     * tokens. Optional so legacy entries without it fall back to the
+     * tactic-tag-driven cover color.
+     */
+    coverColor: z.enum([
+      'deep-teal', 'sage', 'terracotta', 'aubergine', 'navy', 'warm-charcoal',
+    ]).optional(),
+
     generated_at: z.date().optional(),
   }),
 });

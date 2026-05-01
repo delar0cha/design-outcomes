@@ -1,0 +1,28 @@
+{
+  "runStart": "2026-05-01T18:01:57.292Z",
+  "runEnd": "2026-05-01T18:04:37.205Z",
+  "flags": {
+    "local": true,
+    "dryRun": false,
+    "limit": 5
+  },
+  "summary": {
+    "staged": 1,
+    "dropped": 9,
+    "errored": 0
+  },
+  "candidates": [
+    {
+      "slug": "replit-defense-in-depth-how-replit-secures-every-layer-of-the-vibe-coding-stack",
+      "url": "https://blog.replit.com/defense-in-depth-how-replit-secures-every-layer-of-the-vibe-coding-stack",
+      "source": "replit",
+      "verdict": "inferred_candidate",
+      "total": 12,
+      "tags": [
+        "systems_and_primitives",
+        "cross_functional_and_process"
+      ],
+      "errors": []
+    }
+  ]
+}

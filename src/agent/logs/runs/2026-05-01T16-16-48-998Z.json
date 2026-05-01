@@ -1,0 +1,270 @@
+{
+  "runStart": "2026-05-01T16:16:48.998Z",
+  "runEnd": "2026-05-01T16:32:09.242Z",
+  "flags": {
+    "local": true,
+    "dryRun": false,
+    "limit": 5
+  },
+  "summary": {
+    "staged": 20,
+    "dropped": 55,
+    "errored": 12
+  },
+  "candidates": [
+    {
+      "slug": "nubank-design-ab-testing-for-decision-of-scaling-or-decommissioning-an-human-resources-product",
+      "url": "https://building.nubank.com/ab-testing-hr-products/",
+      "source": "nubank-design",
+      "verdict": "inferred_candidate",
+      "total": 12,
+      "tags": [
+        "research_and_validation",
+        "cross_functional_and_process",
+        "critique_and_decision_making"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "microsoft-design-the-missing-seat-at-the-frontier-team-table",
+      "url": "https://microsoft.design/articles/the-missing-seat-at-the-frontier-team-table/",
+      "source": "microsoft-design",
+      "verdict": "inferred_candidate",
+      "total": 16,
+      "tags": [
+        "research_and_validation",
+        "critique_and_decision_making",
+        "cross_functional_and_process"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "microsoft-design-self-potraits-you-zhang",
+      "url": "https://microsoft.design/articles/self-potraits-you-zhang/",
+      "source": "microsoft-design",
+      "verdict": "inferred_candidate",
+      "total": 13,
+      "tags": [
+        "prototyping_and_exploration",
+        "craft_and_detail",
+        "cross_functional_and_process"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "microsoft-design-paper-please-the-box-that-did-more-with-less",
+      "url": "https://microsoft.design/articles/sustainable-product-packaging/",
+      "source": "microsoft-design",
+      "verdict": "explicit_tactics",
+      "total": 17,
+      "tags": [
+        "cross_functional_and_process",
+        "craft_and_detail",
+        "systems_and_primitives"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "pentagram-methanesat",
+      "url": "https://www.pentagram.com/work/methanesat?setKey=9&amp;exclude-slug=methanesat",
+      "source": "pentagram",
+      "verdict": "inferred_candidate",
+      "total": 12,
+      "tags": [
+        "storytelling_and_narrative",
+        "craft_and_detail",
+        "systems_and_primitives"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "linear-how-we-hire-at-linear",
+      "url": "https://linear.app/now/how-we-hire-at-linear",
+      "source": "linear",
+      "verdict": "inferred_candidate",
+      "total": 13,
+      "tags": [
+        "hiring_and_team",
+        "critique_and_decision_making",
+        "cross_functional_and_process"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "linear-how-we-use-linear-agent-at-linear",
+      "url": "https://linear.app/now/how-we-use-linear-agent-at-linear",
+      "source": "linear",
+      "verdict": "inferred_candidate",
+      "total": 16,
+      "tags": [
+        "cross_functional_and_process",
+        "critique_and_decision_making"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "github-engineering-design-securing-the-git-push-pipeline-responding-to-a-critical-remote-code-execution-vu",
+      "url": "https://github.blog/security/securing-the-git-push-pipeline-responding-to-a-critical-remote-code-execution-vulnerability/",
+      "source": "github-engineering-design",
+      "verdict": "inferred_candidate",
+      "total": 13,
+      "tags": [
+        "cross_functional_and_process",
+        "critique_and_decision_making"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "intercom-ai-is-the-answer-to-the-sales-growth-without-headcount-problem",
+      "url": "https://www.intercom.com/blog/the-sales-growth-without-headcount-problem/",
+      "source": "intercom",
+      "verdict": "inferred_candidate",
+      "total": 12,
+      "tags": [
+        "cross_functional_and_process",
+        "critique_and_decision_making"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "slack-design-no-small-task-evolving-the-way-millions-catch-up-in-slack",
+      "url": "https://slack.design/articles/no-small-task-evolving-the-way-millions-catch-up-in-slack/",
+      "source": "slack-design",
+      "verdict": "inferred_candidate",
+      "total": 13,
+      "tags": [
+        "critique_and_decision_making",
+        "cross_functional_and_process",
+        "research_and_validation"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "slack-design-raising-the-volume-quietly-a-designers-challenge",
+      "url": "https://slack.design/articles/raising-the-volume-quietly/",
+      "source": "slack-design",
+      "verdict": "inferred_candidate",
+      "total": 14,
+      "tags": [
+        "critique_and_decision_making",
+        "craft_and_detail",
+        "cross_functional_and_process"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "webflow-two-ai-paths-to-a-webflow-code-component",
+      "url": "https://webflowmarketingmain.com/blog/webflow-ai-code-components",
+      "source": "webflow",
+      "verdict": "inferred_candidate",
+      "total": 12,
+      "tags": [
+        "cross_functional_and_process",
+        "critique_and_decision_making"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "john-maeda-a-jtbd-first-pattern-for-agentic-tool-systems",
+      "url": "https://maeda.pm/2026/01/30/a-jtbd-first-pattern-for-agentic-tool-systems/",
+      "source": "john-maeda",
+      "verdict": "inferred_candidate",
+      "total": 13,
+      "tags": [
+        "systems_and_primitives",
+        "critique_and_decision_making",
+        "cross_functional_and_process"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "john-maeda-macos-run-hf-huggingface-model-in-ollama-part-1-2025",
+      "url": "https://maeda.pm/2025/12/27/macos-run-hf-huggingface-model-in-ollama-part-1-2025/",
+      "source": "john-maeda",
+      "verdict": "inferred_candidate",
+      "total": 12,
+      "tags": [
+        "prototyping_and_exploration"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "rauno-freiberg-field-notes",
+      "url": "https://rauno.me/notes/1",
+      "source": "rauno-freiberg",
+      "verdict": "explicit_tactics",
+      "total": 20,
+      "tags": [
+        "critique_and_decision_making",
+        "prototyping_and_exploration",
+        "craft_and_detail"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "maggie-appleton-one-developer-two-dozen-agents-zero-alignment",
+      "url": "https://maggieappleton.com/zero-alignment/",
+      "source": "maggie-appleton",
+      "verdict": "explicit_tactics",
+      "total": 18,
+      "tags": [
+        "cross_functional_and_process",
+        "critique_and_decision_making",
+        "prototyping_and_exploration"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "maggie-appleton-gas-towns-agent-patterns-design-bottlenecks-and-vibecoding-at-scale",
+      "url": "https://maggieappleton.com/gastown/",
+      "source": "maggie-appleton",
+      "verdict": "explicit_tactics",
+      "total": 19,
+      "tags": [
+        "critique_and_decision_making",
+        "cross_functional_and_process",
+        "prototyping_and_exploration"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "verified-insider-inside-amplemarkets-design-team",
+      "url": "https://verifiedinsider.substack.com/p/inside-amplemarkets-design-team",
+      "source": "verified-insider",
+      "verdict": "inferred_candidate",
+      "total": 16,
+      "tags": [
+        "systems_and_primitives",
+        "hiring_and_team",
+        "cross_functional_and_process"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "verified-insider-learnings-from-design-teams",
+      "url": "https://verifiedinsider.substack.com/p/learnings-from-design-teams",
+      "source": "verified-insider",
+      "verdict": "inferred_candidate",
+      "total": 12,
+      "tags": [
+        "hiring_and_team",
+        "systems_and_primitives",
+        "cross_functional_and_process"
+      ],
+      "errors": []
+    },
+    {
+      "slug": "verified-insider-design-at-remote",
+      "url": "https://verifiedinsider.substack.com/p/design-at-remote",
+      "source": "verified-insider",
+      "verdict": "inferred_candidate",
+      "total": 13,
+      "tags": [
+        "cross_functional_and_process",
+        "hiring_and_team",
+        "systems_and_primitives"
+      ],
+      "errors": []
+    }
+  ]
+}

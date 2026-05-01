@@ -6,7 +6,10 @@ import FeaturedCarousel from '@components/islands/FeaturedCarousel';
 import PostGrid from '@components/islands/PostGrid';
 import SiteFooter from '@components/ui/SiteFooter.astro';
 import SiteCursor from '@components/ui/SiteCursor.astro';
-import { getAllPosts, getFeaturedPosts, toPostSummary } from '@lib/posts';
+import ThemedImage from '@components/ui/ThemedImage.astro';
+import TerminalFrame from '@components/ui/TerminalFrame.astro';
+import { getAllPosts, getFeaturedPosts, toPostSummary, calcReadingTime } from '@lib/posts';
+import { CATEGORIES } from '@lib/categories';
 import { CURRENT_ISSUE } from '@lib/issue';
 
 const allPosts      = await getAllPosts();
@@ -14,6 +17,49 @@ const featuredPosts = await getFeaturedPosts();
 
 const allSummaries      = allPosts.map(toPostSummary);
 const featuredSummaries = featuredPosts.map(toPostSummary);
+
+/* Terminal-mode hero source: featured #1 if available, else newest.
+ * The print-mode <FeaturedCarousel> stays mounted alongside; CSS
+ * hides whichever doesn't match the active theme. */
+const heroPost   = featuredPosts[0] ?? allPosts[0];
+const heroSlug   = heroPost ? heroPost.id.replace(/\.mdx?$/, '') : '';
+const heroCat    = heroPost ? CATEGORIES[heroPost.data.category] : null;
+const heroDateShort = heroPost?.data.publishedAt
+  ? new Date(heroPost.data.publishedAt).toLocaleDateString('en-US', {
+      month: '2-digit', day: '2-digit', year: '2-digit',
+    })
+  : '';
+/* calcReadingTime returns "4 min read" — keep it for the dot-leader
+ * row. */
+const heroReadStr = heroPost ? calcReadingTime(heroPost.body ?? '') : '';
+
+/* SYSTEM STATUS metrics. Article count is real; uptime / readers
+ * are surface-level decoration. */
+const articleCount = allPosts.length;
+const buildDate    = new Date().toLocaleDateString('en-US', {
+  month: '2-digit', day: '2-digit', year: '2-digit',
+});
+const buildTime    = new Date().toLocaleTimeString('en-US', {
+  hour: '2-digit', minute: '2-digit', hour12: false,
+});
+
+/* ARTICLE INDEX rows (terminal mode). Render newest first. */
+const indexRows = allPosts.map((p, i) => {
+  const slug    = p.id.replace(/\.mdx?$/, '');
+  const cat     = CATEGORIES[p.data.category];
+  const dateStr = p.data.publishedAt
+    ? new Date(p.data.publishedAt).toLocaleDateString('en-US', {
+        month: '2-digit', day: '2-digit',
+      })
+    : '';
+  return {
+    n:    String(i + 1).padStart(2, '0'),
+    slug,
+    title: p.data.title,
+    cat:  cat?.monogram ?? '··',
+    date: dateStr,
+  };
+});
 ---
 
 <Base
@@ -24,8 +70,56 @@ const featuredSummaries = featuredPosts.map(toPostSummary);
   <main class="do-page do-cursor-host">
     <SiteNav client:load currentPath="/" />
     {/* <EditorialBanner /> */}
+
+    {/* Terminal-mode SYSTEM STATUS frame — sits above the carousel. */}
+    <section class="term-home term-home--top do-terminal-only" aria-label="System status">
+      <TerminalFrame title="SYSTEM STATUS" status={`${buildDate}  ${buildTime}`}>
+        <dl class="term-status-grid">
+          <div><span class="lbl">ISSUE</span><span class="val">{String(CURRENT_ISSUE.issueNumber).padStart(2,'0')}</span></div>
+          <div><span class="lbl">ARTICLES</span><span class="val">{articleCount}</span></div>
+          <div><span class="lbl">READERS</span><span class="val">1.2K</span></div>
+          <div><span class="lbl">UPTIME</span><span class="val">99.97%</span></div>
+          <div><span class="lbl">MODE</span><span class="val">TERMINAL</span></div>
+          <div><span class="lbl">THEME</span><span class="val">PHOSPHOR-GREEN</span></div>
+          <div><span class="lbl">CRT</span><span class="val">ON</span></div>
+          <div><span class="lbl">AUDIO</span><span class="val">READY</span></div>
+        </dl>
+      </TerminalFrame>
+    </section>
+
+    {/* Featured carousel renders in BOTH modes. Print mode keeps the
+        existing zoom-and-fade scrollytelling. Terminal mode replaces
+        the zoom with a CRT power-on transition (defined in
+        terminal.css) and tints the cover image phosphor green; the
+        countdown progress bar comes back automatically because the
+        carousel is no longer hidden in terminal. */}
     <FeaturedCarousel client:load posts={featuredSummaries} />
-    <PostGrid client:load posts={allSummaries} />
+
+    {/* Print-mode post grid. The terminal-mode equivalent is the
+        ARTICLE INDEX frame below. */}
+    <div class="do-print-only">
+      <PostGrid client:load posts={allSummaries} />
+    </div>
+
+    {/* Terminal-mode ARTICLE INDEX (BBS listing). */}
+    <section class="term-home term-home--bottom do-terminal-only" aria-label="Article index">
+      <TerminalFrame title="ARTICLE INDEX" status={`COUNT ${articleCount}`}>
+        <div class="term-index">
+          {indexRows.map(row => (
+            <a class="term-index__row" href={`/post/${row.slug}/`}>
+              <span class="term-index__num">{row.n}.</span>
+              <span class="term-index__title">{row.title}</span>
+              <span class="term-index__leader" aria-hidden="true"></span>
+              <span class="term-index__cat">[{row.cat}]</span>
+              <span class="term-index__date">{row.date}</span>
+            </a>
+          ))}
+          <div class="term-prompt" aria-hidden="true">
+            &gt; <span class="term-cursor">&nbsp;</span>
+          </div>
+        </div>
+      </TerminalFrame>
+    </section>
     <SiteCursor issue={CURRENT_ISSUE.issueNumber} />
     <SiteFooter />
   </main>

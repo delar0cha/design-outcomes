@@ -53,6 +53,11 @@ interface Props {
   /** 3-5 "why it matters" bullets. Primary editorial content on the page. */
   bullets?:           readonly string[];
   display_type?:      'company' | 'individual';
+  /** Semantic cover color name set by the agent. When present, the card
+   *  renders data-cover-color="<name>" and CSS overrides the tactic-driven
+   *  cover/quiet/wear vars. Absent means fall back to tactic-driven color
+   *  (the legacy path for entries staged before this field existed). */
+  coverColor?:        'deep-teal' | 'sage' | 'terracotta' | 'aubergine' | 'navy' | 'warm-charcoal';
 }
 
 const {
@@ -62,6 +67,7 @@ const {
   card_title, card_abstract,
   pull_quote, pull_quote_candidate, bullets,
   display_type = 'company',
+  coverColor,
 } = Astro.props;
 
 // Kraft band displays the editorial card title/abstract when present.
@@ -82,9 +88,11 @@ const TACTIC_VAR_KEY: Record<string, string> = {
 };
 const primaryTactic = tactic_tags[0] ?? 'craft_and_detail';
 const cssKey        = TACTIC_VAR_KEY[primaryTactic] ?? 'craft';
-const coverColor    = `var(--tactic-${cssKey}-cover)`;
-const quietColor    = `var(--tactic-${cssKey}-quiet)`;
-const wearColor     = `var(--tactic-${cssKey}-wear)`;
+// Tactic-driven fallbacks. When `coverColor` is set on the entry, the
+// data-cover-color attribute on .do-fn-card overrides these via CSS.
+const fallbackCover = `var(--tactic-${cssKey}-cover)`;
+const fallbackQuiet = `var(--tactic-${cssKey}-quiet)`;
+const fallbackWear  = `var(--tactic-${cssKey}-wear)`;
 
 // ── Procedural wear (deterministic from slug) ──────────────────────────────
 //
@@ -316,7 +324,13 @@ const tacticIllustration = tacticOverride
   ?? TACTIC_ILLUSTRATIONS[primaryTactic]
   ?? TACTIC_ILLUSTRATIONS.craft_and_detail;
 
-const cardStyle = `--cover-color: ${coverColor}; --quiet-color: ${quietColor}; --wear-color: ${wearColor};`;
+// Only emit the tactic-driven inline style when no `coverColor` is set.
+// Inline custom-property declarations win over selector-based overrides, so
+// the data-cover-color attribute path needs the inline style absent to take
+// effect. Pre-coverColor entries keep their tactic-driven look via inline.
+const cardStyle = coverColor
+  ? undefined
+  : `--cover-color: ${fallbackCover}; --quiet-color: ${fallbackQuiet}; --wear-color: ${fallbackWear};`;
 ---
 
 <article
@@ -327,29 +341,66 @@ const cardStyle = `--cover-color: ${coverColor}; --quiet-color: ${quietColor}; -
   aria-expanded="false"
   aria-label={`${piece_title}, from ${source}. Activate to view editorial notes.`}
   data-slug={slug}
+  data-cover-color={coverColor}
 >
-  <span class="do-fn-card-spine-indent do-fn-card-spine-indent-top"    aria-hidden="true"></span>
-  <span class="do-fn-card-spine-indent do-fn-card-spine-indent-bottom" aria-hidden="true"></span>
+  {/*
+    The card renders TWO front faces, one per theme:
 
-  <div class="do-fn-card-cover">
-    <span class="do-fn-card-wear" aria-hidden="true" set:html={wearSvg} />
-    {logoSvg
-      ? <span class="do-fn-card-logo" set:html={logoSvg} />
-      : <span class="do-fn-card-wordmark">{wordmarkText}</span>}
+    Print mode → the notebook visual (kraft band + cover + wear
+                 marks + footer). This is the original design and
+                 stays byte-identical — `.do-fn-front` is the
+                 default (display: contents) in print, hidden under
+                 [data-theme="terminal"].
+
+    Terminal mode → a 3.5" floppy disk silhouette (shutter, slot,
+                 notch, paper label). `.do-fn-floppy` is hidden by
+                 default and only flips on under [data-theme=
+                 "terminal"]; the existing flip-to-back-page
+                 interaction (.do-fn-card-page-clip below) keeps
+                 working in both modes because the script targets
+                 `.do-fn-card`, not the inner faces.
+  */}
+  <div class="do-fn-front">
+    <span class="do-fn-card-spine-indent do-fn-card-spine-indent-top"    aria-hidden="true"></span>
+    <span class="do-fn-card-spine-indent do-fn-card-spine-indent-bottom" aria-hidden="true"></span>
+
+    <div class="do-fn-card-cover">
+      <span class="do-fn-card-wear" aria-hidden="true" set:html={wearSvg} />
+      {logoSvg
+        ? <span class="do-fn-card-logo" set:html={logoSvg} />
+        : <span class="do-fn-card-wordmark">{wordmarkText}</span>}
+    </div>
+
+    <header class="do-fn-card-band">
+      <div class="do-fn-card-band-top">
+        <span>LDLR DESIGN</span>
+        <span>FIELD NOTES</span>
+      </div>
+      <div class="do-fn-card-band-rule" aria-hidden="true"></div>
+      <h3 class="do-fn-card-title">{bandTitle}</h3>
+      {excerpt && <p class="do-fn-card-excerpt">{excerpt}</p>}
+    </header>
+
+    <div class="do-fn-card-footer">
+      <span class="do-fn-card-footer-text">{footerText}</span>
+    </div>
   </div>
 
-  <header class="do-fn-card-band">
-    <div class="do-fn-card-band-top">
-      <span>LDLR DESIGN</span>
-      <span>FIELD NOTES</span>
+  <div class="do-fn-floppy" aria-hidden="true">
+    <span class="do-fn-floppy-shutter">
+      <span class="do-fn-floppy-shutter-slot"></span>
+      {logoSvg && <span class="do-fn-floppy-shutter-stamp" set:html={logoSvg} />}
+    </span>
+    <span class="do-fn-floppy-notch"></span>
+    <div class="do-fn-floppy-label">
+      <div class="do-fn-floppy-label-header">
+        <span>{wordmarkText}</span>
+        <span>FIELD NOTES</span>
+      </div>
+      <h3 class="do-fn-floppy-title">{bandTitle}</h3>
+      {excerpt && <p class="do-fn-floppy-excerpt">{excerpt}</p>}
+      <div class="do-fn-floppy-meta">{footerText}</div>
     </div>
-    <div class="do-fn-card-band-rule" aria-hidden="true"></div>
-    <h3 class="do-fn-card-title">{bandTitle}</h3>
-    {excerpt && <p class="do-fn-card-excerpt">{excerpt}</p>}
-  </header>
-
-  <div class="do-fn-card-footer">
-    <span class="do-fn-card-footer-text">{footerText}</span>
   </div>
 
   {/*

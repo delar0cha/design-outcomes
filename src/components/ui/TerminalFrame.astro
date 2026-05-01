@@ -1,0 +1,38 @@
+---
+/* Terminal-window frame primitive.
+ *
+ * In terminal mode: green-bordered box with a header strip carrying
+ * three faux traffic-light squares, a title, and an optional status.
+ * In print mode: the frame collapses — `.tframe__header` is hidden
+ * and `.tframe__body` becomes `display: contents` so the children
+ * render as if the wrapper weren't there. Rules in terminal.css
+ * gate the visual layer; this component is just the markup.
+ */
+interface Props {
+  /** Title shown left of the status, after the traffic-light dots. */
+  title?: string;
+  /** Optional right-aligned status text (date, count, etc.). */
+  status?: string;
+  /** Reserved for future variants (panel = no header). */
+  variant?: 'window' | 'panel';
+  class?: string;
+}
+
+const { title = '', status = '', variant = 'window', class: className } = Astro.props;
+---
+<div class:list={["tframe", className]} data-variant={variant}>
+  {variant !== 'panel' && (
+    <div class="tframe__header">
+      <span class="tframe__dots" aria-hidden="true">
+        <span class="tframe__dot"></span>
+        <span class="tframe__dot"></span>
+        <span class="tframe__dot"></span>
+      </span>
+      <span class="tframe__title">{title}</span>
+      <span class="tframe__status">{status}</span>
+    </div>
+  )}
+  <div class="tframe__body">
+    <slot />
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="6" viewBox="0 0 24 6" fill="none">
+  <!--
+    Repeating tile of small angled tick marks. Used as a tiled
+    background-image around featured panels in terminal mode to
+    suggest printed coupon edges. The 24x6 tile repeats horizontally
+    on top/bottom edges and vertically (rotated by background
+    positioning) on left/right edges in the calling CSS.
+  -->
+  <line x1="2"  y1="0" x2="4"  y2="6" stroke="#ededed" stroke-width="1" />
+  <line x1="10" y1="0" x2="12" y2="6" stroke="#ededed" stroke-width="1" />
+  <line x1="18" y1="0" x2="20" y2="6" stroke="#ededed" stroke-width="1" />
+</svg>

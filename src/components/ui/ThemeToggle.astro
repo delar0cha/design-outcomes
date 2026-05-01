@@ -1,0 +1,68 @@
+---
+/*
+  Floating theme toggle. Mounted once in Base.astro; globally fixed at
+  bottom-left. Each visual state is a miniature preview of the
+  destination mode — the affordance is the design idea.
+
+  All styling lives in src/styles/terminal.css alongside the rest of
+  the terminal-mode rules so there's one place to retune the theme.
+*/
+---
+
+<button
+  id="theme-toggle"
+  class="theme-toggle"
+  type="button"
+  aria-label="Toggle terminal mode"
+>
+  <span class="toggle-state toggle-state--terminal-preview" aria-hidden="true">
+    <span class="line-1">&gt; SYS.LOAD</span>
+    <span class="line-2">&gt; TERMINAL</span>
+    <span class="line-3">&gt; <span class="cursor">&nbsp;</span></span>
+  </span>
+  <span class="toggle-state toggle-state--print-preview" aria-hidden="true">
+    <span class="line-1">→ Print</span>
+    <span class="line-2">back to paper</span>
+  </span>
+</button>
+
+<script is:inline>
+  (function () {
+    const STORAGE_KEY = 'do-theme';
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+
+    function getTheme() {
+      return root.getAttribute('data-theme') === 'terminal' ? 'terminal' : 'print';
+    }
+
+    function setTheme(next) {
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem(STORAGE_KEY, next); } catch (_) {}
+      window.dispatchEvent(new CustomEvent('theme-change', { detail: { theme: next } }));
+    }
+
+    function toggle() {
+      setTheme(getTheme() === 'terminal' ? 'print' : 'terminal');
+    }
+
+    btn.addEventListener('click', toggle);
+
+    // Keyboard shortcut: T toggles, but only when nothing editable has focus.
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 't' && e.key !== 'T') return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const ae = document.activeElement;
+      if (!ae) { toggle(); return; }
+      const tag = ae.tagName;
+      if (
+        tag === 'INPUT' ||
+        tag === 'TEXTAREA' ||
+        tag === 'SELECT' ||
+        ae.isContentEditable
+      ) return;
+      toggle();
+    });
+  })();
+</script>

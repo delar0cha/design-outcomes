@@ -1,0 +1,77 @@
+---
+/*
+ * ThemedImage — renders one image two ways:
+ *   - Print mode: a normal <img>, no transformation.
+ *   - Terminal mode: a <pre> block containing the precomputed ASCII
+ *     redraw of the same image. The original <img> is hidden in
+ *     terminal mode (CSS `display: none`); only the ASCII renders.
+ *
+ * Build-time pipeline (`scripts/generate-ascii.mjs`) converts every
+ * raster under public/images/ into three sibling .txt files at
+ * different column counts:
+ *   foo.png → foo.ascii-lg.txt (400 cols)
+ *           → foo.ascii-md.txt (240 cols)
+ *           → foo.ascii-sm.txt (140 cols)
+ *
+ * Pick the size tier that matches the render context, not the
+ * source image — the column count drives the on-screen detail
+ * given a fixed font-size in CSS.
+ *
+ * Accessibility: the <pre> carries `aria-label={alt}` so screen
+ * readers announce the image's description once, not the entire
+ * ASCII stream.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+
+interface Props {
+  src: string;
+  alt: string;
+  size?: 'lg' | 'md' | 'sm';
+  width?: number;
+  height?: number;
+  class?: string;
+  /* Backwards-compat with v2/v3 call sites. Ignored. */
+  treatment?: string;
+  pixelHeavy?: boolean;
+  imgClass?: string;
+}
+
+const {
+  src,
+  alt,
+  size = 'md',
+  width,
+  height,
+  class: className,
+  imgClass,
+} = Astro.props;
+
+const fsPath = (p: string) => path.resolve('./public', p.replace(/^\//, ''));
+const asciiFsPath = fsPath(
+  src.replace(/\.(png|jpg|jpeg|webp)$/i, `.ascii-${size}.txt`),
+);
+
+let asciiContent = '';
+try {
+  asciiContent = fs.readFileSync(asciiFsPath, 'utf-8');
+} catch {
+  /* Image hasn't been processed (run `npm run generate-ascii`).
+   * Falling back to the raw <img> is fine — print mode still
+   * works; terminal mode will render an empty cell. */
+  asciiContent = '';
+}
+---
+<div class:list={["timg", className]} data-size={size}>
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    class:list={["timg__print", imgClass]}
+    draggable={false}
+  />
+  {asciiContent && (
+    <pre class="timg__ascii" aria-label={alt}>{asciiContent}</pre>
+  )}
+</div>

@@ -5,6 +5,7 @@ import CategoryTag from '@components/ui/CategoryTag.astro';
 import ShareRow from '@components/islands/ShareRow';
 import AudioPlayer from '@components/islands/AudioPlayer';
 import Illustration from '@components/islands/Illustration';
+import ThemedImage from '@components/ui/ThemedImage.astro';
 import SiteFooter from '@components/ui/SiteFooter.astro';
 import SiteCursor from '@components/ui/SiteCursor.astro';
 import { getAllPosts, toPostSummary, calcReadingTime } from '@lib/posts';
@@ -65,11 +66,12 @@ const coverRecipe = post.data.coverImage
       <div class="do-post-hero">
         <div class="do-post-hero-media" data-post-hero-media>
           {post.data.coverImage
-            ? <img
+            ? <ThemedImage
                 src={post.data.coverImage}
-                alt=""
-                class="do-post-hero-img"
-                draggable={false}
+                alt={post.data.title}
+                size="lg"
+                class="do-post-hero-img-wrap"
+                imgClass="do-post-hero-img"
               />
             : <Illustration client:load recipe={coverRecipe} className="do-post-hero-svg" />}
         </div>
@@ -184,6 +186,29 @@ const coverRecipe = post.data.coverImage
 
     <!-- Article -->
     <article class="do-post">
+      {/* Terminal-mode tabular header. Hidden in print mode. The
+          existing print-mode meta + byline blocks below stay in the
+          DOM but are hidden under [data-theme="terminal"] via CSS to
+          avoid duplicating the same fields. */}
+      <div class="do-terminal-only">
+        <div class="term-article-head">
+          <dl class="term-article-head__rows">
+            <dt>TITLE</dt>      <dd>{post.data.title}</dd>
+            <dt>AUTHOR</dt>     <dd>Leonardo De La Rocha</dd>
+            <dt>PUBLISHED</dt>  <dd>{fmtDate(post.data.publishedAt)}</dd>
+            <dt>CATEGORY</dt>   <dd>{cat?.name ?? '—'}</dd>
+            <dt>READ TIME</dt>  <dd>{readTime}</dd>
+            <dt>ISSUE</dt>      <dd>{String(post.data.issue ?? 0).padStart(2,'0')}</dd>
+            {post.data.audio && (
+              <Fragment><dt>LISTEN</dt><dd>[▶ PLAY]</dd></Fragment>
+            )}
+          </dl>
+          <div class="term-article-head__rule">
+            ******************************************************************************************
+          </div>
+        </div>
+      </div>
+
       <div class="do-post-meta">
         <CategoryTag catId={post.data.category} size="lg" />
         <span class="do-post-sep">·</span>

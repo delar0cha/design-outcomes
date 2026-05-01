@@ -3004,6 +3004,33 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   --tactic-hiring-quiet:       #6967A0;
   --tactic-hiring-wear:        #232248;
 
+  /* Semantic cover-color palette assigned by the Field Notes agent with
+     grid-aware adjacency. Each color has a cover (background), a quiet
+     (type-on-cover, ~3:1 against cover), and a wear (deeper shadow used by
+     scratches and asymmetric shadow). These are independent of tactic tags;
+     entries opt into them by setting `coverColor` in frontmatter, and the
+     card CSS overrides --cover-color/--quiet-color/--wear-color when the
+     attribute is present. Aubergine and navy reuse hexes from the existing
+     tactic palette so no published card visibly shifts. */
+  --cover-deep-teal-cover:      #2F4858;
+  --cover-deep-teal-quiet:      #6B8290;
+  --cover-deep-teal-wear:       #243744;
+  --cover-sage-cover:           #4A5D3A;
+  --cover-sage-quiet:           #7E9170;
+  --cover-sage-wear:            #38482C;
+  --cover-terracotta-cover:     #B8432B;
+  --cover-terracotta-quiet:     #D08068;
+  --cover-terracotta-wear:      #903522;
+  --cover-aubergine-cover:      #4A2545;
+  --cover-aubergine-quiet:      #8A6485;
+  --cover-aubergine-wear:       #3A1D38;
+  --cover-navy-cover:           #1E3A5F;
+  --cover-navy-quiet:           #5A7194;
+  --cover-navy-wear:            #182E4C;
+  --cover-warm-charcoal-cover:  #3A2F2A;
+  --cover-warm-charcoal-quiet:  #6E6056;
+  --cover-warm-charcoal-wear:   #2C2320;
+
   --kraft-band:   #EEBB82;
   --kraft-rule:   #8B5E2A;
   /* Kraft-band ink — used by band-top labels, title, and abstract.
@@ -3180,6 +3207,43 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 }
 
 /* ── Card (the notebook) ──────────────────────────────────── */
+
+/* When an entry sets `coverColor` in frontmatter, the FieldNoteCard renders
+   data-cover-color="<name>" on the article. These rules remap the three CSS
+   vars the card already consumes (--cover-color, --quiet-color,
+   --wear-color) to the semantic palette. Cards without the attribute keep
+   the existing tactic-tag-driven colors set in their inline style, so
+   pre-coverColor entries stay visually unchanged. */
+.do-fn-card[data-cover-color="deep-teal"] {
+  --cover-color: var(--cover-deep-teal-cover);
+  --quiet-color: var(--cover-deep-teal-quiet);
+  --wear-color:  var(--cover-deep-teal-wear);
+}
+.do-fn-card[data-cover-color="sage"] {
+  --cover-color: var(--cover-sage-cover);
+  --quiet-color: var(--cover-sage-quiet);
+  --wear-color:  var(--cover-sage-wear);
+}
+.do-fn-card[data-cover-color="terracotta"] {
+  --cover-color: var(--cover-terracotta-cover);
+  --quiet-color: var(--cover-terracotta-quiet);
+  --wear-color:  var(--cover-terracotta-wear);
+}
+.do-fn-card[data-cover-color="aubergine"] {
+  --cover-color: var(--cover-aubergine-cover);
+  --quiet-color: var(--cover-aubergine-quiet);
+  --wear-color:  var(--cover-aubergine-wear);
+}
+.do-fn-card[data-cover-color="navy"] {
+  --cover-color: var(--cover-navy-cover);
+  --quiet-color: var(--cover-navy-quiet);
+  --wear-color:  var(--cover-navy-wear);
+}
+.do-fn-card[data-cover-color="warm-charcoal"] {
+  --cover-color: var(--cover-warm-charcoal-cover);
+  --quiet-color: var(--cover-warm-charcoal-quiet);
+  --wear-color:  var(--cover-warm-charcoal-wear);
+}
 
 .do-fn-card {
   position: relative;
@@ -3378,6 +3442,13 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   color: var(--quiet-color, #6967A0);
   line-height: 1.4;
 }
+
+/* Print-mode default for the dual-face FieldNoteCard: the
+   notebook front (.do-fn-front) renders as if its wrapper weren't
+   there (display: contents), the floppy front (.do-fn-floppy) is
+   hidden. terminal.css flips both under [data-theme="terminal"]. */
+.do-fn-front  { display: contents; }
+.do-fn-floppy { display: none; }
 
 /* ── Below-card content (per grid item) ───────────────────── */
 

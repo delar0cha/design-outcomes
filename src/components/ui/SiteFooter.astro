@@ -54,7 +54,17 @@ import FooterSubscribeForm from '@components/islands/FooterSubscribeForm';
   <div class="do-footer-rule"></div>
 
   <div class="do-footer-base">
-    <span class="do-issue-label">ldlr.design · Set in Newsreader &amp; Instrument Sans.</span>
+    {/*
+      Mode-aware font readout. Both spans live in the DOM at all
+      times; CSS hides whichever doesn't match the active theme so
+      the line always reflects the actual rendered fonts. Wrapped
+      in an outer span so the `.do-issue-label` typography (mono,
+      11px, 0.04em letter-spacing, muted) applies once.
+    */}
+    <span class="do-issue-label do-footer-fonts">
+      <span class="do-footer-fonts__print">ldlr.design &#123; DATA RENDERING: 'Newsreader', 'Instrument Sans'; &#125;</span>
+      <span class="do-footer-fonts__terminal">ldlr.design &#123; DATA RENDERING: 'IBM Plex Mono'; &#125;</span>
+    </span>
     <span class="do-issue-label">© 2026 Leonardo De La Rocha</span>
   </div>
 </footer>

@@ -1390,8 +1390,36 @@ a { color: inherit; text-decoration: none; }
   .do-featured.is-bleed .do-featured-art::after { background: linear-gradient(180deg, rgba(247,242,234,0) 0%, rgba(247,242,234,0) 40%, rgba(247,242,234,0.7) 80%, rgba(247,242,234,0.95) 100%); }
   .do-featured.is-bleed .do-featured-controls { grid-column: 1 / -1; padding: 0 var(--gutter) 40px 48px; }
   .do-featured.is-framed .do-featured-inner { grid-template-columns: 14px 1fr; }
-  .do-featured.is-framed .do-featured-art { grid-column: 2; min-height: 360px; }
+  .do-featured.is-framed .do-featured-art {
+    grid-column: 2;
+    /* Match slide aspect to the Issue 04 16:9 hero composition so the
+       image fills the slide edge-to-edge instead of leaving cream
+       margins around a height-fit image. Overrides the default 3:2. */
+    aspect-ratio: 16 / 9;
+    height: auto;
+    min-height: 0;
+  }
   .do-featured.is-framed .do-featured-text { grid-column: 2; padding: 24px 0 0; }
+
+  /* At narrow viewports the desktop Ken Burns center-crop leaves cream
+     margins around 16:9 hero images. Drop the zoom and let the image
+     fill the slide entirely. Wider Issue 03 21:9 illustrations get a
+     small center-crop on the sides — acceptable since their subjects
+     are composed centrally. Desktop framing is untouched. */
+  .do-featured { --hero-initial-scale: 1; }
+  .do-featured-img,
+  .do-featured-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    left: auto;
+    transform: none;
+  }
+  .do-featured-art-slide.is-active .do-featured-img,
+  .do-featured-art-slide.is-active .do-featured-svg { animation: none; }
 }
 @media (max-width: 720px) {
   :root { --gutter: 20px; }
@@ -1419,27 +1447,8 @@ a { color: inherit; text-decoration: none; }
      gap. The fill animates left→right via do-progress-fill-h (keyframe
      defined below the desktop rules). */
   .do-featured.is-framed .do-featured-inner { grid-template-columns: 1fr; min-height: auto; gap: 0; }
-  .do-featured.is-framed .do-featured-art  { order: 1; grid-column: 1; height: 260px; min-height: 260px; }
-
-  /* On narrow viewports the Ken Burns zoom crops ~38% off each side,
-     which eats off-center subject placement in the Issue 04 16:9 hero
-     illustrations and surfaces the cream-paper margin as visible empty
-     space. Show the whole authored composition instead — slight vertical
-     letterbox is the acceptable trade-off. Desktop framing is untouched. */
-  .do-featured { --hero-initial-scale: 1; }
-  .do-featured-img,
-  .do-featured-svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    left: auto;
-    transform: none;
-  }
-  .do-featured-art-slide.is-active .do-featured-img,
-  .do-featured-art-slide.is-active .do-featured-svg { animation: none; }
+  /* aspect-ratio + image-fill rules inherited from @media (max-width: 1080px) above. */
+  .do-featured.is-framed .do-featured-art  { order: 1; grid-column: 1; }
   .do-featured.is-framed .do-progress {
     order: 2;
     display: block;

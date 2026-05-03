@@ -93,17 +93,15 @@ export default function FeaturedCarousel({ posts }: Props) {
           />
         </div>
 
-        {/* Illustration — stacked slides with a swift crossfade. The active
-            slide's image animates from scale(--hero-initial-scale) down to
-            scale(1) (the floor — image height equals frame height) across
-            the full slide duration, so the zoom completes exactly when the
-            slide transitions. */}
+        {/* Slide stack — one container per post, only the active one shows.
+            The Ken Burns zoom that used to live on the active slide's image
+            has been replaced by the Riso eject sequence (rendered below as
+            .do-eject-stack). The slide stack now only holds the static
+            "settled" image; it sits underneath the eject overlay and is
+            what's visible after the eject sequence completes. */}
         <div className="do-featured-art">
           {posts.map((p, i) => {
             const isActive = i === idx;
-            const imgStyle = isActive
-              ? { animationPlayState: (paused || playerOpen) ? 'paused' : 'running' as const }
-              : undefined;
             return (
               <div
                 key={i}
@@ -112,26 +110,48 @@ export default function FeaturedCarousel({ posts }: Props) {
               >
                 {p.coverImage
                   ? <img
-                      key={isActive ? `img-${idx}` : `rest-${i}`}
                       src={p.coverImage}
                       alt=""
                       className="do-featured-img"
                       draggable={false}
-                      style={imgStyle}
                     />
                   : <Illustration
-                      key={isActive ? `svg-${idx}` : `rest-${i}`}
                       recipe={recipeFor(p)}
                       className="do-featured-svg"
-                      style={imgStyle}
                     />}
               </div>
             );
           })}
 
-          {/* Carousel controls — overlayed at the bottom-center of the
-              illustration (not below it in a separate row). Crossfades
-              with the illustration when the player opens. */}
+          {/* Riso eject sequence — five staggered "fresh print" overlays of
+              the active post's cover. Remounts on every idx change via the
+              keyed wrapper, which restarts the animation chain. The first
+              four passes slide in from the right blurry and offset, then
+              exit left as the next pass arrives. The fifth is the keeper:
+              it lands clean and stays (animation-fill-mode: both holds the
+              end state for the rest of the slide dwell). All motion is in
+              CSS — see .do-eject-stack rules in global.css. Reduced-motion
+              users get an opacity crossfade via media query. */}
+          {post.coverImage && (
+            <div className="do-eject-stack" key={`eject-${idx}`} aria-hidden="true">
+              {Array.from({ length: 5 }, (_, i) => (
+                <img
+                  key={i}
+                  src={post.coverImage}
+                  alt=""
+                  className={`do-eject ${i === 4 ? 'do-eject--final' : 'do-eject--pass'}`}
+                  data-i={i}
+                  draggable={false}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Carousel controls — temporarily hidden. Auto-advance still
+              runs (DUR timer in the useEffect above); users just can't
+              prev/next/pause/dot-jump manually while this is commented out.
+              Restore by uncommenting the block below. */}
+          {/*
           <div className="do-featured-controls">
             <button className="do-ctrl" onClick={() => advance(-1)} aria-label="Previous">
               <svg width="12" height="12" viewBox="0 0 14 14">
@@ -166,6 +186,7 @@ export default function FeaturedCarousel({ posts }: Props) {
               ))}
             </div>
           </div>
+          */}
         </div>
 
         {/* Text block — flex column with meta+hero at top, CTA row at bottom.

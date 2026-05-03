@@ -322,20 +322,21 @@ a { color: inherit; text-decoration: none; }
 .do-featured.is-framed .do-featured-inner {
   position: relative; /* positioning context for ArticlePlayer overlay */
   display: grid;
-  grid-template-columns: 14px 1.15fr 1fr;
+  grid-template-columns: 14px 1.3fr 1fr;
   gap: 40px;
-  max-width: var(--max);
+  /* Wider than the rest of the page (--max is 1360px) because the 16:9
+     art panel is shallower than the old 3:2 — going wider keeps the
+     image at a comfortable visual weight without inflating its height. */
+  max-width: min(1560px, 100%);
   margin: 0 auto;
   align-items: stretch;
-  /* min-height: 620px; */ /* 3:2 hero preview — let the row collapse to the art's aspect-ratio height */
 }
 .do-featured.is-framed .do-featured-art {
   position: relative;
   overflow: hidden;
   background: var(--cream-2);
   grid-column: 2;
-  /* min-height: 580px; */ /* 3:2 hero preview — replaced by aspect-ratio below */
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 16 / 9;
   align-self: start;
 }
 .do-featured.is-framed .do-featured-text {
@@ -389,13 +390,10 @@ a { color: inherit; text-decoration: none; }
   align-self: end;
 }
 
-/* art — stacked slides, crossfade between them, active slide's image
-   animates from scale(--hero-initial-scale) down to scale(1) (the floor)
-   over the loader duration. The image is sized so its rendered height
-   exactly equals the frame's height at scale(1) — width is intrinsic
-   (auto), so wide illustrations overflow horizontally and get clipped
-   by the slide's overflow:hidden. Container keeps its baseline
-   dimensions. */
+/* art — stacked slides, the active one is opacity 1. Visual motion on
+   slide change is owned by .do-eject-stack (the Riso eject sequence
+   defined further down); the active slide image here is the static
+   "settled" underlay that the keeper print lands on top of. */
 .do-featured-art-slide {
   position: absolute;
   inset: 0;
@@ -426,27 +424,95 @@ a { color: inherit; text-decoration: none; }
 }
 .do-featured-art-slide.is-active .do-featured-img,
 .do-featured-art-slide.is-active .do-featured-svg {
-  /* Zoom runs over the full slide interval — duration comes from
-     --do-slide-duration, wired from JS `DUR` so the zoom ends exactly
-     when the slide transitions. play-state supplied inline. */
-  animation: do-hero-zoom var(--do-slide-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-@keyframes do-hero-zoom {
-  from { transform: translateX(-50%) scale(var(--hero-initial-scale)); }
-  to   { transform: translateX(-50%) scale(1); }
+  /* Eject sequence (.do-eject-stack) handles all motion now — keeper
+     print lands at scale(1), so the resting underlay matches it
+     pixel-for-pixel and there's no jump when the eject animation ends. */
+  animation: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .do-featured-art-slide { transition: none; }
   .do-featured-img,
   .do-featured-svg {
-    /* Pin to the tightly-cropped initial framing, no motion. */
-    transform: translateX(-50%) scale(var(--hero-initial-scale));
+    transform: translateX(-50%) scale(1);
     will-change: auto;
   }
-  .do-featured-art-slide.is-active .do-featured-img,
-  .do-featured-art-slide.is-active .do-featured-svg {
-    animation: none;
-  }
+}
+
+/* ============================================================
+   Risograph eject transition — replaces the previous Ken Burns zoom.
+   ============================================================
+   On every slide advance, .do-eject-stack remounts (keyed on idx in
+   FeaturedCarousel.tsx) and runs five staggered animations that mimic
+   a Riso press throwing fresh prints into the catch tray:
+     - Passes 0–3: enter from the right blurry/oversized, slide left
+       through the frame, exit. Each is progressively less blurry and
+       less off-center than the last — the press dialing in
+       registration. Their exits and the next entries overlap so the
+       pane is never empty.
+     - Pass 4: the keeper. Lands cleanly with no blur/offset and
+       stays via animation-fill-mode: both for the rest of the dwell.
+   Total sequence ≈ 2.2s; remaining ~5.8s of the 8s slide dwell is
+   the keeper at rest.
+   Reduced-motion users skip the stack entirely (display: none) and
+   get a static crossfade via the slide opacity transition. */
+.do-eject-stack {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1; /* above .do-featured-art-slide stack, below .do-featured-controls (z:2) */
+}
+.do-eject {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Cream paper bg behind any letterboxed sliver — keeps the
+     transition visually continuous with the riso paper margin. */
+  background: var(--cream-2);
+  display: block;
+  user-select: none;
+  opacity: 0;
+  transform-origin: center center;
+  will-change: transform, filter, opacity;
+}
+.do-eject[data-i="0"] { --ej-blur: 4.5px; --ej-scale: 1.07;  --ej-yoff: -1.5%; --ej-pause-x: 3.2%; animation-delay: 0s; }
+.do-eject[data-i="1"] { --ej-blur: 3px;   --ej-scale: 1.055; --ej-yoff: 1.1%;  --ej-pause-x: 2.0%; animation-delay: 0.36s; }
+.do-eject[data-i="2"] { --ej-blur: 2px;   --ej-scale: 1.04;  --ej-yoff: -0.6%; --ej-pause-x: 1.1%; animation-delay: 0.72s; }
+.do-eject[data-i="3"] { --ej-blur: 1.3px; --ej-scale: 1.03;  --ej-yoff: 0.3%;  --ej-pause-x: 0.4%; animation-delay: 1.08s; }
+.do-eject[data-i="4"] { --ej-blur: 1px;   --ej-scale: 1.025; --ej-yoff: 0;     --ej-pause-x: 0;    animation-delay: 1.44s; }
+
+.do-eject--pass {
+  animation-name: do-eject-pass;
+  animation-duration: 0.62s;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  animation-fill-mode: both;
+}
+.do-eject--final {
+  animation-name: do-eject-land;
+  animation-duration: 0.78s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: both;
+}
+
+@keyframes do-eject-pass {
+  0%   { transform: translate(110%, var(--ej-yoff)) scale(var(--ej-scale));                                filter: blur(var(--ej-blur));                opacity: 0; }
+  18%  {                                                                                                                                                opacity: 1; }
+  48%  { transform: translate(var(--ej-pause-x), calc(var(--ej-yoff) * 0.5)) scale(calc(var(--ej-scale) - 0.015)); filter: blur(calc(var(--ej-blur) * 0.6)); opacity: 1; }
+  60%  { transform: translate(calc(var(--ej-pause-x) * 0.4), 0) scale(calc(var(--ej-scale) - 0.02));               filter: blur(calc(var(--ej-blur) * 0.5)); opacity: 1; }
+  100% { transform: translate(-115%, calc(var(--ej-yoff) * 0.3)) scale(calc(var(--ej-scale) - 0.03));              filter: blur(calc(var(--ej-blur) * 0.4)); opacity: 0; }
+}
+@keyframes do-eject-land {
+  0%   { transform: translate(110%, 0) scale(var(--ej-scale)); filter: blur(var(--ej-blur)); opacity: 0; }
+  22%  {                                                                                     opacity: 1; }
+  68%  { transform: translate(-1.2%, 0) scale(1.005);          filter: blur(0.3px);          opacity: 1; }
+  84%  { transform: translate(0.4%, 0)  scale(1.001);          filter: blur(0.15px);         opacity: 1; }
+  100% { transform: translate(0, 0)     scale(1);              filter: blur(0);              opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .do-eject-stack { display: none; }
 }
 
 /* progress */
@@ -466,15 +532,6 @@ a { color: inherit; text-decoration: none; }
   background: var(--rule);
   border-radius: 2px;
 }
-/* Carousel-scoped tunables: --hero-initial-scale is the start (zoomed-in)
-   transform on the active slide; the keyframe ends at scale(1), the
-   floor where the illustration's full vertical height fills the frame.
-   Values are kept in the 1.3–1.5 range so the zoom-out has visible range
-   without cropping so aggressively that the start frame looks blown up. */
-.do-featured                   { --hero-initial-scale: 1.35; }
-@media (min-width: 721px)  { .do-featured { --hero-initial-scale: 1.4; } }
-@media (min-width: 1081px) { .do-featured { --hero-initial-scale: 1.5; } }
-@media (min-width: 1440px) { .do-featured { --hero-initial-scale: 1.5; } }
 .do-progress-fill {
   position: absolute;
   top: 0; left: 50%;
@@ -508,7 +565,7 @@ a { color: inherit; text-decoration: none; }
 }
 .do-featured-meta {
   display: flex; align-items: center; gap: 18px;
-  margin-bottom: 28px;
+  margin-bottom: 18px;
 }
 .do-featured-read {
   font-family: var(--mono);
@@ -520,10 +577,10 @@ a { color: inherit; text-decoration: none; }
 .do-featured-title {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(44px, 5.2vw, 56px);
-  line-height: 1.02;
+  font-size: clamp(36px, 4.2vw, 48px);
+  line-height: 1.04;
   letter-spacing: -0.022em;
-  margin: 0 0 24px 0;
+  margin: 0 0 16px 0;
   text-wrap: balance;
 }
 /* Title link — invisible by default (inherits the heading style), then on
@@ -561,13 +618,11 @@ a { color: inherit; text-decoration: none; }
 .do-featured-excerpt {
   font-family: var(--serif);
   font-weight: 300;
-  font-size: 16px;
-  line-height: 1.45;
+  font-size: 15px;
+  line-height: 1.4;
   color: var(--ink-2);
   max-width: 46ch;
-  /* Margin trimmed because the per-slide issue label below now provides
-     the visual separation that was previously space alone. */
-  margin: 0 0 20px 0;
+  margin: 0 0 14px 0;
   text-wrap: pretty;
 }
 
@@ -577,11 +632,11 @@ a { color: inherit; text-decoration: none; }
 }
 .do-featured-cta {
   display: inline-flex; align-items: center; gap: 14px;
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink);
-  padding: 14px 0;
+  padding: 10px 0;
   border-bottom: 1px solid var(--ink);
   transition: color 240ms ease, border-color 240ms ease;
   width: max-content;
@@ -1401,12 +1456,9 @@ a { color: inherit; text-decoration: none; }
   }
   .do-featured.is-framed .do-featured-text { grid-column: 2; padding: 24px 0 0; }
 
-  /* At narrow viewports the desktop Ken Burns center-crop leaves cream
-     margins around 16:9 hero images. Drop the zoom and let the image
-     fill the slide entirely. Wider Issue 03 21:9 illustrations get a
-     small center-crop on the sides — acceptable since their subjects
-     are composed centrally. Desktop framing is untouched. */
-  .do-featured { --hero-initial-scale: 1; }
+  /* At narrow viewports drop the height-fit/translate-50% pattern and
+     let the image fill the slide via object-fit: cover. Slight aspect
+     mismatches center-crop instead of letterboxing. */
   .do-featured-img,
   .do-featured-svg {
     position: absolute;
@@ -1418,8 +1470,6 @@ a { color: inherit; text-decoration: none; }
     left: auto;
     transform: none;
   }
-  .do-featured-art-slide.is-active .do-featured-img,
-  .do-featured-art-slide.is-active .do-featured-svg { animation: none; }
 }
 @media (max-width: 720px) {
   :root { --gutter: 20px; }

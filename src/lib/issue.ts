@@ -3,9 +3,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const CURRENT_ISSUE = {
-  issueNumber: 3,              // display as "Issue 03"
-  weekOf:      'Apr 25',       // short form — retained for ad-hoc references, no longer used by nav/footer
-  weekOfFull:  'April 25, 2026', // long form used by formatIssueLabel() everywhere
+  issueNumber: 4,              // display as "Issue 04"
+  weekOf:      'May 3',        // short form — retained for ad-hoc references, no longer used by nav/footer
+  weekOfFull:  'May 3, 2026',  // long form used by formatIssueLabel() everywhere
 } as const;
 
 /**

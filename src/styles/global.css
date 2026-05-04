@@ -19,7 +19,7 @@
      #3D3632 literal so surfaces stay in lockstep if we retune later. */
   --color-dark-warm: #3d3633;
 
-  --display: "Alfa Slab One", "Open Sans", Georgia, serif;
+  --display: "Gravitas One", "Open Sans", Georgia, serif;
   --serif:   "Open Sans", system-ui, sans-serif;
   --sans:    "Montserrat", "Inter Tight", system-ui, sans-serif;
   --mono:    "Montserrat", "Inter Tight", system-ui, sans-serif;
@@ -71,7 +71,7 @@ html, body {
 }
 
 /* Reset uppercase inheritance for any element rendered in a non-Montserrat
-   family (Open Sans serif body, Alfa Slab One display, Instrument Serif
+   family (Open Sans serif body, Gravitas One display, Instrument Serif
    accent, plus the Newsreader-era wordmark). Body uppercase only applies
    to true Montserrat surfaces (nav, labels, buttons, tags, eyebrows). */
 :where(

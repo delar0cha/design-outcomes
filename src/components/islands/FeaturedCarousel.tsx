@@ -202,7 +202,12 @@ export default function FeaturedCarousel({ posts }: Props) {
             </span>
           </div>
           <div className="do-featured-hero-content">
-            <h1 className="do-featured-title">
+            <h1
+              className={`do-featured-title${
+                post.title.length >= 45 ? ' is-xlong' :
+                post.title.length >= 30 ? ' is-long'  : ''
+              }`}
+            >
               <a className="do-featured-title-link" href={`/post/${post.slug}`}>{post.title}</a>
             </h1>
             <p className="do-featured-excerpt">{post.description}</p>

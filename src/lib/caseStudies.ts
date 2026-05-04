@@ -8,13 +8,17 @@ function ill(kind: IllustrationSpec['kind'], palette: string[], seed = 1): Illus
 
 // ─── Project Thumbnail Grid ────────────────────────────────────────────────
 
-export const PROJECT_CATS: Record<string, { id: string; name: string; tint: string }> = {
-  leadership: { id: 'leadership', name: 'Executive Leadership',    tint: '#15120E' },
-  product:    { id: 'product',    name: 'Product Design',          tint: '#2F4858' },
-  systems:    { id: 'systems',    name: 'Design Systems',          tint: '#4A5D3A' },
-  brand:      { id: 'brand',      name: 'Branding & Identity',     tint: '#B8432B' },
-  creative:   { id: 'creative',   name: 'Creative Direction',      tint: '#8A5A2B' },
-  making:     { id: 'making',     name: 'Making & Illustration',   tint: '#6B4E7B' },
+// Unified tint matches --color-dark-warm (logo, favicon, cursor pill).
+// Per-category hues live on `originalTint` so they can be restored later.
+const UNIFIED_TINT = '#3D3633';
+
+export const PROJECT_CATS: Record<string, { id: string; name: string; tint: string; originalTint: string }> = {
+  leadership: { id: 'leadership', name: 'Executive Leadership',    tint: UNIFIED_TINT, originalTint: '#15120E' },
+  product:    { id: 'product',    name: 'Product Design',          tint: UNIFIED_TINT, originalTint: '#2F4858' },
+  systems:    { id: 'systems',    name: 'Design Systems',          tint: UNIFIED_TINT, originalTint: '#4A5D3A' },
+  brand:      { id: 'brand',      name: 'Branding & Identity',     tint: UNIFIED_TINT, originalTint: '#B8432B' },
+  creative:   { id: 'creative',   name: 'Creative Direction',      tint: UNIFIED_TINT, originalTint: '#8A5A2B' },
+  making:     { id: 'making',     name: 'Making & Illustration',   tint: UNIFIED_TINT, originalTint: '#6B4E7B' },
 };
 
 export const PROJECTS: ProjectMeta[] = [

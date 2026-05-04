@@ -23,6 +23,9 @@ export interface CategoryMeta {
   name: string;
   monogram: string;
   tint: string;
+  // Original per-category hue, preserved when tints were unified to the
+  // dark warm gray. Restore by swapping `tint` back to this value.
+  originalTint?: string;
   sub: string;
   description: string;
 }

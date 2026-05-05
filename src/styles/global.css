@@ -93,6 +93,7 @@ html, body {
   .do-fn-detail-title, .do-fn-detail-body, .do-fn-detail-body p, .do-fn-detail-pullquote, .do-fn-detail-related-title,
   .do-fn-tag-header-title, .do-fn-tag-header-sub,
   .do-cat-tip-body, .do-cat-panel-body,
+  .do-form-tip-body,
   .do-player-karaoke-line, .do-player-karaoke-fallback,
   .do-stub, .do-empty,
   .do-footer-logo, .do-footer-about p, .do-footer-sent, .do-footer-note
@@ -4204,6 +4205,71 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   border-right: 1px solid rgba(21, 18, 14, 0.4);
   border-bottom: 1px solid rgba(21, 18, 14, 0.4);
   transform: translateX(-50%) rotate(45deg);
+}
+
+/* Form-validation tooltip — same visual language as the category
+   hover tip, but anchored under the input it describes. */
+.do-form-field {
+  position: relative;
+}
+.do-form-field .do-footer-sub-input[aria-invalid="true"],
+.do-form-field .do-sub-input[aria-invalid="true"] {
+  box-shadow:
+    inset 2px 2px 5px rgba(21,18,14,0.11),
+    inset -1px -1px 3px rgba(255,255,255,0.72),
+    0 0 0 2px var(--accent);
+}
+.do-form-tip {
+  position: absolute;
+  z-index: 80;
+  top: calc(100% + 12px);
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: #F5F0E8;
+  border: 1px solid rgba(21, 18, 14, 0.4);
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+.do-form-tip.is-on {
+  opacity: 1;
+  transform: translateY(0);
+}
+.do-form-tip-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 1.3;
+  color: var(--accent);
+}
+.do-form-tip-rule {
+  height: 1px;
+  margin: 10px 0;
+  width: 100%;
+  background: var(--accent);
+}
+.do-form-tip-body {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(21, 18, 14, 0.8);
+}
+.do-form-tip-pointer {
+  position: absolute;
+  top: -5px;
+  left: 32px;
+  width: 8px;
+  height: 8px;
+  background: #F5F0E8;
+  border-left: 1px solid rgba(21, 18, 14, 0.4);
+  border-top: 1px solid rgba(21, 18, 14, 0.4);
+  transform: rotate(45deg);
 }
 
 /* Mobile inline panel — sits between chip row and article list. */

@@ -1187,8 +1187,6 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 14px;
   padding: 20px 0;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
   margin-bottom: 0;
 }
 /* Byline text fades when the audio transport expands over it. Targets the
@@ -1362,16 +1360,16 @@ a { color: inherit; text-decoration: none; }
    Mobile becomes a one-row horizontal scroller for a true shelf feel. */
 .do-shelf {
   margin: 56px 0 8px;
+  padding: 32px 32px 36px;
+  background: var(--cream-2);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
 }
-.do-shelf-heading {
-  font-family: var(--display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 1.0;
-  letter-spacing: 0;
-  margin: 0 0 24px 0;
-  color: var(--ink);
+.do-shelf-header {
+  margin: 0 0 20px;
+}
+.do-shelf-eyebrow {
+  margin: 0;
 }
 .do-shelf-list {
   list-style: none;
@@ -1394,17 +1392,21 @@ a { color: inherit; text-decoration: none; }
 }
 .do-shelf-card:hover { transform: translateY(-3px); }
 .do-shelf-card:hover .do-shelf-cover {
-  box-shadow: 0 12px 28px rgba(21,18,14,0.18);
+  box-shadow:
+    inset 0 0 0 1px rgba(21, 18, 14, 0.12),
+    0 12px 28px rgba(21, 18, 14, 0.18);
 }
 .do-shelf-card:hover .do-shelf-title { color: var(--accent); }
 
 .do-shelf-cover {
   position: relative;
   aspect-ratio: 2 / 3;
-  background: var(--cream-2);
+  background: var(--cream-3);
   border-radius: 2px;
   overflow: hidden;
-  box-shadow: 0 6px 16px rgba(21,18,14,0.10);
+  box-shadow:
+    inset 0 0 0 1px rgba(21, 18, 14, 0.10),
+    0 6px 16px rgba(21, 18, 14, 0.10);
   transition: box-shadow 240ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .do-shelf-cover-img {
@@ -1427,8 +1429,8 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--display);
   font-style: italic;
   font-weight: 400;
-  font-size: 48px;
-  line-height: 1.0;
+  font-size: 24px;
+  line-height: 1.05;
   letter-spacing: 0;
 }
 .do-shelf-cover-fallback-author {
@@ -1448,14 +1450,14 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--display);
   font-style: italic;
   font-weight: 400;
-  font-size: 48px;
-  line-height: 1.0;
+  font-size: 24px;
+  line-height: 1.1;
   letter-spacing: 0;
   margin: 0;
   color: var(--ink);
   transition: color 160ms;
 }
-.do-shelf-author {
+.do-shelf .do-shelf-author {
   font-family: var(--sans);
   font-weight: 400;
   font-size: 13px;
@@ -1463,13 +1465,13 @@ a { color: inherit; text-decoration: none; }
   margin: 0;
   color: var(--muted);
 }
-.do-shelf-note {
+.do-shelf .do-shelf-note {
   font-family: var(--serif);
   font-weight: 400;
   font-style: italic;
   font-size: 13px;
   line-height: 1.45;
-  margin: 6px 0 0;
+  margin: 1px 0 0;
   color: var(--ink-2);
 }
 
@@ -1481,6 +1483,7 @@ a { color: inherit; text-decoration: none; }
    24px article padding so the rightmost card peeks under the edge and
    advertises that the row scrolls. */
 @media (max-width: 720px) {
+  .do-shelf { padding: 24px 20px 28px; }
   .do-shelf-list {
     display: flex;
     grid-template-columns: none;
@@ -2283,9 +2286,10 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   flex-wrap: wrap;
   gap: 4px 0;
   margin: 8px 0;
-  padding: 8px 0;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
+  padding: 10px 16px;
+  background: #FAF6EE;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
 }
 .do-share-row-label {
   font-family: var(--sans);
@@ -2355,14 +2359,13 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   color: var(--cream);
 }
 
-/* Top variant: sits below byline, hairline only on bottom, tight symmetrical spacing */
+/* Top variant: sits below byline with the same boxed treatment as the bottom
+   row, just tighter outer spacing to keep the pre-article rhythm. */
 .do-share-row--top {
   margin-top: 0;
   margin-bottom: 0;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  border-top: none;
-  border-bottom: 1px solid #e0e0e0;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 @media (max-width: 600px) {
@@ -2595,15 +2598,6 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 .do-audio-close:hover {
   color: #F5F0E8;
   background: rgba(245,240,232,0.08);
-}
-
-/* Caption below inline player — mirrors byline-sub styling */
-.do-audio-caption {
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--muted);
-  letter-spacing: 0.02em;
-  margin: 10px 0 0 0;
 }
 
 /* ── Sticky mini-player ──

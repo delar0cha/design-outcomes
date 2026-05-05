@@ -1,12 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-/**
- * Caption rendered below the inline audio player. Exported so the wording
- * can be tuned without touching component logic.
- */
-export const AUDIO_CAPTION = "Narrated by the author, Leonardo De La Rocha.";
-
 interface Props {
   /** Public MP3 URL. */
   audio: string;
@@ -367,8 +361,6 @@ export default function AudioPlayer({ audio, slug, accent, stickyMode = 'smooth'
 
       {open && (
         <>
-          <p className="do-audio-caption">{AUDIO_CAPTION}</p>
-
           <audio
             ref={audioRef}
             src={audio}

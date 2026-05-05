@@ -14,8 +14,10 @@ interface Props {
 
 export default function ReadingShelf({ books }: Props) {
   return (
-    <section className="do-shelf" aria-labelledby="do-shelf-heading">
-      <h2 id="do-shelf-heading" className="do-shelf-heading">On the shelf</h2>
+    <section className="do-shelf" aria-label="On the shelf">
+      <header className="do-shelf-header">
+        <p className="do-eyebrow do-shelf-eyebrow">The shelf</p>
+      </header>
       <ol className="do-shelf-list" role="list">
         {books.map((book) => (
           <li key={book.isbn} className="do-shelf-item">

@@ -108,12 +108,18 @@ export default function FeaturedCarousel({ posts }: Props) {
                 className={`do-featured-art-slide${isActive ? ' is-active' : ''}`}
                 aria-hidden={!isActive}
               >
-                {p.coverImage
+                {p.cover
                   ? <img
-                      src={p.coverImage}
+                      src={p.cover.src}
+                      srcSet={p.cover.srcset}
+                      sizes={p.cover.sizes}
+                      width={p.cover.width}
+                      height={p.cover.height}
                       alt=""
                       className="do-featured-img"
                       draggable={false}
+                      loading={isActive ? 'eager' : 'lazy'}
+                      {...(isActive ? { fetchpriority: 'high' } as any : {})}
                     />
                   : <Illustration
                       recipe={recipeFor(p)}
@@ -132,12 +138,14 @@ export default function FeaturedCarousel({ posts }: Props) {
               end state for the rest of the slide dwell). All motion is in
               CSS — see .do-eject-stack rules in global.css. Reduced-motion
               users get an opacity crossfade via media query. */}
-          {post.coverImage && (
+          {post.cover && (
             <div className="do-eject-stack" key={`eject-${idx}`} aria-hidden="true">
               {Array.from({ length: 5 }, (_, i) => (
                 <img
                   key={i}
-                  src={post.coverImage}
+                  src={post.cover!.src}
+                  srcSet={post.cover!.srcset}
+                  sizes={post.cover!.sizes}
                   alt=""
                   className={`do-eject ${i === 4 ? 'do-eject--final' : 'do-eject--pass'}`}
                   data-i={i}

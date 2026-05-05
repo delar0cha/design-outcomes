@@ -3,7 +3,7 @@ import { glob } from 'astro/loaders';
 
 const posts = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title:            z.string(),
     publishedAt:      z.date(),
     updatedAt:        z.date().optional(),
@@ -32,7 +32,7 @@ const posts = defineCollection({
     audience: z.enum(['Everyone', 'Leaders', 'ICs']).default('Everyone'),
 
     tags:             z.array(z.string()).optional().default([]),
-    coverImage:       z.string().optional(),
+    coverImage:       image().optional(),
 
     /**
      * Free-text themes the post engages with, used by the Field Notes agent

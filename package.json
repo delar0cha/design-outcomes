@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "postbuild": "node scripts/prune-build-orphans.mjs",
     "preview": "astro preview",
     "new-post": "tsx scripts/new-post.ts",
     "generate-audio": "tsx scripts/generate-audio.ts",
@@ -17,7 +18,8 @@
     "field-notes:migrate-covers": "tsx src/agent/migrate-field-notes-covers.ts",
     "field-notes:migrate-annotations": "tsx src/agent/migrate-annotations.ts",
     "generate-ascii": "node scripts/generate-ascii.mjs",
-    "generate-pixelart": "node scripts/generate-pixelart.mjs"
+    "generate-pixelart": "node scripts/generate-pixelart.mjs",
+    "generate-og": "node scripts/generate-og.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",

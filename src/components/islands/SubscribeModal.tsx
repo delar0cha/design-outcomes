@@ -19,6 +19,10 @@ const randomConfirm = (fullName: string) => {
   return CONFIRM_MSGS[Math.floor(Math.random() * CONFIRM_MSGS.length)](first);
 };
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+type FormError = { title: string; body: string };
+
 interface Props {
   onClose: () => void;
 }
@@ -28,8 +32,9 @@ export default function SubscribeModal({ onClose }: Props) {
   const [email, setEmail]         = useState('');
   const [confirmed, setConfirmed] = useState<string | null>(null);
   const [loading, setLoading]     = useState(false);
-  const [error, setError]         = useState<string | null>(null);
+  const [error, setError]         = useState<FormError | null>(null);
   const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (nameRef.current) nameRef.current.focus();
@@ -44,19 +49,40 @@ export default function SubscribeModal({ onClose }: Props) {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    const trimmed = email.trim();
+    if (!trimmed) {
+      setError({
+        title: 'EMAIL NEEDED.',
+        body: 'Drop your address so the Sunday digest can find its way to you.',
+      });
+      emailRef.current?.focus();
+      return;
+    }
+    if (!EMAIL_RE.test(trimmed)) {
+      setError({
+        title: "EMAIL DOESN'T LOOK RIGHT.",
+        body: "Double-check the address — we couldn't quite parse that one.",
+      });
+      emailRef.current?.focus();
+      return;
+    }
     setError(null);
+    setLoading(true);
     try {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, name }),
+        body: JSON.stringify({ email: trimmed, name }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Subscription failed');
       setConfirmed(randomConfirm(name || 'Friend'));
     } catch (err: any) {
-      setError(err.message || 'Something went sideways. Try again?');
+      setError({
+        title: 'SOMETHING WENT SIDEWAYS.',
+        body: err?.message || 'Try again in a moment — the Sunday digest will wait.',
+      });
+      emailRef.current?.focus();
     } finally {
       setLoading(false);
     }
@@ -99,7 +125,7 @@ export default function SubscribeModal({ onClose }: Props) {
               Real work. Real decisions. Real thinking — from someone doing the job,
               not talking about it. One email, every Sunday morning.
             </p>
-            <form className="do-sub-form" onSubmit={submit}>
+            <form className="do-sub-form" onSubmit={submit} noValidate>
               <div className="do-sub-field">
                 <label className="do-sub-label" htmlFor="sub-name">Your name</label>
                 <input
@@ -114,15 +140,34 @@ export default function SubscribeModal({ onClose }: Props) {
               </div>
               <div className="do-sub-field">
                 <label className="do-sub-label" htmlFor="sub-email">Email address</label>
-                <input
-                  id="sub-email"
-                  className="do-sub-input"
-                  type="email"
-                  placeholder="you@studio.com"
-                  required
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
+                <div className="do-form-field">
+                  <input
+                    id="sub-email"
+                    ref={emailRef}
+                    className="do-sub-input"
+                    type="email"
+                    placeholder="you@studio.com"
+                    required
+                    value={email}
+                    onChange={e => {
+                      setEmail(e.target.value);
+                      if (error) setError(null);
+                    }}
+                    aria-invalid={error ? true : undefined}
+                    aria-describedby={error ? 'do-sub-email-tip' : undefined}
+                  />
+                  <div
+                    id="do-sub-email-tip"
+                    role="alert"
+                    className={`do-form-tip${error ? ' is-on' : ''}`}
+                    aria-hidden={!error}
+                  >
+                    <div className="do-form-tip-pointer" />
+                    <div className="do-form-tip-title">{error?.title ?? ' '}</div>
+                    <div className="do-form-tip-rule" />
+                    <div className="do-form-tip-body">{error?.body ?? ' '}</div>
+                  </div>
+                </div>
               </div>
               <button className="do-sub-submit" type="submit" disabled={loading}>
                 <span>{loading ? 'Sending…' : 'Subscribe'}</span>
@@ -133,7 +178,6 @@ export default function SubscribeModal({ onClose }: Props) {
                 )}
               </button>
             </form>
-            {error && <p className="do-sub-error">{error}</p>}
             <p className="do-sub-note">No spam. No sponsors. Unsubscribe with one click.</p>
           </>
         )}

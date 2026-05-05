@@ -6,17 +6,16 @@ import FeaturedCarousel from '@components/islands/FeaturedCarousel';
 import PostGrid from '@components/islands/PostGrid';
 import SiteFooter from '@components/ui/SiteFooter.astro';
 import SiteCursor from '@components/ui/SiteCursor.astro';
-import ThemedImage from '@components/ui/ThemedImage.astro';
 import TerminalFrame from '@components/ui/TerminalFrame.astro';
-import { getAllPosts, getFeaturedPosts, toPostSummary, calcReadingTime } from '@lib/posts';
+import { getAllPosts, getFeaturedPosts, toPostSummary, resolveSummaryCovers, calcReadingTime } from '@lib/posts';
 import { CATEGORIES } from '@lib/categories';
 import { CURRENT_ISSUE } from '@lib/issue';
 
 const allPosts      = await getAllPosts();
 const featuredPosts = await getFeaturedPosts();
 
-const allSummaries      = allPosts.map(toPostSummary);
-const featuredSummaries = featuredPosts.map(toPostSummary);
+const allSummaries      = await resolveSummaryCovers(allPosts.map(toPostSummary), allPosts);
+const featuredSummaries = await resolveSummaryCovers(featuredPosts.map(toPostSummary), featuredPosts);
 
 /* Terminal-mode hero source: featured #1 if available, else newest.
  * The print-mode <FeaturedCarousel> stays mounted alongside; CSS

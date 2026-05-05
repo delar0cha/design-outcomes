@@ -1,14 +1,14 @@
 ---
 import Base from '@layouts/Base.astro';
+import { Image } from 'astro:assets';
 import SiteNav from '@components/islands/SiteNav';
 import CategoryTag from '@components/ui/CategoryTag.astro';
 import ShareRow from '@components/islands/ShareRow';
 import AudioPlayer from '@components/islands/AudioPlayer';
 import Illustration from '@components/islands/Illustration';
-import ThemedImage from '@components/ui/ThemedImage.astro';
 import SiteFooter from '@components/ui/SiteFooter.astro';
 import SiteCursor from '@components/ui/SiteCursor.astro';
-import { getAllPosts, toPostSummary, calcReadingTime } from '@lib/posts';
+import { getAllPosts, toPostSummary, resolveSummaryCovers, calcReadingTime } from '@lib/posts';
 import { CATEGORIES } from '@lib/categories';
 import { fmtDate } from '@lib/utils';
 import { render } from 'astro:content';
@@ -31,22 +31,23 @@ const pageUrl    = `https://ldlr.design/post/${slug}`;
 const readTime   = calcReadingTime(post.body ?? '');
 
 // Related posts: same category first, then fill from others (max 3)
-const allPosts   = await getAllPosts();
-const others     = allPosts.filter(p => p.id !== post.id);
-const sameCat    = others.filter(p => p.data.category === post.data.category);
-const rest       = others.filter(p => p.data.category !== post.data.category);
-const related    = [...sameCat, ...rest].slice(0, 3).map(toPostSummary);
+const allPosts    = await getAllPosts();
+const others      = allPosts.filter(p => p.id !== post.id);
+const sameCat     = others.filter(p => p.data.category === post.data.category);
+const rest        = others.filter(p => p.data.category !== post.data.category);
+const relatedSrc  = [...sameCat, ...rest].slice(0, 3);
+const related     = await resolveSummaryCovers(relatedSrc.map(toPostSummary), relatedSrc);
 
-const coverRecipe = post.data.coverImage
-  ? { kind: 'photo' as const, src: post.data.coverImage }
-  : { kind: 'bars' as const, palette: ['#E8E0D0', '#2F4858', '#15120E'] as [string,string,string], seed: 1 };
+// Procedural fallback when the post has no cover; the raster path below
+// uses Astro's <Image> directly off post.data.coverImage (ImageMetadata).
+const fallbackRecipe = { kind: 'bars' as const, palette: ['#E8E0D0', '#2F4858', '#15120E'] as [string,string,string], seed: 1 };
 ---
 
 <Base
   title={post.data.title}
   description={post.data.description}
   ogImage={post.data.coverImage
-    ? `https://ldlr.design${post.data.coverImage}`
+    ? `https://ldlr.design/og/${slug}.webp`
     : 'https://ldlr.design/images/work-header.png'}
   ogUrl={pageUrl}
   ogType="article"
@@ -66,14 +67,18 @@ const coverRecipe = post.data.coverImage
       <div class="do-post-hero">
         <div class="do-post-hero-media" data-post-hero-media>
           {post.data.coverImage
-            ? <ThemedImage
+            ? <Image
                 src={post.data.coverImage}
                 alt={post.data.title}
-                size="lg"
-                class="do-post-hero-img-wrap"
-                imgClass="do-post-hero-img"
+                widths={[1500, 3000]}
+                sizes="100vw"
+                format="webp"
+                quality={60}
+                loading="eager"
+                class="do-post-hero-img"
+                {...{ fetchpriority: 'high' }}
               />
-            : <Illustration client:load recipe={coverRecipe} className="do-post-hero-svg" />}
+            : <Illustration client:load recipe={fallbackRecipe} className="do-post-hero-svg" />}
         </div>
         <div class="do-post-hero-overlay" data-post-hero-overlay></div>
 

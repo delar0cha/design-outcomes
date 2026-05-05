@@ -1,6 +1,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { getImage } from 'astro:assets';
 import readingTime from 'reading-time';
-import type { PostSummary } from './types';
+import type { PostSummary, HeroCover } from './types';
 import { CURRENT_ISSUE } from './issue';
 
 type PostEntry = CollectionEntry<'posts'>;
@@ -63,7 +64,13 @@ export function toPostSummary(entry: PostEntry): PostSummary {
     why:         entry.data.why,
     category:    entry.data.category,
     audience:    entry.data.audience,
-    coverImage:  entry.data.coverImage,
+    // After image() schema migration, coverImage is ImageMetadata, not a
+    // string. The Illustration component (PostGrid card thumbs, related-
+    // posts grid) needs a single URL — resolveSummaryCovers below fills
+    // in `coverImage` (small variant URL) and `cover` (responsive set
+    // for the FeaturedCarousel hero) for posts that have a cover.
+    coverImage:  undefined,
+    cover:       undefined,
     publishedAt: entry.data.publishedAt.toISOString(),
     readingTime: calcReadingTime(entry.body ?? ''),
     issue:       entry.data.issue,
@@ -72,4 +79,45 @@ export function toPostSummary(entry: PostEntry): PostSummary {
     audio:       entry.data.audio,
     timings:     entry.data.timings,
   };
+}
+
+/**
+ * Resolve hero cover variants for an array of summaries. Call from .astro
+ * pages after toPostSummary(); fills in the small thumbnail URL plus the
+ * responsive set for the carousel hero. Skips entries whose source post
+ * has no coverImage. The async work runs in parallel.
+ */
+export async function resolveSummaryCovers(
+  summaries: PostSummary[],
+  entries:   PostEntry[],
+): Promise<PostSummary[]> {
+  const byId = new Map(entries.map(e => [e.id.replace(/\.mdx?$/, ''), e]));
+  return Promise.all(summaries.map(async s => {
+    const entry = byId.get(s.slug);
+    const img   = entry?.data.coverImage;
+    if (!img) return s;
+    // Small variant (600w q60 webp) — used by Illustration's SVG <image>
+    // path for card thumbnails (PostGrid + related-posts grid). The SVG
+    // wrapper has no srcset support, so a single resolution is the limit.
+    const thumb = await getImage({
+      src: img, width: 600, format: 'webp', quality: 60,
+    });
+    // Responsive set for the FeaturedCarousel hero (~750 framed, ~1500
+    // bleed). Largest art column is full viewport at full-bleed; 1500w
+    // covers a 1920px viewport at 1× DPR or a 750px viewport at 2× DPR.
+    const small = await getImage({
+      src: img, width: 750, format: 'webp', quality: 60,
+    });
+    const large = await getImage({
+      src: img, width: 1500, format: 'webp', quality: 60,
+    });
+    const cover: HeroCover = {
+      src:    large.src,
+      srcset: `${small.src} 750w, ${large.src} 1500w`,
+      sizes:  '(max-width: 1080px) 100vw, 1500px',
+      width:  large.attributes.width  ?? 1500,
+      height: large.attributes.height ?? Math.round(1500 * (img.height / img.width)),
+    };
+    return { ...s, coverImage: thumb.src, cover };
+  }));
 }

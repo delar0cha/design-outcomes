@@ -7,6 +7,10 @@
     {
       "source": "/projects/neo-tax/homepage-redesign/:path*",
       "destination": "https://neo-tax-leonardos-projects-0246c040.vercel.app/:path*"
+    },
+    {
+      "source": "/projects/neo-tax/assets/:path*",
+      "destination": "https://neo-tax-leonardos-projects-0246c040.vercel.app/assets/:path*"
     }
   ]
 }

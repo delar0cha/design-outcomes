@@ -3,10 +3,9 @@ import { useState } from 'react';
 interface Props {
   title: string;
   url: string;
-  topBar?: boolean;
 }
 
-export default function ShareRow({ title, url, topBar = false }: Props) {
+export default function ShareRow({ title, url }: Props) {
   const [copied, setCopied] = useState(false);
 
   const copy = () => {
@@ -23,7 +22,7 @@ export default function ShareRow({ title, url, topBar = false }: Props) {
   const x   = `https://x.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
 
   return (
-    <div className={`do-share-row${topBar ? ' do-share-row--top' : ''}`}>
+    <div className="do-share-row">
       <span className="do-share-row-label">Share</span>
       <button type="button" className="do-share-row-copy" onClick={copy}>
         {copied ? 'Copied!' : 'Copy link'}

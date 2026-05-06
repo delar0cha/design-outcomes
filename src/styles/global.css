@@ -739,6 +739,35 @@ a { color: inherit; text-decoration: none; }
    (cascaded from the .do-featured section root). */
 .do-dot.is-on { background: var(--player-accent, var(--ink)); }
 
+/* Issue pips — subtle "N of M" indicator overlaying the carousel art.
+   A cream pill of small ringed circles; the active circle is filled with
+   ink and marked by an asterisk. Read-only, sits above the eject stack
+   (z:1) at the bottom-center of .do-featured-art. */
+.do-issue-pips {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.do-issue-pip {
+  width: 18px; height: 18px;
+  display: grid; place-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--cream);
+  transition: background 240ms, border-color 240ms;
+}
+.do-issue-pip.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.do-issue-pip-mark { display: block; }
+
 /* ------------------------ Grid (Zone 2) ------------------------ */
 .do-grid-section {
   padding: 80px var(--gutter) 120px;
@@ -2286,7 +2315,7 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   gap: 4px 0;
   margin: 8px 0;
   padding: 10px 16px;
-  background: #FAF6EE;
+  background: var(--cream-2);
   border: 1px solid var(--rule);
   border-radius: 12px;
 }
@@ -2356,15 +2385,6 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 .do-share-row-link:hover {
   background-position: 0% 100%;
   color: var(--cream);
-}
-
-/* Top variant: sits below byline with the same boxed treatment as the bottom
-   row, just tighter outer spacing to keep the pre-article rhythm. */
-.do-share-row--top {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 12px;
-  padding-bottom: 12px;
 }
 
 @media (max-width: 600px) {

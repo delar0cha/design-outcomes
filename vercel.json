@@ -1,1 +1,12 @@
-{}
+{
+  "rewrites": [
+    {
+      "source": "/projects/neo-tax/homepage-redesign",
+      "destination": "https://neo-tax.vercel.app/"
+    },
+    {
+      "source": "/projects/neo-tax/homepage-redesign/:path*",
+      "destination": "https://neo-tax.vercel.app/:path*"
+    }
+  ]
+}

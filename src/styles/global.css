@@ -357,17 +357,32 @@ a { color: inherit; text-decoration: none; }
 .do-featured.is-framed .do-featured-inner {
   position: relative; /* positioning context for ArticlePlayer overlay */
   display: grid;
-  grid-template-columns: 14px 1.3fr 1fr;
-  gap: 40px;
+  grid-template-columns: 14px 1fr;
+  gap: 1px;
   max-width: min(1360px, 100%);
   margin: 0 auto;
   align-items: stretch;
+}
+/* Frame — index-card-styled box wrapping art + text. Internal grid keeps
+   the original 1.3fr / 1fr split; gap halved (40px -> 20px) to tighten
+   the space between image and text. 6px padding adds breathing room.
+   .do-progress lives in col 1 of the outer grid (1px gap) and stretches
+   to match the frame's height. */
+.do-featured.is-framed .do-featured-frame {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 6px;
 }
 .do-featured.is-framed .do-featured-art {
   position: relative;
   overflow: hidden;
   background: var(--cream-2);
-  grid-column: 2;
   /* Aspect-ratio locks the art to 16:9 of its column width. align-self: stretch
      lets the row still grow taller than 16:9 if the text column is the taller
      item — the image then crops sides via object-fit: cover. min-width: 0
@@ -380,8 +395,7 @@ a { color: inherit; text-decoration: none; }
   min-width: 0;
 }
 .do-featured.is-framed .do-featured-text {
-  grid-column: 3;
-  padding: 0;
+  padding: 6px 0;
   display: flex;
   flex-direction: column; /* meta + hero at top, CTA row pushed to bottom */
   min-width: 0;
@@ -754,7 +768,7 @@ a { color: inherit; text-decoration: none; }
   gap: 8px;
 }
 .do-issue-pip {
-  width: 18px; height: 18px;
+  width: 12px; height: 12px;
   display: grid; place-items: center;
   border: 1px solid var(--rule);
   border-radius: 50%;
@@ -1566,6 +1580,12 @@ a { color: inherit; text-decoration: none; }
   .do-featured.is-bleed .do-featured-art::after { background: linear-gradient(180deg, rgba(247,242,234,0) 0%, rgba(247,242,234,0) 40%, rgba(247,242,234,0.7) 80%, rgba(247,242,234,0.95) 100%); }
   .do-featured.is-bleed .do-featured-controls { grid-column: 1 / -1; padding: 0 var(--gutter) 40px 48px; }
   .do-featured.is-framed .do-featured-inner { grid-template-columns: 14px 1fr; }
+  /* Collapse the desktop card frame at <=1080px so art and text become
+     direct grid items of .do-featured-inner again. Drops the box visual
+     (border/padding/background) — the framed treatment is desktop-only. */
+  .do-featured.is-framed .do-featured-frame {
+    display: contents;
+  }
   .do-featured.is-framed .do-featured-art {
     grid-column: 2;
     /* Match slide aspect to the Issue 04 16:9 hero composition so the
@@ -4413,13 +4433,17 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   left: 0;
   width: 12px;
   height: 12px;
+  display: grid;
+  place-items: center;
   border-radius: 50%;
   background: var(--color-dark-warm);
   box-shadow: 0 0 0 2px var(--cream);
+  color: var(--cream);
   transform: translate(-50%, -50%);
   opacity: 0;
   transition: opacity 140ms ease, transform 140ms ease;
 }
+.do-cursor-mark { display: block; }
 
 .do-cursor.is-hover .do-cursor-pill {
   opacity: 0;

@@ -31,7 +31,16 @@ const issueLabel = issue ? `Issue ${String(issue).padStart(2, '0')}` : null;
     </svg>
     {issueLabel && <span class="do-cursor-issue">{issueLabel}</span>}
   </span>
-  <span class="do-cursor-dot"></span>
+  <span class="do-cursor-dot">
+    <svg class="do-cursor-mark" viewBox="0 0 10 10" width="6" height="6" aria-hidden="true">
+      <path
+        d="M5 1v8M1.5 2.5l7 5M1.5 7.5l7-5"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+      />
+    </svg>
+  </span>
 </div>
 
 <script>

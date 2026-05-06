@@ -93,6 +93,14 @@ export default function FeaturedCarousel({ posts }: Props) {
           />
         </div>
 
+        {/* Frame — index-card-styled box that wraps the art + text columns.
+            Adds a 6px breathing margin around the contents and a subtle
+            rule + radius matching the .do-card grid below. Collapses to
+            display:contents at <=1080px so the existing responsive rules
+            for art/text/progress (which target them as direct children of
+            .do-featured-inner) keep working unchanged. */}
+        <div className="do-featured-frame">
+
         {/* Slide stack — one container per post, only the active one shows.
             The Ken Burns zoom that used to live on the active slide's image
             has been replaced by the Riso eject sequence (rendered below as
@@ -171,11 +179,11 @@ export default function FeaturedCarousel({ posts }: Props) {
                   aria-hidden="true"
                 >
                   {i === idx && (
-                    <svg className="do-issue-pip-mark" viewBox="0 0 10 10" width="8" height="8" aria-hidden="true">
+                    <svg className="do-issue-pip-mark" viewBox="0 0 10 10" width="6" height="6" aria-hidden="true">
                       <path
                         d="M5 1v8M1.5 2.5l7 5M1.5 7.5l7-5"
                         stroke="currentColor"
-                        strokeWidth="1.4"
+                        strokeWidth="1.6"
                         strokeLinecap="round"
                       />
                     </svg>
@@ -271,6 +279,7 @@ export default function FeaturedCarousel({ posts }: Props) {
             </a>
           </div>
         </div>
+        </div>{/* /.do-featured-frame */}
 
         {/* Bespoke audio player — one per slide, keyed by slug so carousel
             navigation unmounts the active player cleanly (audio stops, player

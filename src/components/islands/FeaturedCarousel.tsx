@@ -155,6 +155,36 @@ export default function FeaturedCarousel({ posts }: Props) {
             </div>
           )}
 
+          {/* Issue pips — subtle "N of M" indicator showing how many
+              articles are in the current carousel. Read-only; the carousel
+              advances on its own. Sits at the bottom-center of the art. */}
+          {posts.length > 1 && (
+            <div
+              className="do-issue-pips"
+              role="group"
+              aria-label={`Article ${idx + 1} of ${posts.length}`}
+            >
+              {posts.map((_, i) => (
+                <span
+                  key={i}
+                  className={`do-issue-pip${i === idx ? ' is-on' : ''}`}
+                  aria-hidden="true"
+                >
+                  {i === idx && (
+                    <svg className="do-issue-pip-mark" viewBox="0 0 10 10" width="8" height="8" aria-hidden="true">
+                      <path
+                        d="M5 1v8M1.5 2.5l7 5M1.5 7.5l7-5"
+                        stroke="currentColor"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  )}
+                </span>
+              ))}
+            </div>
+          )}
+
           {/* Carousel controls — temporarily hidden. Auto-advance still
               runs (DUR timer in the useEffect above); users just can't
               prev/next/pause/dot-jump manually while this is commented out.

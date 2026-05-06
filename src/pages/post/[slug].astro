@@ -249,7 +249,7 @@ const fallbackRecipe = { kind: 'bars' as const, palette: ['#E8E0D0', '#2F4858', 
       )}
 
       <!-- Share (top) -->
-      <ShareRow client:load title={post.data.title} url={pageUrl} topBar={true} />
+      <ShareRow client:load title={post.data.title} url={pageUrl} />
 
       <!-- MDX body -->
       <div class="do-post-body">

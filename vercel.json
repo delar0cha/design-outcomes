@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/projects/neo-tax/homepage-redesign",
-      "destination": "https://neo-tax.vercel.app/"
+      "destination": "https://neo-tax-leonardos-projects-0246c040.vercel.app/"
     },
     {
       "source": "/projects/neo-tax/homepage-redesign/:path*",
-      "destination": "https://neo-tax.vercel.app/:path*"
+      "destination": "https://neo-tax-leonardos-projects-0246c040.vercel.app/:path*"
     }
   ]
 }

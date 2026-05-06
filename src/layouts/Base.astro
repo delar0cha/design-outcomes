@@ -1,6 +1,7 @@
 ---
 import '@styles/global.css';
 import '@styles/terminal.css';
+import SiteCursor from '@components/ui/SiteCursor.astro';
 // import ThemeToggle from '@components/ui/ThemeToggle.astro';
 //
 // Terminal mode is wired end-to-end (tokens, CRT layers, ASCII pipeline,
@@ -81,8 +82,17 @@ const fullTitle = title.includes('Design Outcomes')
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image"       content={ogImage} />
 </head>
-<body>
+<body class="do-cursor-host">
   <slot />
+
+  {/*
+    Site-wide custom cursor. Pages that need a per-page issue label
+    (homepage, post detail) mount their own <SiteCursor issue={...} />
+    inside <main>; those instances appear earlier in DOM order and win
+    the controller's first-wins dedupe, so this default mount only
+    activates on routes that haven't supplied their own.
+  */}
+  <SiteCursor />
 
   {/*
     CRT flicker overlay (terminal-mode-only via CSS) and theme toggle

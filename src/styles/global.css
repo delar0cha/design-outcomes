@@ -790,8 +790,14 @@ a { color: inherit; text-decoration: none; }
 }
 .do-grid-header {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 64px;
+  /* Left column sizes to its content (the title is capped at 14ch via
+     max-width on .do-grid-title, so its rendered width is unchanged);
+     right column takes the remaining space. The 40px gap pulls the
+     filter pills close to the headline rather than letting them float
+     out near the right edge. The single-column override at <=1080px
+     below keeps responsive behaviour intact. */
+  grid-template-columns: auto 1fr;
+  gap: 20px;
   margin-bottom: 64px;
   padding-bottom: 32px;
   border-bottom: 1px solid var(--rule);
@@ -834,12 +840,12 @@ a { color: inherit; text-decoration: none; }
   flex: 0 0 74px;
   padding-top: 3px;
 }
-.do-filter-chips { display: flex; flex-wrap: wrap; gap: 2px; }
+.do-filter-chips { display: flex; flex-wrap: wrap; gap: 1px; }
 .do-chip {
   display: inline-block;
   padding: 7px 16px;
   border-radius: 999px;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
   letter-spacing: 0.005em;
   white-space: nowrap;

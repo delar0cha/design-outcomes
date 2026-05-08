@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/projects/neo-tax",
+      "destination": "/projects/neo-tax/",
+      "permanent": false
+    },
+    {
       "source": "/projects/neo-tax/homepage-redesign",
       "destination": "/projects/neo-tax/",
       "permanent": true
@@ -13,7 +18,7 @@
   ],
   "rewrites": [
     {
-      "source": "/projects/neo-tax",
+      "source": "/projects/neo-tax/",
       "destination": "https://neo-tax-leonardos-projects-0246c040.vercel.app/"
     },
     {

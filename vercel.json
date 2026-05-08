@@ -1,16 +1,24 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/projects/neo-tax/homepage-redesign",
-      "destination": "https://neo-tax-leonardos-projects-0246c040.vercel.app/"
+      "destination": "/projects/neo-tax/",
+      "permanent": true
     },
     {
       "source": "/projects/neo-tax/homepage-redesign/:path*",
-      "destination": "https://neo-tax-leonardos-projects-0246c040.vercel.app/:path*"
+      "destination": "/projects/neo-tax/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/projects/neo-tax",
+      "destination": "https://neo-tax-leonardos-projects-0246c040.vercel.app/"
     },
     {
-      "source": "/projects/neo-tax/assets/:path*",
-      "destination": "https://neo-tax-leonardos-projects-0246c040.vercel.app/assets/:path*"
+      "source": "/projects/neo-tax/:path*",
+      "destination": "https://neo-tax-leonardos-projects-0246c040.vercel.app/:path*"
     }
   ]
 }

@@ -1,5 +1,8 @@
 /**
  * /field-notes/feed.xml — RSS feed of published Field Notes entries.
+ *
+ * Editor's-Picks distribution channel: each item's link points directly at
+ * the publisher's source URL, matching the card-only flow on the site.
  */
 
 import rss               from '@astrojs/rss';
@@ -29,7 +32,7 @@ export async function GET(context: APIContext) {
 
       return {
         title:    data.piece_title,
-        link:     `/field-notes/${entry.id}`,
+        link:     data.source_url,
         pubDate:  data.piece_published_at ?? new Date(),
         author:   data.piece_author ?? data.source,
         description,

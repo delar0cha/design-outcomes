@@ -1,0 +1,2100 @@
+[
+  {
+    "start": 0,
+    "words": [
+      {
+        "start": 0,
+        "word": "The"
+      },
+      {
+        "start": 0.4,
+        "word": "Lockout"
+      },
+      {
+        "start": 0.8,
+        "word": "Spectrum."
+      }
+    ]
+  },
+  {
+    "start": 2.25,
+    "words": [
+      {
+        "start": 2.25,
+        "word": "Narrated"
+      },
+      {
+        "start": 2.65,
+        "word": "by"
+      },
+      {
+        "start": 3.05,
+        "word": "the"
+      },
+      {
+        "start": 3.45,
+        "word": "author,"
+      },
+      {
+        "start": 3.85,
+        "word": "Leonardo"
+      },
+      {
+        "start": 4.25,
+        "word": "De"
+      },
+      {
+        "start": 4.65,
+        "word": "La"
+      },
+      {
+        "start": 5.05,
+        "word": "Rocha."
+      }
+    ]
+  },
+  {
+    "start": 6.5,
+    "words": [
+      {
+        "start": 6.5,
+        "word": "Why"
+      },
+      {
+        "start": 6.9,
+        "word": "it"
+      },
+      {
+        "start": 7.3,
+        "word": "matters."
+      }
+    ]
+  },
+  {
+    "start": 8.55,
+    "words": [
+      {
+        "start": 8.55,
+        "word": "Most"
+      },
+      {
+        "start": 8.95,
+        "word": "teams"
+      },
+      {
+        "start": 9.35,
+        "word": "treat"
+      },
+      {
+        "start": 9.75,
+        "word": "enforcement"
+      },
+      {
+        "start": 10.15,
+        "word": "as"
+      },
+      {
+        "start": 10.55,
+        "word": "binary."
+      }
+    ]
+  },
+  {
+    "start": 11.2,
+    "words": [
+      {
+        "start": 11.2,
+        "word": "The"
+      },
+      {
+        "start": 11.6,
+        "word": "middle"
+      },
+      {
+        "start": 12,
+        "word": "of"
+      },
+      {
+        "start": 12.4,
+        "word": "the"
+      },
+      {
+        "start": 12.8,
+        "word": "spectrum"
+      },
+      {
+        "start": 13.2,
+        "word": "is"
+      },
+      {
+        "start": 13.6,
+        "word": "usually"
+      },
+      {
+        "start": 14,
+        "word": "the"
+      },
+      {
+        "start": 14.4,
+        "word": "right"
+      },
+      {
+        "start": 14.8,
+        "word": "answer."
+      }
+    ]
+  },
+  {
+    "start": 16.45,
+    "words": [
+      {
+        "start": 16.45,
+        "word": "Every"
+      },
+      {
+        "start": 16.85,
+        "word": "product"
+      },
+      {
+        "start": 17.25,
+        "word": "team"
+      },
+      {
+        "start": 17.65,
+        "word": "eventually"
+      },
+      {
+        "start": 18.05,
+        "word": "has"
+      },
+      {
+        "start": 18.45,
+        "word": "to"
+      },
+      {
+        "start": 18.85,
+        "word": "enforce"
+      },
+      {
+        "start": 19.25,
+        "word": "something"
+      },
+      {
+        "start": 19.65,
+        "word": "the"
+      },
+      {
+        "start": 20.05,
+        "word": "user"
+      },
+      {
+        "start": 20.45,
+        "word": "would"
+      },
+      {
+        "start": 20.85,
+        "word": "prefer"
+      },
+      {
+        "start": 21.25,
+        "word": "to"
+      },
+      {
+        "start": 21.65,
+        "word": "avoid."
+      }
+    ]
+  },
+  {
+    "start": 22.3,
+    "words": [
+      {
+        "start": 22.3,
+        "word": "New"
+      },
+      {
+        "start": 22.7,
+        "word": "terms"
+      },
+      {
+        "start": 23.1,
+        "word": "of"
+      },
+      {
+        "start": 23.5,
+        "word": "service."
+      }
+    ]
+  },
+  {
+    "start": 24.15,
+    "words": [
+      {
+        "start": 24.15,
+        "word": "Mandatory"
+      },
+      {
+        "start": 24.55,
+        "word": "two-factor"
+      },
+      {
+        "start": 24.95,
+        "word": "authentication."
+      }
+    ]
+  },
+  {
+    "start": 25.6,
+    "words": [
+      {
+        "start": 25.6,
+        "word": "A"
+      },
+      {
+        "start": 26,
+        "word": "compliance"
+      },
+      {
+        "start": 26.4,
+        "word": "setting"
+      },
+      {
+        "start": 26.8,
+        "word": "that's"
+      },
+      {
+        "start": 27.2,
+        "word": "no"
+      },
+      {
+        "start": 27.6,
+        "word": "longer"
+      },
+      {
+        "start": 28,
+        "word": "optional."
+      }
+    ]
+  },
+  {
+    "start": 28.65,
+    "words": [
+      {
+        "start": 28.65,
+        "word": "An"
+      },
+      {
+        "start": 29.05,
+        "word": "updated"
+      },
+      {
+        "start": 29.45,
+        "word": "billing"
+      },
+      {
+        "start": 29.85,
+        "word": "model."
+      }
+    ]
+  },
+  {
+    "start": 30.5,
+    "words": [
+      {
+        "start": 30.5,
+        "word": "The"
+      },
+      {
+        "start": 30.9,
+        "word": "temptation"
+      },
+      {
+        "start": 31.3,
+        "word": "in"
+      },
+      {
+        "start": 31.7,
+        "word": "these"
+      },
+      {
+        "start": 32.1,
+        "word": "moments"
+      },
+      {
+        "start": 32.5,
+        "word": "is"
+      },
+      {
+        "start": 32.9,
+        "word": "to"
+      },
+      {
+        "start": 33.3,
+        "word": "think"
+      },
+      {
+        "start": 33.7,
+        "word": "the"
+      },
+      {
+        "start": 34.1,
+        "word": "question"
+      },
+      {
+        "start": 34.5,
+        "word": "is"
+      },
+      {
+        "start": 34.9,
+        "word": "binary:"
+      },
+      {
+        "start": 35.3,
+        "word": "do"
+      },
+      {
+        "start": 35.7,
+        "word": "we"
+      },
+      {
+        "start": 36.1,
+        "word": "let"
+      },
+      {
+        "start": 36.5,
+        "word": "people"
+      },
+      {
+        "start": 36.9,
+        "word": "opt"
+      },
+      {
+        "start": 37.3,
+        "word": "out,"
+      },
+      {
+        "start": 37.7,
+        "word": "or"
+      },
+      {
+        "start": 38.1,
+        "word": "do"
+      },
+      {
+        "start": 38.5,
+        "word": "we"
+      },
+      {
+        "start": 38.9,
+        "word": "force"
+      },
+      {
+        "start": 39.3,
+        "word": "the"
+      },
+      {
+        "start": 39.7,
+        "word": "change?"
+      }
+    ]
+  },
+  {
+    "start": 40.95,
+    "words": [
+      {
+        "start": 40.95,
+        "word": "It"
+      },
+      {
+        "start": 41.35,
+        "word": "obviously"
+      },
+      {
+        "start": 41.75,
+        "word": "isn't"
+      },
+      {
+        "start": 42.15,
+        "word": "binary."
+      }
+    ]
+  },
+  {
+    "start": 42.8,
+    "words": [
+      {
+        "start": 42.8,
+        "word": "It's"
+      },
+      {
+        "start": 43.2,
+        "word": "really"
+      },
+      {
+        "start": 43.6,
+        "word": "a"
+      },
+      {
+        "start": 44,
+        "word": "broad"
+      },
+      {
+        "start": 44.4,
+        "word": "spectrum,"
+      },
+      {
+        "start": 44.8,
+        "word": "or"
+      },
+      {
+        "start": 45.2,
+        "word": "at"
+      },
+      {
+        "start": 45.6,
+        "word": "least"
+      },
+      {
+        "start": 46,
+        "word": "that's"
+      },
+      {
+        "start": 46.4,
+        "word": "my"
+      },
+      {
+        "start": 46.8,
+        "word": "pitch"
+      },
+      {
+        "start": 47.2,
+        "word": "for"
+      },
+      {
+        "start": 47.6,
+        "word": "how"
+      },
+      {
+        "start": 48,
+        "word": "you"
+      },
+      {
+        "start": 48.4,
+        "word": "should"
+      },
+      {
+        "start": 48.8,
+        "word": "look"
+      },
+      {
+        "start": 49.2,
+        "word": "at"
+      },
+      {
+        "start": 49.6,
+        "word": "them."
+      }
+    ]
+  },
+  {
+    "start": 50.85,
+    "words": [
+      {
+        "start": 50.85,
+        "word": "I"
+      },
+      {
+        "start": 51.25,
+        "word": "sketched"
+      },
+      {
+        "start": 51.65,
+        "word": "this"
+      },
+      {
+        "start": 52.05,
+        "word": "out"
+      },
+      {
+        "start": 52.45,
+        "word": "on"
+      },
+      {
+        "start": 52.85,
+        "word": "a"
+      },
+      {
+        "start": 53.25,
+        "word": "whiteboard"
+      },
+      {
+        "start": 53.65,
+        "word": "with"
+      },
+      {
+        "start": 54.05,
+        "word": "our"
+      },
+      {
+        "start": 54.45,
+        "word": "security"
+      },
+      {
+        "start": 54.85,
+        "word": "team"
+      },
+      {
+        "start": 55.25,
+        "word": "this"
+      },
+      {
+        "start": 55.65,
+        "word": "week."
+      }
+    ]
+  },
+  {
+    "start": 56.3,
+    "words": [
+      {
+        "start": 56.3,
+        "word": "We're"
+      },
+      {
+        "start": 56.7,
+        "word": "rolling"
+      },
+      {
+        "start": 57.1,
+        "word": "out"
+      },
+      {
+        "start": 57.5,
+        "word": "mandatory"
+      },
+      {
+        "start": 57.9,
+        "word": "2FA,"
+      },
+      {
+        "start": 58.3,
+        "word": "and"
+      },
+      {
+        "start": 58.7,
+        "word": "the"
+      },
+      {
+        "start": 59.1,
+        "word": "room"
+      },
+      {
+        "start": 59.5,
+        "word": "had"
+      },
+      {
+        "start": 59.9,
+        "word": "drifted"
+      },
+      {
+        "start": 60.3,
+        "word": "toward"
+      },
+      {
+        "start": 60.7,
+        "word": "the"
+      },
+      {
+        "start": 61.1,
+        "word": "strongest"
+      },
+      {
+        "start": 61.5,
+        "word": "possible"
+      },
+      {
+        "start": 61.9,
+        "word": "enforcement:"
+      },
+      {
+        "start": 62.3,
+        "word": "lock"
+      },
+      {
+        "start": 62.7,
+        "word": "people"
+      },
+      {
+        "start": 63.1,
+        "word": "out"
+      },
+      {
+        "start": 63.5,
+        "word": "of"
+      },
+      {
+        "start": 63.9,
+        "word": "the"
+      },
+      {
+        "start": 64.3,
+        "word": "product"
+      },
+      {
+        "start": 64.7,
+        "word": "until"
+      },
+      {
+        "start": 65.1,
+        "word": "they"
+      },
+      {
+        "start": 65.5,
+        "word": "comply."
+      }
+    ]
+  },
+  {
+    "start": 66.15,
+    "words": [
+      {
+        "start": 66.15,
+        "word": "The"
+      },
+      {
+        "start": 66.55,
+        "word": "Terms"
+      },
+      {
+        "start": 66.95,
+        "word": "of"
+      },
+      {
+        "start": 67.35,
+        "word": "Service"
+      },
+      {
+        "start": 67.75,
+        "word": "rollout"
+      },
+      {
+        "start": 68.15,
+        "word": "from"
+      },
+      {
+        "start": 68.55,
+        "word": "a"
+      },
+      {
+        "start": 68.95,
+        "word": "few"
+      },
+      {
+        "start": 69.35,
+        "word": "years"
+      },
+      {
+        "start": 69.75,
+        "word": "back"
+      },
+      {
+        "start": 70.15,
+        "word": "came"
+      },
+      {
+        "start": 70.55,
+        "word": "up."
+      }
+    ]
+  },
+  {
+    "start": 71.2,
+    "words": [
+      {
+        "start": 71.2,
+        "word": "When"
+      },
+      {
+        "start": 71.6,
+        "word": "we"
+      },
+      {
+        "start": 72,
+        "word": "pushed"
+      },
+      {
+        "start": 72.4,
+        "word": "too"
+      },
+      {
+        "start": 72.8,
+        "word": "hard"
+      },
+      {
+        "start": 73.2,
+        "word": "there,"
+      },
+      {
+        "start": 73.6,
+        "word": "cancellations"
+      },
+      {
+        "start": 74,
+        "word": "spiked"
+      },
+      {
+        "start": 74.4,
+        "word": "for"
+      },
+      {
+        "start": 74.8,
+        "word": "the"
+      },
+      {
+        "start": 75.2,
+        "word": "affected"
+      },
+      {
+        "start": 75.6,
+        "word": "cohort."
+      }
+    ]
+  },
+  {
+    "start": 76.25,
+    "words": [
+      {
+        "start": 76.25,
+        "word": "Nobody"
+      },
+      {
+        "start": 76.65,
+        "word": "wanted"
+      },
+      {
+        "start": 77.05,
+        "word": "that"
+      },
+      {
+        "start": 77.45,
+        "word": "again,"
+      },
+      {
+        "start": 77.85,
+        "word": "but"
+      },
+      {
+        "start": 78.25,
+        "word": "the"
+      },
+      {
+        "start": 78.65,
+        "word": "muscle"
+      },
+      {
+        "start": 79.05,
+        "word": "memory"
+      },
+      {
+        "start": 79.45,
+        "word": "was"
+      },
+      {
+        "start": 79.85,
+        "word": "still"
+      },
+      {
+        "start": 80.25,
+        "word": "pulling"
+      },
+      {
+        "start": 80.65,
+        "word": "toward"
+      },
+      {
+        "start": 81.05,
+        "word": "force."
+      }
+    ]
+  },
+  {
+    "start": 81.7,
+    "words": [
+      {
+        "start": 81.7,
+        "word": "So"
+      },
+      {
+        "start": 82.1,
+        "word": "I"
+      },
+      {
+        "start": 82.5,
+        "word": "drew"
+      },
+      {
+        "start": 82.9,
+        "word": "the"
+      },
+      {
+        "start": 83.3,
+        "word": "spectrum."
+      }
+    ]
+  },
+  {
+    "start": 84.55,
+    "words": [
+      {
+        "start": 84.55,
+        "word": "Most"
+      },
+      {
+        "start": 84.95,
+        "word": "rollouts"
+      },
+      {
+        "start": 85.35,
+        "word": "I've"
+      },
+      {
+        "start": 85.75,
+        "word": "watched"
+      },
+      {
+        "start": 86.15,
+        "word": "fail"
+      },
+      {
+        "start": 86.55,
+        "word": "did"
+      },
+      {
+        "start": 86.95,
+        "word": "so"
+      },
+      {
+        "start": 87.35,
+        "word": "because"
+      },
+      {
+        "start": 87.75,
+        "word": "the"
+      },
+      {
+        "start": 88.15,
+        "word": "team"
+      },
+      {
+        "start": 88.55,
+        "word": "picked"
+      },
+      {
+        "start": 88.95,
+        "word": "a"
+      },
+      {
+        "start": 89.35,
+        "word": "level"
+      },
+      {
+        "start": 89.75,
+        "word": "on"
+      },
+      {
+        "start": 90.15,
+        "word": "this"
+      },
+      {
+        "start": 90.55,
+        "word": "spectrum"
+      },
+      {
+        "start": 90.95,
+        "word": "based"
+      },
+      {
+        "start": 91.35,
+        "word": "on"
+      },
+      {
+        "start": 91.75,
+        "word": "internal"
+      },
+      {
+        "start": 92.15,
+        "word": "urgency"
+      },
+      {
+        "start": 92.55,
+        "word": "rather"
+      },
+      {
+        "start": 92.95,
+        "word": "than"
+      },
+      {
+        "start": 93.35,
+        "word": "user"
+      },
+      {
+        "start": 93.75,
+        "word": "reality."
+      }
+    ]
+  },
+  {
+    "start": 94.4,
+    "words": [
+      {
+        "start": 94.4,
+        "word": "The"
+      },
+      {
+        "start": 94.8,
+        "word": "security"
+      },
+      {
+        "start": 95.2,
+        "word": "org"
+      },
+      {
+        "start": 95.6,
+        "word": "wanted"
+      },
+      {
+        "start": 96,
+        "word": "full"
+      },
+      {
+        "start": 96.4,
+        "word": "lockout"
+      },
+      {
+        "start": 96.8,
+        "word": "because"
+      },
+      {
+        "start": 97.2,
+        "word": "the"
+      },
+      {
+        "start": 97.6,
+        "word": "security"
+      },
+      {
+        "start": 98,
+        "word": "org"
+      },
+      {
+        "start": 98.4,
+        "word": "saw"
+      },
+      {
+        "start": 98.8,
+        "word": "the"
+      },
+      {
+        "start": 99.2,
+        "word": "threat."
+      }
+    ]
+  },
+  {
+    "start": 99.85,
+    "words": [
+      {
+        "start": 99.85,
+        "word": "The"
+      },
+      {
+        "start": 100.25,
+        "word": "users"
+      },
+      {
+        "start": 100.65,
+        "word": "saw"
+      },
+      {
+        "start": 101.05,
+        "word": "an"
+      },
+      {
+        "start": 101.45,
+        "word": "interruption"
+      },
+      {
+        "start": 101.85,
+        "word": "to"
+      },
+      {
+        "start": 102.25,
+        "word": "their"
+      },
+      {
+        "start": 102.65,
+        "word": "workday"
+      },
+      {
+        "start": 103.05,
+        "word": "from"
+      },
+      {
+        "start": 103.45,
+        "word": "a"
+      },
+      {
+        "start": 103.85,
+        "word": "vendor"
+      },
+      {
+        "start": 104.25,
+        "word": "they"
+      },
+      {
+        "start": 104.65,
+        "word": "didn't"
+      },
+      {
+        "start": 105.05,
+        "word": "ask"
+      },
+      {
+        "start": 105.45,
+        "word": "permission"
+      },
+      {
+        "start": 105.85,
+        "word": "from."
+      }
+    ]
+  },
+  {
+    "start": 106.5,
+    "words": [
+      {
+        "start": 106.5,
+        "word": "Picking"
+      },
+      {
+        "start": 106.9,
+        "word": "the"
+      },
+      {
+        "start": 107.3,
+        "word": "right"
+      },
+      {
+        "start": 107.7,
+        "word": "level"
+      },
+      {
+        "start": 108.1,
+        "word": "is"
+      },
+      {
+        "start": 108.5,
+        "word": "a"
+      },
+      {
+        "start": 108.9,
+        "word": "calibration"
+      },
+      {
+        "start": 109.3,
+        "word": "question,"
+      },
+      {
+        "start": 109.7,
+        "word": "not"
+      },
+      {
+        "start": 110.1,
+        "word": "a"
+      },
+      {
+        "start": 110.5,
+        "word": "courage"
+      },
+      {
+        "start": 110.9,
+        "word": "question."
+      }
+    ]
+  },
+  {
+    "start": 112.15,
+    "words": [
+      {
+        "start": 112.15,
+        "word": "A"
+      },
+      {
+        "start": 112.55,
+        "word": "few"
+      },
+      {
+        "start": 112.95,
+        "word": "rules"
+      },
+      {
+        "start": 113.35,
+        "word": "I"
+      },
+      {
+        "start": 113.75,
+        "word": "use"
+      },
+      {
+        "start": 114.15,
+        "word": "when"
+      },
+      {
+        "start": 114.55,
+        "word": "I"
+      },
+      {
+        "start": 114.95,
+        "word": "sketch"
+      },
+      {
+        "start": 115.35,
+        "word": "this"
+      },
+      {
+        "start": 115.75,
+        "word": "for"
+      },
+      {
+        "start": 116.15,
+        "word": "a"
+      },
+      {
+        "start": 116.55,
+        "word": "team."
+      }
+    ]
+  },
+  {
+    "start": 117.8,
+    "words": [
+      {
+        "start": 117.8,
+        "word": "The"
+      },
+      {
+        "start": 118.2,
+        "word": "escalation"
+      },
+      {
+        "start": 118.6,
+        "word": "should"
+      },
+      {
+        "start": 119,
+        "word": "be"
+      },
+      {
+        "start": 119.4,
+        "word": "visible"
+      },
+      {
+        "start": 119.8,
+        "word": "to"
+      },
+      {
+        "start": 120.2,
+        "word": "the"
+      },
+      {
+        "start": 120.6,
+        "word": "user."
+      }
+    ]
+  },
+  {
+    "start": 121.25,
+    "words": [
+      {
+        "start": 121.25,
+        "word": "Start"
+      },
+      {
+        "start": 121.65,
+        "word": "at"
+      },
+      {
+        "start": 122.05,
+        "word": "the"
+      },
+      {
+        "start": 122.45,
+        "word": "lighter"
+      },
+      {
+        "start": 122.85,
+        "word": "end,"
+      },
+      {
+        "start": 123.25,
+        "word": "give"
+      },
+      {
+        "start": 123.65,
+        "word": "it"
+      },
+      {
+        "start": 124.05,
+        "word": "time"
+      },
+      {
+        "start": 124.45,
+        "word": "to"
+      },
+      {
+        "start": 124.85,
+        "word": "work,"
+      },
+      {
+        "start": 125.25,
+        "word": "then"
+      },
+      {
+        "start": 125.65,
+        "word": "move"
+      },
+      {
+        "start": 126.05,
+        "word": "up"
+      },
+      {
+        "start": 126.45,
+        "word": "the"
+      },
+      {
+        "start": 126.85,
+        "word": "spectrum"
+      },
+      {
+        "start": 127.25,
+        "word": "if"
+      },
+      {
+        "start": 127.65,
+        "word": "compliance"
+      },
+      {
+        "start": 128.05,
+        "word": "plateaus."
+      }
+    ]
+  },
+  {
+    "start": 128.7,
+    "words": [
+      {
+        "start": 128.7,
+        "word": "People"
+      },
+      {
+        "start": 129.1,
+        "word": "accept"
+      },
+      {
+        "start": 129.5,
+        "word": "escalation"
+      },
+      {
+        "start": 129.9,
+        "word": "they"
+      },
+      {
+        "start": 130.3,
+        "word": "can"
+      },
+      {
+        "start": 130.7,
+        "word": "see"
+      },
+      {
+        "start": 131.1,
+        "word": "coming."
+      }
+    ]
+  },
+  {
+    "start": 131.75,
+    "words": [
+      {
+        "start": 131.75,
+        "word": "They"
+      },
+      {
+        "start": 132.15,
+        "word": "resent"
+      },
+      {
+        "start": 132.55,
+        "word": "escalation"
+      },
+      {
+        "start": 132.95,
+        "word": "that"
+      },
+      {
+        "start": 133.35,
+        "word": "arrives"
+      },
+      {
+        "start": 133.75,
+        "word": "without"
+      },
+      {
+        "start": 134.15,
+        "word": "warning."
+      }
+    ]
+  },
+  {
+    "start": 135.4,
+    "words": [
+      {
+        "start": 135.4,
+        "word": "The"
+      },
+      {
+        "start": 135.8,
+        "word": "framing"
+      },
+      {
+        "start": 136.2,
+        "word": "should"
+      },
+      {
+        "start": 136.6,
+        "word": "match"
+      },
+      {
+        "start": 137,
+        "word": "the"
+      },
+      {
+        "start": 137.4,
+        "word": "level."
+      }
+    ]
+  },
+  {
+    "start": 138.05,
+    "words": [
+      {
+        "start": 138.05,
+        "word": "A"
+      },
+      {
+        "start": 138.45,
+        "word": "persistent"
+      },
+      {
+        "start": 138.85,
+        "word": "banner"
+      },
+      {
+        "start": 139.25,
+        "word": "that"
+      },
+      {
+        "start": 139.65,
+        "word": "reads"
+      },
+      {
+        "start": 140.05,
+        "word": "like"
+      },
+      {
+        "start": 140.45,
+        "word": "a"
+      },
+      {
+        "start": 140.85,
+        "word": "legal"
+      },
+      {
+        "start": 141.25,
+        "word": "notice"
+      },
+      {
+        "start": 141.65,
+        "word": "will"
+      },
+      {
+        "start": 142.05,
+        "word": "feel"
+      },
+      {
+        "start": 142.45,
+        "word": "heavier"
+      },
+      {
+        "start": 142.85,
+        "word": "than"
+      },
+      {
+        "start": 143.25,
+        "word": "a"
+      },
+      {
+        "start": 143.65,
+        "word": "full"
+      },
+      {
+        "start": 144.05,
+        "word": "lockout"
+      },
+      {
+        "start": 144.45,
+        "word": "that's"
+      },
+      {
+        "start": 144.85,
+        "word": "framed"
+      },
+      {
+        "start": 145.25,
+        "word": "as"
+      },
+      {
+        "start": 145.65,
+        "word": "a"
+      },
+      {
+        "start": 146.05,
+        "word": "campaign."
+      }
+    ]
+  },
+  {
+    "start": 146.7,
+    "words": [
+      {
+        "start": 146.7,
+        "word": "Words"
+      },
+      {
+        "start": 147.1,
+        "word": "shape"
+      },
+      {
+        "start": 147.5,
+        "word": "the"
+      },
+      {
+        "start": 147.9,
+        "word": "perceived"
+      },
+      {
+        "start": 148.3,
+        "word": "weight"
+      },
+      {
+        "start": 148.7,
+        "word": "of"
+      },
+      {
+        "start": 149.1,
+        "word": "the"
+      },
+      {
+        "start": 149.5,
+        "word": "intervention."
+      }
+    ]
+  },
+  {
+    "start": 150.15,
+    "words": [
+      {
+        "start": 150.15,
+        "word": "We"
+      },
+      {
+        "start": 150.55,
+        "word": "landed"
+      },
+      {
+        "start": 150.95,
+        "word": "on"
+      },
+      {
+        "start": 151.35,
+        "word": "framing"
+      },
+      {
+        "start": 151.75,
+        "word": "2FA"
+      },
+      {
+        "start": 152.15,
+        "word": "as"
+      },
+      {
+        "start": 152.55,
+        "word": "protection"
+      },
+      {
+        "start": 152.95,
+        "word": "of"
+      },
+      {
+        "start": 153.35,
+        "word": "client"
+      },
+      {
+        "start": 153.75,
+        "word": "data,"
+      },
+      {
+        "start": 154.15,
+        "word": "not"
+      },
+      {
+        "start": 154.55,
+        "word": "personal"
+      },
+      {
+        "start": 154.95,
+        "word": "account"
+      },
+      {
+        "start": 155.35,
+        "word": "security."
+      }
+    ]
+  },
+  {
+    "start": 156,
+    "words": [
+      {
+        "start": 156,
+        "word": "Same"
+      },
+      {
+        "start": 156.4,
+        "word": "action,"
+      },
+      {
+        "start": 156.8,
+        "word": "different"
+      },
+      {
+        "start": 157.2,
+        "word": "center"
+      },
+      {
+        "start": 157.6,
+        "word": "of"
+      },
+      {
+        "start": 158,
+        "word": "gravity."
+      }
+    ]
+  },
+  {
+    "start": 159.25,
+    "words": [
+      {
+        "start": 159.25,
+        "word": "The"
+      },
+      {
+        "start": 159.65,
+        "word": "team"
+      },
+      {
+        "start": 160.05,
+        "word": "should"
+      },
+      {
+        "start": 160.45,
+        "word": "agree"
+      },
+      {
+        "start": 160.85,
+        "word": "on"
+      },
+      {
+        "start": 161.25,
+        "word": "what"
+      },
+      {
+        "start": 161.65,
+        "word": "failure"
+      },
+      {
+        "start": 162.05,
+        "word": "looks"
+      },
+      {
+        "start": 162.45,
+        "word": "like."
+      }
+    ]
+  },
+  {
+    "start": 163.1,
+    "words": [
+      {
+        "start": 163.1,
+        "word": "If"
+      },
+      {
+        "start": 163.5,
+        "word": "the"
+      },
+      {
+        "start": 163.9,
+        "word": "goal"
+      },
+      {
+        "start": 164.3,
+        "word": "is"
+      },
+      {
+        "start": 164.7,
+        "word": "95"
+      },
+      {
+        "start": 165.1,
+        "word": "percent"
+      },
+      {
+        "start": 165.5,
+        "word": "compliance"
+      },
+      {
+        "start": 165.9,
+        "word": "in"
+      },
+      {
+        "start": 166.3,
+        "word": "eight"
+      },
+      {
+        "start": 166.7,
+        "word": "weeks"
+      },
+      {
+        "start": 167.1,
+        "word": "and"
+      },
+      {
+        "start": 167.5,
+        "word": "the"
+      },
+      {
+        "start": 167.9,
+        "word": "lighter"
+      },
+      {
+        "start": 168.3,
+        "word": "levels"
+      },
+      {
+        "start": 168.7,
+        "word": "get"
+      },
+      {
+        "start": 169.1,
+        "word": "us"
+      },
+      {
+        "start": 169.5,
+        "word": "to"
+      },
+      {
+        "start": 169.9,
+        "word": "70,"
+      },
+      {
+        "start": 170.3,
+        "word": "that's"
+      },
+      {
+        "start": 170.7,
+        "word": "not"
+      },
+      {
+        "start": 171.1,
+        "word": "a"
+      },
+      {
+        "start": 171.5,
+        "word": "failed"
+      },
+      {
+        "start": 171.9,
+        "word": "rollout."
+      }
+    ]
+  },
+  {
+    "start": 172.55,
+    "words": [
+      {
+        "start": 172.55,
+        "word": "That's"
+      },
+      {
+        "start": 172.95,
+        "word": "the"
+      },
+      {
+        "start": 173.35,
+        "word": "data"
+      },
+      {
+        "start": 173.75,
+        "word": "we"
+      },
+      {
+        "start": 174.15,
+        "word": "needed"
+      },
+      {
+        "start": 174.55,
+        "word": "in"
+      },
+      {
+        "start": 174.95,
+        "word": "order"
+      },
+      {
+        "start": 175.35,
+        "word": "to"
+      },
+      {
+        "start": 175.75,
+        "word": "escalate."
+      }
+    ]
+  },
+  {
+    "start": 176.4,
+    "words": [
+      {
+        "start": 176.4,
+        "word": "Pick"
+      },
+      {
+        "start": 176.8,
+        "word": "the"
+      },
+      {
+        "start": 177.2,
+        "word": "threshold"
+      },
+      {
+        "start": 177.6,
+        "word": "up"
+      },
+      {
+        "start": 178,
+        "word": "front"
+      },
+      {
+        "start": 178.4,
+        "word": "so"
+      },
+      {
+        "start": 178.8,
+        "word": "you're"
+      },
+      {
+        "start": 179.2,
+        "word": "not"
+      },
+      {
+        "start": 179.6,
+        "word": "arguing"
+      },
+      {
+        "start": 180,
+        "word": "about"
+      },
+      {
+        "start": 180.4,
+        "word": "it"
+      },
+      {
+        "start": 180.8,
+        "word": "in"
+      },
+      {
+        "start": 181.2,
+        "word": "week"
+      },
+      {
+        "start": 181.6,
+        "word": "six."
+      }
+    ]
+  },
+  {
+    "start": 182.85,
+    "words": [
+      {
+        "start": 182.85,
+        "word": "Use"
+      },
+      {
+        "start": 183.25,
+        "word": "this"
+      },
+      {
+        "start": 183.65,
+        "word": "spectrum"
+      },
+      {
+        "start": 184.05,
+        "word": "for"
+      },
+      {
+        "start": 184.45,
+        "word": "compliance"
+      },
+      {
+        "start": 184.85,
+        "word": "changes."
+      }
+    ]
+  },
+  {
+    "start": 185.5,
+    "words": [
+      {
+        "start": 185.5,
+        "word": "Use"
+      },
+      {
+        "start": 185.9,
+        "word": "it"
+      },
+      {
+        "start": 186.3,
+        "word": "for"
+      },
+      {
+        "start": 186.7,
+        "word": "design"
+      },
+      {
+        "start": 187.1,
+        "word": "system"
+      },
+      {
+        "start": 187.5,
+        "word": "migrations"
+      },
+      {
+        "start": 187.9,
+        "word": "and"
+      },
+      {
+        "start": 188.3,
+        "word": "deprecation"
+      },
+      {
+        "start": 188.7,
+        "word": "campaigns."
+      }
+    ]
+  },
+  {
+    "start": 189.35,
+    "words": [
+      {
+        "start": 189.35,
+        "word": "Use"
+      },
+      {
+        "start": 189.75,
+        "word": "it"
+      },
+      {
+        "start": 190.15,
+        "word": "for"
+      },
+      {
+        "start": 190.55,
+        "word": "any"
+      },
+      {
+        "start": 190.95,
+        "word": "situation"
+      },
+      {
+        "start": 191.35,
+        "word": "where"
+      },
+      {
+        "start": 191.75,
+        "word": "the"
+      },
+      {
+        "start": 192.15,
+        "word": "team"
+      },
+      {
+        "start": 192.55,
+        "word": "is"
+      },
+      {
+        "start": 192.95,
+        "word": "tempted"
+      },
+      {
+        "start": 193.35,
+        "word": "to"
+      },
+      {
+        "start": 193.75,
+        "word": "choose"
+      },
+      {
+        "start": 194.15,
+        "word": "between"
+      },
+      {
+        "start": 194.55,
+        "word": "letting"
+      },
+      {
+        "start": 194.95,
+        "word": "users"
+      },
+      {
+        "start": 195.35,
+        "word": "keep"
+      },
+      {
+        "start": 195.75,
+        "word": "doing"
+      },
+      {
+        "start": 196.15,
+        "word": "the"
+      },
+      {
+        "start": 196.55,
+        "word": "wrong"
+      },
+      {
+        "start": 196.95,
+        "word": "thing"
+      },
+      {
+        "start": 197.35,
+        "word": "and"
+      },
+      {
+        "start": 197.75,
+        "word": "taking"
+      },
+      {
+        "start": 198.15,
+        "word": "the"
+      },
+      {
+        "start": 198.55,
+        "word": "wrong"
+      },
+      {
+        "start": 198.95,
+        "word": "thing"
+      },
+      {
+        "start": 199.35,
+        "word": "away."
+      }
+    ]
+  },
+  {
+    "start": 200,
+    "words": [
+      {
+        "start": 200,
+        "word": "The"
+      },
+      {
+        "start": 200.4,
+        "word": "middle"
+      },
+      {
+        "start": 200.8,
+        "word": "of"
+      },
+      {
+        "start": 201.2,
+        "word": "the"
+      },
+      {
+        "start": 201.6,
+        "word": "spectrum"
+      },
+      {
+        "start": 202,
+        "word": "is"
+      },
+      {
+        "start": 202.4,
+        "word": "usually"
+      },
+      {
+        "start": 202.8,
+        "word": "the"
+      },
+      {
+        "start": 203.2,
+        "word": "right"
+      },
+      {
+        "start": 203.6,
+        "word": "answer."
+      }
+    ]
+  },
+  {
+    "start": 204.25,
+    "words": [
+      {
+        "start": 204.25,
+        "word": "Most"
+      },
+      {
+        "start": 204.65,
+        "word": "teams"
+      },
+      {
+        "start": 205.05,
+        "word": "just"
+      },
+      {
+        "start": 205.45,
+        "word": "don't"
+      },
+      {
+        "start": 205.85,
+        "word": "sketch"
+      },
+      {
+        "start": 206.25,
+        "word": "the"
+      },
+      {
+        "start": 206.65,
+        "word": "middle."
+      }
+    ]
+  }
+]

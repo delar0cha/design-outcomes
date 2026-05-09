@@ -1,0 +1,40 @@
+---
+title: "Accuracy Is Not Usefulness"
+publishedAt: 2026-05-10T17:00:00.000Z
+description: "A correct number with no call to action is functionally invisible."
+why: "Being right isn't the same as being useful. A note on a feature that worked, that no one used."
+category: crit
+audience: Everyone
+coverImage: ../../assets/heroes/accuracy-is-not-usefulness.png
+issue: 5
+draft: false
+tags: [data-display, decision-design, healthcare]
+themes: [accuracy-vs-usefulness, decision-surfaces]
+audio: "https://310q2girql1gboba.public.blob.vercel-storage.com/audio/posts/accuracy-is-not-usefulness.mp3"
+audioGeneratedAt: 2026-05-09T04:37:16.007Z
+timings: /timings/accuracy-is-not-usefulness.json
+---
+
+A pillar lead came to me this week with a curious problem. Their feature was working. Users weren't using it.
+
+The feature in question is a verification of benefits surface. In our product, when a clinician schedules a session with a patient, we run a check against the patient's insurance to confirm what's covered, what the deductible looks like, what the copay will be. The information is genuinely useful. Without it, the clinician has to chase the patient or the insurer in a separate call after the fact, and our customers lose money on misjudged coverage roughly 8 percent of the time. The team had built the feature, the data was returning correctly, and the displayed information was right. By every internal metric, the feature was a success.
+
+Adoption was not. Clinicians weren't looking at it. When they did look, they didn't act on it. The team was puzzled.
+
+I asked to see how the information was displayed in the product. They walked me through it: a small panel in the patient summary view, populated with the verification result. Coverage status, deductible amount, copay amount. Three numeric fields and a label. No call to action. No prompt to take a next step. No connection to the workflow the clinician was actually inside of.
+
+I wrote a single line in my notes: Hyperfixation on accuracy over experience.
+
+Here's the problem. The team had treated the feature as a data display problem. The job was to fetch the right numbers and put them on the page. They got that right. But the user's job wasn't to look at the numbers. The user's job was to decide whether to proceed with the session as planned, charge a different amount, or call the patient before the appointment. The numbers were inputs to a decision the product wasn't helping them make.
+
+A correct number with no call to action is functionally invisible. It sits on the screen as a passive data point, and the user, mid-flow on something else, doesn't have the cognitive room to convert it into an action on their own. They glance at it, register that it's there, and move on. The data is correct. The behavior is unchanged.
+
+The fix is structural, not visual. The verification result needs to surface as a decision moment, not a data field. Patient's deductible has not been met. Charge $175 today? Yes, no, change amount. The same data, framed as a question the user can answer in a single click, becomes the active focus of the screen. Frame it as a fact, and it's wallpaper.
+
+Two things worth pulling out of this for any team building data-rich product surfaces.
+
+The first is a question I'm going to start asking earlier in reviews: what decision is this supposed to support? If the team can't name the decision, the surface is going to fail no matter how accurate the data is. Accuracy is necessary. Accuracy is not sufficient.
+
+The second is a posture about what design owns. In a data-heavy domain, there's a temptation to let engineering own the data fetch and treat the display as a thin wrapper. That arrangement produces correct, invisible features. The design job is to make the data legible as a decision the user is already trying to make. That work happens before the panel is wireframed.
+
+Being right isn't the same as being useful. The team is rebuilding the surface this sprint. We'll see how it lands.

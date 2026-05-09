@@ -10,15 +10,20 @@ export interface ShelfBook {
 
 interface Props {
   books: ShelfBook[];
+  /** Desktop column count override. Defaults to 4. Use 3 for shelves
+   *  whose book count divides evenly (e.g. 6 books → two rows of 3). */
+  columns?: 3 | 4;
 }
 
-export default function ReadingShelf({ books }: Props) {
+export default function ReadingShelf({ books, columns = 4 }: Props) {
+  const listClass =
+    columns === 3 ? 'do-shelf-list do-shelf-list--cols-3' : 'do-shelf-list';
   return (
     <section className="do-shelf" aria-label="On the shelf">
       <header className="do-shelf-header">
         <p className="do-eyebrow do-shelf-eyebrow">The shelf</p>
       </header>
-      <ol className="do-shelf-list" role="list">
+      <ol className={listClass} role="list">
         {books.map((book) => (
           <li key={book.isbn} className="do-shelf-item">
             <BookCard book={book} />

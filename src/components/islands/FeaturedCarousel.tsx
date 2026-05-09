@@ -79,6 +79,44 @@ export default function FeaturedCarousel({ posts }: Props) {
       aria-label="Featured posts"
       style={rootStyle}
     >
+      {/* Issue pips — "N of M" indicator + jump-to navigation. Each pip is
+          a button that calls jumpTo(i); the active pip is disabled and
+          marked aria-current. Sits above the carousel unit, centered, with
+          a 10px gap to the carousel top. */}
+      {posts.length > 1 && (
+        <div
+          className="do-issue-pips"
+          role="group"
+          aria-label={`Article ${idx + 1} of ${posts.length}`}
+        >
+          {posts.map((p, i) => {
+            const isOn = i === idx;
+            return (
+              <button
+                key={i}
+                type="button"
+                className={`do-issue-pip${isOn ? ' is-on' : ''}`}
+                onClick={() => jumpTo(i)}
+                disabled={isOn}
+                aria-current={isOn ? 'true' : undefined}
+                aria-label={`Go to article ${i + 1}: ${p.title}`}
+              >
+                {isOn && (
+                  <svg className="do-issue-pip-mark" viewBox="0 0 10 10" width="6" height="6" aria-hidden="true">
+                    <path
+                      d="M5 1v8M1.5 2.5l7 5M1.5 7.5l7-5"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       <div className="do-featured-inner">
         {/* Vertical progress bar */}
         <div className="do-progress" aria-label="Auto-advance timer">
@@ -159,36 +197,6 @@ export default function FeaturedCarousel({ posts }: Props) {
                   data-i={i}
                   draggable={false}
                 />
-              ))}
-            </div>
-          )}
-
-          {/* Issue pips — subtle "N of M" indicator showing how many
-              articles are in the current carousel. Read-only; the carousel
-              advances on its own. Sits at the bottom-center of the art. */}
-          {posts.length > 1 && (
-            <div
-              className="do-issue-pips"
-              role="group"
-              aria-label={`Article ${idx + 1} of ${posts.length}`}
-            >
-              {posts.map((_, i) => (
-                <span
-                  key={i}
-                  className={`do-issue-pip${i === idx ? ' is-on' : ''}`}
-                  aria-hidden="true"
-                >
-                  {i === idx && (
-                    <svg className="do-issue-pip-mark" viewBox="0 0 10 10" width="6" height="6" aria-hidden="true">
-                      <path
-                        d="M5 1v8M1.5 2.5l7 5M1.5 7.5l7-5"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  )}
-                </span>
               ))}
             </div>
           )}

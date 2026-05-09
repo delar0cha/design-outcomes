@@ -1,0 +1,2732 @@
+[
+  {
+    "start": 0,
+    "words": [
+      {
+        "start": 0,
+        "word": "Accuracy"
+      },
+      {
+        "start": 0.4,
+        "word": "Is"
+      },
+      {
+        "start": 0.8,
+        "word": "Not"
+      },
+      {
+        "start": 1.2,
+        "word": "Usefulness."
+      }
+    ]
+  },
+  {
+    "start": 2.65,
+    "words": [
+      {
+        "start": 2.65,
+        "word": "Narrated"
+      },
+      {
+        "start": 3.05,
+        "word": "by"
+      },
+      {
+        "start": 3.45,
+        "word": "the"
+      },
+      {
+        "start": 3.85,
+        "word": "author,"
+      },
+      {
+        "start": 4.25,
+        "word": "Leonardo"
+      },
+      {
+        "start": 4.65,
+        "word": "De"
+      },
+      {
+        "start": 5.05,
+        "word": "La"
+      },
+      {
+        "start": 5.45,
+        "word": "Rocha."
+      }
+    ]
+  },
+  {
+    "start": 6.9,
+    "words": [
+      {
+        "start": 6.9,
+        "word": "Why"
+      },
+      {
+        "start": 7.3,
+        "word": "it"
+      },
+      {
+        "start": 7.7,
+        "word": "matters."
+      }
+    ]
+  },
+  {
+    "start": 8.95,
+    "words": [
+      {
+        "start": 8.95,
+        "word": "Being"
+      },
+      {
+        "start": 9.35,
+        "word": "right"
+      },
+      {
+        "start": 9.75,
+        "word": "isn't"
+      },
+      {
+        "start": 10.15,
+        "word": "the"
+      },
+      {
+        "start": 10.55,
+        "word": "same"
+      },
+      {
+        "start": 10.95,
+        "word": "as"
+      },
+      {
+        "start": 11.35,
+        "word": "being"
+      },
+      {
+        "start": 11.75,
+        "word": "useful."
+      }
+    ]
+  },
+  {
+    "start": 12.4,
+    "words": [
+      {
+        "start": 12.4,
+        "word": "A"
+      },
+      {
+        "start": 12.8,
+        "word": "note"
+      },
+      {
+        "start": 13.2,
+        "word": "on"
+      },
+      {
+        "start": 13.6,
+        "word": "a"
+      },
+      {
+        "start": 14,
+        "word": "feature"
+      },
+      {
+        "start": 14.4,
+        "word": "that"
+      },
+      {
+        "start": 14.8,
+        "word": "worked,"
+      },
+      {
+        "start": 15.2,
+        "word": "that"
+      },
+      {
+        "start": 15.6,
+        "word": "no"
+      },
+      {
+        "start": 16,
+        "word": "one"
+      },
+      {
+        "start": 16.4,
+        "word": "used."
+      }
+    ]
+  },
+  {
+    "start": 18.05,
+    "words": [
+      {
+        "start": 18.05,
+        "word": "A"
+      },
+      {
+        "start": 18.45,
+        "word": "pillar"
+      },
+      {
+        "start": 18.85,
+        "word": "lead"
+      },
+      {
+        "start": 19.25,
+        "word": "came"
+      },
+      {
+        "start": 19.65,
+        "word": "to"
+      },
+      {
+        "start": 20.05,
+        "word": "me"
+      },
+      {
+        "start": 20.45,
+        "word": "this"
+      },
+      {
+        "start": 20.85,
+        "word": "week"
+      },
+      {
+        "start": 21.25,
+        "word": "with"
+      },
+      {
+        "start": 21.65,
+        "word": "a"
+      },
+      {
+        "start": 22.05,
+        "word": "curious"
+      },
+      {
+        "start": 22.45,
+        "word": "problem."
+      }
+    ]
+  },
+  {
+    "start": 23.1,
+    "words": [
+      {
+        "start": 23.1,
+        "word": "Their"
+      },
+      {
+        "start": 23.5,
+        "word": "feature"
+      },
+      {
+        "start": 23.9,
+        "word": "was"
+      },
+      {
+        "start": 24.3,
+        "word": "working."
+      }
+    ]
+  },
+  {
+    "start": 24.95,
+    "words": [
+      {
+        "start": 24.95,
+        "word": "Users"
+      },
+      {
+        "start": 25.35,
+        "word": "weren't"
+      },
+      {
+        "start": 25.75,
+        "word": "using"
+      },
+      {
+        "start": 26.15,
+        "word": "it."
+      }
+    ]
+  },
+  {
+    "start": 27.4,
+    "words": [
+      {
+        "start": 27.4,
+        "word": "The"
+      },
+      {
+        "start": 27.8,
+        "word": "feature"
+      },
+      {
+        "start": 28.2,
+        "word": "in"
+      },
+      {
+        "start": 28.6,
+        "word": "question"
+      },
+      {
+        "start": 29,
+        "word": "is"
+      },
+      {
+        "start": 29.4,
+        "word": "a"
+      },
+      {
+        "start": 29.8,
+        "word": "verification"
+      },
+      {
+        "start": 30.2,
+        "word": "of"
+      },
+      {
+        "start": 30.6,
+        "word": "benefits"
+      },
+      {
+        "start": 31,
+        "word": "surface."
+      }
+    ]
+  },
+  {
+    "start": 31.65,
+    "words": [
+      {
+        "start": 31.65,
+        "word": "In"
+      },
+      {
+        "start": 32.05,
+        "word": "our"
+      },
+      {
+        "start": 32.45,
+        "word": "product,"
+      },
+      {
+        "start": 32.85,
+        "word": "when"
+      },
+      {
+        "start": 33.25,
+        "word": "a"
+      },
+      {
+        "start": 33.65,
+        "word": "clinician"
+      },
+      {
+        "start": 34.05,
+        "word": "schedules"
+      },
+      {
+        "start": 34.45,
+        "word": "a"
+      },
+      {
+        "start": 34.85,
+        "word": "session"
+      },
+      {
+        "start": 35.25,
+        "word": "with"
+      },
+      {
+        "start": 35.65,
+        "word": "a"
+      },
+      {
+        "start": 36.05,
+        "word": "patient,"
+      },
+      {
+        "start": 36.45,
+        "word": "we"
+      },
+      {
+        "start": 36.85,
+        "word": "run"
+      },
+      {
+        "start": 37.25,
+        "word": "a"
+      },
+      {
+        "start": 37.65,
+        "word": "check"
+      },
+      {
+        "start": 38.05,
+        "word": "against"
+      },
+      {
+        "start": 38.45,
+        "word": "the"
+      },
+      {
+        "start": 38.85,
+        "word": "patient's"
+      },
+      {
+        "start": 39.25,
+        "word": "insurance"
+      },
+      {
+        "start": 39.65,
+        "word": "to"
+      },
+      {
+        "start": 40.05,
+        "word": "confirm"
+      },
+      {
+        "start": 40.45,
+        "word": "what's"
+      },
+      {
+        "start": 40.85,
+        "word": "covered,"
+      },
+      {
+        "start": 41.25,
+        "word": "what"
+      },
+      {
+        "start": 41.65,
+        "word": "the"
+      },
+      {
+        "start": 42.05,
+        "word": "deductible"
+      },
+      {
+        "start": 42.45,
+        "word": "looks"
+      },
+      {
+        "start": 42.85,
+        "word": "like,"
+      },
+      {
+        "start": 43.25,
+        "word": "what"
+      },
+      {
+        "start": 43.65,
+        "word": "the"
+      },
+      {
+        "start": 44.05,
+        "word": "copay"
+      },
+      {
+        "start": 44.45,
+        "word": "will"
+      },
+      {
+        "start": 44.85,
+        "word": "be."
+      }
+    ]
+  },
+  {
+    "start": 45.5,
+    "words": [
+      {
+        "start": 45.5,
+        "word": "The"
+      },
+      {
+        "start": 45.9,
+        "word": "information"
+      },
+      {
+        "start": 46.3,
+        "word": "is"
+      },
+      {
+        "start": 46.7,
+        "word": "genuinely"
+      },
+      {
+        "start": 47.1,
+        "word": "useful."
+      }
+    ]
+  },
+  {
+    "start": 47.75,
+    "words": [
+      {
+        "start": 47.75,
+        "word": "Without"
+      },
+      {
+        "start": 48.15,
+        "word": "it,"
+      },
+      {
+        "start": 48.55,
+        "word": "the"
+      },
+      {
+        "start": 48.95,
+        "word": "clinician"
+      },
+      {
+        "start": 49.35,
+        "word": "has"
+      },
+      {
+        "start": 49.75,
+        "word": "to"
+      },
+      {
+        "start": 50.15,
+        "word": "chase"
+      },
+      {
+        "start": 50.55,
+        "word": "the"
+      },
+      {
+        "start": 50.95,
+        "word": "patient"
+      },
+      {
+        "start": 51.35,
+        "word": "or"
+      },
+      {
+        "start": 51.75,
+        "word": "the"
+      },
+      {
+        "start": 52.15,
+        "word": "insurer"
+      },
+      {
+        "start": 52.55,
+        "word": "in"
+      },
+      {
+        "start": 52.95,
+        "word": "a"
+      },
+      {
+        "start": 53.35,
+        "word": "separate"
+      },
+      {
+        "start": 53.75,
+        "word": "call"
+      },
+      {
+        "start": 54.15,
+        "word": "after"
+      },
+      {
+        "start": 54.55,
+        "word": "the"
+      },
+      {
+        "start": 54.95,
+        "word": "fact,"
+      },
+      {
+        "start": 55.35,
+        "word": "and"
+      },
+      {
+        "start": 55.75,
+        "word": "our"
+      },
+      {
+        "start": 56.15,
+        "word": "customers"
+      },
+      {
+        "start": 56.55,
+        "word": "lose"
+      },
+      {
+        "start": 56.95,
+        "word": "money"
+      },
+      {
+        "start": 57.35,
+        "word": "on"
+      },
+      {
+        "start": 57.75,
+        "word": "misjudged"
+      },
+      {
+        "start": 58.15,
+        "word": "coverage"
+      },
+      {
+        "start": 58.55,
+        "word": "roughly"
+      },
+      {
+        "start": 58.95,
+        "word": "8"
+      },
+      {
+        "start": 59.35,
+        "word": "percent"
+      },
+      {
+        "start": 59.75,
+        "word": "of"
+      },
+      {
+        "start": 60.15,
+        "word": "the"
+      },
+      {
+        "start": 60.55,
+        "word": "time."
+      }
+    ]
+  },
+  {
+    "start": 61.2,
+    "words": [
+      {
+        "start": 61.2,
+        "word": "The"
+      },
+      {
+        "start": 61.6,
+        "word": "team"
+      },
+      {
+        "start": 62,
+        "word": "had"
+      },
+      {
+        "start": 62.4,
+        "word": "built"
+      },
+      {
+        "start": 62.8,
+        "word": "the"
+      },
+      {
+        "start": 63.2,
+        "word": "feature,"
+      },
+      {
+        "start": 63.6,
+        "word": "the"
+      },
+      {
+        "start": 64,
+        "word": "data"
+      },
+      {
+        "start": 64.4,
+        "word": "was"
+      },
+      {
+        "start": 64.8,
+        "word": "returning"
+      },
+      {
+        "start": 65.2,
+        "word": "correctly,"
+      },
+      {
+        "start": 65.6,
+        "word": "and"
+      },
+      {
+        "start": 66,
+        "word": "the"
+      },
+      {
+        "start": 66.4,
+        "word": "displayed"
+      },
+      {
+        "start": 66.8,
+        "word": "information"
+      },
+      {
+        "start": 67.2,
+        "word": "was"
+      },
+      {
+        "start": 67.6,
+        "word": "right."
+      }
+    ]
+  },
+  {
+    "start": 68.25,
+    "words": [
+      {
+        "start": 68.25,
+        "word": "By"
+      },
+      {
+        "start": 68.65,
+        "word": "every"
+      },
+      {
+        "start": 69.05,
+        "word": "internal"
+      },
+      {
+        "start": 69.45,
+        "word": "metric,"
+      },
+      {
+        "start": 69.85,
+        "word": "the"
+      },
+      {
+        "start": 70.25,
+        "word": "feature"
+      },
+      {
+        "start": 70.65,
+        "word": "was"
+      },
+      {
+        "start": 71.05,
+        "word": "a"
+      },
+      {
+        "start": 71.45,
+        "word": "success."
+      }
+    ]
+  },
+  {
+    "start": 72.7,
+    "words": [
+      {
+        "start": 72.7,
+        "word": "Adoption"
+      },
+      {
+        "start": 73.1,
+        "word": "was"
+      },
+      {
+        "start": 73.5,
+        "word": "not."
+      }
+    ]
+  },
+  {
+    "start": 74.15,
+    "words": [
+      {
+        "start": 74.15,
+        "word": "Clinicians"
+      },
+      {
+        "start": 74.55,
+        "word": "weren't"
+      },
+      {
+        "start": 74.95,
+        "word": "looking"
+      },
+      {
+        "start": 75.35,
+        "word": "at"
+      },
+      {
+        "start": 75.75,
+        "word": "it."
+      }
+    ]
+  },
+  {
+    "start": 76.4,
+    "words": [
+      {
+        "start": 76.4,
+        "word": "When"
+      },
+      {
+        "start": 76.8,
+        "word": "they"
+      },
+      {
+        "start": 77.2,
+        "word": "did"
+      },
+      {
+        "start": 77.6,
+        "word": "look,"
+      },
+      {
+        "start": 78,
+        "word": "they"
+      },
+      {
+        "start": 78.4,
+        "word": "didn't"
+      },
+      {
+        "start": 78.8,
+        "word": "act"
+      },
+      {
+        "start": 79.2,
+        "word": "on"
+      },
+      {
+        "start": 79.6,
+        "word": "it."
+      }
+    ]
+  },
+  {
+    "start": 80.25,
+    "words": [
+      {
+        "start": 80.25,
+        "word": "The"
+      },
+      {
+        "start": 80.65,
+        "word": "team"
+      },
+      {
+        "start": 81.05,
+        "word": "was"
+      },
+      {
+        "start": 81.45,
+        "word": "puzzled."
+      }
+    ]
+  },
+  {
+    "start": 82.7,
+    "words": [
+      {
+        "start": 82.7,
+        "word": "I"
+      },
+      {
+        "start": 83.1,
+        "word": "asked"
+      },
+      {
+        "start": 83.5,
+        "word": "to"
+      },
+      {
+        "start": 83.9,
+        "word": "see"
+      },
+      {
+        "start": 84.3,
+        "word": "how"
+      },
+      {
+        "start": 84.7,
+        "word": "the"
+      },
+      {
+        "start": 85.1,
+        "word": "information"
+      },
+      {
+        "start": 85.5,
+        "word": "was"
+      },
+      {
+        "start": 85.9,
+        "word": "displayed"
+      },
+      {
+        "start": 86.3,
+        "word": "in"
+      },
+      {
+        "start": 86.7,
+        "word": "the"
+      },
+      {
+        "start": 87.1,
+        "word": "product."
+      }
+    ]
+  },
+  {
+    "start": 87.75,
+    "words": [
+      {
+        "start": 87.75,
+        "word": "They"
+      },
+      {
+        "start": 88.15,
+        "word": "walked"
+      },
+      {
+        "start": 88.55,
+        "word": "me"
+      },
+      {
+        "start": 88.95,
+        "word": "through"
+      },
+      {
+        "start": 89.35,
+        "word": "it:"
+      },
+      {
+        "start": 89.75,
+        "word": "a"
+      },
+      {
+        "start": 90.15,
+        "word": "small"
+      },
+      {
+        "start": 90.55,
+        "word": "panel"
+      },
+      {
+        "start": 90.95,
+        "word": "in"
+      },
+      {
+        "start": 91.35,
+        "word": "the"
+      },
+      {
+        "start": 91.75,
+        "word": "patient"
+      },
+      {
+        "start": 92.15,
+        "word": "summary"
+      },
+      {
+        "start": 92.55,
+        "word": "view,"
+      },
+      {
+        "start": 92.95,
+        "word": "populated"
+      },
+      {
+        "start": 93.35,
+        "word": "with"
+      },
+      {
+        "start": 93.75,
+        "word": "the"
+      },
+      {
+        "start": 94.15,
+        "word": "verification"
+      },
+      {
+        "start": 94.55,
+        "word": "result."
+      }
+    ]
+  },
+  {
+    "start": 95.2,
+    "words": [
+      {
+        "start": 95.2,
+        "word": "Coverage"
+      },
+      {
+        "start": 95.6,
+        "word": "status,"
+      },
+      {
+        "start": 96,
+        "word": "deductible"
+      },
+      {
+        "start": 96.4,
+        "word": "amount,"
+      },
+      {
+        "start": 96.8,
+        "word": "copay"
+      },
+      {
+        "start": 97.2,
+        "word": "amount."
+      }
+    ]
+  },
+  {
+    "start": 97.85,
+    "words": [
+      {
+        "start": 97.85,
+        "word": "Three"
+      },
+      {
+        "start": 98.25,
+        "word": "numeric"
+      },
+      {
+        "start": 98.65,
+        "word": "fields"
+      },
+      {
+        "start": 99.05,
+        "word": "and"
+      },
+      {
+        "start": 99.45,
+        "word": "a"
+      },
+      {
+        "start": 99.85,
+        "word": "label."
+      }
+    ]
+  },
+  {
+    "start": 100.5,
+    "words": [
+      {
+        "start": 100.5,
+        "word": "No"
+      },
+      {
+        "start": 100.9,
+        "word": "call"
+      },
+      {
+        "start": 101.3,
+        "word": "to"
+      },
+      {
+        "start": 101.7,
+        "word": "action."
+      }
+    ]
+  },
+  {
+    "start": 102.35,
+    "words": [
+      {
+        "start": 102.35,
+        "word": "No"
+      },
+      {
+        "start": 102.75,
+        "word": "prompt"
+      },
+      {
+        "start": 103.15,
+        "word": "to"
+      },
+      {
+        "start": 103.55,
+        "word": "take"
+      },
+      {
+        "start": 103.95,
+        "word": "a"
+      },
+      {
+        "start": 104.35,
+        "word": "next"
+      },
+      {
+        "start": 104.75,
+        "word": "step."
+      }
+    ]
+  },
+  {
+    "start": 105.4,
+    "words": [
+      {
+        "start": 105.4,
+        "word": "No"
+      },
+      {
+        "start": 105.8,
+        "word": "connection"
+      },
+      {
+        "start": 106.2,
+        "word": "to"
+      },
+      {
+        "start": 106.6,
+        "word": "the"
+      },
+      {
+        "start": 107,
+        "word": "workflow"
+      },
+      {
+        "start": 107.4,
+        "word": "the"
+      },
+      {
+        "start": 107.8,
+        "word": "clinician"
+      },
+      {
+        "start": 108.2,
+        "word": "was"
+      },
+      {
+        "start": 108.6,
+        "word": "actually"
+      },
+      {
+        "start": 109,
+        "word": "inside"
+      },
+      {
+        "start": 109.4,
+        "word": "of."
+      }
+    ]
+  },
+  {
+    "start": 110.65,
+    "words": [
+      {
+        "start": 110.65,
+        "word": "I"
+      },
+      {
+        "start": 111.05,
+        "word": "wrote"
+      },
+      {
+        "start": 111.45,
+        "word": "a"
+      },
+      {
+        "start": 111.85,
+        "word": "single"
+      },
+      {
+        "start": 112.25,
+        "word": "line"
+      },
+      {
+        "start": 112.65,
+        "word": "in"
+      },
+      {
+        "start": 113.05,
+        "word": "my"
+      },
+      {
+        "start": 113.45,
+        "word": "notes:"
+      },
+      {
+        "start": 113.85,
+        "word": "Hyperfixation"
+      },
+      {
+        "start": 114.25,
+        "word": "on"
+      },
+      {
+        "start": 114.65,
+        "word": "accuracy"
+      },
+      {
+        "start": 115.05,
+        "word": "over"
+      },
+      {
+        "start": 115.45,
+        "word": "experience."
+      }
+    ]
+  },
+  {
+    "start": 116.7,
+    "words": [
+      {
+        "start": 116.7,
+        "word": "Here's"
+      },
+      {
+        "start": 117.1,
+        "word": "the"
+      },
+      {
+        "start": 117.5,
+        "word": "problem."
+      }
+    ]
+  },
+  {
+    "start": 118.15,
+    "words": [
+      {
+        "start": 118.15,
+        "word": "The"
+      },
+      {
+        "start": 118.55,
+        "word": "team"
+      },
+      {
+        "start": 118.95,
+        "word": "had"
+      },
+      {
+        "start": 119.35,
+        "word": "treated"
+      },
+      {
+        "start": 119.75,
+        "word": "the"
+      },
+      {
+        "start": 120.15,
+        "word": "feature"
+      },
+      {
+        "start": 120.55,
+        "word": "as"
+      },
+      {
+        "start": 120.95,
+        "word": "a"
+      },
+      {
+        "start": 121.35,
+        "word": "data"
+      },
+      {
+        "start": 121.75,
+        "word": "display"
+      },
+      {
+        "start": 122.15,
+        "word": "problem."
+      }
+    ]
+  },
+  {
+    "start": 122.8,
+    "words": [
+      {
+        "start": 122.8,
+        "word": "The"
+      },
+      {
+        "start": 123.2,
+        "word": "job"
+      },
+      {
+        "start": 123.6,
+        "word": "was"
+      },
+      {
+        "start": 124,
+        "word": "to"
+      },
+      {
+        "start": 124.4,
+        "word": "fetch"
+      },
+      {
+        "start": 124.8,
+        "word": "the"
+      },
+      {
+        "start": 125.2,
+        "word": "right"
+      },
+      {
+        "start": 125.6,
+        "word": "numbers"
+      },
+      {
+        "start": 126,
+        "word": "and"
+      },
+      {
+        "start": 126.4,
+        "word": "put"
+      },
+      {
+        "start": 126.8,
+        "word": "them"
+      },
+      {
+        "start": 127.2,
+        "word": "on"
+      },
+      {
+        "start": 127.6,
+        "word": "the"
+      },
+      {
+        "start": 128,
+        "word": "page."
+      }
+    ]
+  },
+  {
+    "start": 128.65,
+    "words": [
+      {
+        "start": 128.65,
+        "word": "They"
+      },
+      {
+        "start": 129.05,
+        "word": "got"
+      },
+      {
+        "start": 129.45,
+        "word": "that"
+      },
+      {
+        "start": 129.85,
+        "word": "right."
+      }
+    ]
+  },
+  {
+    "start": 130.5,
+    "words": [
+      {
+        "start": 130.5,
+        "word": "But"
+      },
+      {
+        "start": 130.9,
+        "word": "the"
+      },
+      {
+        "start": 131.3,
+        "word": "user's"
+      },
+      {
+        "start": 131.7,
+        "word": "job"
+      },
+      {
+        "start": 132.1,
+        "word": "wasn't"
+      },
+      {
+        "start": 132.5,
+        "word": "to"
+      },
+      {
+        "start": 132.9,
+        "word": "look"
+      },
+      {
+        "start": 133.3,
+        "word": "at"
+      },
+      {
+        "start": 133.7,
+        "word": "the"
+      },
+      {
+        "start": 134.1,
+        "word": "numbers."
+      }
+    ]
+  },
+  {
+    "start": 134.75,
+    "words": [
+      {
+        "start": 134.75,
+        "word": "The"
+      },
+      {
+        "start": 135.15,
+        "word": "user's"
+      },
+      {
+        "start": 135.55,
+        "word": "job"
+      },
+      {
+        "start": 135.95,
+        "word": "was"
+      },
+      {
+        "start": 136.35,
+        "word": "to"
+      },
+      {
+        "start": 136.75,
+        "word": "decide"
+      },
+      {
+        "start": 137.15,
+        "word": "whether"
+      },
+      {
+        "start": 137.55,
+        "word": "to"
+      },
+      {
+        "start": 137.95,
+        "word": "proceed"
+      },
+      {
+        "start": 138.35,
+        "word": "with"
+      },
+      {
+        "start": 138.75,
+        "word": "the"
+      },
+      {
+        "start": 139.15,
+        "word": "session"
+      },
+      {
+        "start": 139.55,
+        "word": "as"
+      },
+      {
+        "start": 139.95,
+        "word": "planned,"
+      },
+      {
+        "start": 140.35,
+        "word": "charge"
+      },
+      {
+        "start": 140.75,
+        "word": "a"
+      },
+      {
+        "start": 141.15,
+        "word": "different"
+      },
+      {
+        "start": 141.55,
+        "word": "amount,"
+      },
+      {
+        "start": 141.95,
+        "word": "or"
+      },
+      {
+        "start": 142.35,
+        "word": "call"
+      },
+      {
+        "start": 142.75,
+        "word": "the"
+      },
+      {
+        "start": 143.15,
+        "word": "patient"
+      },
+      {
+        "start": 143.55,
+        "word": "before"
+      },
+      {
+        "start": 143.95,
+        "word": "the"
+      },
+      {
+        "start": 144.35,
+        "word": "appointment."
+      }
+    ]
+  },
+  {
+    "start": 145,
+    "words": [
+      {
+        "start": 145,
+        "word": "The"
+      },
+      {
+        "start": 145.4,
+        "word": "numbers"
+      },
+      {
+        "start": 145.8,
+        "word": "were"
+      },
+      {
+        "start": 146.2,
+        "word": "inputs"
+      },
+      {
+        "start": 146.6,
+        "word": "to"
+      },
+      {
+        "start": 147,
+        "word": "a"
+      },
+      {
+        "start": 147.4,
+        "word": "decision"
+      },
+      {
+        "start": 147.8,
+        "word": "the"
+      },
+      {
+        "start": 148.2,
+        "word": "product"
+      },
+      {
+        "start": 148.6,
+        "word": "wasn't"
+      },
+      {
+        "start": 149,
+        "word": "helping"
+      },
+      {
+        "start": 149.4,
+        "word": "them"
+      },
+      {
+        "start": 149.8,
+        "word": "make."
+      }
+    ]
+  },
+  {
+    "start": 151.05,
+    "words": [
+      {
+        "start": 151.05,
+        "word": "A"
+      },
+      {
+        "start": 151.45,
+        "word": "correct"
+      },
+      {
+        "start": 151.85,
+        "word": "number"
+      },
+      {
+        "start": 152.25,
+        "word": "with"
+      },
+      {
+        "start": 152.65,
+        "word": "no"
+      },
+      {
+        "start": 153.05,
+        "word": "call"
+      },
+      {
+        "start": 153.45,
+        "word": "to"
+      },
+      {
+        "start": 153.85,
+        "word": "action"
+      },
+      {
+        "start": 154.25,
+        "word": "is"
+      },
+      {
+        "start": 154.65,
+        "word": "functionally"
+      },
+      {
+        "start": 155.05,
+        "word": "invisible."
+      }
+    ]
+  },
+  {
+    "start": 155.7,
+    "words": [
+      {
+        "start": 155.7,
+        "word": "It"
+      },
+      {
+        "start": 156.1,
+        "word": "sits"
+      },
+      {
+        "start": 156.5,
+        "word": "on"
+      },
+      {
+        "start": 156.9,
+        "word": "the"
+      },
+      {
+        "start": 157.3,
+        "word": "screen"
+      },
+      {
+        "start": 157.7,
+        "word": "as"
+      },
+      {
+        "start": 158.1,
+        "word": "a"
+      },
+      {
+        "start": 158.5,
+        "word": "passive"
+      },
+      {
+        "start": 158.9,
+        "word": "data"
+      },
+      {
+        "start": 159.3,
+        "word": "point,"
+      },
+      {
+        "start": 159.7,
+        "word": "and"
+      },
+      {
+        "start": 160.1,
+        "word": "the"
+      },
+      {
+        "start": 160.5,
+        "word": "user,"
+      },
+      {
+        "start": 160.9,
+        "word": "mid-flow"
+      },
+      {
+        "start": 161.3,
+        "word": "on"
+      },
+      {
+        "start": 161.7,
+        "word": "something"
+      },
+      {
+        "start": 162.1,
+        "word": "else,"
+      },
+      {
+        "start": 162.5,
+        "word": "doesn't"
+      },
+      {
+        "start": 162.9,
+        "word": "have"
+      },
+      {
+        "start": 163.3,
+        "word": "the"
+      },
+      {
+        "start": 163.7,
+        "word": "cognitive"
+      },
+      {
+        "start": 164.1,
+        "word": "room"
+      },
+      {
+        "start": 164.5,
+        "word": "to"
+      },
+      {
+        "start": 164.9,
+        "word": "convert"
+      },
+      {
+        "start": 165.3,
+        "word": "it"
+      },
+      {
+        "start": 165.7,
+        "word": "into"
+      },
+      {
+        "start": 166.1,
+        "word": "an"
+      },
+      {
+        "start": 166.5,
+        "word": "action"
+      },
+      {
+        "start": 166.9,
+        "word": "on"
+      },
+      {
+        "start": 167.3,
+        "word": "their"
+      },
+      {
+        "start": 167.7,
+        "word": "own."
+      }
+    ]
+  },
+  {
+    "start": 168.35,
+    "words": [
+      {
+        "start": 168.35,
+        "word": "They"
+      },
+      {
+        "start": 168.75,
+        "word": "glance"
+      },
+      {
+        "start": 169.15,
+        "word": "at"
+      },
+      {
+        "start": 169.55,
+        "word": "it,"
+      },
+      {
+        "start": 169.95,
+        "word": "register"
+      },
+      {
+        "start": 170.35,
+        "word": "that"
+      },
+      {
+        "start": 170.75,
+        "word": "it's"
+      },
+      {
+        "start": 171.15,
+        "word": "there,"
+      },
+      {
+        "start": 171.55,
+        "word": "and"
+      },
+      {
+        "start": 171.95,
+        "word": "move"
+      },
+      {
+        "start": 172.35,
+        "word": "on."
+      }
+    ]
+  },
+  {
+    "start": 173,
+    "words": [
+      {
+        "start": 173,
+        "word": "The"
+      },
+      {
+        "start": 173.4,
+        "word": "data"
+      },
+      {
+        "start": 173.8,
+        "word": "is"
+      },
+      {
+        "start": 174.2,
+        "word": "correct."
+      }
+    ]
+  },
+  {
+    "start": 174.85,
+    "words": [
+      {
+        "start": 174.85,
+        "word": "The"
+      },
+      {
+        "start": 175.25,
+        "word": "behavior"
+      },
+      {
+        "start": 175.65,
+        "word": "is"
+      },
+      {
+        "start": 176.05,
+        "word": "unchanged."
+      }
+    ]
+  },
+  {
+    "start": 177.3,
+    "words": [
+      {
+        "start": 177.3,
+        "word": "The"
+      },
+      {
+        "start": 177.7,
+        "word": "fix"
+      },
+      {
+        "start": 178.1,
+        "word": "is"
+      },
+      {
+        "start": 178.5,
+        "word": "structural,"
+      },
+      {
+        "start": 178.9,
+        "word": "not"
+      },
+      {
+        "start": 179.3,
+        "word": "visual."
+      }
+    ]
+  },
+  {
+    "start": 179.95,
+    "words": [
+      {
+        "start": 179.95,
+        "word": "The"
+      },
+      {
+        "start": 180.35,
+        "word": "verification"
+      },
+      {
+        "start": 180.75,
+        "word": "result"
+      },
+      {
+        "start": 181.15,
+        "word": "needs"
+      },
+      {
+        "start": 181.55,
+        "word": "to"
+      },
+      {
+        "start": 181.95,
+        "word": "surface"
+      },
+      {
+        "start": 182.35,
+        "word": "as"
+      },
+      {
+        "start": 182.75,
+        "word": "a"
+      },
+      {
+        "start": 183.15,
+        "word": "decision"
+      },
+      {
+        "start": 183.55,
+        "word": "moment,"
+      },
+      {
+        "start": 183.95,
+        "word": "not"
+      },
+      {
+        "start": 184.35,
+        "word": "a"
+      },
+      {
+        "start": 184.75,
+        "word": "data"
+      },
+      {
+        "start": 185.15,
+        "word": "field."
+      }
+    ]
+  },
+  {
+    "start": 185.8,
+    "words": [
+      {
+        "start": 185.8,
+        "word": "Patient's"
+      },
+      {
+        "start": 186.2,
+        "word": "deductible"
+      },
+      {
+        "start": 186.6,
+        "word": "has"
+      },
+      {
+        "start": 187,
+        "word": "not"
+      },
+      {
+        "start": 187.4,
+        "word": "been"
+      },
+      {
+        "start": 187.8,
+        "word": "met."
+      }
+    ]
+  },
+  {
+    "start": 188.45,
+    "words": [
+      {
+        "start": 188.45,
+        "word": "Charge"
+      },
+      {
+        "start": 188.85,
+        "word": "$175"
+      },
+      {
+        "start": 189.25,
+        "word": "today?"
+      }
+    ]
+  },
+  {
+    "start": 189.9,
+    "words": [
+      {
+        "start": 189.9,
+        "word": "Yes,"
+      },
+      {
+        "start": 190.3,
+        "word": "no,"
+      },
+      {
+        "start": 190.7,
+        "word": "change"
+      },
+      {
+        "start": 191.1,
+        "word": "amount."
+      }
+    ]
+  },
+  {
+    "start": 191.75,
+    "words": [
+      {
+        "start": 191.75,
+        "word": "The"
+      },
+      {
+        "start": 192.15,
+        "word": "same"
+      },
+      {
+        "start": 192.55,
+        "word": "data,"
+      },
+      {
+        "start": 192.95,
+        "word": "framed"
+      },
+      {
+        "start": 193.35,
+        "word": "as"
+      },
+      {
+        "start": 193.75,
+        "word": "a"
+      },
+      {
+        "start": 194.15,
+        "word": "question"
+      },
+      {
+        "start": 194.55,
+        "word": "the"
+      },
+      {
+        "start": 194.95,
+        "word": "user"
+      },
+      {
+        "start": 195.35,
+        "word": "can"
+      },
+      {
+        "start": 195.75,
+        "word": "answer"
+      },
+      {
+        "start": 196.15,
+        "word": "in"
+      },
+      {
+        "start": 196.55,
+        "word": "a"
+      },
+      {
+        "start": 196.95,
+        "word": "single"
+      },
+      {
+        "start": 197.35,
+        "word": "click,"
+      },
+      {
+        "start": 197.75,
+        "word": "becomes"
+      },
+      {
+        "start": 198.15,
+        "word": "the"
+      },
+      {
+        "start": 198.55,
+        "word": "active"
+      },
+      {
+        "start": 198.95,
+        "word": "focus"
+      },
+      {
+        "start": 199.35,
+        "word": "of"
+      },
+      {
+        "start": 199.75,
+        "word": "the"
+      },
+      {
+        "start": 200.15,
+        "word": "screen."
+      }
+    ]
+  },
+  {
+    "start": 200.8,
+    "words": [
+      {
+        "start": 200.8,
+        "word": "Frame"
+      },
+      {
+        "start": 201.2,
+        "word": "it"
+      },
+      {
+        "start": 201.6,
+        "word": "as"
+      },
+      {
+        "start": 202,
+        "word": "a"
+      },
+      {
+        "start": 202.4,
+        "word": "fact,"
+      },
+      {
+        "start": 202.8,
+        "word": "and"
+      },
+      {
+        "start": 203.2,
+        "word": "it's"
+      },
+      {
+        "start": 203.6,
+        "word": "wallpaper."
+      }
+    ]
+  },
+  {
+    "start": 204.85,
+    "words": [
+      {
+        "start": 204.85,
+        "word": "Two"
+      },
+      {
+        "start": 205.25,
+        "word": "things"
+      },
+      {
+        "start": 205.65,
+        "word": "worth"
+      },
+      {
+        "start": 206.05,
+        "word": "pulling"
+      },
+      {
+        "start": 206.45,
+        "word": "out"
+      },
+      {
+        "start": 206.85,
+        "word": "of"
+      },
+      {
+        "start": 207.25,
+        "word": "this"
+      },
+      {
+        "start": 207.65,
+        "word": "for"
+      },
+      {
+        "start": 208.05,
+        "word": "any"
+      },
+      {
+        "start": 208.45,
+        "word": "team"
+      },
+      {
+        "start": 208.85,
+        "word": "building"
+      },
+      {
+        "start": 209.25,
+        "word": "data-rich"
+      },
+      {
+        "start": 209.65,
+        "word": "product"
+      },
+      {
+        "start": 210.05,
+        "word": "surfaces."
+      }
+    ]
+  },
+  {
+    "start": 211.3,
+    "words": [
+      {
+        "start": 211.3,
+        "word": "The"
+      },
+      {
+        "start": 211.7,
+        "word": "first"
+      },
+      {
+        "start": 212.1,
+        "word": "is"
+      },
+      {
+        "start": 212.5,
+        "word": "a"
+      },
+      {
+        "start": 212.9,
+        "word": "question"
+      },
+      {
+        "start": 213.3,
+        "word": "I'm"
+      },
+      {
+        "start": 213.7,
+        "word": "going"
+      },
+      {
+        "start": 214.1,
+        "word": "to"
+      },
+      {
+        "start": 214.5,
+        "word": "start"
+      },
+      {
+        "start": 214.9,
+        "word": "asking"
+      },
+      {
+        "start": 215.3,
+        "word": "earlier"
+      },
+      {
+        "start": 215.7,
+        "word": "in"
+      },
+      {
+        "start": 216.1,
+        "word": "reviews:"
+      },
+      {
+        "start": 216.5,
+        "word": "what"
+      },
+      {
+        "start": 216.9,
+        "word": "decision"
+      },
+      {
+        "start": 217.3,
+        "word": "is"
+      },
+      {
+        "start": 217.7,
+        "word": "this"
+      },
+      {
+        "start": 218.1,
+        "word": "supposed"
+      },
+      {
+        "start": 218.5,
+        "word": "to"
+      },
+      {
+        "start": 218.9,
+        "word": "support?"
+      }
+    ]
+  },
+  {
+    "start": 219.55,
+    "words": [
+      {
+        "start": 219.55,
+        "word": "If"
+      },
+      {
+        "start": 219.95,
+        "word": "the"
+      },
+      {
+        "start": 220.35,
+        "word": "team"
+      },
+      {
+        "start": 220.75,
+        "word": "can't"
+      },
+      {
+        "start": 221.15,
+        "word": "name"
+      },
+      {
+        "start": 221.55,
+        "word": "the"
+      },
+      {
+        "start": 221.95,
+        "word": "decision,"
+      },
+      {
+        "start": 222.35,
+        "word": "the"
+      },
+      {
+        "start": 222.75,
+        "word": "surface"
+      },
+      {
+        "start": 223.15,
+        "word": "is"
+      },
+      {
+        "start": 223.55,
+        "word": "going"
+      },
+      {
+        "start": 223.95,
+        "word": "to"
+      },
+      {
+        "start": 224.35,
+        "word": "fail"
+      },
+      {
+        "start": 224.75,
+        "word": "no"
+      },
+      {
+        "start": 225.15,
+        "word": "matter"
+      },
+      {
+        "start": 225.55,
+        "word": "how"
+      },
+      {
+        "start": 225.95,
+        "word": "accurate"
+      },
+      {
+        "start": 226.35,
+        "word": "the"
+      },
+      {
+        "start": 226.75,
+        "word": "data"
+      },
+      {
+        "start": 227.15,
+        "word": "is."
+      }
+    ]
+  },
+  {
+    "start": 227.8,
+    "words": [
+      {
+        "start": 227.8,
+        "word": "Accuracy"
+      },
+      {
+        "start": 228.2,
+        "word": "is"
+      },
+      {
+        "start": 228.6,
+        "word": "necessary."
+      }
+    ]
+  },
+  {
+    "start": 229.25,
+    "words": [
+      {
+        "start": 229.25,
+        "word": "Accuracy"
+      },
+      {
+        "start": 229.65,
+        "word": "is"
+      },
+      {
+        "start": 230.05,
+        "word": "not"
+      },
+      {
+        "start": 230.45,
+        "word": "sufficient."
+      }
+    ]
+  },
+  {
+    "start": 231.7,
+    "words": [
+      {
+        "start": 231.7,
+        "word": "The"
+      },
+      {
+        "start": 232.1,
+        "word": "second"
+      },
+      {
+        "start": 232.5,
+        "word": "is"
+      },
+      {
+        "start": 232.9,
+        "word": "a"
+      },
+      {
+        "start": 233.3,
+        "word": "posture"
+      },
+      {
+        "start": 233.7,
+        "word": "about"
+      },
+      {
+        "start": 234.1,
+        "word": "what"
+      },
+      {
+        "start": 234.5,
+        "word": "design"
+      },
+      {
+        "start": 234.9,
+        "word": "owns."
+      }
+    ]
+  },
+  {
+    "start": 235.55,
+    "words": [
+      {
+        "start": 235.55,
+        "word": "In"
+      },
+      {
+        "start": 235.95,
+        "word": "a"
+      },
+      {
+        "start": 236.35,
+        "word": "data-heavy"
+      },
+      {
+        "start": 236.75,
+        "word": "domain,"
+      },
+      {
+        "start": 237.15,
+        "word": "there's"
+      },
+      {
+        "start": 237.55,
+        "word": "a"
+      },
+      {
+        "start": 237.95,
+        "word": "temptation"
+      },
+      {
+        "start": 238.35,
+        "word": "to"
+      },
+      {
+        "start": 238.75,
+        "word": "let"
+      },
+      {
+        "start": 239.15,
+        "word": "engineering"
+      },
+      {
+        "start": 239.55,
+        "word": "own"
+      },
+      {
+        "start": 239.95,
+        "word": "the"
+      },
+      {
+        "start": 240.35,
+        "word": "data"
+      },
+      {
+        "start": 240.75,
+        "word": "fetch"
+      },
+      {
+        "start": 241.15,
+        "word": "and"
+      },
+      {
+        "start": 241.55,
+        "word": "treat"
+      },
+      {
+        "start": 241.95,
+        "word": "the"
+      },
+      {
+        "start": 242.35,
+        "word": "display"
+      },
+      {
+        "start": 242.75,
+        "word": "as"
+      },
+      {
+        "start": 243.15,
+        "word": "a"
+      },
+      {
+        "start": 243.55,
+        "word": "thin"
+      },
+      {
+        "start": 243.95,
+        "word": "wrapper."
+      }
+    ]
+  },
+  {
+    "start": 244.6,
+    "words": [
+      {
+        "start": 244.6,
+        "word": "That"
+      },
+      {
+        "start": 245,
+        "word": "arrangement"
+      },
+      {
+        "start": 245.4,
+        "word": "produces"
+      },
+      {
+        "start": 245.8,
+        "word": "correct,"
+      },
+      {
+        "start": 246.2,
+        "word": "invisible"
+      },
+      {
+        "start": 246.6,
+        "word": "features."
+      }
+    ]
+  },
+  {
+    "start": 247.25,
+    "words": [
+      {
+        "start": 247.25,
+        "word": "The"
+      },
+      {
+        "start": 247.65,
+        "word": "design"
+      },
+      {
+        "start": 248.05,
+        "word": "job"
+      },
+      {
+        "start": 248.45,
+        "word": "is"
+      },
+      {
+        "start": 248.85,
+        "word": "to"
+      },
+      {
+        "start": 249.25,
+        "word": "make"
+      },
+      {
+        "start": 249.65,
+        "word": "the"
+      },
+      {
+        "start": 250.05,
+        "word": "data"
+      },
+      {
+        "start": 250.45,
+        "word": "legible"
+      },
+      {
+        "start": 250.85,
+        "word": "as"
+      },
+      {
+        "start": 251.25,
+        "word": "a"
+      },
+      {
+        "start": 251.65,
+        "word": "decision"
+      },
+      {
+        "start": 252.05,
+        "word": "the"
+      },
+      {
+        "start": 252.45,
+        "word": "user"
+      },
+      {
+        "start": 252.85,
+        "word": "is"
+      },
+      {
+        "start": 253.25,
+        "word": "already"
+      },
+      {
+        "start": 253.65,
+        "word": "trying"
+      },
+      {
+        "start": 254.05,
+        "word": "to"
+      },
+      {
+        "start": 254.45,
+        "word": "make."
+      }
+    ]
+  },
+  {
+    "start": 255.1,
+    "words": [
+      {
+        "start": 255.1,
+        "word": "That"
+      },
+      {
+        "start": 255.5,
+        "word": "work"
+      },
+      {
+        "start": 255.9,
+        "word": "happens"
+      },
+      {
+        "start": 256.3,
+        "word": "before"
+      },
+      {
+        "start": 256.7,
+        "word": "the"
+      },
+      {
+        "start": 257.1,
+        "word": "panel"
+      },
+      {
+        "start": 257.5,
+        "word": "is"
+      },
+      {
+        "start": 257.9,
+        "word": "wireframed."
+      }
+    ]
+  },
+  {
+    "start": 259.15,
+    "words": [
+      {
+        "start": 259.15,
+        "word": "Being"
+      },
+      {
+        "start": 259.55,
+        "word": "right"
+      },
+      {
+        "start": 259.95,
+        "word": "isn't"
+      },
+      {
+        "start": 260.35,
+        "word": "the"
+      },
+      {
+        "start": 260.75,
+        "word": "same"
+      },
+      {
+        "start": 261.15,
+        "word": "as"
+      },
+      {
+        "start": 261.55,
+        "word": "being"
+      },
+      {
+        "start": 261.95,
+        "word": "useful."
+      }
+    ]
+  },
+  {
+    "start": 262.6,
+    "words": [
+      {
+        "start": 262.6,
+        "word": "The"
+      },
+      {
+        "start": 263,
+        "word": "team"
+      },
+      {
+        "start": 263.4,
+        "word": "is"
+      },
+      {
+        "start": 263.8,
+        "word": "rebuilding"
+      },
+      {
+        "start": 264.2,
+        "word": "the"
+      },
+      {
+        "start": 264.6,
+        "word": "surface"
+      },
+      {
+        "start": 265,
+        "word": "this"
+      },
+      {
+        "start": 265.4,
+        "word": "sprint."
+      }
+    ]
+  },
+  {
+    "start": 266.05,
+    "words": [
+      {
+        "start": 266.05,
+        "word": "We'll"
+      },
+      {
+        "start": 266.45,
+        "word": "see"
+      },
+      {
+        "start": 266.85,
+        "word": "how"
+      },
+      {
+        "start": 267.25,
+        "word": "it"
+      },
+      {
+        "start": 267.65,
+        "word": "lands."
+      }
+    ]
+  }
+]

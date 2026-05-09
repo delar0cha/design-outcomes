@@ -31,6 +31,10 @@ export interface PostSummary {
   tags: string[];
   audio?: string;
   timings?: string;
+  /** Credit for the original illustration that the risograph hero was
+   *  recreated from. Surfaces as a "By {name}" overlay on hover over the
+   *  carousel hero. Just the name; UI prepends "By ". */
+  coverAttribution?: string;
 }
 
 export interface CategoryMeta {

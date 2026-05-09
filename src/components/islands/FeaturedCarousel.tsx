@@ -201,6 +201,17 @@ export default function FeaturedCarousel({ posts }: Props) {
             </div>
           )}
 
+          {/* Attribution overlay — credits the original illustration that the
+              risograph hero was recreated from. Reads coverAttribution from
+              the active post's frontmatter, falls back silently when absent.
+              Hidden by default; fades in on hover over the art pane via
+              :hover on .do-featured-art (see global.css). */}
+          {post.coverAttribution && (
+            <span className="do-featured-attribution" aria-hidden="true">
+              By {post.coverAttribution}
+            </span>
+          )}
+
           {/* Carousel controls — temporarily hidden. Auto-advance still
               runs (DUR timer in the useEffect above); users just can't
               prev/next/pause/dot-jump manually while this is commented out.

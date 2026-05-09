@@ -90,6 +90,14 @@ const posts = defineCollection({
      */
     issue: z.number().int().positive().optional(),
 
+    /**
+     * Credit for the original illustration that the article's risograph hero
+     * was recreated from. Surfaces as a "By {name}" overlay on the carousel
+     * hero on hover. Optional — articles without an attribution simply omit
+     * the overlay. Just the name; the "By " prefix is added by the UI.
+     */
+    coverAttribution: z.string().optional(),
+
     // readingTime is NOT authored — it is calculated automatically in src/lib/posts.ts
     // from the rendered body content. Do not add it here.
   }),

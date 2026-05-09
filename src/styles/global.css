@@ -96,7 +96,9 @@ html, body {
   .do-form-tip-body,
   .do-player-karaoke-line, .do-player-karaoke-fallback,
   .do-stub, .do-empty,
-  .do-footer-logo, .do-footer-about p, .do-footer-sent, .do-footer-note
+  .do-footer-logo, .do-footer-about p, .do-footer-sent, .do-footer-note,
+  .do-nav-wordmark,
+  .do-cursor-pill, .do-cursor-issue
 ) {
   text-transform: none;
 }
@@ -131,11 +133,11 @@ a { color: inherit; text-decoration: none; }
 }
 .do-nav-mark svg { display: block; }
 .do-nav-wordmark {
-  font-family: var(--sans);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.005em;
-  text-transform: uppercase;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 0;
   color: var(--ink);
 }
 
@@ -520,6 +522,25 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
   z-index: 1; /* above .do-featured-art-slide stack, below .do-featured-controls (z:2) */
 }
+
+/* Invisible click target laid over the entire art pane. Sits above the
+   slide images (z:0) and the eject overlay (z:1) but below any future
+   controls (z:2). Inherits the cream caret-style cursor via the host's
+   custom cursor system; data-cursor-label on the element morphs the
+   pill text into the illustrator credit while hovering. */
+.do-featured-art-link {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: block;
+  text-decoration: none;
+  color: transparent;
+  background: transparent;
+}
+.do-featured-art-link:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -4px;
+}
 .do-eject {
   position: absolute;
   top: 0; left: 0;
@@ -765,7 +786,10 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin: 0 0 10px;
+  /* Bottom margin matches .do-featured's 20px top padding so the pip row
+     sits with symmetric breathing room — header → 20px → pips → 20px →
+     carousel frame. */
+  margin: 0 0 20px;
 }
 .do-issue-pip {
   width: 14px; height: 14px;
@@ -4456,15 +4480,15 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 9px;
+  padding: 6px 11px;
   border-radius: 999px;
   background: var(--color-dark-warm);
   color: var(--cream);
-  font-family: var(--mono);
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
   font-size: 14px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0;
   line-height: 1;
   white-space: nowrap;
   transition: opacity 140ms ease, transform 140ms ease;

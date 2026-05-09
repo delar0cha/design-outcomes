@@ -795,40 +795,6 @@ a { color: inherit; text-decoration: none; }
 }
 .do-issue-pip-mark { display: block; }
 
-/* Attribution chip — credits the original illustrator behind each
-   risograph hero. Sits at the bottom-left of the carousel art pane,
-   hidden until hover. The art column (.do-featured-art) is already
-   position: relative, so we anchor the chip there with absolute
-   positioning. Reduced-motion users get an instant fade. */
-.do-featured-attribution {
-  position: absolute;
-  left: 14px;
-  bottom: 14px;
-  z-index: 3;
-  padding: 5px 10px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--cream);
-  background: rgba(21, 18, 14, 0.78);
-  backdrop-filter: blur(4px);
-  border-radius: 2px;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 200ms ease, transform 200ms ease;
-  pointer-events: none;
-  white-space: nowrap;
-}
-.do-featured-art:hover .do-featured-attribution {
-  opacity: 1;
-  transform: translateY(0);
-}
-@media (prefers-reduced-motion: reduce) {
-  .do-featured-attribution { transition: opacity 1ms; transform: none; }
-}
-
 /* ------------------------ Grid (Zone 2) ------------------------ */
 .do-grid-section {
   padding: 80px var(--gutter) 120px;

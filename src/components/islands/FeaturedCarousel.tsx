@@ -51,24 +51,6 @@ export default function FeaturedCarousel({ posts }: Props) {
     return () => clearTimeout(t);
   }, [idx, paused, playerOpen, posts.length]);
 
-  // Notify the SiteCursor controller that the active slide has changed.
-  // The clickable hero overlay (.do-featured-art-link) is a single DOM
-  // node whose data-cursor-label attribute updates per active post —
-  // but the controller only re-reads it on mousemove. When the carousel
-  // auto-advances under a stationary cursor (or the user clicks a pip),
-  // no mousemove fires and the pill stays stuck on the previous slide's
-  // label. Dispatching cursor:reevaluate triggers a hit-test at the
-  // last known pointer position so the pill morphs to match the new
-  // active slide. Wait one frame so React has flushed the new attribute
-  // value to the DOM before the controller reads it.
-  useEffect(() => {
-    if (typeof document === 'undefined') return;
-    const id = requestAnimationFrame(() => {
-      document.dispatchEvent(new CustomEvent('cursor:reevaluate'));
-    });
-    return () => cancelAnimationFrame(id);
-  }, [idx]);
-
   const advance = (n: number) => setIdx(i => (i + n + posts.length) % posts.length);
   const jumpTo  = (n: number) => setIdx(n);
 
@@ -221,18 +203,11 @@ export default function FeaturedCarousel({ posts }: Props) {
 
           {/* Click target — invisible anchor laid over the art pane that
               navigates to the active post. Sits above the slide images and
-              eject overlay so the whole hero feels tappable. data-cursor-label
-              hijacks the SiteCursor pill text to advertise the illustrator
-              credit (when present) instead of the resting ISSUE NN. */}
+              eject overlay so the whole hero feels tappable. */}
           <a
             className="do-featured-art-link"
             href={`/post/${post.slug}`}
             aria-label={`Open: ${post.title}`}
-            data-cursor-label={
-              post.coverAttribution
-                ? `Illustration by ${post.coverAttribution}`
-                : undefined
-            }
           />
 
 

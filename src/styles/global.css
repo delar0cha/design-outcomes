@@ -131,11 +131,11 @@ a { color: inherit; text-decoration: none; }
 }
 .do-nav-mark svg { display: block; }
 .do-nav-wordmark {
-  font-family: var(--sans);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.005em;
-  text-transform: uppercase;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 0;
   color: var(--ink);
 }
 
@@ -4478,33 +4478,19 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 9px;
+  padding: 6px 11px;
   border-radius: 999px;
   background: var(--color-dark-warm);
   color: var(--cream);
-  font-family: "Montserrat", var(--sans);
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
   line-height: 1;
   white-space: nowrap;
-  /* Padding transitions so the pill resizes smoothly when entering/exiting
-     label-hover mode (which adds 2px each side). Width is intrinsic to
-     the text content so it auto-resizes; flex layout handles the rest. */
-  transition:
-    opacity 140ms ease,
-    transform 140ms ease,
-    padding 200ms ease;
+  transition: opacity 140ms ease, transform 140ms ease;
 }
-/* Inner text fades briefly during a label swap so the morph reads as a
-   transition rather than a hard pop. The JS controller toggles
-   .is-swapping on .do-cursor for ~120ms while it changes the text. */
-.do-cursor-issue {
-  display: inline-block;
-  transition: opacity 120ms ease;
-}
-.do-cursor.is-swapping .do-cursor-issue { opacity: 0; }
 
 .do-cursor-logo {
   width: 14px;
@@ -4549,24 +4535,6 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 .do-cursor.is-hover .do-cursor-pill {
   opacity: 0;
   transform: translate(0, 4px);
-}
-/* Label-hover overrides the plain hover fade-out: the pill stays visible
-   and morphs its text into whatever the hovered element advertises via
-   data-cursor-label (e.g. an illustrator credit on a carousel hero). The
-   pill also grows by 2px each side so the swapped label has a touch more
-   breathing room than the resting ISSUE NN state. Typography swaps to
-   Instrument Serif italic at 16px — credit-line voice rather than the
-   uppercase Montserrat used for system labels. */
-.do-cursor.is-label-hover .do-cursor-pill {
-  opacity: 1;
-  transform: translate(0, 0);
-  padding: 6px 11px;
-  font-family: var(--display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 16px;
-  letter-spacing: 0;
-  text-transform: none;
 }
 .do-cursor.is-hover .do-cursor-mark {
   opacity: 1;

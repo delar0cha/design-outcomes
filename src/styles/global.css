@@ -520,6 +520,25 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
   z-index: 1; /* above .do-featured-art-slide stack, below .do-featured-controls (z:2) */
 }
+
+/* Invisible click target laid over the entire art pane. Sits above the
+   slide images (z:0) and the eject overlay (z:1) but below any future
+   controls (z:2). Inherits the cream caret-style cursor via the host's
+   custom cursor system; data-cursor-label on the element morphs the
+   pill text into the illustrator credit while hovering. */
+.do-featured-art-link {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: block;
+  text-decoration: none;
+  color: transparent;
+  background: transparent;
+}
+.do-featured-art-link:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -4px;
+}
 .do-eject {
   position: absolute;
   top: 0; left: 0;
@@ -765,7 +784,10 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin: 0 0 10px;
+  /* Bottom margin matches .do-featured's 20px top padding so the pip row
+     sits with symmetric breathing room — header → 20px → pips → 20px →
+     carousel frame. */
+  margin: 0 0 20px;
 }
 .do-issue-pip {
   width: 14px; height: 14px;
@@ -4460,15 +4482,29 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
   border-radius: 999px;
   background: var(--color-dark-warm);
   color: var(--cream);
-  font-family: var(--mono);
-  font-size: 14px;
-  font-weight: 500;
+  font-family: "Montserrat", var(--sans);
+  font-size: 10px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   line-height: 1;
   white-space: nowrap;
-  transition: opacity 140ms ease, transform 140ms ease;
+  /* Padding transitions so the pill resizes smoothly when entering/exiting
+     label-hover mode (which adds 2px each side). Width is intrinsic to
+     the text content so it auto-resizes; flex layout handles the rest. */
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease,
+    padding 200ms ease;
 }
+/* Inner text fades briefly during a label swap so the morph reads as a
+   transition rather than a hard pop. The JS controller toggles
+   .is-swapping on .do-cursor for ~120ms while it changes the text. */
+.do-cursor-issue {
+  display: inline-block;
+  transition: opacity 120ms ease;
+}
+.do-cursor.is-swapping .do-cursor-issue { opacity: 0; }
 
 .do-cursor-logo {
   width: 14px;
@@ -4513,6 +4549,16 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
 .do-cursor.is-hover .do-cursor-pill {
   opacity: 0;
   transform: translate(0, 4px);
+}
+/* Label-hover overrides the plain hover fade-out: the pill stays visible
+   and morphs its text into whatever the hovered element advertises via
+   data-cursor-label (e.g. an illustrator credit on a carousel hero). The
+   pill also grows by 2px each side so the swapped label has a touch more
+   breathing room than the resting ISSUE NN state. */
+.do-cursor.is-label-hover .do-cursor-pill {
+  opacity: 1;
+  transform: translate(0, 0);
+  padding: 6px 11px;
 }
 .do-cursor.is-hover .do-cursor-mark {
   opacity: 1;

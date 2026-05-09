@@ -201,6 +201,23 @@ export default function FeaturedCarousel({ posts }: Props) {
             </div>
           )}
 
+          {/* Click target — invisible anchor laid over the art pane that
+              navigates to the active post. Sits above the slide images and
+              eject overlay so the whole hero feels tappable. data-cursor-label
+              hijacks the SiteCursor pill text to advertise the illustrator
+              credit (when present) instead of the resting ISSUE NN. */}
+          <a
+            className="do-featured-art-link"
+            href={`/post/${post.slug}`}
+            aria-label={`Open: ${post.title}`}
+            data-cursor-label={
+              post.coverAttribution
+                ? `BY ${post.coverAttribution.toUpperCase()}`
+                : undefined
+            }
+          />
+
+
           {/* Carousel controls — temporarily hidden. Auto-advance still
               runs (DUR timer in the useEffect above); users just can't
               prev/next/pause/dot-jump manually while this is commented out.

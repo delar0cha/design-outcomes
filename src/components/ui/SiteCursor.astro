@@ -63,6 +63,30 @@ const issueLabel = issue ? `Issue ${String(issue).padStart(2, '0')}` : null;
       return;
     }
 
+    // Resting label (e.g. "ISSUE 05"). Captured once on mount so we can
+    // restore it after a label-hover reveal.
+    const issueEl = cursor.querySelector<HTMLElement>('.do-cursor-issue');
+    const defaultLabel = issueEl?.textContent ?? '';
+    let currentLabel = defaultLabel;
+    let swapTimer: number | undefined;
+
+    /**
+     * Set the pill text. If the new value differs from the current one,
+     * briefly toggles `.is-swapping` on the cursor to fade the inner text
+     * out, swaps after the CSS transition window, then fades back in. The
+     * pill itself stays mounted; only the text content morphs.
+     */
+    function setLabel(next: string) {
+      if (!issueEl || next === currentLabel) return;
+      currentLabel = next;
+      cursor.classList.add('is-swapping');
+      window.clearTimeout(swapTimer);
+      swapTimer = window.setTimeout(() => {
+        if (issueEl.textContent !== next) issueEl.textContent = next;
+        cursor.classList.remove('is-swapping');
+      }, 120);
+    }
+
     const onMove = (e: MouseEvent) => {
       cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
       const t = e.target as Element | null;
@@ -70,6 +94,18 @@ const issueLabel = issue ? `Issue ${String(issue).padStart(2, '0')}` : null;
         'a, button, [role="button"], input, select, textarea, label, summary, [data-clickable]'
       );
       cursor.classList.toggle('is-hover', interactive);
+
+      // Label-hover: any ancestor with data-cursor-label hijacks the pill
+      // text to advertise the action (e.g. an illustrator credit on a
+      // carousel hero). When absent, restore the resting issue label.
+      const labelEl = t?.closest<HTMLElement>('[data-cursor-label]');
+      if (labelEl) {
+        cursor.classList.add('is-label-hover');
+        setLabel(labelEl.dataset.cursorLabel ?? defaultLabel);
+      } else {
+        cursor.classList.remove('is-label-hover');
+        setLabel(defaultLabel);
+      }
     };
 
     const onLeave = () => { cursor.style.opacity = '0'; };

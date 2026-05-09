@@ -96,7 +96,9 @@ html, body {
   .do-form-tip-body,
   .do-player-karaoke-line, .do-player-karaoke-fallback,
   .do-stub, .do-empty,
-  .do-footer-logo, .do-footer-about p, .do-footer-sent, .do-footer-note
+  .do-footer-logo, .do-footer-about p, .do-footer-sent, .do-footer-note,
+  .do-nav-wordmark,
+  .do-cursor-pill, .do-cursor-issue
 ) {
   text-transform: none;
 }

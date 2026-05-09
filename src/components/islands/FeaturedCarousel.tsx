@@ -212,7 +212,7 @@ export default function FeaturedCarousel({ posts }: Props) {
             aria-label={`Open: ${post.title}`}
             data-cursor-label={
               post.coverAttribution
-                ? `BY ${post.coverAttribution.toUpperCase()}`
+                ? `Illustration by ${post.coverAttribution}`
                 : undefined
             }
           />

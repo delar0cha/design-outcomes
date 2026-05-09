@@ -4554,11 +4554,19 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
    and morphs its text into whatever the hovered element advertises via
    data-cursor-label (e.g. an illustrator credit on a carousel hero). The
    pill also grows by 2px each side so the swapped label has a touch more
-   breathing room than the resting ISSUE NN state. */
+   breathing room than the resting ISSUE NN state. Typography swaps to
+   Instrument Serif italic at 16px — credit-line voice rather than the
+   uppercase Montserrat used for system labels. */
 .do-cursor.is-label-hover .do-cursor-pill {
   opacity: 1;
   transform: translate(0, 0);
   padding: 6px 11px;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0;
+  text-transform: none;
 }
 .do-cursor.is-hover .do-cursor-mark {
   opacity: 1;

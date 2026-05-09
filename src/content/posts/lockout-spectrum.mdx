@@ -1,0 +1,59 @@
+---
+title: "The Lockout Spectrum"
+publishedAt: 2026-05-10T18:00:00.000Z
+description: "A spectrum for any forced rollout, sketched on a whiteboard during a 2FA push."
+why: "Most teams treat enforcement as binary. The middle of the spectrum is usually the right answer."
+category: toolbox
+audience: Leaders
+coverImage: ../../assets/heroes/lockout-spectrum.png
+issue: 5
+draft: false
+tags: [enforcement, change-management, security, ux]
+themes: [campaign-framing, calibration]
+audio: "https://310q2girql1gboba.public.blob.vercel-storage.com/audio/posts/lockout-spectrum.mp3"
+audioGeneratedAt: 2026-05-09T04:36:32.989Z
+timings: /timings/lockout-spectrum.json
+---
+
+import Spectrum from '@components/islands/Spectrum';
+
+Every product team eventually has to enforce something the user would prefer to avoid. New terms of service. Mandatory two-factor authentication. A compliance setting that's no longer optional. An updated billing model. The temptation in these moments is to think the question is binary: do we let people opt out, or do we force the change?
+
+It obviously isn't binary. It's really a broad spectrum, or at least that's my pitch for how you should look at them.
+
+I sketched this out on a whiteboard with our security team this week. We're rolling out mandatory 2FA, and the room had drifted toward the strongest possible enforcement: lock people out of the product until they comply. The Terms of Service rollout from a few years back came up. When we pushed too hard there, cancellations spiked for the affected cohort. Nobody wanted that again, but the muscle memory was still pulling toward force. So I drew the spectrum.
+
+<Spectrum items={[
+  {
+    label: "Full lockout.",
+    body: "The most aggressive option. The user cannot use the product until they take the action. Appropriate when the legal or security risk of non-compliance exceeds the churn cost of forcing the change. Rare. Most teams reach for it too early."
+  },
+  {
+    label: "Action lockout.",
+    body: "A narrower version. The user can still use most of the product, but a specific high-stakes action is blocked until they comply. In our case, the specific action is getting paid. You can still see your dashboard, you can still document a session, but you can't process a payout until 2FA is on. The action lockout converts compliance pressure into self-interest at the exact moment the user has the most reason to act."
+  },
+  {
+    label: "Persistent banner.",
+    body: "A non-dismissible banner at the top of the product, with a clear call to action and a countdown timer. The user can keep working, but the message is unavoidable, and the countdown gives the change a shape. Three weeks. Two weeks. One week."
+  },
+  {
+    label: "Dismissible banner.",
+    body: "Same surface, less weight. The user can close it, but it returns at intervals. Useful when the change is real but the deadline is soft."
+  },
+  {
+    label: "In-product nudge.",
+    body: "A contextual message that appears at moments when the new behavior would be most relevant. No sustained pressure, no countdown. The lightest touch."
+  }
+]} />
+
+Most rollouts I've watched fail did so because the team picked a level on this spectrum based on internal urgency rather than user reality. The security org wanted full lockout because the security org saw the threat. The users saw an interruption to their workday from a vendor they didn't ask permission from. Picking the right level is a calibration question, not a courage question.
+
+A few rules I use when I sketch this for a team.
+
+The escalation should be visible to the user. Start at the lighter end, give it time to work, then move up the spectrum if compliance plateaus. People accept escalation they can see coming. They resent escalation that arrives without warning.
+
+The framing should match the level. A persistent banner that reads like a legal notice will feel heavier than a full lockout that's framed as a campaign. Words shape the perceived weight of the intervention. We landed on framing 2FA as protection of client data, not personal account security. Same action, different center of gravity.
+
+The team should agree on what failure looks like. If the goal is 95 percent compliance in eight weeks and the lighter levels get us to 70, that's not a failed rollout. That's the data we needed in order to escalate. Pick the threshold up front so you're not arguing about it in week six.
+
+Use this spectrum for compliance changes. Use it for design system migrations and deprecation campaigns. Use it for any situation where the team is tempted to choose between letting users keep doing the wrong thing and taking the wrong thing away. The middle of the spectrum is usually the right answer. Most teams just don't sketch the middle.

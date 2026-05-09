@@ -70,6 +70,13 @@ const issueLabel = issue ? `Issue ${String(issue).padStart(2, '0')}` : null;
     let currentLabel = defaultLabel;
     let swapTimer: number | undefined;
 
+    // Last known pointer position. Used to re-run the hit test in response
+    // to `cursor:reevaluate` events (e.g. when the carousel auto-advances
+    // under a stationary cursor and the data-cursor-label attribute on
+    // the hovered element has changed).
+    let lastX = -1;
+    let lastY = -1;
+
     /**
      * Set the pill text. If the new value differs from the current one,
      * briefly toggles `.is-swapping` on the cursor to fade the inner text
@@ -87,18 +94,18 @@ const issueLabel = issue ? `Issue ${String(issue).padStart(2, '0')}` : null;
       }, 120);
     }
 
-    const onMove = (e: MouseEvent) => {
-      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-      const t = e.target as Element | null;
-      const interactive = !!t && !!t.closest(
+    /**
+     * Run the interactive + label hit-test for a given target element.
+     * Shared between the live mousemove handler and the synthetic
+     * `cursor:reevaluate` path so both code paths stay in sync.
+     */
+    function evaluate(target: Element | null) {
+      const interactive = !!target && !!target.closest(
         'a, button, [role="button"], input, select, textarea, label, summary, [data-clickable]'
       );
       cursor.classList.toggle('is-hover', interactive);
 
-      // Label-hover: any ancestor with data-cursor-label hijacks the pill
-      // text to advertise the action (e.g. an illustrator credit on a
-      // carousel hero). When absent, restore the resting issue label.
-      const labelEl = t?.closest<HTMLElement>('[data-cursor-label]');
+      const labelEl = target?.closest<HTMLElement>('[data-cursor-label]');
       if (labelEl) {
         cursor.classList.add('is-label-hover');
         setLabel(labelEl.dataset.cursorLabel ?? defaultLabel);
@@ -106,13 +113,35 @@ const issueLabel = issue ? `Issue ${String(issue).padStart(2, '0')}` : null;
         cursor.classList.remove('is-label-hover');
         setLabel(defaultLabel);
       }
+    }
+
+    const onMove = (e: MouseEvent) => {
+      lastX = e.clientX;
+      lastY = e.clientY;
+      cursor.style.transform = `translate3d(${lastX}px, ${lastY}px, 0)`;
+      evaluate(e.target as Element | null);
     };
 
     const onLeave = () => { cursor.style.opacity = '0'; };
     const onEnter = () => { cursor.style.opacity = '1'; };
 
+    /**
+     * Re-run the hit-test at the last known pointer position. Other
+     * components dispatch `cursor:reevaluate` on document when their own
+     * state change might mean a different data-cursor-label is now under
+     * a stationary cursor (e.g. a carousel auto-advance updates the link's
+     * data attribute but no mousemove fires). We use elementFromPoint
+     * rather than the original event's target since the target element
+     * may have been unmounted/replaced since the last move.
+     */
+    const onReevaluate = () => {
+      if (lastX < 0) return;
+      evaluate(document.elementFromPoint(lastX, lastY));
+    };
+
     document.addEventListener('mousemove', onMove, { passive: true });
     document.addEventListener('mouseleave', onLeave);
     document.addEventListener('mouseenter', onEnter);
+    document.addEventListener('cursor:reevaluate', onReevaluate);
   })();
 </script>

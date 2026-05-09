@@ -51,6 +51,24 @@ export default function FeaturedCarousel({ posts }: Props) {
     return () => clearTimeout(t);
   }, [idx, paused, playerOpen, posts.length]);
 
+  // Notify the SiteCursor controller that the active slide has changed.
+  // The clickable hero overlay (.do-featured-art-link) is a single DOM
+  // node whose data-cursor-label attribute updates per active post —
+  // but the controller only re-reads it on mousemove. When the carousel
+  // auto-advances under a stationary cursor (or the user clicks a pip),
+  // no mousemove fires and the pill stays stuck on the previous slide's
+  // label. Dispatching cursor:reevaluate triggers a hit-test at the
+  // last known pointer position so the pill morphs to match the new
+  // active slide. Wait one frame so React has flushed the new attribute
+  // value to the DOM before the controller reads it.
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const id = requestAnimationFrame(() => {
+      document.dispatchEvent(new CustomEvent('cursor:reevaluate'));
+    });
+    return () => cancelAnimationFrame(id);
+  }, [idx]);
+
   const advance = (n: number) => setIdx(i => (i + n + posts.length) % posts.length);
   const jumpTo  = (n: number) => setIdx(n);
 

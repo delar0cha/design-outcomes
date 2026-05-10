@@ -1695,43 +1695,28 @@ a { color: inherit; text-decoration: none; }
   .do-grid-section { padding: 48px var(--gutter) 80px; }
 
   /* ── Featured hero — framed ──
-     Mobile reorders the grid as art → progress → text so the countdown
-     sits as a 2px horizontal bar right under the hero image with a 1px
-     gap. The fill animates left→right via do-progress-fill-h (keyframe
-     defined below the desktop rules). */
+     Mobile lays the carousel out as a single column: hero image on top,
+     text below. The frame is a real flex column rather than display:contents
+     because iOS Safari has a quirk where `order` on display:contents-
+     flattened children doesn't propagate to the grandparent grid — the
+     art slot ended up rendering below the text instead of above it. With
+     the frame as the actual flex container, art (DOM order 1) sits above
+     text (DOM order 2) with no order shenanigans needed. The 2px progress
+     bar is hidden at mobile; it was a non-essential decoration that
+     depended on the same order trick. */
   .do-featured.is-framed .do-featured-inner { grid-template-columns: 1fr; min-height: auto; gap: 0; }
+  .do-featured.is-framed .do-featured-frame {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    padding: 0;
+    grid-column: 1;
+  }
   /* aspect-ratio + image-fill rules inherited from @media (max-width: 1080px) above. */
-  .do-featured.is-framed .do-featured-art  { order: 1; grid-column: 1; }
-  .do-featured.is-framed .do-progress {
-    order: 2;
-    display: block;
-    position: relative;
-    align-self: auto;
-    height: 2px;
-    width: 100%;
-    margin-top: 1px;
-  }
-  .do-featured.is-framed .do-progress-track {
-    position: absolute;
-    inset: 0;
-    top: 0; bottom: 0; left: 0;
-    width: 100%;
-    height: 2px;
-    transform: none;
-    border-radius: 0;
-  }
-  .do-featured.is-framed .do-progress-fill {
-    position: absolute;
-    inset: 0;
-    top: 0; left: 0;
-    width: 100%;
-    height: 2px;
-    transform: scaleX(0);
-    transform-origin: left center;
-    border-radius: 0;
-    animation: do-progress-fill-h var(--do-slide-duration) linear forwards;
-  }
-  .do-featured.is-framed .do-featured-text { order: 3; grid-column: 1; }
+  .do-featured.is-framed .do-featured-art  { grid-column: auto; }
+  .do-featured.is-framed .do-featured-text { grid-column: auto; padding: 24px 0 0; }
+  .do-featured.is-framed .do-progress { display: none; }
 
   /* ── Featured hero — bleed ── */
   .do-featured.is-bleed .do-featured-inner { grid-template-columns: 1fr; min-height: 500px; }

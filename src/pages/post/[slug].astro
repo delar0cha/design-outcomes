@@ -249,7 +249,7 @@ const fallbackRecipe = { kind: 'bars' as const, palette: ['#E8E0D0', '#2F4858', 
       )}
 
       <!-- Share (top) -->
-      <ShareRow client:load title={post.data.title} url={pageUrl} />
+      <ShareRow client:load title={post.data.title} url={pageUrl} why={post.data.why} />
 
       <!-- MDX body -->
       <div class="do-post-body">
@@ -257,7 +257,7 @@ const fallbackRecipe = { kind: 'bars' as const, palette: ['#E8E0D0', '#2F4858', 
       </div>
 
       <!-- Share (bottom) -->
-      <ShareRow client:load title={post.data.title} url={pageUrl} />
+      <ShareRow client:load title={post.data.title} url={pageUrl} why={post.data.why} />
 
       <!-- Filed under -->
       <div class="do-post-end">

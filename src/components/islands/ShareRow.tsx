@@ -3,9 +3,10 @@ import { useState } from 'react';
 interface Props {
   title: string;
   url: string;
+  why?: string;
 }
 
-export default function ShareRow({ title, url }: Props) {
+export default function ShareRow({ title, url, why }: Props) {
   const [copied, setCopied] = useState(false);
 
   const copy = () => {
@@ -15,7 +16,10 @@ export default function ShareRow({ title, url }: Props) {
     });
   };
 
-  const li  = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+  const liText = why ? `${why}\n\n${url}` : url;
+  const li  = why
+    ? `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(liText)}`
+    : `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
   const bsk = `https://bsky.app/intent/compose?text=${encodeURIComponent(title + '\n\n' + url)}`;
   const fb  = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
   const thr = `https://www.threads.net/intent/post?text=${encodeURIComponent(title + '\n\n' + url)}`;

@@ -11,11 +11,15 @@
     "new-post": "tsx scripts/new-post.ts",
     "generate-audio": "tsx scripts/generate-audio.ts",
     "generate-timings": "tsx scripts/generate-timings.ts",
+    "field-notes:search": "tsx scripts/field-notes/search.ts",
+    "field-notes:new": "tsx scripts/field-notes/new.ts",
+    "field-notes:test": "tsx scripts/field-notes/filter.test.ts",
     "generate-ascii": "node scripts/generate-ascii.mjs",
     "generate-pixelart": "node scripts/generate-pixelart.mjs",
     "generate-og": "node scripts/generate-og.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.91.1",
     "@astrojs/mdx": "^4.0.0",
     "@astrojs/react": "^4.0.0",
     "@astrojs/rss": "^4.0.18",

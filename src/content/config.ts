@@ -35,16 +35,16 @@ const posts = defineCollection({
     coverImage:       image().optional(),
 
     /**
-     * Free-text themes the post engages with, used by the Field Notes agent
-     * to map connections between published articles and external pieces it
-     * surfaces. Populated by `npm run field-notes:migrate-articles`.
+     * Free-text themes the post engages with. Used when mapping connections
+     * between articles and Field Notes entries. Populated manually in
+     * frontmatter.
      */
     themes:           z.array(z.string()).optional().default([]),
 
     /**
-     * Tactic tags from the controlled vocabulary the Field Notes agent uses
-     * for connection mapping. Populated by
-     * `npm run field-notes:migrate-articles`.
+     * Tactic tags from the controlled vocabulary shared with Field Notes,
+     * used to map connections between articles and entries. Populated
+     * manually in frontmatter.
      */
     tactics: z.array(z.enum([
       'research_and_validation',

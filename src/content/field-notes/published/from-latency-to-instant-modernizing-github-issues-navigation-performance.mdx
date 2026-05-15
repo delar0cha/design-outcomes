@@ -1,0 +1,39 @@
+---
+slug: "from-latency-to-instant-modernizing-github-issues-navigation-performance"
+source: "GitHub (Engineering & Design)"
+source_id: "github-engineering-design"
+source_url: "https://github.blog/engineering/architecture-optimization/from-latency-to-instant-modernizing-github-issues-navigation-performance"
+piece_title: "From latency to instant: Modernizing GitHub Issues navigation performance"
+piece_author: "Alexander Lelidis"
+piece_published_at: 2026-05-14
+
+tactic_tags:
+  - craft_and_detail
+  - systems_and_primitives
+  - critique_and_decision_making
+
+rubric_scores:
+  process_visibility:  5
+  decision_visibility: 5
+  specificity:         5
+  originality:         3
+  audience_fit:        4
+  total:               22
+rubric_verdict: explicit_tactics
+rubric_rationale: "Distribution-shape thinking instead of p99 chasing, with the staleness tradeoff named as a number rather than smuggled in. Worth lifting for any team where 'feels fast' is the spec."
+paywall_encountered: false
+display_type: "company"
+
+card_title: "When 'feels instant' is the spec"
+card_abstract: "Most performance work chases tail latency. GitHub Issues reframed it around distribution shape, then named 4.7% server/cache divergence as the price of feeling instant."
+pull_quote: "We are willing to serve data that may be slightly stale if that allows the navigation to complete ==near instantaneous=="
+
+bullets:
+  - "Reframed the goal: shape the distribution, not chase p99."
+  - "Five layers: in-memory cache, IndexedDB, preheat, service worker, code-split."
+  - "Accepted 4.7% server/cache divergence as the operating envelope."
+  - "Cache hit went from 33% to 96%. P10 dropped to 70ms."
+
+coverColor: navy
+generated_at: 2026-05-15T18:33:49.388Z
+---

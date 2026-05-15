@@ -3525,6 +3525,13 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
      staples can poke out leftward. */
   overflow: visible;
   isolation: isolate;
+  /* Establish an inline-size container so the wordmark can size against the
+     card's own width, not the viewport. The grid sets cards as 1fr columns,
+     so before the first breakpoint the cards shrink with the viewport while
+     a viewport-anchored clamp (4vw, max 48px) stays pinned at the ceiling
+     and the longest source names ("GITHUB (ENGINEERING & DESIGN)") overflow
+     the cover. cqw units track the card itself. */
+  container-type: inline-size;
 }
 .do-fn-card-spine-indent {
   position: absolute;
@@ -3593,7 +3600,12 @@ a.do-wk-card-thumb:hover .do-wk-card-svg {
     -apple-system, BlinkMacSystemFont,
     "Inter Tight", system-ui, sans-serif;
   font-weight: 800;
-  font-size: clamp(28px, 4vw, 48px);
+  /* Size against the card's own width via container queries (cqw). At the
+     widest card width (~440px on a 1440px viewport) this caps at 44px,
+     close to the previous 48px ceiling. As the grid shrinks the cards
+     pre-breakpoint, the font scales down with them so long source names
+     ("GITHUB (ENGINEERING & DESIGN)") stay within the 75% wordmark width. */
+  font-size: clamp(20px, 11cqw, 44px);
   letter-spacing: -0.04em;
   text-transform: uppercase;
   /* Tight line-height so multi-word names ("NUBANK DESIGN") stack as a

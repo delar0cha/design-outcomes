@@ -253,6 +253,16 @@ const fallbackRecipe = { kind: 'bars' as const, palette: ['#E8E0D0', '#2F4858', 
 
       <!-- MDX body -->
       <div class="do-post-body">
+        {post.data.heroCreditText && post.data.heroCreditLink && (
+          <p class="do-post-hero-credit">
+            <a href={post.data.heroCreditLink} target="_blank" rel="noopener noreferrer">
+              {post.data.heroCreditText}
+            </a>
+          </p>
+        )}
+        {post.data.description && (
+          <p class="do-post-dek">{post.data.description}</p>
+        )}
         <Content />
       </div>
 

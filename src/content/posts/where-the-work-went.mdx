@@ -1,0 +1,46 @@
+---
+title: "Where the Work Went"
+publishedAt: 2026-05-17T15:00:00.000Z
+description: "The velocity dashboard lies by omission. It captures the part of the work that moved fast and nothing else."
+why: >-
+  If your team is celebrating velocity gains without tracking where the
+  displaced work landed, the people absorbing it are invisible until they
+  break. The dashboard catches up too late to help them.
+category: reframe
+audience: Everyone
+coverImage: ../../assets/heroes/where-the-work-went.png
+coverAttribution: "Leonardo De La Rocha"
+heroCreditText: "Risograph print by Leonardo De La Rocha"
+heroCreditLink: "https://delarocha.myportfolio.com"
+issue: 6
+draft: false
+audio: "https://310q2girql1gboba.public.blob.vercel-storage.com/audio/posts/where-the-work-went.mp3"
+audioGeneratedAt: 2026-05-16T03:07:46.240Z
+timings: /timings/where-the-work-went.json
+---
+
+A designer on one of our clinical workflow squads finished her screens for an Explanation of Benefits upload feature weeks ahead of schedule. The AI tooling collapsed her concept-to-spec cycle in a way that would have been unimaginable a year ago. She was done. The work, by every measure her squad tracks, had been delivered.
+
+Engineering was still wrapping its head around how the underlying model would parse a hundred and eighty-five different payer formats. The design was finished. The system was not. The wait moved from her desk to theirs, and the velocity gain on the design side was offset by the parsing problem on the engineering side. Neither team's metric captured the full picture. Both teams' metrics were technically true.
+
+This is the pattern I've started watching for. AI moves the artifact faster. It does not move the system. The verification, the coordination, the rework, the quality monitoring: none of that disappears. It redistributes to whoever is adjacent and available, which usually means whoever wasn't in the room when the speed got celebrated.
+
+Three more from the past two weeks.
+
+The same Explanation of Benefits feature relies on a large language model that hits sixty-one percent full accuracy across our payer set. The design response was the right one: highlight the AI-touched fields so the clinician can edit them before signing off. But naming the design as a solution obscures what's actually happening. The thirty-nine percent error rate didn't go away. It became review time on the clinician's desk. Current time-on-page averages eighteen minutes, and slightly more than half of users describe the workflow as manageable to difficult. The AI version reshapes that burden. It does not lift it. The clinician absorbed the cost of the speed gain, and the speed gain belongs to a different team.
+
+A separate product launch broke a downstream behavior in our notetaker product. The feature shipped on time by the only metric the launching team owns. The rework lived elsewhere. Our comms lead spent the week doing reactive outreach in a customer Facebook group. Customer Success absorbed a wave of responsive tickets. Marketing revised the campaign multiple times because the original messaging wasn't addressing what customers were actually upset about. None of that work showed up in the product delivery timeline. It showed up in the calendars and inboxes of people adjacent to the team that shipped.
+
+And in a conversation about evals last week, a peer of mine and I disagreed about who should own model drift monitoring. He believes it sits with engineering. I believe it sits with Product. The argument matters because somebody is going to absorb that work either way. If Product doesn't own it, it falls to a data science team that's already reactive, not present at planning, and stretched. The drift gets caught later. The mea culpa lands on someone who wasn't in the room when the model was chosen. The eval question is not technical. It is a question about where we choose to put the watchful work, and what happens to it when we don't choose.
+
+What these have in common is not that AI failed. AI did exactly what we asked. The designer's tool produced finished screens. The model produced a sixty-one percent parse. The launch produced a shipped feature. The drift produced a measurable signal. The failure isn't in the output. The failure is in the accounting.
+
+Our dashboards still measure the part of the work that was always easiest to count. Time-to-spec. Time-to-ship. Tickets closed. Components generated. Those numbers got better, in some cases dramatically. What got harder to see is the work that the speed displaced: clinician review time, comms repair, eval monitoring, the engineering catch-up that runs invisibly behind the design that finished early. The dashboard improvement and the displacement are the same event, viewed from two different desks.
+
+The job changes when this is the operating reality.
+
+A design leader operating in 2026 is doing two things at once. The first is shipping faster, which the tooling supports and the team is increasingly capable of. The second is harder and not yet widely named: tracking where the speed pushed the work, who absorbed it, and whether the absorption is sustainable. That second job has no dashboard. It lives in the conversations that happen when someone says "we had to redo the campaign three times" or "the clinicians are spending eighteen minutes on this" or "I caught it after it had already drifted." Those sentences are the actual metric. The work is to hear them as data, not as complaints.
+
+This is the through-line of the issue. The other five pieces each take one face of it: a coaching moment about where attention goes, a design judgment about where cognitive load lands, a hiring decision about where headcount absorbs, an organizational move about where measurement work lives. The premise underneath all of them is the same. AI doesn't eliminate work. It relocates it. The leadership job is noticing where, and then deciding where it should go instead.
+
+The dashboards will catch up eventually. Until they do, the people in the room with the displacement are the only people who can see it. That's the job.

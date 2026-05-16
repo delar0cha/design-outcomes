@@ -1380,6 +1380,43 @@ a { color: inherit; text-decoration: none; }
 .do-post-body p { margin: 0 0 26px 0; text-wrap: pretty; }
 .do-post-body strong { color: var(--ink); font-weight: 500; }
 
+/* Hero illustration attribution — single muted line at the top of the
+   article body, just above the dek. Sits at the body's left edge so it
+   inherits the article column width. */
+.do-post-hero-credit {
+  margin: 0 0 18px 0;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.do-post-hero-credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--muted-2);
+  transition: text-decoration-color 160ms ease, color 160ms ease;
+}
+.do-post-hero-credit a:hover,
+.do-post-hero-credit a:focus-visible {
+  color: var(--ink-2);
+  text-decoration-color: var(--ink-2);
+}
+
+/* Editorial dek — visible subhead under the article column header,
+   between the hero credit and the article body. Italic display serif,
+   larger than body text, muted color. */
+.do-post-dek {
+  margin: 0 0 32px 0;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
 /* Inline reference link — for in-prose external citations. Subtle warm
    wash sits behind the text (cream-3 over the cream page) plus an underline
    that thickens slightly on hover. Color stays at body-ink so the link

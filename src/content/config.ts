@@ -98,6 +98,16 @@ const posts = defineCollection({
      */
     coverAttribution: z.string().optional(),
 
+    /**
+     * Hero illustration attribution rendered as a single muted line directly
+     * below the hero on the article page. `heroCreditText` is the visible
+     * link text; `heroCreditLink` is the external URL. Both must be present
+     * for the line to render. Different surface from `coverAttribution`,
+     * which is the hover-overlay credit on the homepage carousel.
+     */
+    heroCreditText:   z.string().optional(),
+    heroCreditLink:   z.string().url().optional(),
+
     // readingTime is NOT authored — it is calculated automatically in src/lib/posts.ts
     // from the rendered body content. Do not add it here.
   }),

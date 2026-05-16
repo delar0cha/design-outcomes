@@ -11,6 +11,7 @@
     "new-post": "tsx scripts/new-post.ts",
     "generate-audio": "tsx scripts/generate-audio.ts",
     "generate-timings": "tsx scripts/generate-timings.ts",
+    "preflight-audio": "tsx scripts/preflight-audio.ts",
     "field-notes:search": "tsx scripts/field-notes/search.ts",
     "field-notes:new": "tsx scripts/field-notes/new.ts",
     "field-notes:test": "tsx scripts/field-notes/filter.test.ts",

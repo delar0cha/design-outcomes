@@ -1,0 +1,47 @@
+---
+title: "Trust, Not Access"
+publishedAt: 2026-05-17T17:00:00.000Z
+description: "A clinical product I'm partnered on right now wanted to ship an open-ended AI query interface."
+why: >-
+  An open-ended AI query interface displaces the work of "figuring out what
+  to ask" onto the user. For users with real time budgets and real cognitive
+  loads, that displacement is the difference between adoption and opt-out,
+  regardless of how good the model is.
+category: state
+audience: Everyone
+coverImage: ../../assets/heroes/trust-not-access.png
+coverAttribution: "Leonardo De La Rocha"
+heroCreditText: "Risograph print by Leonardo De La Rocha"
+heroCreditLink: "https://delarocha.myportfolio.com"
+issue: 6
+draft: false
+audio: "https://310q2girql1gboba.public.blob.vercel-storage.com/audio/posts/trust-not-access.mp3"
+audioGeneratedAt: 2026-05-16T03:05:36.129Z
+timings: /timings/trust-not-access.json
+---
+
+The pitch was reasonable on its face. Give clinicians a text box. Let them ask the system anything. Let the model figure out what they need.
+
+I pushed back. I'm glad I did. The pushback was specific and it's the kind of design judgment I want to put on the record, because I think a lot of teams shipping AI features into clinical software right now are about to learn the same thing the slow way.
+
+Clinicians don't explore. They have eight minutes per patient and a notes panel that's already a war zone. The mental model of "I'll just ask the system what I want" is a software designer's model, not a clinician's. A clinician opens a tool to complete a known task and close it. The system is a means. The exploration time is on someone else's calendar.
+
+A peer of mine on the product side validated this from a recent launch in the same product. The data showed clinicians clicking on the most prominent CTA on the screen and ignoring everything else. Not because the rest of the screen was bad. Because their cognitive budget for "figuring out what to do" was already spent on the patient in front of them.
+
+The design choice underneath this is bigger than the choice between an open text box and a set of CTAs. It's a choice about where cognitive load lands. An open-ended AI query interface displaces the work of "figuring out what to ask" onto the clinician. A CTA-driven flow with a predictable outcome absorbs that work back into the product. Both interfaces are technically AI-powered. Only one of them is designed.
+
+The reframe I offered the team, and the one I want to put down here, is this. The product framing for AI features in clinical software is not access. It's trust. Access is what the open-ended interface offers, and access is not what the clinician needs. The clinician needs to trust that the system will give them the right answer for the situation in front of them, fast, with no exploration tax. Trust is what the CTA-driven flow offers, when the CTA is well-chosen and the outcome is predictable.
+
+Once you frame the problem as trust rather than access, the design pattern that follows is what I've started calling the two-layer model.
+
+The first layer is the in-workflow answer. Fast. Predictable. CTA-driven. The clinician hits the button, the system returns the answer for the situation she's actually in, she moves on. This is the layer where ninety percent of the use happens and where the trust gets built or broken. The CTA's job is to be the right CTA for the moment. The system's job is to be right enough, often enough, that the clinician stops thinking about it as AI and starts thinking about it as the tool.
+
+The second layer is the deep research mode. Slower. Open-ended. For the cases where the clinician actually does want to explore, which exists but is rare. This is where the text box belongs, if it belongs anywhere. It's the layer for the ten percent of the use that benefits from the model's full surface area. It is not the default. It is a deliberate departure from the default, available when the clinician chooses to spend the exploration time.
+
+Most teams shipping AI into clinical software right now are designing for the ten percent and accidentally hurting the ninety percent. The default surface area is too wide. The cognitive cost of using the tool is higher than the cost of not using it. The clinician opts out, which gets reported as low adoption, which gets misdiagnosed as a marketing problem.
+
+The marketing isn't the problem. The framing is the problem. If you frame the product as access, the design optimizes for surface area. If you frame the product as trust, the design optimizes for reliability inside a narrow, well-chosen surface. Surface area can grow once trust is established. It can't be retrofitted.
+
+I think this generalizes past clinical software. Any AI feature aimed at a user with a real time budget and a real cognitive load is going to fail the same way the open-ended chatbot is failing in this space. The user doesn't have the cycles to figure out what to ask. The work of figuring out the right question is design work. If we don't do it, we hand it to the user, and the user opts out.
+
+The job is to absorb the figuring out into the product. CTA-first. Predictable. Right. The text box is a tool, not a strategy. Trust is the strategy. Access is what you can offer once you've earned it.

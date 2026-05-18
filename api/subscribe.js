@@ -1,6 +1,6 @@
 const PUB_ID = 'pub_7a3c4e28-9455-46df-9cfb-40e0c87d9a54';
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
